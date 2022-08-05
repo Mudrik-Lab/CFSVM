@@ -14,9 +14,9 @@ function [screenXpixels, screenYpixels, xCenter, yCenter, inter_frame_interval, 
     % screen.
     screenNumber = max(screens);
     
-    % Onlt for debuggin'. Do NOT uncomment next command in your studies 
+    % Only for debugging. Do NOT uncomment next command in your studies 
     % unless "you want to qualify for the "Dumbest scientist on earth" contest"(c).
-    Screen('Preference','SkipSyncTests', 2)
+    Screen('Preference','SkipSyncTests', 2);
     
     % Open an on-screen window using PsychImaging.
     [window, windowRect] = PsychImaging('OpenWindow', screenNumber);

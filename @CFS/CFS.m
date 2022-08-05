@@ -56,7 +56,7 @@ classdef CFS < handle
         mask_transparency {mustBeGreaterThan(mask_transparency, 0), ...
                            mustBeLessThanOrEqual(mask_transparency, 1)} = 1;
     %end
-    %properties (Access = private)
+    %properties (Access = protected)
         window;
         screen_x_pixels;
         screen_y_pixels;
@@ -71,6 +71,7 @@ classdef CFS < handle
         target_textures;
         target_rect;
         masks_rect;
+        future;
     end
         
     
@@ -112,19 +113,22 @@ classdef CFS < handle
             obj.masks_number_before_target = obj.target_appearance_delay/flip_secs;
             obj.masks_number_while_fade_in = obj.target_fade_in_duration/flip_secs;
         end
-        function time_elapsed = generate_mondrians(obj, shape, colors)
+        function generate_mondrians(obj, shape, colors)
             %generate_mondrians(obj) Summary of this method goes here
             %   Detailed explanation goes here
-            tstart = GetSecs;
-            obj.masks = CFS.make_mondrian_masks(obj.screen_x_pixels/2, ...
-                obj.screen_y_pixels, obj.masks_number, shape, colors);
-            tend = GetSecs;
-            time_elapsed = tend - tstart;
+
+            %obj.masks = CFS.make_mondrian_masks(obj.screen_x_pixels/2, ...
+            %    obj.screen_y_pixels, obj.masks_number, shape, colors);
+            obj.future = parfeval(backgroundPool, @CFS.make_mondrian_masks, 1, ...
+                         obj.screen_x_pixels/2, obj.screen_y_pixels, ...
+                         obj.masks_number, shape, colors);
         end
 
-        function obj = generate_textures(obj)
+        function generate_textures(obj)
             %generate_textures(obj) Summary of this method goes here
             %   Detailed explanation goes here
+            wait(obj.future)
+            obj.masks = fetchOutputs(obj.future);
             obj.textures = cell(1, obj.masks_number);
             for n = 1 : obj.masks_number
                 obj.textures{n} = Screen('MakeTexture', obj.window, obj.masks{n});
@@ -148,12 +152,10 @@ classdef CFS < handle
                 catch
                 end
             end
-%             theImage = imread('./Images/Target_images/Conf_Certain.png');
-%             obj.target_textures = Screen('MakeTexture', obj.window, theImage);
         end
-        
+
+        introduction(obj)
         obj = get_rects(obj);
-        greetings(obj, time_elapsed);
         time_elapsed = run_the_experiment(obj);
     end
 

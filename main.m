@@ -28,7 +28,8 @@ X.cfs_mask_duration = 5;
 % By default (false) suppressing pattern is on the right half of the window; true/false.
 X.left_suppression = false; 
 
-X.target_position = 'Top';
+% Choose one of these: UpperLeft, Top, UpperRight, Left, Center, Right, LowerLeft, Bottom, LowerRight.
+X.target_position = 'Center';
 
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
 X.target_size = 0.5; 
@@ -46,7 +47,8 @@ X.target_appearance_delay = 2;
 % Duration of fading in from zero transparency to target_transparency.
 X.target_fade_in_duration = 2; 
 
-X.mask_position = 'Top';
+% Choose one of these: UpperLeft, Top, UpperRight, Left, Center, Right, LowerLeft, Bottom, LowerRight.
+X.mask_position = 'Center';
 
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
 X.mask_size = 0.5; 
@@ -58,13 +60,12 @@ X.mask_transparency = 1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %---------------------------------FUNCTIONS-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-X.initiate()
-time_elapsed = X.generate_mondrians(1,3);
+X.initiate();
+X.generate_mondrians(1,3);
+X.introduction();
 X.generate_textures();
 X.import_target_images();
 X.get_rects();
-X.greetings(time_elapsed)
-
 %for n = 1:10
     time = X.run_the_experiment();
 %end

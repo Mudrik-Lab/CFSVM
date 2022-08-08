@@ -1,3 +1,4 @@
+%make_mondrian_masks Generates an array of masks.
 % function masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection)
 % 
 % This function creates Mondrian masks that can be used for continuous
@@ -12,7 +13,7 @@
 %   sz_y:      Size of mask in y-dimension (large difference to sz_x may cause error)
 %   n_masks:   Number of masks to be created
 %   [shape]:   Shape of elements: 1 = square, 2 = circular, 3 = diamond (default: square)
-%   [colored]: Color style (1 = grayscale, 2 = BRGBYCMW, 3-15 other schemes
+%   [colored]: Color style (1 = BRGBYCMW, 2 = grayscale, 3-15 other schemes
 %              (try them out and let me know which work best!)
 %
 % Output variable:
@@ -160,7 +161,7 @@ switch selection
             0.3 0.1 0.5;...   % dark purple
             1 0.7 0];         % orange
         
-    case 4 % works quite well
+    case 4 % works quite well 
         colors = [
             1 0 0;...           % red
             0.5 0 0;...         % dark red

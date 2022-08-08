@@ -1,5 +1,5 @@
 function introduction(obj)
-%INTRODUCTION Summary of this function goes here
+%introduction Shows introduction screen.
 %   Detailed explanation goes here
     KEY = 'space';
     INSTRUCTION = sprintf('Start by displaying an instruction screen,\nwith few lines of text.\nIn order to continue, use %s.', upper(KEY));

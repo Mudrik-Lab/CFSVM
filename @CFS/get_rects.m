@@ -1,6 +1,8 @@
-function obj = get_rects(obj)
-    %import_target_image(obj) Summary of this method goes here
-    %   Detailed explanation goes here
+function get_rects(obj)
+    %get_rects Calculates on-screen rectangles from target and mask position/size parameters.
+    % Uses static get_stimulus_poisition function, all the tech behind can
+    % be find in its documentation.
+    % See also get_stimulus_position
     
     % Calculate shift of upperleft and lowerright verticies of target and
     % mask image rectangles.

@@ -1,6 +1,6 @@
 function [screenXpixels, screenYpixels, xCenter, yCenter, inter_frame_interval, window] = initiate_window()
-    %initiate_window Summary of this function goes here
-    %   Detailed explanation goes here
+    %initiate_window Calls basic Psychtoolbox settings and initiates window.
+    % Adopted from Peter Scarfe's Psychtoolbox tutorial - it's really good.
     
     % Here we call some default settings for setting up Psychtoolbox
     PsychDefaultSetup(2);
@@ -16,7 +16,7 @@ function [screenXpixels, screenYpixels, xCenter, yCenter, inter_frame_interval, 
     
     % Only for debugging. Do NOT uncomment next command in your studies 
     % unless "you want to qualify for the "Dumbest scientist on earth" contest"(c).
-    Screen('Preference','SkipSyncTests', 2);
+    %Screen('Preference','SkipSyncTests', 2);
     
     % Open an on-screen window using PsychImaging.
     [window, windowRect] = PsychImaging('OpenWindow', screenNumber);

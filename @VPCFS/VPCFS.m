@@ -8,7 +8,8 @@ classdef VPCFS < CFS
     methods
         function time_elapsed = run_the_experiment(obj)
             obj.current_trial = obj.current_trial + 1;
-            obj.choose_stimulus()
+            obj.shuffle_masks();
+            obj.choose_stimulus();
             obj.fixation_cross();
             obj.tstart = obj.flash_masks_only();
             obj.stimulus_fade_in();
@@ -16,7 +17,7 @@ classdef VPCFS < CFS
             time_elapsed = obj.vbl-obj.tstart;
             obj.show_targets();
             obj.perceptual_awareness_scale();
-            obj.alternatives_forced_choice();
+            obj.m_alternative_forced_choice();
         end
 
         show_targets(obj);

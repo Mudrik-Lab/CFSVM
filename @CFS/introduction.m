@@ -6,7 +6,7 @@ function introduction(obj)
     Screen('TextFont', obj.window, 'Courier');
     Screen('TextSize', obj.window, 50);
     Screen('TextStyle', obj.window, 1+2);
-    DrawFormattedText(obj.window, INSTRUCTION, 'center', 'center')
+    DrawFormattedText(obj.window, INSTRUCTION, 'center', 'center');
     Screen('Flip', obj.window);
 
     % Wait until the right KEY is pressed

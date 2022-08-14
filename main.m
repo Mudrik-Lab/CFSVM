@@ -5,10 +5,11 @@ Screen('CloseAll');
 close all;
 clear;
 
-% Initiate an object
+% Initiate an object, for visual priming CFS use X = VPCFS(), 
+% for breaking CFS use X = BCFS()
 X = VPCFS();
 
-
+%%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %--------------------------------PARAMETERS-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Change these%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,7 +20,7 @@ X = VPCFS();
 % By using waitframe = 1 - every frame or every 1/60 second.
 % Relation between waitframe (WF) and temporal frequency (TF) [Hz]
 % is TF=RR/WF
-X.waitframe = 60; 
+X.temporal_frequency = 1;
 
 % Path to folder with target images.
 X.target_images_path = './Images/Target_images'; 
@@ -27,8 +28,9 @@ X.target_images_path = './Images/Target_images';
 % Duration of suppressing pattern in seconds.
 X.cfs_mask_duration = 5; 
 
-% By default (false) suppressing pattern is on the right half of the window; true/false.
-X.left_suppression = false; 
+X.load_masks_from_folder = false;
+
+X.masks_path = './Masks';
 
 % Choose one of these: 'UpperLeft', 'Top', 'UpperRight', 'Left', 
 % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
@@ -60,6 +62,9 @@ X.mask_size = 0.5;
 % Range is 0 = fully transparent to 1 = fully opaque.
 X.mask_contrast = 1;
 
+% In seconds
+X.fixation_cross_duration = 2;
+
 % Size of the arms of the fixation cross in pixels.
 X.fixation_cross_arm_length = 20;
 
@@ -68,9 +73,9 @@ X.fixation_cross_line_width = 4;
 
 % Shape: 1 - squares, 2 - circles, 3 - diamonds.
 X.mondrian_shape = 1;
-% Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
+% Color: 1 - RGBCMYKW, 2 - grayscale, 3 - all colors,
 % for 4...15 see 'help CFS.generate_mondrians'.
-X.mondrian_color = 15;
+X.mondrian_color = 1;
 
 X.number_of_trials = 1;
 
@@ -81,13 +86,17 @@ X.number_of_trials = 1;
 X.objective_evidence = {'2AFC', 'LeftArrow', 'RightArrow'};
 X.subjective_evidence = {'PAS', '1!', '2@', '3#', '4$'};
 
+X.subject_response_directory = './!Results';
+X.subject_info_directory = './!SubjectInfo';
+
 % VPCFS only
 X.prime_images_path = './Images/Prime_images';
 % VPCFS only
 X.target_presentation_duration = 0.7; 
 
+%%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%---------------------------------FUNCTIONS-------------------------------%
+%--------------------------------EXPERIMENT-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Initiate Psychtoolbox window, generate mondrians, show introduction
@@ -97,8 +106,10 @@ X.initiate();
 
 % Enter the experiment loop and BLOW IT UP
 for n = 1:X.number_of_trials
-    ttrial = X.run_the_experiment();
+    ttrial{n} = X.run_the_experiment();
 end
+
+X.save_responses();
 
 % Wait for a key to close the window
 KbStrokeWait;

@@ -5,7 +5,7 @@ function perceptual_awareness_scale(obj)
     Screen('TextFont', obj.window, 'Courier');
     Screen('TextSize', obj.window, 50);
     Screen('TextStyle', obj.window, 1+2);
-    DrawFormattedText(obj.window, question, 'center', 'center')
+    DrawFormattedText(obj.window, question, 'center', 'center');
     tflip = Screen('Flip', obj.window);
     
     [response, secs] = obj.record_response(obj.subjective_evidence);

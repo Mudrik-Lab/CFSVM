@@ -42,7 +42,7 @@ classdef (Abstract) CFS < handle
         % Relation between waitframe (WF) and temporal frequency (TF) [Hz]
         % is TF=RR/WF
         % RR[Hz] (Refresh rate) = refresh rate of the monitor. 
-        waitframe double {mustBePositive, mustBeInteger} = 60;
+        temporal_frequency {mustBePositive} = 10;
 
         % Path to directory with target images.
         target_images_path {mustBeFolder} = './Images/Target_images';
@@ -50,9 +50,9 @@ classdef (Abstract) CFS < handle
         % Duration of suppressing pattern in seconds.
         cfs_mask_duration {mustBePositive, mustBeNumeric} = 5; 
         
-        % Half of the screen on which suppressing pattern is shown.
-        % By default (false) suppressing pattern is on the right half of the window; true/false.
-        left_suppression logical {mustBeNumericOrLogical} = false; 
+        load_masks_from_folder logical {mustBeNumericOrLogical} = false;
+
+        masks_path = './Masks';
         
         % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
         % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
@@ -94,6 +94,9 @@ classdef (Abstract) CFS < handle
         mask_contrast {mustBeGreaterThan(mask_contrast, 0), ...
                            mustBeLessThanOrEqual(mask_contrast, 1)} = 1;
         
+        % In seconds
+        fixation_cross_duration = 2;
+
         % Size of the arms of the fixation cross in pixels.
         fixation_cross_arm_length {mustBePositive} = 20;
 
@@ -111,6 +114,10 @@ classdef (Abstract) CFS < handle
         % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 see 'help CFS.generate_mondrians'.
         mondrian_color = 15;
+        
+        subject_response_directory = './!Results';
+
+        subject_info_directory = './!SubjectInfo';
 
         % VPCFS only
         prime_images_path = './Images/Prime_images';
@@ -122,9 +129,13 @@ classdef (Abstract) CFS < handle
         
 
         
-    end
+    %end
     
-    properties (Access = protected)
+    %properties (Access = protected)
+        subj_info;
+        % Half of the screen on which suppressing pattern is shown.
+        % By default (false) suppressing pattern is on the right half of the window; true/false.
+        left_suppression logical {mustBeNumericOrLogical} = false; 
 
         window; % Psychtoolbox window.
         screen_x_pixels; % Number of pixels on the x axis.
@@ -138,12 +149,13 @@ classdef (Abstract) CFS < handle
         % FS[s] (Flip secs) = WF*IFI = time between flips.
         % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
+        waitframe;
         inter_frame_interval;
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
         masks_number {mustBeInteger, mustBePositive}; 
         masks_number_before_stimulus {mustBeInteger};
         masks_number_while_fade_in {mustBeInteger};
-        
+      
         masks; % An array of generated mondrian masks.
         textures; % Psychtoolbox textures of the generated masks
         target_textures; % Psychtoolbox textures of the stimulus images.
@@ -160,6 +172,7 @@ classdef (Abstract) CFS < handle
 
     methods
         function initiate(obj)
+            obj.get_subject_info();
             %initiate Initiates Psychtoolbox window and makes basic calculations. 
             % initiate(obj) gets screen resolution parameters, an inter frame interval and
             % a window variable, calculates number of masks to generate.
@@ -170,23 +183,33 @@ classdef (Abstract) CFS < handle
             % FS[s] (Flip secs) = WF*IFI = time between flips.
             % IFI[s] (Inter frame interval) = 1/refresh_rate = time between vertical monitor refreshes.
             % WF[#] (Waitframes) = number of refreshes before next flip.
+            obj.waitframe = Screen('NominalFrameRate', obj.window)/obj.temporal_frequency;
             flip_secs = obj.waitframe*obj.inter_frame_interval;
             obj.masks_number = round(obj.cfs_mask_duration/flip_secs);
             obj.masks_number_before_stimulus = round(obj.stimulus_appearance_delay/flip_secs);
             obj.masks_number_while_fade_in = round(obj.stimulus_fade_in_duration/flip_secs);
             
-            % Start mondrian masks generation.
-            % The function takes two arguments: shape and color.
-            % Shape: 1 - squares, 2 - circles, 3 - diamonds.
-            % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
-            % for 4...15 see 'help CFS.generate_mondrians'.
-            obj.generate_mondrians();
-            
-            % Show introduction screen while masks are being generated.
-            obj.introduction();
-            
-            % Generate PTB textures
-            obj.generate_textures();
+            if obj.load_masks_from_folder == true
+                obj.textures = obj.import_images(obj.masks_path, obj.masks_number);
+                
+                % Show introduction screen while masks are being generated.
+                obj.introduction();
+
+            else
+                % Start mondrian masks generation.
+                % The function takes two arguments: shape and color.
+                % Shape: 1 - squares, 2 - circles, 3 - diamonds.
+                % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
+                % for 4...15 see 'help CFS.generate_mondrians'.
+                obj.generate_mondrians();
+                
+                % Show introduction screen while masks are being generated.
+                obj.introduction();
+
+                % Generate PTB textures
+                obj.generate_textures();
+            end
+           
             
             % Calculate stimulus and masks coordinates on screen.
             obj.get_rects();
@@ -200,11 +223,28 @@ classdef (Abstract) CFS < handle
             obj.initiate_response_struct();
         end
       
+        function save_responses(obj)
+
+            % Save responses as a table.
+            % Create folders if don't exist.
+            if ~exist(obj.subject_info_directory, 'dir')
+                mkdir(obj.subject_info_directory);
+            end
+            disp(obj.subj_info.subject_code)
+            writetable(struct2table(obj.subj_info),sprintf('%s/%d.txt',obj.subject_info_directory, obj.subj_info.subject_code));
+
+            if ~exist(obj.subject_response_directory, 'dir')
+                mkdir(obj.subject_response_directory);
+            end
+            writetable(struct2table(obj.response_records),sprintf('%s/%d.txt',obj.subject_response_directory, obj.subj_info.subject_code));
+
+        end
 
         introduction(obj)
         get_rects(obj);
-        alternatives_forced_choice(obj);
+        m_alternative_forced_choice(obj);
         perceptual_awareness_scale(obj);
+        get_subject_info(obj)
     end
     
     methods (Access = protected)
@@ -212,11 +252,11 @@ classdef (Abstract) CFS < handle
             %generate_mondrians Asynchronously runs static make_mondrian_masks function.
             % Takes two arguments: shape and color.
             % Shape: 1 - squares, 2 - circles, 3 - diamonds
-            % Color: Black(Bk), Gray(G), Red(R), Green(Gn), Blue(B), Yellow(Y),
+            % Color: Black(K), Gray(G), Red(R), Green(G), Blue(B), Yellow(Y),
             % Orange(O), Cyan(C), Magenta(M), White(W), Purple(P), dark+color(dColor), light+color(lColor)
-            % 1 - Bk/R/Gn/B/Y/C/M/W, 2 - grayscale, 
-            % 3 - R/dR/Gn/dGn/B/dB/lB/Y/dY/M/C/dC/W/Bk/G/dP/O
-            % 4 - R/dR/B/dB/lB/M/dC/Bk/dP/O,
+            % 1 - RGBCMYKW, 2 - grayscale, 
+            % 3 - R/dR/Gn/dGn/B/dB/lB/Y/dY/M/C/dC/W/K/G/dP/O
+            % 4 - R/dR/B/dB/lB/M/dC/K/dP/O,
             % 5 - purples, 6 - reds, 7 - blues, 8 - professional 1, 9 - professional 2,
             % 10 - appetizing: tasty, 11 - electric, 12 - dependable 1, 
             % 13 - dependable 2, 14 - earthy ecological natural, 15 - feminine
@@ -230,7 +270,7 @@ classdef (Abstract) CFS < handle
             %generate_textures Generates textures from mondrian masks.
 
             % Wait until generate_mondrians() finishes.
-            wait(obj.future)
+            wait(obj.future);
             % Get the generated masks
             obj.masks = fetchOutputs(obj.future);
             % Initiate an array.
@@ -246,13 +286,16 @@ classdef (Abstract) CFS < handle
             obj.stimulus = obj.target_textures{randi(length(obj.target_textures),1)};
         end
         
-        textures = import_images(obj, path);
-        fixation_cross(obj)
+        function shuffle_masks(obj)
+            obj.textures = obj.textures(randperm(length(obj.textures)));
+        end
+        textures = import_images(obj, path, varargin);
+        fixation_cross(obj);
         tstart = flash_masks_only(obj);
-        stimulus_fade_in(obj)
+        stimulus_fade_in(obj);
         flash_masks_with_stimulus(obj);
     end
-
+    
     methods (Static, Access = protected)
         [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window();
         [x0, y0, x1, y1] = get_stimulus_position(ninth, size);

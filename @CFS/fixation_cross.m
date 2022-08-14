@@ -15,6 +15,8 @@ function fixation_cross(obj)
     
     % Flip to the screen
     obj.vbl = Screen('Flip', obj.window);
+
+    WaitSecs(obj.fixation_cross_duration);
     
 end
 

@@ -10,14 +10,15 @@ classdef BCFS < CFS
             obj.create_KbQueue()
         end
 
-        function two_alternatives_forced_choice(obj) %#ok<MANU> 
+        function m_alternative_forced_choice(obj) %#ok<MANU> 
             %METHOD1 Do nothing
-            % Intentionally does nothing as 2AFC in BCFS makes no sense.
+            % Intentionally does nothing as mAFC in BCFS makes no sense.
         end
 
         function time_elapsed = run_the_experiment(obj)
             obj.current_trial = obj.current_trial + 1;
-            obj.choose_stimulus()
+            obj.shuffle_masks();
+            obj.choose_stimulus();
             obj.fixation_cross();
             obj.tstart = obj.flash_masks_only();
             KbQueueStart();
@@ -37,14 +38,14 @@ classdef BCFS < CFS
         function append_trial_response(obj, response, method, secs, tflip)
 
             [pressed, firstPress, ~, ~, ~] = KbQueueCheck();
-            breaking_time = (firstPress(1,KbName('Space'))-obj.tstart)*pressed;
+            breakthrough_time = (firstPress(1,KbName('Space'))-obj.tstart)*pressed;
 
             obj.response_records(end+1)=struct( ...
                 'response', {response}, ...
                 'method', method, ...
                 'elapsed_time', {secs-tflip}, ...
                 'trial_number', {obj.current_trial}, ...
-                'breaking_time', {breaking_time});
+                'breaking_time', {breakthrough_time});
         end
     end
 

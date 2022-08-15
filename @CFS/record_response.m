@@ -1,8 +1,5 @@
 function [response, secs] = record_response(evidence)
-%record_response Summary of this function goes here
-%   Detailed explanation goes here
-    
-    % Wait for a keyboard button signaling the observers response.
+%record_response Waits for a specific keypress and records the it.
     while 1
         [secs, keyCode, ~] = KbWait();
         if ismember(KbName(keyCode), evidence(2:end))

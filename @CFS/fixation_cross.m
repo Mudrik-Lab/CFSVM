@@ -1,6 +1,5 @@
 function fixation_cross(obj)
-%FIXATION_CROSS Summary of this function goes here
-%   Detailed explanation goes here
+%fixation_cross Draws and shows on the screen the fixation cross.
     
     % Set the coordinates (these are all relative to zero we will let
     % the drawing routine center the cross in the center of our monitor for us).
@@ -16,6 +15,7 @@ function fixation_cross(obj)
     % Flip to the screen
     obj.vbl = Screen('Flip', obj.window);
 
+    % Stop code execution for the provided amount of time.
     WaitSecs(obj.fixation_cross_duration);
     
 end

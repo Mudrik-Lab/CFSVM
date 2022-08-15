@@ -1,6 +1,6 @@
 function flash_masks_with_stimulus(obj)
-%FLASH_MASKS_WITH_STIMULUS Summary of this function goes here
-%   Detailed explanation goes here
+%flash_masks_with_stimulus Returns to the normal flip-delay after the fade-in of the stimulus  
+% until the end of the experiment.
 
     % After the fade-in return to the normal flip-delay until the end of the
     % experiment.

@@ -4,81 +4,58 @@ classdef (Abstract) CFS < handle
     % These are implemented in subclasses BCFS, VPCFS and VACFS, respectively.
     %
     % CFS Properties:
-    %   waitframe - number of frames to wait when specifying good timing.
-    %   target_images_path - directory with target images.
-    %   cfs_mask_duration - duration of suppressing pattern in seconds.
-    %   left_suppression - half of the screen on which suppressing pattern is shown.
-    %   stimulus_position - positions of the stimulus.
-    %   stimulus_size - size of the stimulus from 0 to 1 in percents.
-    %   stimulus_rotation - rotation in degrees.
-    %   stimulus_contrast - opaqueness from 0 to 1.
-    %   stimulus_appearance_delay - appearance delay in seconds.
-    %   stimulus_fade_in_duration - duration of stimulus fade-in.
-    %   mask_position - position of the mask.
-    %   mask_size - size of the mask from 0 to 1 in percents.
-    %   mask_contrast - opaqueness from 0 to 1.
+    %     number_of_trials - how many times to run the experiment?
+    %     temporal_frequency - number of masks flashed per one second. 
+    %     cfs_mask_duration - duration of suppressing pattern in seconds.
+    %     load_masks_from_folder -  load pregenerated masks from folder? true/false
+    %     masks_path - if previous parameter set to true - specify path, e.g. './Masks'
+    %     mask_position - position of the mask.
+    %     mask_size - from 0 to 1, where 1 means 100% of the screen (half of the window).
+    %     mask_contrast - contrast from 0 = fully transparent to 1 = fully opaque.
+    %     mondrian_shape - shape: 1 - squares, 2 - circles, 3 - diamonds.
+    %     mondrian_color - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors, for 4...15 see 'help CFS.generate_mondrians'.
+    %     target_images_path - path to a directory with target images.
+    %     stimulus_position - position of the stimulus.
+    %     stimulus_size - from 0 to 1, where 1 means 100% of the screen (half of the window).
+    %     stimulus_rotation - rotation in degrees.
+    %     stimulus_contrast - contrast is from 0 (fully transparent) to 1 (fully opaque).
+    %     stimulus_appearance_delay - delay after initation of the suppressing pattern.
+    %     stimulus_fade_in_duration - duration of fading in from maximal transparency to stimulus_contrast.
+    %     fixation_cross_duration - duration of the fixation cross in seconds.
+    %     fixation_cross_arm_length - size of the arms of the fixation cross in pixels.
+    %     fixation_cross_line_width - line width of the fixation cross in pixels.
+    %     objective_evidence - cell array for method name and keycodes.
+    %     subjective_evidence - cell array for method name and keycodes.
+    %     subject_response_directory - directory to save the subject response data in. 
+    %     subject_info_directory - directory to save recorded subject info (age, hand, eye, etc.) in.
+    %     prime_images_path - path to a directory with prime images. VPCFS only.
+    %     target_presentation_duration - duration of target after the suppression. VPCFS only.
     %
     % CFS Methods:
-    %  Public:
-    %   initiate - initiates Psychtoolbox window and makes basic calculations.
-    %   generate_mondrians - asynchronously runs static make_mondrian_masks function.
-    %   generate_textures - generates textures from mondrian masks.
-    %   import_target_images - loads images from dir path and makes an array of textures from it.
-    %   introduction - shows introduction screen.
-    %   get_rects - calculates on-screen coordinates based on given parameters.
-    %   run_the_experiment - flips the screen.
-    %  Protected and Static:
-    %   initiate_window - calls basic Psychtoolbox settings and initiates window.
-    %   get_stimulus_position - calculates on-screen coordinates based on given parameters. 
-    %   make_mondrian_masks - generates an array of masks.
+    %     initiate - runs SubjectInfoApp, initiates Psychtoolbox window, generates mondrians and makes basic calculations.
+    %     save_responses - save subject responses and subject info.
+    %     run_the_experiment - main function for the experiment loop. Implemented in the subclasses.
 
     properties
+        % How many times to run the experiment?
+        number_of_trials {mustBeInteger, mustBePositive} = 30;
 
-        % Number of frames to wait when specifying good timing.
-        % For example, by using waitframe = 2 one would flip on every other frame. 
-        % By using waitframe = 1 - every frame.
-        % By using waitframe = 60 - every second (assuming that monitor's 
-        % refresh rate is equal to 60Hz).
-        % Relation between waitframe (WF) and temporal frequency (TF) [Hz]
-        % is TF=RR/WF
-        % RR[Hz] (Refresh rate) = refresh rate of the monitor. 
-        temporal_frequency {mustBePositive} = 10;
 
-        % Path to directory with target images.
-        target_images_path {mustBeFolder} = './Images/Target_images';
+        %--------MASKS PARAMETERS-------%
+
+        % Number of masks flashed per one second.
+        temporal_frequency {mustBeInRange(temporal_frequency, 0, 200)} = 10;
 
         % Duration of suppressing pattern in seconds.
-        cfs_mask_duration {mustBePositive, mustBeNumeric} = 5; 
-        
-        load_masks_from_folder logical {mustBeNumericOrLogical} = false;
+        cfs_mask_duration {mustBePositive} = 5;
 
-        masks_path = './Masks';
+        % Load pregenerated masks from folder? true/false
+        load_masks_from_folder {mustBeNumericOrLogical} = false;
         
-        % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
-        % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
-        stimulus_position {mustBeMember(stimulus_position, { ...
-                         'UpperLeft', 'Top', 'UpperRight', ...
-                         'Left', 'Center', 'Right', ...
-                         'LowerLeft', 'Bottom', 'LowerRight'})} = 'Top';
-        
-        % From 0 to 1, where 1 means 100% of the screen (half of the window).
-        stimulus_size {mustBeGreaterThan(stimulus_size, 0), ...
-                     mustBeLessThanOrEqual(stimulus_size, 1)} = 0.5; 
-        
-        % Positive values represent clockwise rotation, 
-        % negative values represent counterclockwise rotation.
-        stimulus_rotation double = 0; 
-        
-        % Contrast is from 0 (fully transparent) to 1 (fully opaque).
-        stimulus_contrast {mustBeGreaterThan(stimulus_contrast, 0), ...
-                             mustBeLessThanOrEqual(stimulus_contrast, 1)} = 1; 
-        
-        % Delay after initation of the suppression pattern;
-        stimulus_appearance_delay {mustBeNumeric} = 2; 
-        
-        % Duration of fading in from maximal transparency to stimulus_contrast.
-        stimulus_fade_in_duration {mustBeNumeric} = 2; 
-        
+        % If previous parameter set to true - specify path, e.g. './Masks'
+        masks_path {mustBeFolder} = './Masks';
+
+        % Masks position on the screen (half of the window).
         % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
         % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
         mask_position {mustBeMember(mask_position, { ...
@@ -87,15 +64,53 @@ classdef (Abstract) CFS < handle
                        'LowerLeft', 'Bottom', 'LowerRight'})} = 'Top';
         
         % From 0 to 1, where 1 means 100% of the screen (half of the window).
-        mask_size {mustBeGreaterThan(mask_size, 0), ...
-                   mustBeLessThanOrEqual(mask_size, 1)} = 0.5; 
+        mask_size {mustBeInRange(mask_size, 0, 1)} = 0.5; 
         
         % Contrast is from 0 = fully transparent to 1 = fully opaque.
-        mask_contrast {mustBeGreaterThan(mask_contrast, 0), ...
-                           mustBeLessThanOrEqual(mask_contrast, 1)} = 1;
+        mask_contrast {mustBeInRange(mask_contrast, 0, 1)} = 1;
+
+        % Shape: 1 - squares, 2 - circles, 3 - diamonds.
+        mondrian_shape {mustBeInteger, mustBeInRange(mondrian_shape, 1, 3)} = 1;
+
+        % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
+        % for 4...15 see 'help CFS.generate_mondrians'.
+        mondrian_color{mustBeInteger, mustBeInRange(mondrian_color, 1, 15)} = 15;
+
+
+        %--------STIMULUS PARAMETERS-------%
+
+        % Path to a directory with target images.
+        target_images_path {mustBeFolder} = './Images/Target_images';
         
+        % Stimulus position on the screen (half of the window).
+        % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
+        % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
+        stimulus_position {mustBeMember(stimulus_position, { ...
+                         'UpperLeft', 'Top', 'UpperRight', ...
+                         'Left', 'Center', 'Right', ...
+                         'LowerLeft', 'Bottom', 'LowerRight'})} = 'Top';
+        
+        % From 0 to 1, where 1 means 100% of the screen (half of the window).
+        stimulus_size {mustBeInRange(stimulus_size, 0, 1)} = 0.5; 
+        
+        % Positive values represent clockwise rotation, 
+        % negative values represent counterclockwise rotation.
+        stimulus_rotation {mustBeNumeric} = 0; 
+        
+        % Contrast is from 0 (fully transparent) to 1 (fully opaque).
+        stimulus_contrast {mustBeInRange(stimulus_contrast, 0, 1)} = 1; 
+        
+        % Delay after initation of the suppressing pattern;
+        stimulus_appearance_delay {mustBeNonnegative} = 2; 
+        
+        % Duration of fading in from maximal transparency to stimulus_contrast.
+        stimulus_fade_in_duration {mustBeNonnegative} = 2; 
+        
+        
+        %--------FIXATION CROSS PARAMETERS-------%
+
         % In seconds
-        fixation_cross_duration = 2;
+        fixation_cross_duration {mustBeNonnegative} = 2;
 
         % Size of the arms of the fixation cross in pixels.
         fixation_cross_arm_length {mustBePositive} = 20;
@@ -103,214 +118,128 @@ classdef (Abstract) CFS < handle
         % Line width of the fixation cross in pixels.
         fixation_cross_line_width {mustBePositive} = 4;
 
-        % First item in an array will be a method name; key names for the
-        % response follow. For example, {'4AFC', '1!', '2@', '3#', '4$'}.
+
+        %--------SUBJECT RESPONSE PARAMETERS-------%
+        
+        % First item in an array will be a method name followed by key names for 
+        % the response. For example, {'4AFC', '1!', '2@', '3#', '4$'} or
+        % {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'} etc.  :)
         % For available key names see KbName('KeyNames').
         objective_evidence = {'2AFC', 'LeftArrow', 'RightArrow'};
         subjective_evidence = {'PAS', '1!', '2@', '3#', '4$'};
         
-        % Shape: 1 - squares, 2 - circles, 3 - diamonds.
-        mondrian_shape = 1;
-        % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
-        % for 4...15 see 'help CFS.generate_mondrians'.
-        mondrian_color = 15;
-        
+        % Directory to save the subject response data.
         subject_response_directory = './!Results';
-
+        
+        % Directory to save recorded subject info (age, hand, eye, etc.)
         subject_info_directory = './!SubjectInfo';
 
-        % VPCFS only
-        prime_images_path = './Images/Prime_images';
-        % VPCFS only
-        target_presentation_duration = 0.7; 
-        
-        number_of_trials = 30;
-        vbl; % Timestamp of the last screen flip.
-        
 
+        %--------VPCFS ONLY-------%
         
-    %end
-    
-    %properties (Access = protected)
-        subj_info;
-        % Half of the screen on which suppressing pattern is shown.
-        % By default (false) suppressing pattern is on the right half of the window; true/false.
-        left_suppression logical {mustBeNumericOrLogical} = false; 
+        % Path to a directory with prime images.
+        prime_images_path {mustBeFolder} = './Images/Prime_images';
+        
+        % For how long to show the target images after the suppression has
+        % been stopped.
+        target_presentation_duration {mustBeNonnegative} = 0.7; 
+    end
 
+
+    properties (Access = protected)
+        subj_info; % Structure to store subject info input
+        left_suppression % Half of the screen on which suppressing pattern is shown.
+        contrasts; % Array of precalculated contrasts for stimulus fade-in 
         window; % Psychtoolbox window.
         screen_x_pixels; % Number of pixels on the x axis.
         screen_y_pixels; % Number of pixels on the y axis.
         x_center; % Half of pixels on the x axis.
         y_center; % Half of pixels on the x axis.
 
+        % WF[#] (Waitframes) = RR/TF = number of the refreshes before next flip.
+        % TF[Hz] (Temporal frequency) = RR/WF = number of flips per second.
         % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes.
         % RR[Hz] (Refresh rate) = refresh rate of the monitor. 
-        % WF[#] (Waitframes) = number of refreshes before next flip.
         % FS[s] (Flip secs) = WF*IFI = time between flips.
         % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
         waitframe;
+
+        % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes.
+        % RR[Hz] (Refresh rate) = refresh rate of the monitor. 
         inter_frame_interval;
+
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
+        % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
+        % WF[#] (Waitframes) = RR/TF = number of the refreshes before next flip.
+        % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes.
         masks_number {mustBeInteger, mustBePositive}; 
         masks_number_before_stimulus {mustBeInteger};
         masks_number_while_fade_in {mustBeInteger};
       
         masks; % An array of generated mondrian masks.
         textures; % Psychtoolbox textures of the generated masks
-        target_textures; % Psychtoolbox textures of the stimulus images.
-        prime_textures;
+        target_textures; % Psychtoolbox textures of the target images.
+        prime_textures; % Psychtoolbox textures of the prime images.
         stimulus; % Randomly chosen stimulus image.
         stimulus_rect; % Coordinates of stimulus position on the screen.
         masks_rect; % Coordinates of masks position on the screen.
         future; % Result of background generation of mondrian masks.
         response_records; % Table for responses
-        current_trial = 0;
-        tstart;
+        current_trial = 0; % Number of the current trial running.
+        tstart; % Timestamp of the trial start.
+        vbl; % Timestamps for internal use and for recording last screen flip time.
     end
         
 
     methods
-        function initiate(obj)
-            obj.get_subject_info();
-            %initiate Initiates Psychtoolbox window and makes basic calculations. 
-            % initiate(obj) gets screen resolution parameters, an inter frame interval and
-            % a window variable, calculates number of masks to generate.
-            % Uses static, protected method initiate_window()
-            [obj.screen_x_pixels, obj.screen_y_pixels, obj.x_center, ...
-                obj.y_center, obj.inter_frame_interval, obj.window ...
-                ] = obj.initiate_window();
-            % FS[s] (Flip secs) = WF*IFI = time between flips.
-            % IFI[s] (Inter frame interval) = 1/refresh_rate = time between vertical monitor refreshes.
-            % WF[#] (Waitframes) = number of refreshes before next flip.
-            obj.waitframe = Screen('NominalFrameRate', obj.window)/obj.temporal_frequency;
-            flip_secs = obj.waitframe*obj.inter_frame_interval;
-            obj.masks_number = round(obj.cfs_mask_duration/flip_secs);
-            obj.masks_number_before_stimulus = round(obj.stimulus_appearance_delay/flip_secs);
-            obj.masks_number_while_fade_in = round(obj.stimulus_fade_in_duration/flip_secs);
-            
-            if obj.load_masks_from_folder == true
-                obj.textures = obj.import_images(obj.masks_path, obj.masks_number);
-                
-                % Show introduction screen while masks are being generated.
-                obj.introduction();
-
-            else
-                % Start mondrian masks generation.
-                % The function takes two arguments: shape and color.
-                % Shape: 1 - squares, 2 - circles, 3 - diamonds.
-                % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
-                % for 4...15 see 'help CFS.generate_mondrians'.
-                obj.generate_mondrians();
-                
-                % Show introduction screen while masks are being generated.
-                obj.introduction();
-
-                % Generate PTB textures
-                obj.generate_textures();
-            end
-           
-            
-            % Calculate stimulus and masks coordinates on screen.
-            obj.get_rects();
-            
-            % Import images from the provided directory and make their PTB textures.
-            obj.target_textures = obj.import_images(obj.target_images_path);
-            if isequal(class(obj), 'VPCFS')
-                obj.prime_textures = obj.import_images(obj.prime_images_path);
-            end
-            
-            obj.initiate_response_struct();
-        end
-      
-        function save_responses(obj)
-
-            % Save responses as a table.
-            % Create folders if don't exist.
-            if ~exist(obj.subject_info_directory, 'dir')
-                mkdir(obj.subject_info_directory);
-            end
-            disp(obj.subj_info.subject_code)
-            writetable(struct2table(obj.subj_info),sprintf('%s/%d.txt',obj.subject_info_directory, obj.subj_info.subject_code));
-
-            if ~exist(obj.subject_response_directory, 'dir')
-                mkdir(obj.subject_response_directory);
-            end
-            writetable(struct2table(obj.response_records),sprintf('%s/%d.txt',obj.subject_response_directory, obj.subj_info.subject_code));
-
-        end
-
-        introduction(obj)
-        get_rects(obj);
-        m_alternative_forced_choice(obj);
-        perceptual_awareness_scale(obj);
-        get_subject_info(obj)
+        initiate(obj);
+        save_responses(obj);
     end
-    
-    methods (Access = protected)
-        function generate_mondrians(obj)
-            %generate_mondrians Asynchronously runs static make_mondrian_masks function.
-            % Takes two arguments: shape and color.
-            % Shape: 1 - squares, 2 - circles, 3 - diamonds
-            % Color: Black(K), Gray(G), Red(R), Green(G), Blue(B), Yellow(Y),
-            % Orange(O), Cyan(C), Magenta(M), White(W), Purple(P), dark+color(dColor), light+color(lColor)
-            % 1 - RGBCMYKW, 2 - grayscale, 
-            % 3 - R/dR/Gn/dGn/B/dB/lB/Y/dY/M/C/dC/W/K/G/dP/O
-            % 4 - R/dR/B/dB/lB/M/dC/K/dP/O,
-            % 5 - purples, 6 - reds, 7 - blues, 8 - professional 1, 9 - professional 2,
-            % 10 - appetizing: tasty, 11 - electric, 12 - dependable 1, 
-            % 13 - dependable 2, 14 - earthy ecological natural, 15 - feminine
-            % See also make_mondrian_masks, parfeval.
-            obj.future = parfeval(backgroundPool, @obj.make_mondrian_masks, 1, ...
-                         obj.screen_x_pixels/2, obj.screen_y_pixels, ...
-                         obj.masks_number, obj.mondrian_shape, obj.mondrian_color);
-        end
 
-        function generate_textures(obj)
-            %generate_textures Generates textures from mondrian masks.
+    methods (Abstract)
+        run_the_experiment(obj);
+    end
 
-            % Wait until generate_mondrians() finishes.
-            wait(obj.future);
-            % Get the generated masks
-            obj.masks = fetchOutputs(obj.future);
-            % Initiate an array.
-            obj.textures = cell(1, obj.masks_number);
-            % Generate the Psychtoolbox textures.
-            for n = 1 : obj.masks_number
-                obj.textures{n} = Screen('MakeTexture', obj.window, obj.masks{n});
-            end
-        end
-
+    methods (Access = protected) 
         function choose_stimulus(obj)
             %choose_stimulus Chooses random image from the stimuli.
             obj.stimulus = obj.target_textures{randi(length(obj.target_textures),1)};
         end
         
         function shuffle_masks(obj)
+            %shuffle_mask Shuffles provided textures.
             obj.textures = obj.textures(randperm(length(obj.textures)));
         end
+
+        %initiate
+        get_subject_info(obj);
+        asynchronously_generate_mondrians(obj);
+        introduction(obj);
+        create_mondrian_textures(obj);
+        get_rects(obj);
         textures = import_images(obj, path, varargin);
+
+        %run_the_experiment
         fixation_cross(obj);
-        tstart = flash_masks_only(obj);
+        flash_masks_only(obj);
         stimulus_fade_in(obj);
         flash_masks_with_stimulus(obj);
-    end
-    
-    methods (Static, Access = protected)
-        [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window();
-        [x0, y0, x1, y1] = get_stimulus_position(ninth, size);
-        masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection);
-        [response, secs] = record_response(evidence);
-    end
-    
-    methods (Abstract)
-        run_the_experiment(obj);
+        m_alternative_forced_choice(obj);
+        perceptual_awareness_scale(obj);
     end
 
     methods (Abstract, Access = protected)
         initiate_response_struct(obj);
         append_trial_response(obj);
     end
+
+    methods (Static, Access = protected)
+        [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window();
+        [x0, y0, x1, y1] = get_stimulus_position(ninth, size);
+        masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection);
+        [response, secs] = record_response(evidence);
+    end  
     
     methods (Hidden)
         function varargout = findobj(O,varargin)

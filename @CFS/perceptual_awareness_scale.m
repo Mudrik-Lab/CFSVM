@@ -1,6 +1,7 @@
 function perceptual_awareness_scale(obj)
-%PERCEPTUAL_AWARENESS_SCALE Summary of this function goes here
-%   Detailed explanation goes here
+%perceptual_awareness_scale Draws and shows PAS screen, waits for the
+% subject response and records it.
+% See also record_response and append_trail_response.
     question = sprintf('There will be a PAS question.');
     Screen('TextFont', obj.window, 'Courier');
     Screen('TextSize', obj.window, 50);
@@ -8,10 +9,11 @@ function perceptual_awareness_scale(obj)
     DrawFormattedText(obj.window, question, 'center', 'center');
     tflip = Screen('Flip', obj.window);
     
+    % Wait for the response.
     [response, secs] = obj.record_response(obj.subjective_evidence);
     
-    obj.append_trial_response(response, obj.subjective_evidence(1), secs, tflip);
-    
+    % Add the response to the structure.
+    obj.append_trial_response(response, obj.subjective_evidence(1), secs, tflip);   
 end
 
 

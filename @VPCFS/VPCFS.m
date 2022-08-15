@@ -1,17 +1,23 @@
 classdef VPCFS < CFS
-    %VPCFS Visual priming continuous flash suppression
-    %   Detailed explanation goes here
+    %VPCFS Visual priming continuous flash suppression.
+    % Child (inherited) class of the CFS parent class.
     %
-    % VPCFS Properties:
-    %   prime_images_path - directory with prime images.
+    % VPCFS Methods:
+    %   run_the_experiment - main function for the experiment loop.
+    %   show_targets - shows targets after the suppressing pattern phase.
+    % See also CFS
+
     
     methods
         function time_elapsed = run_the_experiment(obj)
+            %run_the_experiment Runs the Visual Priming experiment.
+            % Shows fixation cross, flashes the masks, fades in the prime
+            % image, shows the target images, runs PAS and mAFC.
             obj.current_trial = obj.current_trial + 1;
             obj.shuffle_masks();
             obj.choose_stimulus();
             obj.fixation_cross();
-            obj.tstart = obj.flash_masks_only();
+            obj.flash_masks_only();
             obj.stimulus_fade_in();
             obj.flash_masks_with_stimulus();
             time_elapsed = obj.vbl-obj.tstart;
@@ -25,10 +31,12 @@ classdef VPCFS < CFS
 
     methods (Access=protected)
         function initiate_response_struct(obj)
+            %initiate_response_struct Initiates structure for subject responses.
             obj.response_records = struct('response', {}, 'method', {}, 'elapsed_time', {}, 'trial_number', {});
         end
         
         function append_trial_response(obj, response, method, secs, tflip)
+            %append_trial_response Appends recorded response to the main structure.
             obj.response_records(end+1)=struct( ...
                 'response', {response}, ...
                 'method', method, ...

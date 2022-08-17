@@ -1,4 +1,4 @@
-function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window()
+function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window(background_color)
     %initiate_window Calls basic Psychtoolbox settings and initiates window.
     % Adopted from Peter Scarfe's Psychtoolbox tutorial - it's really good.
     
@@ -13,20 +13,19 @@ function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_inte
     % have two screens attached to our monitor we will draw to the external
     % screen.
     screen_number = max(screens);
-    
+
     % Define black and white
     white = WhiteIndex(screen_number);
     black = BlackIndex(screen_number);
 
-    % Only for debugging. Do NOT uncomment next command in your studies 
-    % unless "you want to qualify for the "Dumbest scientist on earth" contest"(c).
     %Screen('Preference','SkipSyncTests', 2);
-    
+    %Screen('Preference', 'VisualDebugLevel', 4);
+
     % Open an on-screen window using PsychImaging.
-    [window, window_rect] = PsychImaging('OpenWindow', screen_number);
+    [window, window_rect] = PsychImaging('OpenWindow', screen_number, hex2rgb(background_color));
     
     % Just hide the freaking cursor
-    HideCursor(window);
+    %HideCursor(window);
     
     % Get the size of the on-screen window
     [screen_x_pixels, screen_y_pixels] = Screen('WindowSize', window);
@@ -46,3 +45,7 @@ function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_inte
     inter_frame_interval = Screen('GetFlipInterval', window);
 end
 
+function rgb = hex2rgb(hex)
+    %hex2rgb Transforms hexadecimal color code to MATLAB RGB color code.
+    rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
+end

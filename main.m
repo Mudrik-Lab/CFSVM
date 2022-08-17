@@ -7,7 +7,7 @@ clear;
 
 % Initiate an object, for visual priming CFS use experiment = VPCFS(), 
 % for breaking CFS use experiment = BCFS()
-experiment = BCFS();
+experiment = VPCFS();
 
 %%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,6 +17,17 @@ experiment = BCFS();
 % How many times to run the experiment?
 experiment.number_of_trials = 1;
 
+% Background color in hexadecimal color code (check this in google)
+experiment.background_color = '#E8DAEF';
+
+% Path to a directory with target images. 
+% Please be aware of the nomenclature:
+% For BCFS - target images (stimuli) are shown with mondrians.
+% For VPCFS - prime images (stimuli) are shown with mondrians,
+% whereas target images are shown succeeding them w/o suppression.
+% For VACFS - adapter images (stimuli) are shown with mondrians, 
+% whereas target images are used for mAFC.
+experiment.target_images_path = './Images/Target_images';
 
 %--------MASKS PARAMETERS--------%
 
@@ -27,7 +38,7 @@ experiment.temporal_frequency = 10;
 experiment.cfs_mask_duration = 5;
 
 % Load pregenerated masks from folder? true/false
-experiment.load_masks_from_folder = false;
+experiment.load_masks_from_folder = true;
 
 % If previous parameter set to true - specify path, e.g. './Masks'
 experiment.masks_path = './Masks';
@@ -52,9 +63,6 @@ experiment.mondrian_color = 15;
 
 
 %--------STIMULUS PARAMETERS--------%
-
-% Path to a directory with target images.
-experiment.target_images_path = './Images/Target_images';
 
 % Stimulus position on the screen (half of the window).
 % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
@@ -94,8 +102,9 @@ experiment.fixation_cross_line_width = 4;
 
 % First item in an array will be a method name followed by key names for 
 % the response. For example, {'4AFC', '1!', '2@', '3#', '4$'} or
-% {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'} etc.  :)
-% For available key names see KbName('KeyNames').
+% {'2AFC', 'LeftArrow', 'RightArrow'} or
+% {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.  :)
+% For available key names please check KbName('KeyNames') or KbDemo.
 experiment.objective_evidence = {'2AFC', 'LeftArrow', 'RightArrow'};
 experiment.subjective_evidence = {'PAS', '1!', '2@', '3#', '4$'};
 
@@ -110,12 +119,30 @@ experiment.subject_info_directory = './!SubjectInfo';
 
 %--------VPCFS ONLY--------%
 
-% Path to a directory with prime images.
-experiment.prime_images_path = './Images/Prime_images';
+if class(experiment) == "VPCFS"
+    % Path to a directory with prime images.
+    experiment.prime_images_path = './Images/Prime_images';
+    
+    % For how long to show the target images after the suppression has
+    % been stopped.
+    experiment.target_presentation_duration = 0.7;
+end
 
-% For how long to show the target images after the suppression has
-% been stopped.
-experiment.target_presentation_duration = 0.7;
+%--------VACFS ONLY--------%
+
+if class(experiment) == "VACFS"
+    % Path to a directory with adapter images.
+    experiment.adapter_images_path = './Images/Adapter_images';
+end
+
+
+%--------BCFS and VACFS ONLY--------%
+
+if class(experiment) == "VACFS" || class(experiment) == "BCFS"
+    %For available key names please check KbName('KeyNames') or KbDemo.
+    % You can use either numerical code or characters.
+    experiment.breakthrough_key = 'backspace';
+end
 
 %%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,9 +155,8 @@ experiment.target_presentation_duration = 0.7;
 experiment.initiate();
 
 % Enter the experiment loop and BLOW IT UP
-ttrial = cell(experiment.number_of_trials);
 for n = 1:experiment.number_of_trials
-    ttrial{n} = experiment.run_the_experiment();
+    experiment.run_the_experiment();
 end
 
 % Save the responses.

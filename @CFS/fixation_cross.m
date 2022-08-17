@@ -11,12 +11,8 @@ function fixation_cross(obj)
     % set good quality antialiasing.
     Screen('DrawLines', obj.window, all_coords,...
         obj.fixation_cross_line_width, 0, [obj.x_center, obj.y_center], 2);
-    
+
     % Flip to the screen
     obj.vbl = Screen('Flip', obj.window);
-
-    % Stop code execution for the provided amount of time.
-    WaitSecs(obj.fixation_cross_duration);
-    
 end
 

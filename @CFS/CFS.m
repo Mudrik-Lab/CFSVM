@@ -28,8 +28,6 @@ classdef (Abstract) CFS < handle
     %     subjective_evidence - cell array for method name and keycodes.
     %     subject_response_directory - directory to save the subject response data in. 
     %     subject_info_directory - directory to save recorded subject info (age, hand, eye, etc.) in.
-    %     prime_images_path - path to a directory with prime images. VPCFS only.
-    %     target_presentation_duration - duration of target after the suppression. VPCFS only.
     %
     % CFS Methods:
     %     initiate - runs SubjectInfoApp, initiates Psychtoolbox window, generates mondrians and makes basic calculations.
@@ -39,17 +37,28 @@ classdef (Abstract) CFS < handle
     properties
         % How many times to run the experiment?
         number_of_trials {mustBeInteger, mustBePositive} = 30;
+        
+        % Background color in hexadecimal color code (check this in google)
+        background_color = '#B54B34';
 
+        % Path to a directory with target images. 
+        % Please be aware of the nomenclature:
+        % For BCFS - target images (stimuli) are shown with mondrians.
+        % For VPCFS - prime images (stimuli) are shown with mondrians,
+        % whereas target images are shown succeeding them w/o suppression.
+        % For VACFS - adapter images (stimuli) are shown with mondrians, 
+        % whereas target images are used for mAFC.
+        target_images_path {mustBeFolder} = './Images/Target_images';
 
         %--------MASKS PARAMETERS-------%
 
         % Number of masks flashed per one second.
-        temporal_frequency {mustBeInRange(temporal_frequency, 0, 200)} = 10;
+        temporal_frequency {mustBePositive} = 10;
 
         % Duration of suppressing pattern in seconds.
         cfs_mask_duration {mustBePositive} = 5;
 
-        % Load pregenerated masks from folder? true/false
+        % Load pregenerated masks from folder? true/false 
         load_masks_from_folder {mustBeNumericOrLogical} = false;
         
         % If previous parameter set to true - specify path, e.g. './Masks'
@@ -79,8 +88,6 @@ classdef (Abstract) CFS < handle
 
         %--------STIMULUS PARAMETERS-------%
 
-        % Path to a directory with target images.
-        target_images_path {mustBeFolder} = './Images/Target_images';
         
         % Stimulus position on the screen (half of the window).
         % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
@@ -123,8 +130,9 @@ classdef (Abstract) CFS < handle
         
         % First item in an array will be a method name followed by key names for 
         % the response. For example, {'4AFC', '1!', '2@', '3#', '4$'} or
-        % {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'} etc.  :)
-        % For available key names see KbName('KeyNames').
+        % {'2AFC', 'LeftArrow', 'RightArrow'} or
+        % {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.  :)
+        % For available key names please check KbName('KeyNames') or KbDemo.
         objective_evidence = {'2AFC', 'LeftArrow', 'RightArrow'};
         subjective_evidence = {'PAS', '1!', '2@', '3#', '4$'};
         
@@ -134,15 +142,6 @@ classdef (Abstract) CFS < handle
         % Directory to save recorded subject info (age, hand, eye, etc.)
         subject_info_directory = './!SubjectInfo';
 
-
-        %--------VPCFS ONLY-------%
-        
-        % Path to a directory with prime images.
-        prime_images_path {mustBeFolder} = './Images/Prime_images';
-        
-        % For how long to show the target images after the suppression has
-        % been stopped.
-        target_presentation_duration {mustBeNonnegative} = 0.7; 
     end
 
 
@@ -160,7 +159,6 @@ classdef (Abstract) CFS < handle
         % TF[Hz] (Temporal frequency) = RR/WF = number of flips per second.
         % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes.
         % RR[Hz] (Refresh rate) = refresh rate of the monitor. 
-        % FS[s] (Flip secs) = WF*IFI = time between flips.
         % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
         waitframe;
@@ -172,7 +170,7 @@ classdef (Abstract) CFS < handle
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
         % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
         % WF[#] (Waitframes) = RR/TF = number of the refreshes before next flip.
-        % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes.
+        % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes (measured by PTB).
         masks_number {mustBeInteger, mustBePositive}; 
         masks_number_before_stimulus {mustBeInteger};
         masks_number_while_fade_in {mustBeInteger};
@@ -180,14 +178,14 @@ classdef (Abstract) CFS < handle
         masks; % An array of generated mondrian masks.
         textures; % Psychtoolbox textures of the generated masks
         target_textures; % Psychtoolbox textures of the target images.
-        prime_textures; % Psychtoolbox textures of the prime images.
+        
         stimulus; % Randomly chosen stimulus image.
         stimulus_rect; % Coordinates of stimulus position on the screen.
         masks_rect; % Coordinates of masks position on the screen.
         future; % Result of background generation of mondrian masks.
         response_records; % Table for responses
         current_trial = 0; % Number of the current trial running.
-        tstart; % Timestamp of the trial start.
+        trial_start; % Timestamp of the trial start.
         vbl; % Timestamps for internal use and for recording last screen flip time.
     end
         
@@ -202,10 +200,6 @@ classdef (Abstract) CFS < handle
     end
 
     methods (Access = protected) 
-        function choose_stimulus(obj)
-            %choose_stimulus Chooses random image from the stimuli.
-            obj.stimulus = obj.target_textures{randi(length(obj.target_textures),1)};
-        end
         
         function shuffle_masks(obj)
             %shuffle_mask Shuffles provided textures.
@@ -222,9 +216,7 @@ classdef (Abstract) CFS < handle
 
         %run_the_experiment
         fixation_cross(obj);
-        flash_masks_only(obj);
-        stimulus_fade_in(obj);
-        flash_masks_with_stimulus(obj);
+        flash(obj);
         m_alternative_forced_choice(obj);
         perceptual_awareness_scale(obj);
     end
@@ -235,10 +227,15 @@ classdef (Abstract) CFS < handle
     end
 
     methods (Static, Access = protected)
-        [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window();
+        function stimulus = choose_texture(textures)
+            %choose_texture Chooses random texture from passed array.
+            stimulus = textures{randi(length(textures),1)};
+        end
+
+        [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window(background_color);
         [x0, y0, x1, y1] = get_stimulus_position(ninth, size);
         masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection);
-        [response, secs] = record_response(evidence);
+        [response, secs] = record_response(evidence);   
     end  
     
     methods (Hidden)

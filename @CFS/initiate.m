@@ -12,19 +12,14 @@ function initiate(obj)
     % Initiate PTB window and keep the data from it.
     [obj.screen_x_pixels, obj.screen_y_pixels, obj.x_center, ...
         obj.y_center, obj.inter_frame_interval, obj.window ...
-        ] = obj.initiate_window();
-
+        ] = obj.initiate_window(obj.background_color);
     % Calculate useful variables from the parameters provided by the user.
     obj.waitframe = Screen('NominalFrameRate', obj.window)/obj.temporal_frequency;
-    flip_secs = obj.waitframe*obj.inter_frame_interval;
-    obj.masks_number = round(obj.cfs_mask_duration/flip_secs);
-    obj.masks_number_before_stimulus = round(obj.stimulus_appearance_delay/flip_secs);
-    obj.masks_number_while_fade_in = round(obj.stimulus_fade_in_duration/flip_secs);
-    obj.contrasts = obj.stimulus_contrast/ ...
-        (obj.masks_number_while_fade_in*obj.waitframe): ...
-        obj.stimulus_contrast/(obj.masks_number_while_fade_in* ...
-        obj.waitframe):obj.stimulus_contrast;
-
+    obj.masks_number = obj.cfs_mask_duration*obj.temporal_frequency+1;
+    obj.masks_number_before_stimulus = obj.stimulus_appearance_delay*obj.temporal_frequency+1;
+    obj.masks_number_while_fade_in = obj.stimulus_fade_in_duration*obj.temporal_frequency;
+    obj.contrasts = 0:1/(obj.waitframe*obj.temporal_frequency*obj.stimulus_fade_in_duration):obj.stimulus_contrast;
+    
     % If load-pregenerated-masks-from-folder set to true, then load the mask images,
     % create textures and run the introductory screen. 
     % If set to false, then generate mondrians with provided parameters,
@@ -44,12 +39,11 @@ function initiate(obj)
         obj.asynchronously_generate_mondrians();
         
         % Show introduction screen while masks are being generated.
-        obj.introduction();
+         obj.introduction();
 
         % Create PTB textures
-        obj.create_mondrian_textures();
+       obj.create_mondrian_textures();
     end
-   
     
     % Calculate stimulus and masks coordinates on screen.
     obj.get_rects();
@@ -61,6 +55,8 @@ function initiate(obj)
     % images and create their textures as well.
     if isequal(class(obj), 'VPCFS')
         obj.prime_textures = obj.import_images(obj.prime_images_path);
+    elseif isequal(class(obj), 'VACFS')
+        obj.adapter_textures = obj.import_images(obj.adapter_images_path);
     end
     
     % Initiate structure for the subject responses

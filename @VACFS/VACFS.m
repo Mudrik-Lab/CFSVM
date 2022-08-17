@@ -1,35 +1,44 @@
-classdef BCFS < CFS
-    %BCFS Breaking continuous flash suppression.
+classdef VACFS < CFS
+    %VACFS Visual adaptation continuous flash suppression.
     % Child (inherited) class of the CFS parent class.
     %
-    % BCFS Methods:
+    % VACFS Methods:
     %   run_the_experiment - main function for the experiment loop.
     % See also CFS
     
     properties
+        % Path to a directory with adapter images.
+        adapter_images_path {mustBeFolder} = './Images/Adapter_images';
+        
         %For available key names please check KbName('KeyNames') or KbDemo.
         % You can use either numerical code or characters.
         breakthrough_key = 'backspace';
     end
 
+    properties (Access = {?CFS})
+        adapter_textures; % Psychtoolbox textures of the adapter images.
+    end
+    
     methods
-        function obj = BCFS()
+        function obj = VACFS()
             obj.create_KbQueue();
         end
 
         function run_the_experiment(obj)
-            %run_the_experiment Runs the Visual Priming experiment.
+            %run_the_experiment Runs the Visual Adaptation experiment.
             % Shows fixation cross, flashes the masks, shows the target 
             % image with the masks, records target's breakthrough time, runs PAS.
             obj.current_trial = obj.current_trial + 1;
             obj.shuffle_masks();
-            obj.stimulus = obj.choose_texture(obj.target_textures);
+            obj.stimulus = obj.choose_texture(obj.adapter_textures);
             obj.fixation_cross();
             KbQueueStart();
             obj.flash();
             KbQueueStop();
             obj.perceptual_awareness_scale();
+            obj.m_alternative_forced_choice();
         end
+        
     end
 
     methods (Access = protected)
@@ -67,11 +76,6 @@ classdef BCFS < CFS
             keylist=zeros(1,256); % Create a list of 256 zeros
             keylist(keys)=1; % Set keys you interested in to 1
             KbQueueCreate(-1,keylist); % Create the queue with the provided keys
-        end
-
-        function m_alternative_forced_choice(obj) %#ok<MANU> 
-            %m_alternative_forced_choice Does nothing
-            % Intentionally does nothing as mAFC in bCFS makes no sense.
         end
     end
 end

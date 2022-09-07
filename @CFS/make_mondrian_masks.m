@@ -1,5 +1,5 @@
 %make_mondrian_masks Generates an array of masks.
-% function masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection)
+% 
 % 
 % This function creates Mondrian masks that can be used for continuous
 % flash suppression. The shape of the elements of the masks is normally
@@ -7,17 +7,6 @@
 % manually. Other variables are predefined, but can be changed within the
 % code. If no output is provided, then the masks are drawn directly.
 % My favorite settings for experiments are shape = 2 and colored = 1.
-%
-% Input variables:
-%   sz_x:      Size of mask in x-dimension
-%   sz_y:      Size of mask in y-dimension (large difference to sz_x may cause error)
-%   n_masks:   Number of masks to be created
-%   [shape]:   Shape of elements: 1 = square, 2 = circular, 3 = diamond (default: square)
-%   [colored]: Color style (1 = BRGBYCMW, 2 = grayscale, 3-15 other schemes
-%              (try them out and let me know which work best!)
-%
-% Output variable:
-%   masks:     1 x n_masks cell array, containing the Mondrian masks
 %
 % (c) 2009 Martin Hebart
 % When you use this code in a publication, please cite one of my articles
@@ -27,10 +16,10 @@
 % without the explicit agreement of the author. Please contact me via
 % http://martin-hebart.de
 
-% Please forgive me the (at times) unreadable code, but it's much easier
-% this way ;)
-
-function masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection)
+function make_mondrian_masks(obj)
+    sz_x = obj.screen_x_pixels/2;
+    sz_y = obj.screen_y_pixels;
+    n_masks = obj.masks_number;
 
     sizes = 0.04:0.01:0.18; % in percent of x-dimension
     sizes = sizes.*1.2;
@@ -39,19 +28,22 @@ function masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection)
     loop_nr = round(8*(sz_y/sz_x)/mean(sizes.^2)); % if area is filled 8 times, this is normally sufficient
     
     % Select colors in subfunction at bottom of this function
-    colors = select_colors(selection);
+    colors = select_colors(obj.mondrian_color);
     
     masks = cell(n_masks,1); % init
     sizes = ceil(sizes * sz_x); % sizes relative to x-dimension
     levels = colors;
     
-    mask = 0.5*ones(sz_y+max(sizes),sz_x+max(sizes),3); % background starting value is mid-grey
+    % 0.5 means background starting value is mid-grey
+    % 3 for RGB layers
+    mask = 0.5*ones(sz_y+max(sizes),sz_x+max(sizes),3); % 0.5 means background starting value is mid-grey
     
     maskindex = mask;
+
     maskindex(1:numel(mask)) = 1:numel(mask);
     
     sizes_templates = cell(length(sizes),1); % init
-    switch shape
+    switch obj.mondrian_shape
         case 1 % square shape
             for i = 1:length(sizes)
                 template = 0*mask;
@@ -80,14 +72,13 @@ function masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection)
     end
     
     excluded = maskindex(:,end-max(sizes)+1:end,1); % in the bottom additional area no shape may be started, otherwise error
-    if shape == 3 % for diamond special case
+    if obj.mondrian_shape == 3 % for diamond special case
         excluded = maskindex(:,end-round(1.5*max(sizes))+1:end,1);
     end
     maskindex = maskindex(:,:,1);
     maskindex = setdiff(maskindex(:),excluded(:));
     
     for i_mask = 1:n_masks
-    
         curr_maskindex = maskindex(ceil(length(maskindex)*rand(loop_nr,1))); % randomize maskindex for later starting position
     
         for i = 1:loop_nr
@@ -104,21 +95,17 @@ function masks = make_mondrian_masks(sz_x,sz_y,n_masks,shape,selection)
         end
         masks{i_mask} = mask((1:sz_y) +ceil(max(sizes)/2),(1:sz_x) +ceil(max(sizes)/2),:); % crop mask
     end
-    
-    if nargout == 0
-       
-        h = figure;
-        
-        for i_mask = 1:n_masks
-            
-            imshow(masks{i_mask});
-            pause(0.09);
-            
-        end    
-        
-        pause(0.5);
-        close(h);
+
+    if ~exist(obj.masks_path, 'dir')
+                mkdir(obj.masks_path);
     end
+    
+    for n = 1:length(masks)
+        if(~isempty(masks{n}))
+            imwrite(masks{n},sprintf('%s/mondrian_%d.png',obj.masks_path, n))
+        end
+    end
+
 end
 
 function colors = select_colors(selection)

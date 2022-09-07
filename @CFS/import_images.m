@@ -1,6 +1,6 @@
 function textures = import_images(obj, path, varargin)
     %import_images Loads images from directory path and makes an array of textures from it.
-    % varargin is the optional argument which provides number of images N
+    % varargin is the optional argument which provides number of first N images
     % to make textures from.
     
     % Load filenames

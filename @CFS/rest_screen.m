@@ -1,8 +1,8 @@
-function introduction(obj)
-%introduction Shows introductory screen.
+function rest_screen(obj)
+%rest_screen Shows rest_screen.
 
     KEY = 'space';
-    INSTRUCTION = sprintf('Here will be the introductory screen.\n Press %s to continue.', upper(KEY));
+    INSTRUCTION = sprintf('Take a slow deep breath.\n Press %s to continue.', upper(KEY));
     DrawFormattedText(obj.window, INSTRUCTION, 'center', 'center');
     Screen('Flip', obj.window);
     
@@ -15,4 +15,3 @@ function introduction(obj)
     end
     
 end
-

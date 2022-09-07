@@ -5,17 +5,16 @@ Screen('CloseAll');
 close all;
 clear;
 
-% Initiate an object, for visual priming CFS use experiment = VPCFS(), 
-% for breaking CFS use experiment = BCFS()
+
+% Initiate an object, for visual priming CFS use experiment = VPCFS(),
+% for breaking CFS use experiment = BCFS(),
+% for visual adaptation CFS use experiment = VACFS().
 experiment = VPCFS();
 
 %%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %--------------------------------PARAMETERS-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Change these%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% How many times to run the experiment?
-experiment.number_of_trials = 1;
 
 % Background color in hexadecimal color code (check this in google)
 experiment.background_color = '#E8DAEF';
@@ -29,6 +28,8 @@ experiment.background_color = '#E8DAEF';
 % whereas target images are used for mAFC.
 experiment.target_images_path = './Images/Target_images';
 
+experiment.trial_matrices_path = './TrialMatrices';
+
 %--------MASKS PARAMETERS--------%
 
 % Number of masks flashed per one second.
@@ -41,7 +42,9 @@ experiment.cfs_mask_duration = 5;
 experiment.load_masks_from_folder = true;
 
 % If previous parameter set to true - specify path, e.g. './Masks'
-experiment.masks_path = './Masks';
+if experiment.load_masks_from_folder
+    experiment.masks_path = './Masks';
+end
 
 % Masks position on the screen (half of the window).
 % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
@@ -49,7 +52,7 @@ experiment.masks_path = './Masks';
 experiment.mask_position = 'Center';
 
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
-experiment.mask_size = 0.5; 
+experiment.mask_size = 0.5;
 
 % Contrast is from 0 = fully transparent to 1 = fully opaque.
 experiment.mask_contrast = 1;
@@ -59,7 +62,7 @@ experiment.mondrian_shape = 1;
 
 % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
 % for 4...15 see 'help CFS.generate_mondrians'.
-experiment.mondrian_color = 15;
+experiment.mondrian_color = 1;
 
 
 %--------STIMULUS PARAMETERS--------%
@@ -67,7 +70,7 @@ experiment.mondrian_color = 15;
 % Stimulus position on the screen (half of the window).
 % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
 % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
-experiment.stimulus_position = 'Center';
+experiment.stimulus_position = "Left";
 
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
 experiment.stimulus_size = 0.5; 
@@ -79,11 +82,14 @@ experiment.stimulus_rotation = 0;
 % Contrast is from 0 (fully transparent) to 1 (fully opaque).
 experiment.stimulus_contrast = 1; 
 
-% Delay after initation of the suppressing pattern;
-experiment.stimulus_appearance_delay = 2; 
+% Delay after initation of the suppressing pattern.
+% Floating point shoudn't be more precise than 1/temporal_frequency.
+experiment.stimulus_appearance_delay = 0; 
 
 % Duration of fading in from maximal transparency to stimulus_contrast.
 experiment.stimulus_fade_in_duration = 2; 
+
+experiment.stimulus_duration = 2; 
 
 
 %--------FIXATION CROSS PARAMETERS--------%
@@ -96,6 +102,9 @@ experiment.fixation_cross_arm_length = 20;
 
 % Line width of the fixation cross in pixels.
 experiment.fixation_cross_line_width = 4;
+
+% Fixation cross color in hexadecimal color code (check this in google)
+experiment.fixation_cross_color = '#36C8CF';
 
 
 %--------SUBJECT RESPONSE PARAMETERS--------%
@@ -122,10 +131,12 @@ experiment.subject_info_directory = './!SubjectInfo';
 if class(experiment) == "VPCFS"
     % Path to a directory with prime images.
     experiment.prime_images_path = './Images/Prime_images';
+
+    experiment.target_image_index = 1;
     
     % For how long to show the target images after the suppression has
     % been stopped.
-    experiment.target_presentation_duration = 0.7;
+    experiment.target_presentation_duration = 0.9;
 end
 
 %--------VACFS ONLY--------%
@@ -137,11 +148,10 @@ end
 
 
 %--------BCFS and VACFS ONLY--------%
-
 if class(experiment) == "VACFS" || class(experiment) == "BCFS"
     %For available key names please check KbName('KeyNames') or KbDemo.
     % You can use either numerical code or characters.
-    experiment.breakthrough_key = 'backspace';
+    experiment.breakthrough_key = 'space';
 end
 
 %%                                                                       %%
@@ -149,18 +159,19 @@ end
 %--------------------------------EXPERIMENT-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Show input dialog for subject info
+experiment.get_subject_info();
+
+
 % Initiate Psychtoolbox window, generate mondrians, show introduction
 % screen, create masks textures from mondrians, import images and
 % initiate response structure.
 experiment.initiate();
 
 % Enter the experiment loop and BLOW IT UP
-for n = 1:experiment.number_of_trials
-    experiment.run_the_experiment();
-end
 
-% Save the responses.
-experiment.save_responses();
+experiment.run_the_experiment();
+
 
 % Wait for a key to close the window.
 KbStrokeWait;

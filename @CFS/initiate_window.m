@@ -15,17 +15,17 @@ function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_inte
     screen_number = max(screens);
 
     % Define black and white
-    white = WhiteIndex(screen_number);
-    black = BlackIndex(screen_number);
+    %white = WhiteIndex(screen_number);
+    %black = BlackIndex(screen_number);
 
     %Screen('Preference','SkipSyncTests', 2);
     %Screen('Preference', 'VisualDebugLevel', 4);
 
     % Open an on-screen window using PsychImaging.
-    [window, window_rect] = PsychImaging('OpenWindow', screen_number, hex2rgb(background_color));
-    
+    [window, window_rect] = PsychImaging('OpenWindow', screen_number, background_color);
+
     % Just hide the freaking cursor
-    %HideCursor(window);
+    HideCursor(window);
     
     % Get the size of the on-screen window
     [screen_x_pixels, screen_y_pixels] = Screen('WindowSize', window);

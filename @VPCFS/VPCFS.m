@@ -12,10 +12,12 @@ classdef VPCFS < CFS
     properties
         % Path to a directory with prime images.
         prime_images_path {mustBeFolder} = './Images/Prime_images';
+
+        target_image_index {mustBeInteger, mustBePositive} = 1;
         
         % For how long to show the target images after the suppression has
         % been stopped.
-        target_presentation_duration {mustBeNonnegative} = 0.7; 
+        target_presentation_duration {mustBeNonnegative} = 0.7;
     end
     
     properties (Access = {?CFS})
@@ -27,38 +29,35 @@ classdef VPCFS < CFS
             %run_the_experiment Runs the Visual Priming experiment.
             % Shows fixation cross, flashes the masks, fades in the prime
             % image, shows the target images, runs PAS and mAFC.
-            obj.current_trial = obj.current_trial + 1;
-            obj.shuffle_masks();
-            obj.stimulus = obj.choose_texture(obj.prime_textures);
-            obj.fixation_cross();
-            obj.flash();
-            obj.show_targets();
-            obj.perceptual_awareness_scale();
-            obj.m_alternative_forced_choice();
-        end
 
-        show_targets(obj);
+            for block = 1:obj.number_of_blocks
+                obj.results.block = block;
+                for trial=1:height(obj.trial_matrices{block})
+                    obj.results.trial_start_time = GetSecs();
+                    obj.results.trial = trial;
+                    obj.load_parameters(block);
+                    obj.shuffle_masks();
+                    obj.stimulus = obj.prime_textures{obj.stimulus_index};
+                    obj.rest_screen();
+                    obj.fixation_cross();
+                    obj.flash();
+                    obj.show_targets();
+                    obj.perceptual_awareness_scale();
+                    obj.m_alternative_forced_choice();
+                    obj.results.trial_end_time = GetSecs();
+                    obj.results.trial_duration = obj.results.trial_end_time-obj.results.trial_start_time;
+                    obj.append_trial_results();
+                    obj.save_response();
+                end
+            end 
+        end 
     end
 
     methods (Access=protected)
-        function initiate_response_struct(obj)
-            %initiate_response_struct Initiates structure for subject responses.
-            obj.response_records = struct( ...
-                'response', {}, ...
-                'method', {}, ...
-                'response_time', {}, ...
-                'trial_number', {}, ...
-                'trial_time', {});
-        end
-        
-        function append_trial_response(obj, response, method, secs, tflip)
-            %append_trial_response Appends recorded response to the main structure.
-            obj.response_records(end+1)=struct( ...
-                'response', {response}, ...
-                'method', method, ...
-                'response_time', {secs-tflip}, ...
-                'trial_number', {obj.current_trial}, ...
-                'trial_time', {obj.vbl-obj.trial_start});
+        show_targets(obj);
+        function get_breaking_time(obj) %#ok<MANU> 
+            %get_breaking_time Does nothing
+            % Intentionally does nothing as there is no breaking time in VPCFS.
         end
     end
 end

@@ -10,6 +10,13 @@ function show_targets(obj)
 
     Screen('DrawTexture', obj.window, target, [], obj.masks_rect, 0, 1, obj.stimulus_contrast);
     
+    % Left screen cross
+    Screen(obj.fixation_cross_args{1}{:});
+    % Right screen cross
+    Screen(obj.fixation_cross_args{2}{:});
+    % Checkerboard frame
+    Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
+
     Screen('Flip', obj.window);
 
     WaitSecs(obj.target_presentation_duration);

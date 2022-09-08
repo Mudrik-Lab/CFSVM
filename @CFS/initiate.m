@@ -77,8 +77,14 @@ function initiate(obj)
     max_temporal_frequency = max(cellfun(@(matrix) (max(matrix.temporal_frequency)), obj.trial_matrices));
     max_cfs_mask_duration = max(cellfun(@(matrix) (max(matrix.cfs_mask_duration)), obj.trial_matrices));
     obj.masks_number = max_temporal_frequency*max_cfs_mask_duration+1;
+    
     % Calculate stimulus and masks coordinates on screen.
     obj.get_rects();
+    
+    for i = 1:length(obj.checker_color_codes)
+        obj.checker_color_codes{i} = hex2rgb(obj.checker_color_codes{i})';
+    end
+    obj.checkerboard_frame();
     
     
     

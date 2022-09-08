@@ -5,6 +5,8 @@ function fixation_cross(obj)
     Screen(obj.fixation_cross_args{1}{:});
     % Right screen cross
     Screen(obj.fixation_cross_args{2}{:});
+    % Checkerboard frame
+    Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
     % Flip to the screen
     obj.vbl = Screen('Flip', obj.window);
     obj.results.fixation_onset = obj.vbl;
@@ -14,6 +16,8 @@ function fixation_cross(obj)
     Screen(obj.fixation_cross_args{1}{:});
     % Right screen cross
     Screen(obj.fixation_cross_args{2}{:});
+    % Checkerboard frame
+    Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
     obj.vbl = Screen('Flip', obj.window, obj.vbl + obj.fixation_cross_duration - 1/obj.temporal_frequency-0.5*obj.inter_frame_interval);
 
 end

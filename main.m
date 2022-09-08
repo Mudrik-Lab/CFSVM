@@ -92,6 +92,15 @@ experiment.stimulus_fade_in_duration = 2;
 experiment.stimulus_duration = 2; 
 
 
+%--------CHECKERBOARD FRAME PARAMETERS-------%
+% Length and width in pixels
+experiment.checker_rect_length = 35;
+experiment.checker_rect_width = 20;
+% Checkerboard frame color in hexadecimal color code (check this in google)
+% Array of two strings
+experiment.checker_color_codes = {'#0072BD', '#D95319', '#EDB120', '#7E2F8E'};
+
+
 %--------FIXATION CROSS PARAMETERS--------%
 
 % In seconds

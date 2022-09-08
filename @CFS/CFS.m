@@ -115,7 +115,15 @@ classdef (Abstract) CFS < handle
 
         stimulus_duration {mustBeNonnegative} = 2;
         
-        
+        %--------CHECKERBOARD FRAME PARAMETERS-------%
+        % Length and width in pixels
+        checker_rect_length {mustBePositive, mustBeInteger} = 35;
+        checker_rect_width {mustBePositive, mustBeInteger} = 20;
+        % Checkerboard frame color in hexadecimal color code (check this in google)
+        % Array of two strings
+        checker_color_codes = ["#FFFFFF", "'#000000'"];
+
+
         %--------FIXATION CROSS PARAMETERS-------%
 
         % In seconds
@@ -193,6 +201,9 @@ classdef (Abstract) CFS < handle
         mask_in;
         mask_out;
         delay;
+
+        checker_rects;
+        checker_colors;
       
         masks; % An array of generated mondrian masks.
         textures; % Psychtoolbox textures of the generated masks

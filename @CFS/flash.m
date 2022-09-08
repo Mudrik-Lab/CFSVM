@@ -58,7 +58,13 @@ function flash(obj)
     for mask = (obj.cumul_masks_number_before_fade_out+obj.masks_number_while_fade_in+1):obj.masks_number
         masks_only(obj, mask, obj.delay);
     end
-
+    
+    % Left screen cross
+    Screen(obj.fixation_cross_args{1}{:});
+    % Right screen cross
+    Screen(obj.fixation_cross_args{2}{:});
+    % Checkerboard frame
+    Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
     obj.vbl = Screen('Flip', obj.window, obj.vbl + 1/obj.temporal_frequency - 0.5*obj.inter_frame_interval);
 
 end
@@ -70,6 +76,8 @@ function masks_only(obj, mask, delay)
     Screen(obj.fixation_cross_args{1}{:});
     % Right screen cross
     Screen(obj.fixation_cross_args{2}{:});
+    % Checkerboard frame
+    Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
     % Flip
     obj.vbl = Screen('Flip', obj.window, obj.vbl + delay);
 end
@@ -83,6 +91,8 @@ function with_stimulus(obj, mask, contrast, delay)
     Screen(obj.fixation_cross_args{1}{:});
     % Right screen cross
     Screen(obj.fixation_cross_args{2}{:});
+    % Checkerboard frame
+    Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
     % Flip
     obj.vbl = Screen('Flip', obj.window, obj.vbl + delay);
 end

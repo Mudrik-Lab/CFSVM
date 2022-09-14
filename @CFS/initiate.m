@@ -1,21 +1,29 @@
 function initiate(obj)
-    %initiate Runs SubjectInfoApp, initiates Psychtoolbox window, generates mondrians and makes basic calculations.
-    % Runs the introduction screen, creates PTB textures, imports stimulus
-    % images and more.
-    % See also get_subject_info, initiate_window, introduction,
-    % asynchronously_generate_mondrians, create_mondrian_textures,
-    % get_rects, import_images and initiate_response_struct
+    %initiate Initiates Psychtoolbox window, generates mondrians and runs other basic functions.
+    % See also get_subject_info, initiate_window, read_trial_matrices, 
+    % initiate_checkerboard_frame, make_mondrian_masks, introduction,
+    % get_rect, import_images, initiate_records_table
     
 
     % Initiate PTB window and keep the data from it.
     [obj.screen_x_pixels, obj.screen_y_pixels, obj.x_center, ...
         obj.y_center, obj.inter_frame_interval, obj.window ...
         ] = obj.initiate_window(hex2rgb(obj.background_color));
-    
+
     DrawFormattedText(obj.window, 'Preparing the experiment, please wait', 'center', 'center');
     Screen('Flip', obj.window);
     
-    % Warm GetSecs() and WaitSecs();
+    obj.left_screen_x_pixels = obj.left_side_screen(3)-obj.left_side_screen(1);
+    obj.left_screen_y_pixels = obj.left_side_screen(4)-obj.left_side_screen(2);
+    obj.right_screen_x_pixels = obj.right_side_screen(3)-obj.right_side_screen(1);
+    obj.right_screen_y_pixels = obj.right_side_screen(4)-obj.right_side_screen(2);
+
+    obj.left_screen_x_center = obj.left_side_screen(3)-round(obj.left_screen_x_pixels/2);
+    obj.left_screen_y_center = obj.left_side_screen(4)-round(obj.left_screen_y_pixels/2);
+    obj.right_screen_x_center = obj.right_side_screen(3)-round(obj.right_screen_x_pixels/2);
+    obj.right_screen_y_center = obj.right_side_screen(4)-round(obj.right_screen_y_pixels/2);
+    
+    % Warm GetSecs() and WaitSecs() functions;
     GetSecs();
     WaitSecs(0.00001);
 
@@ -70,21 +78,27 @@ function initiate(obj)
 
         obj.trial_matrices{i}.masks_number_while_stimulus = ...
             obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.stimulus_duration;
-
-
     end
 
     max_temporal_frequency = max(cellfun(@(matrix) (max(matrix.temporal_frequency)), obj.trial_matrices));
     max_cfs_mask_duration = max(cellfun(@(matrix) (max(matrix.cfs_mask_duration)), obj.trial_matrices));
     obj.masks_number = max_temporal_frequency*max_cfs_mask_duration+1;
     
-    % Calculate stimulus and masks coordinates on screen.
-    obj.get_rects();
+    obj.number_of_mAFC_pictures = length(obj.mAFC_keys);
+    obj.number_of_PAS_choices = length(obj.PAS_keys);
+    
+    if obj.is_mAFC_text_version
+        obj.mAFC = @obj.m_alternative_forced_choice_text;
+    else
+        obj.mAFC = @obj.m_alternative_forced_choice;
+    end
+
     
     for i = 1:length(obj.checker_color_codes)
         obj.checker_color_codes{i} = hex2rgb(obj.checker_color_codes{i})';
     end
-    obj.checkerboard_frame();
+    
+    obj.initiate_checkerboard_frame();
     
     
     
@@ -105,23 +119,19 @@ function initiate(obj)
     % create textures and run the introductory screen. 
     % If set to false, then generate mondrians with provided parameters,
     % run the introductory screen and create textures.
-    if obj.load_masks_from_folder == true
-        % Create PTB textures of mondrians
-        obj.textures = obj.import_images(obj.masks_path, obj.masks_number);
-    else
+    if obj.load_masks_from_folder == false
         % Start mondrian masks generation.
         % The function takes two arguments: shape and color.
         % Shape: 1 - squares, 2 - circles, 3 - diamonds.
         % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 see 'help CFS.asynchronously_generate_mondrians'.
         obj.make_mondrian_masks();
-        % Create PTB textures of mondrians
-        obj.textures = obj.import_images(obj.masks_path, obj.masks_number);
     end
+    % Create PTB textures of mondrians
+    obj.textures = obj.import_images(obj.masks_path, obj.masks_number);
 
-    % Show introduction screen while masks are being generated.
-        obj.introduction();
-
+    % Show introduction screen.
+    obj.introduction();
     
 end
 

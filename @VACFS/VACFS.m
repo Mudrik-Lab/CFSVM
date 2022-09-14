@@ -26,15 +26,17 @@ classdef VACFS < CFS
                     obj.results.trial_start_time = GetSecs();
                     obj.results.trial = trial;
                     obj.load_parameters(block);
-                    obj.shuffle_masks();
+                    obj.shuffle_masks(10*block+trial);
                     obj.stimulus = obj.adapter_textures{obj.stimulus_index};
-                    obj.rest_screen();
+                    if trial ~= 1 && block ~= 1
+                        obj.rest_screen();
+                    end
                     obj.fixation_cross();
                     KbQueueStart();
                     obj.flash();
                     KbQueueStop();
                     obj.perceptual_awareness_scale();
-                    obj.m_alternative_forced_choice();
+                    obj.mAFC();
                     obj.results.trial_end_time = GetSecs();
                     obj.results.trial_duration = obj.results.trial_end_time-obj.results.trial_start_time;
                     obj.get_breaking_time();

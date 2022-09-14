@@ -17,10 +17,12 @@ classdef BCFS < CFS
                     obj.results.trial_start_time = GetSecs();
                     obj.results.trial = trial;
                     obj.load_parameters(block);
-                    obj.shuffle_masks();
+                    obj.shuffle_masks(10*block+trial);
                     obj.results.stimulus_position = obj.stimulus_position;
                     obj.stimulus = obj.target_textures{obj.stimulus_index};
-                    obj.rest_screen();
+                    if trial ~= 1 && block ~= 1
+                        obj.rest_screen();
+                    end
                     obj.fixation_cross();
                     KbQueueStart();
                     obj.flash();
@@ -40,6 +42,10 @@ classdef BCFS < CFS
     methods (Access = protected)
         function m_alternative_forced_choice(obj) %#ok<MANU> 
             %m_alternative_forced_choice Does nothing
+            % Intentionally does nothing as mAFC in bCFS makes no sense.
+        end
+        function m_alternative_forced_choice_text(obj) %#ok<MANU> 
+            %m_alternative_forced_choice_text Does nothing
             % Intentionally does nothing as mAFC in bCFS makes no sense.
         end
     end

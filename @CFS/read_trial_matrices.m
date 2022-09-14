@@ -1,6 +1,5 @@
 function read_trial_matrices(obj)
-%READ_TRIAL_MATRIX Summary of this function goes here
-%   Detailed explanation goes here
+%read_trial_matrices Imports trial matrices from files.
 
     % Load filenames
     matrices = dir(obj.trial_matrices_path);

@@ -21,7 +21,7 @@ end
 function textures = readimgs(window, images, n)
     %readimgs Loops through the folder, imports images and creates textures
     % from them. n is the number of images in folder to read.
-    textures = cell(n);
+    textures = cell(1, n);
     while length(images) < n
         images = [images; images];
     end

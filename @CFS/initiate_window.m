@@ -44,8 +44,3 @@ function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_inte
     % Measure the vertical refresh rate of the monitor
     inter_frame_interval = Screen('GetFlipInterval', window);
 end
-
-function rgb = hex2rgb(hex)
-    %hex2rgb Transforms hexadecimal color code to MATLAB RGB color code.
-    rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
-end

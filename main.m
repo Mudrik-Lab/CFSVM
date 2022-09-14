@@ -16,6 +16,9 @@ experiment = VPCFS();
 %--------------------------------PARAMETERS-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Change these%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+experiment.left_side_screen = [0, 0, 720, 720];
+experiment.right_side_screen = [1200, 0, 1920, 720];
+
 % Background color in hexadecimal color code (check this in google)
 experiment.background_color = '#E8DAEF';
 
@@ -28,6 +31,7 @@ experiment.background_color = '#E8DAEF';
 % whereas target images are used for mAFC.
 experiment.target_images_path = './Images/Target_images';
 
+% Path to a directory with trial matrices.
 experiment.trial_matrices_path = './TrialMatrices';
 
 %--------MASKS PARAMETERS--------%
@@ -70,12 +74,13 @@ experiment.mondrian_color = 1;
 % Stimulus position on the screen (half of the window).
 % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
 % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'.
-experiment.stimulus_position = "Left";
+experiment.stimulus_position = 'Center';
 
+experiment.stimulus_xy_ratio = 1;
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
 experiment.stimulus_size = 0.5; 
 
-% Positive values represent clockwise rotation, 
+% Positive values repres ent clockwise rotation, 
 % negative values represent counterclockwise rotation.
 experiment.stimulus_rotation = 0; 
 
@@ -89,22 +94,26 @@ experiment.stimulus_appearance_delay = 0;
 % Duration of fading in from maximal transparency to stimulus_contrast.
 experiment.stimulus_fade_in_duration = 2; 
 
-experiment.stimulus_duration = 2; 
+experiment.stimulus_duration = 1; 
 
 
 %--------CHECKERBOARD FRAME PARAMETERS-------%
-% Length and width in pixels
+
+% Checkerboard frame rectangular element length in pixels.
 experiment.checker_rect_length = 35;
+
+% Checkerboard frame rectangular element width in pixels.
 experiment.checker_rect_width = 20;
+
 % Checkerboard frame color in hexadecimal color code (check this in google)
-% Array of two strings
+% Cell array of character vectors, e.g. {'#0072BD', '#D95319', '#EDB120', '#7E2F8E'}
 experiment.checker_color_codes = {'#0072BD', '#D95319', '#EDB120', '#7E2F8E'};
 
 
 %--------FIXATION CROSS PARAMETERS--------%
 
 % In seconds
-experiment.fixation_cross_duration = 2;
+experiment.fixation_cross_duration = 1;
 
 % Size of the arms of the fixation cross in pixels.
 experiment.fixation_cross_arm_length = 20;
@@ -118,13 +127,21 @@ experiment.fixation_cross_color = '#36C8CF';
 
 %--------SUBJECT RESPONSE PARAMETERS--------%
 
-% First item in an array will be a method name followed by key names for 
-% the response. For example, {'4AFC', '1!', '2@', '3#', '4$'} or
-% {'2AFC', 'LeftArrow', 'RightArrow'} or
-% {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.  :)
+% Key names for recorded as the response. 
+% For example, {'LeftArrow', 'RightArrow'} or
+% {'1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.
 % For available key names please check KbName('KeyNames') or KbDemo.
-experiment.objective_evidence = {'2AFC', 'LeftArrow', 'RightArrow'};
-experiment.subjective_evidence = {'PAS', '1!', '2@', '3#', '4$'};
+experiment.mAFC_keys = {'LeftArrow', 'RightArrow'};
+experiment.PAS_keys = {'1!', '2@', '3#', '4$'};
+
+% Set true if you want to use only text choices.
+experiment.is_mAFC_text_version = false;
+
+% From 0 to 1, where 1 means complete fill of x axis by the images. 
+% y is rescaled automatically.
+experiment.mAFC_images_size = 0.75;
+
+
 
 % Directory to save the subject response data in. 
 % e.g. './!Results'
@@ -140,10 +157,11 @@ experiment.subject_info_directory = './!SubjectInfo';
 if class(experiment) == "VPCFS"
     % Path to a directory with prime images.
     experiment.prime_images_path = './Images/Prime_images';
-
+    
+    % Position of the image in the provided target directory
     experiment.target_image_index = 1;
     
-    % For how long to show the target images after the suppression has
+    % For how long to show target images after the suppression has
     % been stopped.
     experiment.target_presentation_duration = 0.9;
 end
@@ -171,14 +189,12 @@ end
 % Show input dialog for subject info
 experiment.get_subject_info();
 
-
 % Initiate Psychtoolbox window, generate mondrians, show introduction
 % screen, create masks textures from mondrians, import images and
 % initiate response structure.
 experiment.initiate();
 
 % Enter the experiment loop and BLOW IT UP
-
 experiment.run_the_experiment();
 
 

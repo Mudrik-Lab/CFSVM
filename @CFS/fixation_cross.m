@@ -1,5 +1,5 @@
 function fixation_cross(obj)
-%fixation_cross Draws and shows on the screen the fixation cross.
+%fixation_cross Draws and shows fixation cross on the screen.
 
     % Left screen cross
     Screen(obj.fixation_cross_args{1}{:});

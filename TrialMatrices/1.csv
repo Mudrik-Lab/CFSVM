@@ -1,4 +1,5 @@
-temporal_frequency,cfs_mask_duration,stimulus_appearance_delay,stimulus_fade_in_duration,stimulus_position,stimulus_index
-2,10,2,2,Center,1
-10,10,2,2,Center,1
+temporal_frequency,cfs_mask_duration,stimulus_appearance_delay,stimulus_fade_in_duration,stimulus_index
+10,5,1,1,1
+
+
 

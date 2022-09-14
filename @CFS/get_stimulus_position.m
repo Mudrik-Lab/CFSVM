@@ -1,4 +1,4 @@
-function [x0, y0, x1, y1] = get_stimulus_position(ninth, size)
+function [x0, y0, x1, y1, i, j] = get_stimulus_position(ninth, size)
 %get_stimulus_position Calculates on-screen coordinates based on given parameters.
 % Function [x0, y0, x1, y1] = get_stimulus_position(ninth, size) accepts 
 % position of the rectangle on the screen which divided into ninths. 

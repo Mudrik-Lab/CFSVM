@@ -1,5 +1,5 @@
 function initiate_records_table(obj)
-    %initiate_results_table Initiates structure for subject responses.
+    %initiate_records_table Initiates structure for subject responses.
     switch class(obj)
         case 'VPCFS'
             output_variables = {'block', 'trial', ... 

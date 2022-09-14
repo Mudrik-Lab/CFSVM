@@ -1,6 +1,6 @@
 function load_parameters(obj, block)
-%LOAD_PARAMETERS Summary of this function goes here
-%   Detailed explanation goes here
+%load_parameters Loads trial parameters provided in trial matrix.
+
     matrix = obj.trial_matrices{block};
     for property = matrix(obj.results.trial,:).Properties.VariableNames
         obj.(property{:}) = matrix(obj.results.trial,:).(property{:});
@@ -18,10 +18,10 @@ function load_parameters(obj, block)
         obj.masks_number_while_fade_in + ...
         obj.masks_number_before_stimulus;
 
-    obj.mask_in = arrayfun(@(n) (floor(obj.masks_number_before_stimulus+(n-1)/obj.waitframe)), ...
+    obj.mask_indices_while_fade_in = arrayfun(@(n) (floor(obj.masks_number_before_stimulus+(n-1)/obj.waitframe)), ...
         1:(1+obj.masks_number_while_fade_in*obj.waitframe));
 
-    obj.mask_out = arrayfun(@(n) (floor(obj.cumul_masks_number_before_fade_out+...
+    obj.mask_indices_while_fade_out = arrayfun(@(n) (floor(obj.cumul_masks_number_before_fade_out+...
         (obj.masks_number_while_fade_in*obj.waitframe-n)/obj.waitframe)), ...
         1:(obj.masks_number_while_fade_in*obj.waitframe-1));
     
@@ -32,18 +32,27 @@ function load_parameters(obj, block)
             {
                 'DrawLines', obj.window, fixation_cross_lines, ...
                 obj.fixation_cross_line_width, hex2rgb(obj.fixation_cross_color), ... 
-                [obj.x_center*0.5, obj.y_center], 2
+                [obj.left_screen_x_center, obj.left_screen_y_center], 2
             }, ...
             {
                 'DrawLines', obj.window, fixation_cross_lines, ...
                 obj.fixation_cross_line_width, hex2rgb(obj.fixation_cross_color), ... 
-                [obj.x_center*1.5, obj.y_center], 2 
+                [obj.right_screen_x_center, obj.right_screen_y_center], 2 
             } 
         };
     
     % Calculate stimulus and masks coordinates on screen.
-    obj.get_rects();
-
+    obj.stimulus_left_rect = CFS.get_rect(obj.left_side_screen, ...
+        obj.checker_rect_width, obj.stimulus_position, obj.stimulus_size, obj.stimulus_xy_ratio);
+    obj.stimulus_right_rect =  CFS.get_rect(obj.right_side_screen, obj.checker_rect_width, obj.stimulus_position, obj.stimulus_size, obj.stimulus_xy_ratio);
+    if obj.left_suppression==true
+        obj.stimulus_rect = obj.stimulus_right_rect;
+        obj.masks_rect = obj.stimulus_left_rect;
+    else
+        obj.stimulus_rect = obj.stimulus_left_rect;
+        obj.masks_rect = obj.stimulus_right_rect;
+    end
+    
     obj.results.stimulus_index = obj.stimulus_index;
 end
 

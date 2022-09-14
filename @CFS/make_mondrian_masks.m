@@ -1,5 +1,5 @@
+function make_mondrian_masks(obj)
 %make_mondrian_masks Generates an array of masks.
-% 
 % 
 % This function creates Mondrian masks that can be used for continuous
 % flash suppression. The shape of the elements of the masks is normally
@@ -7,6 +7,14 @@
 % manually. Other variables are predefined, but can be changed within the
 % code. If no output is provided, then the masks are drawn directly.
 % My favorite settings for experiments are shape = 2 and colored = 1.
+% Colors: Black(Bk), Gray(G), Red(R), Green(Gn), Blue(B), Yellow(Y),
+% Orange(O), Cyan(C), Magenta(M), White(W), Purple(P), dark+color(dColor), light+color(lColor)
+% 1 - Bk/R/Gn/B/Y/C/M/W, 2 - grayscale, 
+% 3 - R/dR/Gn/dGn/B/dB/lB/Y/dY/M/C/dC/W/Bk/G/dP/O
+% 4 - R/dR/B/dB/lB/M/dC/Bk/dP/O,
+% 5 - purples, 6 - reds, 7 - blues, 8 - professional 1, 9 - professional 2,
+% 10 - appetizing: tasty, 11 - electric, 12 - dependable 1, 
+% 13 - dependable 2, 14 - earthy ecological natural, 15 - feminine
 %
 % (c) 2009 Martin Hebart
 % When you use this code in a publication, please cite one of my articles
@@ -16,7 +24,6 @@
 % without the explicit agreement of the author. Please contact me via
 % http://martin-hebart.de
 
-function make_mondrian_masks(obj)
     sz_x = obj.screen_x_pixels/2;
     sz_y = obj.screen_y_pixels;
     n_masks = obj.masks_number;

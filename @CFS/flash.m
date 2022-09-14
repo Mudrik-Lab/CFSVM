@@ -22,7 +22,7 @@ function flash(obj)
     
     % FADE IN
     for n = 2:(1+obj.masks_number_while_fade_in*obj.waitframe)
-        with_stimulus(obj, obj.mask_in(n), n, 0)
+        with_stimulus(obj, obj.mask_indices_while_fade_in(n), n, 0)
     end
     obj.results.stimulus_full_contrast_onset = obj.vbl;
     
@@ -41,7 +41,7 @@ function flash(obj)
         
         
         for n = flip(1:(obj.masks_number_while_fade_in*obj.waitframe-1))
-            with_stimulus(obj, obj.mask_out(n), n, 0)
+            with_stimulus(obj, obj.mask_indices_while_fade_out(n), n, 0)
         end
         
         masks_only(obj, mask, 0)

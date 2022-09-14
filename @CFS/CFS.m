@@ -4,6 +4,10 @@ classdef (Abstract) CFS < handle
     % These are implemented in subclasses BCFS, VPCFS and VACFS, respectively.
     %
     % CFS Properties:
+    %     background_color - background color in hexadecimal color code.
+    %     target_images_path - path to a directory with target images.
+    %     trial_matrices_path - path to a directory with trial matrices.
+    %
     %     temporal_frequency - number of masks flashed per one second. 
     %     cfs_mask_duration - duration of suppressing pattern in seconds.
     %     load_masks_from_folder -  load pregenerated masks from folder? true/false
@@ -13,29 +17,44 @@ classdef (Abstract) CFS < handle
     %     mask_contrast - contrast from 0 = fully transparent to 1 = fully opaque.
     %     mondrian_shape - shape: 1 - squares, 2 - circles, 3 - diamonds.
     %     mondrian_color - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors, for 4...15 see 'help CFS.generate_mondrians'.
-    %     target_images_path - path to a directory with target images.
+    %
     %     stimulus_position - position of the stimulus.
     %     stimulus_size - from 0 to 1, where 1 means 100% of the screen (half of the window).
     %     stimulus_rotation - rotation in degrees.
     %     stimulus_contrast - contrast is from 0 (fully transparent) to 1 (fully opaque).
     %     stimulus_appearance_delay - delay after initation of the suppressing pattern.
     %     stimulus_fade_in_duration - duration of fading in from maximal transparency to stimulus_contrast.
+    %     stimulus_duration - duration of stimulus between fade-in and fade-out
+    %
+    %     checker_rect_length - checkerboard frame rectangular element length.
+    %     checker_rect_width - checkerboard frame rectangular element width.
+    %     checker_color_codes - checkerboard frame colors in cell array with hex codes.
+    %
     %     fixation_cross_duration - duration of the fixation cross in seconds.
     %     fixation_cross_arm_length - size of the arms of the fixation cross in pixels.
     %     fixation_cross_line_width - line width of the fixation cross in pixels.
     %     fixation_cross_color - color in hexadecimal color code (check this in google)
-    %     objective_evidence - cell array for method name and keycodes.
-    %     subjective_evidence - cell array for method name and keycodes.
+    %
+    %     mAFC_keys - cell array for PTB keycodes.
+    %     is_mAFC_text_version - boolean parameter to set mAFC function type.
+    %     mAFC_images_size - from 0 to 1, where 1 means complete fill of x axis by the images. 
+    %     PAS_keys - cell array for PTB keycodes.
     %     subject_response_directory - directory to save the subject response data in. 
     %     subject_info_directory - directory to save recorded subject info (age, hand, eye, etc.) in.
+    %  
+    %     breakthrough_key - input key to interpret as breaking in bCFS.
+    %     results - struct with timings and responses.
     %
     % CFS Methods:
-    %     initiate - runs SubjectInfoApp, initiates Psychtoolbox window, generates mondrians and makes basic calculations.
-    %     save_responses - save subject responses and subject info.
+    %     get_subject_info - runs SubjectInfoApp to record subject info.
+    %     initiate - initiates Psychtoolbox window, generates mondrians and makes other basic calculations.
+    %     read_trial_matrices - imports trial matices data.
     %     run_the_experiment - main function for the experiment loop. Implemented in the subclasses.
 
     properties
         
+        left_side_screen = [0, 0, 960, 1080];
+        right_side_screen = [960, 0, 1920, 1080];
         % Background color in hexadecimal color code (check this in google)
         background_color = '#B54B34';
         
@@ -48,6 +67,7 @@ classdef (Abstract) CFS < handle
         % whereas target images are used for mAFC.
         target_images_path {mustBeFolder} = './Images/Target_images';
         
+        % Path to a directory with trial matrices.
         trial_matrices_path {mustBeFolder} = './TrialMatrices';
 
         %--------MASKS PARAMETERS-------%
@@ -61,7 +81,7 @@ classdef (Abstract) CFS < handle
         % Load pregenerated masks from folder? true/false 
         load_masks_from_folder {mustBeNumericOrLogical} = false;
         
-        % If previous parameter set to true - specify path, e.g. './Masks'
+        % Path to a directory with pregenerated masks.
         masks_path = './Masks';
 
         % Masks position on the screen (half of the window).
@@ -97,6 +117,8 @@ classdef (Abstract) CFS < handle
                          'Left', 'Center', 'Right', ...
                          'LowerLeft', 'Bottom', 'LowerRight'})} = 'Top';
         
+        stimulus_xy_ratio = 1;
+
         % From 0 to 1, where 1 means 100% of the screen (half of the window).
         stimulus_size {mustBeInRange(stimulus_size, 0, 1)} = 0.5; 
         
@@ -112,16 +134,21 @@ classdef (Abstract) CFS < handle
         
         % Duration of fading in from maximal transparency to stimulus_contrast.
         stimulus_fade_in_duration {mustBeNonnegative} = 2;
-
+        
+        % Duration of stimulus between fade-in and fade-out in seconds.
         stimulus_duration {mustBeNonnegative} = 2;
         
         %--------CHECKERBOARD FRAME PARAMETERS-------%
-        % Length and width in pixels
+
+        % Checkerboard frame rectangular element length in pixels.
         checker_rect_length {mustBePositive, mustBeInteger} = 35;
+        
+        % Checkerboard frame rectangular element width in pixels.
         checker_rect_width {mustBePositive, mustBeInteger} = 20;
+
         % Checkerboard frame color in hexadecimal color code (check this in google)
-        % Array of two strings
-        checker_color_codes = ["#FFFFFF", "'#000000'"];
+        % Cell array of character vectors, e.g. {'#0072BD', '#D95319', '#EDB120', '#7E2F8E'}
+        checker_color_codes = {'#FFFFFF', '#000000'};
 
 
         %--------FIXATION CROSS PARAMETERS-------%
@@ -141,41 +168,78 @@ classdef (Abstract) CFS < handle
 
         %--------SUBJECT RESPONSE PARAMETERS-------%
         
-        % First item in an array will be a method name followed by key names for 
-        % the response. For example, {'4AFC', '1!', '2@', '3#', '4$'} or
-        % {'2AFC', 'LeftArrow', 'RightArrow'} or
-        % {'7AFC', '1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.  :)
+        % Key names for recorded as the response. 
+        % For example, {'LeftArrow', 'RightArrow'} or
+        % {'1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.
         % For available key names please check KbName('KeyNames') or KbDemo.
-        objective_evidence = {'2AFC', 'LeftArrow', 'RightArrow'};
-        subjective_evidence = {'PAS', '1!', '2@', '3#', '4$'};
+        mAFC_keys = {'LeftArrow', 'RightArrow'};
+        
+        % Set true if you want to use only text choices in mAFC.
+        is_mAFC_text_version {mustBeNumericOrLogical} = false;
+        
+        % From 0 to 1, where 1 means complete fill of x axis by the images. 
+        % y is rescaled automatically.
+        mAFC_images_size {mustBeInRange(mAFC_images_size, 0, 1)} = 0.5;
+        
+        % Key names for recorded as the response. 
+        % For example, {'LeftArrow', 'RightArrow'} or
+        % {'1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.
+        % For available key names please check KbName('KeyNames') or KbDemo.
+        PAS_keys = {'1!', '2@', '3#', '4$'};
         
         % Directory to save the subject response data.
         subject_response_directory = './!Results';
         
         % Directory to save recorded subject info (age, hand, eye, etc.)
         subject_info_directory = './!SubjectInfo';
-
+        
+        %--------OTHER PARAMETERS-------%
+        % Input key to interpret as breaking in bCFS.
         breakthrough_key = 'space';
 
+        % Struct for recording timings and responses.
         results;
 
     %end
 
 
     %properties (Access = protected)
-        trial_matrices;
-        number_of_blocks;
-
         subj_info; % Structure to store subject info input
-        left_suppression % Half of the screen on which suppressing pattern is shown.
-        contrasts; % Array of precalculated contrasts for stimulus fade-in 
-        window; % Psychtoolbox window.
-        screen_x_pixels; % Number of pixels on the x axis.
-        screen_y_pixels; % Number of pixels on the y axis.
-        x_center; % Half of pixels on the x axis.
-        y_center; % Half of pixels on the x axis.
+        trial_matrices; % Cell array of tables for provided trial tables.
+        number_of_blocks {mustBeInteger, mustBePositive}; % Number of experiment blocks.
+        left_suppression {mustBeNumericOrLogical}; % Half of the screen on which suppressing pattern is shown.
         
-        fixation_cross_args; % Arguments for flashing left and right fixation crosses.
+        textures; % Psychtoolbox textures of mondrian masks.
+        target_textures; % Psychtoolbox textures of target images.
+        stimulus; % Stimulus texture.
+        stimulus_index; % Stimulus index.
+        stimulus_rect; % Coordinates of stimulus position on the screen.
+        stimulus_left_rect;
+        stimulus_right_rect;
+        contrasts; % Array of precalculated contrasts for stimulus fade-in 
+        masks_rect; % Coordinates of masks position on the screen.
+        mask_indices_while_fade_in; % Array with precalculated indicies for flashing masks.
+        mask_indices_while_fade_out; % Array with precalculated indicies for flashing masks.
+        checker_rects; % Array of both left and right checkerboard frame rectangles.
+        checker_colors; % Array of both left and right checkerboard frame colors.
+        fixation_cross_args; % PTB Screen('DrawLines') arguments for flashing left and right fixation crosses.
+        
+        window; % Psychtoolbox window.
+        screen_x_pixels {mustBeInteger, mustBePositive}; % Number of pixels on the x axis.
+        screen_y_pixels {mustBeInteger, mustBePositive}; % Number of pixels on the y axis.
+        x_center {mustBeInteger, mustBePositive}; % Half of pixels on the x axis.
+        y_center {mustBeInteger, mustBePositive}; % Half of pixels on the x axis.
+        l_rect;
+        r_rect;
+        left_screen_x_pixels;
+        left_screen_y_pixels;
+        right_screen_x_pixels;
+        right_screen_y_pixels;
+        left_screen_x_center;
+        left_screen_y_center;
+        right_screen_x_center;
+        right_screen_y_center;
+        
 
         % WF[#] (Waitframes) = RR/TF = number of the refreshes before next flip.
         % TF[Hz] (Temporal frequency) = RR/WF = number of flips per second.
@@ -184,12 +248,16 @@ classdef (Abstract) CFS < handle
         % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
         % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
         waitframe;
-
         % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes.
-        % RR[Hz] (Refresh rate) = refresh rate of the monitor. 
+        % RR[Hz] (Refresh rate) = refresh rate of the monitor.
+        % IFI is measured directly by Screen('GetFlipInterval', window) function.
         inter_frame_interval;
-
-        % M[#] (Masks number) = CMD/FS = CMD/(WF*IFI) = overall number of masks.
+        % Delay between screen flips. 
+        % Check this out for more information
+        % https://stackoverflow.com/questions/38014908/explaning-a-line-in-code-from-psychtoolbox-tutorial?newreg=448c933d0ee34bbcaffb66576c1be751
+        % obj.delay = 1/TF - 0.5*IFI ≈ IFI*(WF-0.5)
+        delay {mustBePositive}; 
+        % M[#] (Masks number) = CMD/(WF*IFI) = overall number of masks.
         % CMD[s] (CFS mask duration) = duration of the suppressing pattern.
         % WF[#] (Waitframes) = RR/TF = number of the refreshes before next flip.
         % IFI[s] (Inter frame interval) = 1/RR = time between vertical monitor refreshes (measured by PTB).
@@ -198,43 +266,40 @@ classdef (Abstract) CFS < handle
         masks_number_while_fade_in {mustBeInteger};
         masks_number_while_stimulus {mustBeInteger};
         cumul_masks_number_before_fade_out {mustBeInteger};
-        mask_in;
-        mask_out;
-        delay;
-
-        checker_rects;
-        checker_colors;
-      
-        masks; % An array of generated mondrian masks.
-        textures; % Psychtoolbox textures of the generated masks
-        target_textures; % Psychtoolbox textures of the target images.
         
-        stimulus; % Stimulus texture.
-        stimulus_index;
-        stimulus_rect; % Coordinates of stimulus position on the screen.
-        masks_rect; % Coordinates of masks position on the screen.
-        future; % Result of background generation of mondrian masks.
+        % Function handle for m_alternative_forced_choice(obj) or 
+        % m_alternative_forced_choice_text(obj)
+        mAFC;
+        % Get the number from the length of mAFC_keys parameter.
+        number_of_mAFC_pictures {mustBePositive, mustBeInteger};
+        % Get the number from the length of PAS_keys parameter.
+        number_of_PAS_choices {mustBePositive, mustBeInteger};
+        
+    
         records; % Table for responses
         current_trial = 1; % Number of the current trial running.
         current_block = 1; % Number of the current block running.
-        vbl; % Timestamps for internal use and for recording last screen flip time.
+        vbl; % Timestamp for internal use.
     end
-        
+    
 
     methods
         get_subject_info(obj);
         initiate(obj);
         read_trial_matrices(obj);
     end
+    
 
     methods (Abstract)
         run_the_experiment(obj);
     end
 
+
     methods (Access = protected) 
         
-        function shuffle_masks(obj)
-            %shuffle_mask Shuffles provided textures.
+        function shuffle_masks(obj, seed)
+            %shuffle_mask Shuffles provided textures with seed.
+            rng(seed);
             obj.textures = obj.textures(randperm(length(obj.textures)));
         end
 
@@ -247,11 +312,11 @@ classdef (Abstract) CFS < handle
         end
 
         %initiate
-        
         introduction(obj);
-        get_rects(obj);
         make_mondrian_masks(obj);
         textures = import_images(obj, path, varargin);
+        initiate_checkerboard_frame(obj);
+        initiate_records_table(obj);
 
         %run_the_experiment
         load_parameters(obj, block);
@@ -259,10 +324,9 @@ classdef (Abstract) CFS < handle
         fixation_cross(obj);
         flash(obj);
         m_alternative_forced_choice(obj);
+        m_alternative_forced_choice_text(obj);
         perceptual_awareness_scale(obj);
-        
         get_breaking_time(obj);
-        initiate_records_table(obj);
         append_trial_results(obj);
         save_response(obj);
         
@@ -270,17 +334,13 @@ classdef (Abstract) CFS < handle
 
 
     methods (Static, Access = protected)
-        function stimulus = choose_texture(textures)
-            %choose_texture Chooses random texture from passed array.
-            stimulus = textures{randi(length(textures),1)};
-        end
-        
         [x, seed] = randomise(number_of_elements, repeats);
         [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window(background_color);
-        [x0, y0, x1, y1] = get_stimulus_position(ninth, size);
-        
-        [response, secs] = record_response(evidence);   
+        [x0, y0, x1, y1, i, j] = get_stimulus_position(ninth, size);
+        [response, secs] = record_response(evidence);
+        rect = get_rect(side_screen_rect, shift, position, size, xy_ratio);
     end  
+
     
     methods (Hidden)
         function varargout = findobj(O,varargin)

@@ -12,15 +12,16 @@ classdef VPCFS < CFS
     properties
         % Path to a directory with prime images.
         prime_images_path {mustBeFolder} = './Images/Prime_images';
-
+        
+        % Position of the image in the provided directory
         target_image_index {mustBeInteger, mustBePositive} = 1;
         
         % For how long to show the target images after the suppression has
         % been stopped.
         target_presentation_duration {mustBeNonnegative} = 0.7;
-    end
+    %end
     
-    properties (Access = {?CFS})
+    %properties (Access = {?CFS})
         prime_textures; % Psychtoolbox textures of the prime images.
     end
     
@@ -36,14 +37,16 @@ classdef VPCFS < CFS
                     obj.results.trial_start_time = GetSecs();
                     obj.results.trial = trial;
                     obj.load_parameters(block);
-                    obj.shuffle_masks();
+                    obj.shuffle_masks(10*block+trial);
                     obj.stimulus = obj.prime_textures{obj.stimulus_index};
-                    obj.rest_screen();
+                    if trial ~= 1 && block ~= 1
+                        obj.rest_screen();
+                    end
                     obj.fixation_cross();
                     obj.flash();
                     obj.show_targets();
                     obj.perceptual_awareness_scale();
-                    obj.m_alternative_forced_choice();
+                    obj.mAFC();
                     obj.results.trial_end_time = GetSecs();
                     obj.results.trial_duration = obj.results.trial_end_time-obj.results.trial_start_time;
                     obj.append_trial_results();

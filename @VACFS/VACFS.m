@@ -28,7 +28,7 @@ classdef VACFS < CFS
                     obj.load_parameters(block);
                     obj.shuffle_masks(10*block+trial);
                     obj.stimulus = obj.adapter_textures{obj.stimulus_index};
-                    if trial ~= 1 && block ~= 1
+                    if trial ~= 1 || block ~= 1
                         obj.rest_screen();
                     end
                     obj.fixation_cross();

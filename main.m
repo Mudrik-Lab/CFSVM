@@ -9,15 +9,15 @@ clear;
 % Initiate an object, for visual priming CFS use experiment = VPCFS(),
 % for breaking CFS use experiment = BCFS(),
 % for visual adaptation CFS use experiment = VACFS().
-experiment = VPCFS();
+experiment = BCFS();
 
 %%                                                                       %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %--------------------------------PARAMETERS-------------------------------%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Change these%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-experiment.left_side_screen = [0, 0, 720, 720];
-experiment.right_side_screen = [1200, 0, 1920, 720];
+experiment.left_side_screen = [140, 0, 860, 720];
+experiment.right_side_screen = [1060, 0, 1780, 720];
 
 % Background color in hexadecimal color code (check this in google)
 experiment.background_color = '#E8DAEF';
@@ -40,15 +40,10 @@ experiment.trial_matrices_path = './TrialMatrices';
 experiment.temporal_frequency = 10;
 
 % Duration of suppressing pattern in seconds.
-experiment.cfs_mask_duration = 5;
-
-% Load pregenerated masks from folder? true/false
-experiment.load_masks_from_folder = true;
+experiment.mask_duration = 5;
 
 % If previous parameter set to true - specify path, e.g. './Masks'
-if experiment.load_masks_from_folder
-    experiment.masks_path = './Masks';
-end
+experiment.masks_path = './Masks';
 
 % Masks position on the screen (half of the window).
 % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
@@ -56,7 +51,7 @@ end
 experiment.mask_position = 'Center';
 
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
-experiment.mask_size = 0.5;
+experiment.mask_size = 1;
 
 % Contrast is from 0 = fully transparent to 1 = fully opaque.
 experiment.mask_contrast = 1;
@@ -66,7 +61,7 @@ experiment.mondrian_shape = 1;
 
 % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
 % for 4...15 see 'help CFS.generate_mondrians'.
-experiment.mondrian_color = 1;
+experiment.mondrian_color = 15;
 
 
 %--------STIMULUS PARAMETERS--------%
@@ -78,7 +73,7 @@ experiment.stimulus_position = 'Center';
 
 experiment.stimulus_xy_ratio = 1;
 % From 0 to 1, where 1 means 100% of the screen (half of the window).
-experiment.stimulus_size = 0.5; 
+experiment.stimulus_size = 0.33; 
 
 % Positive values repres ent clockwise rotation, 
 % negative values represent counterclockwise rotation.
@@ -92,7 +87,7 @@ experiment.stimulus_contrast = 1;
 experiment.stimulus_appearance_delay = 0; 
 
 % Duration of fading in from maximal transparency to stimulus_contrast.
-experiment.stimulus_fade_in_duration = 2; 
+experiment.stimulus_fade_in_duration = 1; 
 
 experiment.stimulus_duration = 1; 
 
@@ -122,7 +117,7 @@ experiment.fixation_cross_arm_length = 20;
 experiment.fixation_cross_line_width = 4;
 
 % Fixation cross color in hexadecimal color code (check this in google)
-experiment.fixation_cross_color = '#36C8CF';
+experiment.fixation_cross_color = '#FF0000';
 
 
 %--------SUBJECT RESPONSE PARAMETERS--------%

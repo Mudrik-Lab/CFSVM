@@ -1,7 +1,7 @@
 function rest_screen(obj)
 %rest_screen Shows rest_screen.
 
-    KEY = 'space';
+    KEY = 'return';
     INSTRUCTION = sprintf('Take a slow deep breath.\n Press %s to continue.', upper(KEY));
     DrawFormattedText(obj.window, INSTRUCTION, 'center', 'center');
     Screen('Flip', obj.window);

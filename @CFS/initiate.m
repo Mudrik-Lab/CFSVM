@@ -43,7 +43,7 @@ function initiate(obj)
 
     obj.read_trial_matrices();
     
-    vars = ["cfs_mask_duration", "temporal_frequency", ...
+    vars = ["mask_duration", "temporal_frequency", ...
         "stimulus_appearance_delay", "stimulus_fade_in_duration", ...
         "stimulus_duration"];
     for i=1:length(obj.trial_matrices)
@@ -68,7 +68,7 @@ function initiate(obj)
         end
 
 
-        obj.trial_matrices{i}.masks_number = obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.cfs_mask_duration;
+        obj.trial_matrices{i}.masks_number = obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.mask_duration;
 
         obj.trial_matrices{i}.masks_number_before_stimulus = ...
             obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.stimulus_appearance_delay+1;
@@ -81,8 +81,8 @@ function initiate(obj)
     end
 
     max_temporal_frequency = max(cellfun(@(matrix) (max(matrix.temporal_frequency)), obj.trial_matrices));
-    max_cfs_mask_duration = max(cellfun(@(matrix) (max(matrix.cfs_mask_duration)), obj.trial_matrices));
-    obj.masks_number = max_temporal_frequency*max_cfs_mask_duration+1;
+    max_mask_duration = max(cellfun(@(matrix) (max(matrix.mask_duration)), obj.trial_matrices));
+    obj.masks_number = max_temporal_frequency*max_mask_duration+1;
     
     obj.number_of_mAFC_pictures = length(obj.mAFC_keys);
     obj.number_of_PAS_choices = length(obj.PAS_keys);
@@ -119,7 +119,7 @@ function initiate(obj)
     % create textures and run the introductory screen. 
     % If set to false, then generate mondrians with provided parameters,
     % run the introductory screen and create textures.
-    if obj.load_masks_from_folder == false
+    if ~isfolder(obj.masks_path)
         % Start mondrian masks generation.
         % The function takes two arguments: shape and color.
         % Shape: 1 - squares, 2 - circles, 3 - diamonds.

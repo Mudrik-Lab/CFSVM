@@ -18,8 +18,8 @@ function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_inte
     %white = WhiteIndex(screen_number);
     %black = BlackIndex(screen_number);
 
-    %Screen('Preference','SkipSyncTests', 2);
-    %Screen('Preference', 'VisualDebugLevel', 4);
+    Screen('Preference','SkipSyncTests', 2);
+    Screen('Preference', 'VisualDebugLevel', 4);
 
     % Open an on-screen window using PsychImaging.
     [window, window_rect] = PsychImaging('OpenWindow', screen_number, background_color);

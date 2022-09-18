@@ -9,8 +9,7 @@ classdef (Abstract) CFS < handle
     %     trial_matrices_path - path to a directory with trial matrices.
     %
     %     temporal_frequency - number of masks flashed per one second. 
-    %     cfs_mask_duration - duration of suppressing pattern in seconds.
-    %     load_masks_from_folder -  load pregenerated masks from folder? true/false
+    %     mask_duration - duration of suppressing pattern in seconds.
     %     masks_path - if previous parameter set to true - specify path, e.g. './Masks'
     %     mask_position - position of the mask.
     %     mask_size - from 0 to 1, where 1 means 100% of the screen (half of the window).
@@ -76,10 +75,7 @@ classdef (Abstract) CFS < handle
         temporal_frequency {mustBePositive} = 10;
 
         % Duration of suppressing pattern in seconds.
-        cfs_mask_duration {mustBePositive} = 5;
-
-        % Load pregenerated masks from folder? true/false 
-        load_masks_from_folder {mustBeNumericOrLogical} = false;
+        mask_duration {mustBePositive} = 5;
         
         % Path to a directory with pregenerated masks.
         masks_path = './Masks';
@@ -103,7 +99,7 @@ classdef (Abstract) CFS < handle
 
         % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 see 'help CFS.generate_mondrians'.
-        mondrian_color{mustBeInteger, mustBeInRange(mondrian_color, 1, 15)} = 15;
+        mondrian_color {mustBeInteger, mustBeInRange(mondrian_color, 1, 15)} = 15;
 
 
         %--------STIMULUS PARAMETERS-------%
@@ -200,10 +196,10 @@ classdef (Abstract) CFS < handle
         % Struct for recording timings and responses.
         results;
 
-    %end
+    end
 
 
-    %properties (Access = protected)
+    properties (Access = protected)
         subj_info; % Structure to store subject info input
         trial_matrices; % Cell array of tables for provided trial tables.
         number_of_blocks {mustBeInteger, mustBePositive}; % Number of experiment blocks.
@@ -229,8 +225,6 @@ classdef (Abstract) CFS < handle
         screen_y_pixels {mustBeInteger, mustBePositive}; % Number of pixels on the y axis.
         x_center {mustBeInteger, mustBePositive}; % Half of pixels on the x axis.
         y_center {mustBeInteger, mustBePositive}; % Half of pixels on the x axis.
-        l_rect;
-        r_rect;
         left_screen_x_pixels;
         left_screen_y_pixels;
         right_screen_x_pixels;

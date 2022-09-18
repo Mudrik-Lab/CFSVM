@@ -20,7 +20,7 @@ classdef BCFS < CFS
                     obj.shuffle_masks(10*block+trial);
                     obj.results.stimulus_position = obj.stimulus_position;
                     obj.stimulus = obj.target_textures{obj.stimulus_index};
-                    if trial ~= 1 && block ~= 1
+                    if trial ~= 1 || block ~= 1
                         obj.rest_screen();
                     end
                     obj.fixation_cross();

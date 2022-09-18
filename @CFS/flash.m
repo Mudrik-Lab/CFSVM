@@ -67,6 +67,7 @@ function flash(obj)
     Screen('FillRect', obj.window, obj.checker_colors, obj.checker_rects);
     obj.vbl = Screen('Flip', obj.window, obj.vbl + 1/obj.temporal_frequency - 0.5*obj.inter_frame_interval);
 
+    obj.results.mondrians_offset = obj.vbl;
 end
 
 function masks_only(obj, mask, delay)

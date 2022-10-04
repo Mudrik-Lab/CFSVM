@@ -7,6 +7,9 @@ classdef BCFS < CFS
     % See also CFS
 
     methods
+
+        
+
         function run_the_experiment(obj)
             %run_the_experiment Runs the Visual Priming experiment.
             % Shows fixation cross, flashes the masks, shows the target 
@@ -16,10 +19,8 @@ classdef BCFS < CFS
                 for trial=1:height(obj.trial_matrices{block})
                     obj.results.trial_start_time = GetSecs();
                     obj.results.trial = trial;
-                    obj.load_parameters(block);
+                    obj.load_parameters();
                     obj.shuffle_masks(10*block+trial);
-                    obj.results.stimulus_position = obj.stimulus_position;
-                    obj.stimulus = obj.target_textures{obj.stimulus_index};
                     if trial ~= 1 || block ~= 1
                         obj.rest_screen();
                     end
@@ -40,6 +41,16 @@ classdef BCFS < CFS
     end
 
     methods (Access = protected)
+        function load_parameters(obj)
+            obj.load_trial_matrix_row();
+            obj.load_flashing_parameters();
+            obj.load_fixation_parameters();
+            obj.load_rect_parameters();
+            obj.results.stimulus_position = obj.stimulus_position;
+            obj.results.stimulus_index = obj.stimulus_index;
+            obj.stimulus = obj.target_textures{obj.stimulus_index};
+        end
+        
         function m_alternative_forced_choice(obj) %#ok<MANU> 
             %m_alternative_forced_choice Does nothing
             % Intentionally does nothing as mAFC in bCFS makes no sense.

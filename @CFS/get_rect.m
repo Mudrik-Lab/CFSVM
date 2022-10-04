@@ -1,23 +1,37 @@
-function rect = get_rect(screen, shift, position, size, xy_ratio)
-    %get_rect Calculates on-screen rectangles from stimulus and mask position/size parameters.
-    % Uses static get_stimulus_poisition function, all the tech behind can
-    % be find in its documentation.
+function new_rectangle = get_rect(screen_rectangle, alignment, size, padding, xy_ratio)
+    %get_rect Returns array with pixels coordinates for the new_rectangle in a
+    % given screen_rectangle, new_rectangle alignment, its size, padding and its X to Y ratio.
+    % screen_rect - array with pixels coordinated for the field in which new rectangle can be located.
+    % alignment - alignment to one of the ninths, check get_stimulus_position method.
+    % size - size of the new rectangle as a fraction of the provided screen_rectangle.
+    % padding - shift of the stimulus from the side towards the center of
+    % the screen_rectangle. From 0 to 1, where 1 means alignment to the
+    % center of the screen.
+    % xy_ratio - new_rectangle ratio between X and Y axes lengths.
     % See also get_stimulus_position
-
-    screen_rect(1:2) = screen(1:2) + shift;
-    screen_rect(3:4) = screen(3:4) - shift;
-    rect_cell = num2cell(screen_rect);
+    
+    % Extract coordinates from the provided screen rectangle.
+    rect_cell = num2cell(screen_rectangle);
     [x0, y0, x1, y1] = rect_cell{:};
 
+    % Get length of X axis in pixels.
     dx = x1-x0;
+    % Get length of Y axis in pixels.
     dy = y1-y0;
+    % Get remainder of subtraction between lengths of Y and X axes.
     rem = dy-dx;
-    rect = [0,0,dx*size,dx*size/xy_ratio];
-    
-    [m0, n0, m1, n1, i, j] = CFS.get_stimulus_position(position, size);
 
+    % Set rectangle with proper size and x to y ratio.
+    unmoved_rect = [0,0,dx*size,dx*size/xy_ratio];
+    
+    % Calculate shift from 0 to 1 of every coordinate of the new_rectangle given the provided stimulus alignment.
+    [m0, n0, m1, n1, i, j] = CFS.get_stimulus_rect_shift(alignment, size, padding);
+
+    % Calculate X axis center of the new_rectangle.
     x_center = mean([x0+m0*dx, x0+m1*dx]);
+    % Calculate Y axis center of the new_rectangle.
     y_center = mean([y0+n0*dy-(1-i)*(1-n0)*rem/2, y0+n1*dy-(3-i)*n1*rem/2]);
     
-    rect = CenterRectOnPointd(rect, x_center, y_center);
+    % Get the new rectangle
+    new_rectangle = CenterRectOnPointd(unmoved_rect, x_center, y_center);
 end

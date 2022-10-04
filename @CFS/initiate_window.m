@@ -1,4 +1,4 @@
-function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window(background_color)
+function [window, inter_frame_interval] = initiate_window(background_color)
     %initiate_window Calls basic Psychtoolbox settings and initiates window.
     % Adopted from Peter Scarfe's Psychtoolbox tutorial - it's really good.
     
@@ -18,9 +18,9 @@ function [screen_x_pixels, screen_y_pixels, x_center, y_center, inter_frame_inte
     %white = WhiteIndex(screen_number);
     %black = BlackIndex(screen_number);
 
-    Screen('Preference','SkipSyncTests', 2);
-    Screen('Preference', 'VisualDebugLevel', 4);
-
+    %Screen('Preference','SkipSyncTests', 2);
+    %Screen('Preference', 'VisualDebugLevel', 4);
+    
     % Open an on-screen window using PsychImaging.
     [window, window_rect] = PsychImaging('OpenWindow', screen_number, background_color);
 

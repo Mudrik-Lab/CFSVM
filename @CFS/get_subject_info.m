@@ -22,9 +22,9 @@ function get_subject_info(obj)
     else
         obj.subj_info = app.data;
         if obj.subj_info.dominant_eye == "Right"
-            obj.left_suppression = false;
+            obj.is_left_suppression = false;
         else
-            obj.left_suppression = true;
+            obj.is_left_suppression = true;
         end
         app.delete;
     end

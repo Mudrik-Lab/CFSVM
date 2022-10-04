@@ -16,6 +16,7 @@ classdef VACFS < CFS
     end
     
     methods
+       
         function run_the_experiment(obj)
             %run_the_experiment Runs the Visual Adaptation experiment.
             % Shows fixation cross, flashes the masks, shows the target 
@@ -25,9 +26,8 @@ classdef VACFS < CFS
                 for trial=1:height(obj.trial_matrices{block})
                     obj.results.trial_start_time = GetSecs();
                     obj.results.trial = trial;
-                    obj.load_parameters(block);
+                    obj.load_parameters();
                     obj.shuffle_masks(10*block+trial);
-                    obj.stimulus = obj.adapter_textures{obj.stimulus_index};
                     if trial ~= 1 || block ~= 1
                         obj.rest_screen();
                     end
@@ -43,6 +43,19 @@ classdef VACFS < CFS
                     obj.append_trial_results();
                     obj.save_response();
                 end
+            end
+        end
+    end
+    methods (Access = protected)
+        function load_parameters(obj)
+            obj.load_trial_matrix_row();
+            obj.load_flashing_parameters();
+            obj.load_fixation_parameters();
+            obj.load_rect_parameters();
+            obj.results.stimulus_index = obj.stimulus_index;
+            obj.stimulus = obj.adapter_textures{obj.stimulus_index};
+            if ~obj.is_mAFC_text_version
+                obj.load_mAFC_parameters();
             end
         end
     end

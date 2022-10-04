@@ -6,26 +6,27 @@ function initiate(obj)
     
 
     % Initiate PTB window and keep the data from it.
-    [obj.screen_x_pixels, obj.screen_y_pixels, obj.x_center, ...
-        obj.y_center, obj.inter_frame_interval, obj.window ...
-        ] = obj.initiate_window(hex2rgb(obj.background_color));
+    [obj.window, obj.inter_frame_interval] = obj.initiate_window(CFS.hex2rgb(obj.background_color));
 
+    for i = 1:length(obj.checker_color_codes)
+        obj.checker_color_codes{i} = CFS.hex2rgb(obj.checker_color_codes{i})';
+    end
+    
+    obj.initiate_checkerboard_frame();
+    
+    obj.adjust_screens();
+    
     DrawFormattedText(obj.window, 'Preparing the experiment, please wait', 'center', 'center');
     Screen('Flip', obj.window);
-    
-    obj.left_screen_x_pixels = obj.left_side_screen(3)-obj.left_side_screen(1);
-    obj.left_screen_y_pixels = obj.left_side_screen(4)-obj.left_side_screen(2);
-    obj.right_screen_x_pixels = obj.right_side_screen(3)-obj.right_side_screen(1);
-    obj.right_screen_y_pixels = obj.right_side_screen(4)-obj.right_side_screen(2);
 
-    obj.left_screen_x_center = obj.left_side_screen(3)-round(obj.left_screen_x_pixels/2);
-    obj.left_screen_y_center = obj.left_side_screen(4)-round(obj.left_screen_y_pixels/2);
-    obj.right_screen_x_center = obj.right_side_screen(3)-round(obj.right_screen_x_pixels/2);
-    obj.right_screen_y_center = obj.right_side_screen(4)-round(obj.right_screen_y_pixels/2);
-    
+    obj.initiate_screens();
+
     % Warm GetSecs() and WaitSecs() functions;
     GetSecs();
     WaitSecs(0.00001);
+
+    % Import images from the provided directory and make their PTB textures.
+    obj.target_textures = obj.import_images(obj.target_images_path);
 
     % If the experiment type is set to Visual Priming, then import prime
     % images and create their textures as well.
@@ -38,79 +39,16 @@ function initiate(obj)
         end
     end
 
-    % Import images from the provided directory and make their PTB textures.
-    obj.target_textures = obj.import_images(obj.target_images_path);
-
-    obj.read_trial_matrices();
-    
-    vars = ["mask_duration", "temporal_frequency", ...
-        "stimulus_appearance_delay", "stimulus_fade_in_duration", ...
-        "stimulus_duration"];
-    for i=1:length(obj.trial_matrices)
-        
-        for parameter = vars
-            if ~ismember(parameter, obj.trial_matrices{i}.Properties.VariableNames)
-                obj.trial_matrices{i}.(parameter)(:) = obj.(parameter);
-            end
-        
-        end
-        
-        if ~ismember('stimulus_index', obj.trial_matrices{i}.Properties.VariableNames)
-            switch class(obj)
-                case 'VPCFS'
-                    obj.trial_matrices{i}.('stimulus_index')(:) = obj.randomise(length(obj.prime_textures), height(obj.trial_matrices{i}));
-                case 'BCFS'
-                    obj.trial_matrices{i}.('stimulus_index')(:) = obj.randomise(length(obj.target_textures), height(obj.trial_matrices{i}));
-                case 'VACFS'
-                    obj.trial_matrices{i}.('stimulus_index')(:) = obj.randomise(length(obj.adapter_textures), height(obj.trial_matrices{i}));
-            end
-        
-        end
+    obj.import_trial_matrices();
 
 
-        obj.trial_matrices{i}.masks_number = obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.mask_duration;
+    obj.initiate_response_functions();
 
-        obj.trial_matrices{i}.masks_number_before_stimulus = ...
-            obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.stimulus_appearance_delay+1;
-
-        obj.trial_matrices{i}.masks_number_while_fade_in = ...
-            obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.stimulus_fade_in_duration;
-
-        obj.trial_matrices{i}.masks_number_while_stimulus = ...
-            obj.trial_matrices{i}.temporal_frequency.*obj.trial_matrices{i}.stimulus_duration;
-    end
-
-    max_temporal_frequency = max(cellfun(@(matrix) (max(matrix.temporal_frequency)), obj.trial_matrices));
-    max_mask_duration = max(cellfun(@(matrix) (max(matrix.mask_duration)), obj.trial_matrices));
-    obj.masks_number = max_temporal_frequency*max_mask_duration+1;
-    
-    obj.number_of_mAFC_pictures = length(obj.mAFC_keys);
-    obj.number_of_PAS_choices = length(obj.PAS_keys);
-    
-    if obj.is_mAFC_text_version
-        obj.mAFC = @obj.m_alternative_forced_choice_text;
-    else
-        obj.mAFC = @obj.m_alternative_forced_choice;
-    end
-
-    
-    for i = 1:length(obj.checker_color_codes)
-        obj.checker_color_codes{i} = hex2rgb(obj.checker_color_codes{i})';
-    end
-    
-    obj.initiate_checkerboard_frame();
     
     
     
-    
-    if ~exist(obj.subject_response_directory, 'dir')
-        mkdir(obj.subject_response_directory);
-    end
-    if ~exist(obj.subject_info_directory, 'dir')
-        mkdir(obj.subject_info_directory);
-    end
-    writetable(struct2table(obj.subj_info),sprintf('%s/%d.csv',obj.subject_info_directory, obj.subj_info.subject_code));
 
+    obj.write_subject_info();
 
     % Initiate structure for the subject responses
     obj.initiate_records_table();
@@ -132,10 +70,4 @@ function initiate(obj)
 
     % Show introduction screen.
     obj.introduction();
-    
-end
-
-function rgb = hex2rgb(hex)
-    %hex2rgb Transforms hexadecimal color code to MATLAB RGB color code.
-    rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
 end

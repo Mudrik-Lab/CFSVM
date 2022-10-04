@@ -23,9 +23,13 @@ function make_mondrian_masks(obj)
 % This code or any parts of it may not be used for commercial purposes 
 % without the explicit agreement of the author. Please contact me via
 % http://martin-hebart.de
-
-    sz_x = obj.screen_x_pixels/2;
-    sz_y = obj.screen_y_pixels;
+    if obj.is_left_suppression == true
+        sz_x = obj.screen.right.x_pixels;
+        sz_y = obj.screen.right.y_pixels;
+    else
+        sz_x = obj.screen.left.x_pixels;
+        sz_y = obj.screen.left.y_pixels;
+    end
     n_masks = obj.masks_number;
 
     sizes = 0.04:0.01:0.18; % in percent of x-dimension

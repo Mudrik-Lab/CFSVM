@@ -52,8 +52,8 @@ classdef (Abstract) CFS < handle
 
     properties
         
-        left_side_screen = [0, 0, 960, 1080];
-        right_side_screen = [960, 0, 1920, 1080];
+        left_side_screen = [0, 0, 940, 1080];
+        right_side_screen = [980, 0, 1920, 1080];
         % Background color in hexadecimal color code (check this in google)
         background_color = '#B54B34';
         
@@ -73,12 +73,12 @@ classdef (Abstract) CFS < handle
 
         % Number of masks flashed per one second.
         temporal_frequency {mustBePositive} = 10;
-
-        % Duration of suppressing pattern in seconds.
-        mask_duration {mustBePositive} = 5;
         
         % Path to a directory with pregenerated masks.
         masks_path = './Masks';
+
+        % Duration of suppressing pattern in seconds.
+        mask_duration {mustBePositive} = 5;
 
         % Masks position on the screen (half of the window).
         % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
@@ -103,7 +103,8 @@ classdef (Abstract) CFS < handle
 
 
         %--------STIMULUS PARAMETERS-------%
-
+        
+        stimulus_index; % Stimulus index.
         
         % Stimulus position on the screen (half of the window).
         % Expected values are 'UpperLeft', 'Top', 'UpperRight', 'Left', 
@@ -116,7 +117,9 @@ classdef (Abstract) CFS < handle
         stimulus_xy_ratio = 1;
 
         % From 0 to 1, where 1 means 100% of the screen (half of the window).
-        stimulus_size {mustBeInRange(stimulus_size, 0, 1)} = 0.5; 
+        stimulus_size {mustBeInRange(stimulus_size, 0, 1)} = 0.5;
+
+        stimulus_padding = 1;
         
         % Positive values represent clockwise rotation, 
         % negative values represent counterclockwise rotation.
@@ -130,6 +133,8 @@ classdef (Abstract) CFS < handle
         
         % Duration of fading in from maximal transparency to stimulus_contrast.
         stimulus_fade_in_duration {mustBeNonnegative} = 2;
+
+        stimulus_fade_out_duration {mustBeNonnegative} = 1;
         
         % Duration of stimulus between fade-in and fade-out in seconds.
         stimulus_duration {mustBeNonnegative} = 2;
@@ -176,12 +181,24 @@ classdef (Abstract) CFS < handle
         % From 0 to 1, where 1 means complete fill of x axis by the images. 
         % y is rescaled automatically.
         mAFC_images_size {mustBeInRange(mAFC_images_size, 0, 1)} = 0.5;
+
+        mAFC_xy_ratio = 1;
+
+        mAFC_title = 'mAFC';
+
+        PAS_title = 'PAS';
         
         % Key names for recorded as the response. 
         % For example, {'LeftArrow', 'RightArrow'} or
         % {'1!', '2@', '3#', '4$', '5%', '6^', '7&'}, etc.
         % For available key names please check KbName('KeyNames') or KbDemo.
         PAS_keys = {'1!', '2@', '3#', '4$'};
+        PAS_options = { ...
+            '1: No experience', ...
+            '2: A weak experience', ... 
+            '3: An almost clear experience', ...
+            '4: A clear experience' ...
+            };
         
         % Directory to save the subject response data.
         subject_response_directory = './!Results';
@@ -191,7 +208,7 @@ classdef (Abstract) CFS < handle
         
         %--------OTHER PARAMETERS-------%
         % Input key to interpret as breaking in bCFS.
-        breakthrough_key = 'space';
+        breakthrough_keys = {'LeftArrow', 'RightArrow'};
 
         % Struct for recording timings and responses.
         results;
@@ -203,16 +220,16 @@ classdef (Abstract) CFS < handle
         subj_info; % Structure to store subject info input
         trial_matrices; % Cell array of tables for provided trial tables.
         number_of_blocks {mustBeInteger, mustBePositive}; % Number of experiment blocks.
-        left_suppression {mustBeNumericOrLogical}; % Half of the screen on which suppressing pattern is shown.
+        is_left_suppression {mustBeNumericOrLogical}; % Half of the screen on which suppressing pattern is shown.
         
         textures; % Psychtoolbox textures of mondrian masks.
         target_textures; % Psychtoolbox textures of target images.
         stimulus; % Stimulus texture.
-        stimulus_index; % Stimulus index.
         stimulus_rect; % Coordinates of stimulus position on the screen.
         stimulus_left_rect;
         stimulus_right_rect;
-        contrasts; % Array of precalculated contrasts for stimulus fade-in 
+        contrasts_in; % Array of precalculated contrasts for stimulus fade-in 
+        contrasts_out; % Array of precalculated contrasts for stimulus fade-out
         masks_rect; % Coordinates of masks position on the screen.
         mask_indices_while_fade_in; % Array with precalculated indicies for flashing masks.
         mask_indices_while_fade_out; % Array with precalculated indicies for flashing masks.
@@ -221,19 +238,13 @@ classdef (Abstract) CFS < handle
         fixation_cross_args; % PTB Screen('DrawLines') arguments for flashing left and right fixation crosses.
         
         window; % Psychtoolbox window.
-        screen_x_pixels {mustBeInteger, mustBePositive}; % Number of pixels on the x axis.
-        screen_y_pixels {mustBeInteger, mustBePositive}; % Number of pixels on the y axis.
-        x_center {mustBeInteger, mustBePositive}; % Half of pixels on the x axis.
-        y_center {mustBeInteger, mustBePositive}; % Half of pixels on the x axis.
-        left_screen_x_pixels;
-        left_screen_y_pixels;
-        right_screen_x_pixels;
-        right_screen_y_pixels;
-        left_screen_x_center;
-        left_screen_y_center;
-        right_screen_x_center;
-        right_screen_y_center;
-        
+
+        % Struct with 'left' and 'right' nested structs for two sides of the screen.
+        % Every one of which contains three fields: screen rectangle, 
+        % length of x and y axes in pixels, 
+        % pixel coordinates of x and y centers.
+        screen; 
+
 
         % WF[#] (Waitframes) = RR/TF = number of the refreshes before next flip.
         % TF[Hz] (Temporal frequency) = RR/WF = number of flips per second.
@@ -259,13 +270,15 @@ classdef (Abstract) CFS < handle
         masks_number_before_stimulus {mustBeInteger};
         masks_number_while_fade_in {mustBeInteger};
         masks_number_while_stimulus {mustBeInteger};
+        masks_number_while_fade_out {mustBeInteger};
         cumul_masks_number_before_fade_out {mustBeInteger};
-        
         % Function handle for m_alternative_forced_choice(obj) or 
         % m_alternative_forced_choice_text(obj)
         mAFC;
         % Get the number from the length of mAFC_keys parameter.
         number_of_mAFC_pictures {mustBePositive, mustBeInteger};
+        mAFC_textures;
+        mAFC_rects;
         % Get the number from the length of PAS_keys parameter.
         number_of_PAS_choices {mustBePositive, mustBeInteger};
         
@@ -278,16 +291,18 @@ classdef (Abstract) CFS < handle
     
 
     methods
-        get_subject_info(obj);
         initiate(obj);
-        read_trial_matrices(obj);
+        get_subject_info(obj);
     end
     
 
     methods (Abstract)
-        run_the_experiment(obj);
+        run_the_experiment(obj); 
     end
 
+    methods (Abstract, Access = protected)
+        load_parameters(obj);
+    end
 
     methods (Access = protected) 
         
@@ -299,7 +314,7 @@ classdef (Abstract) CFS < handle
 
         function create_KbQueue(obj)
             %create_KbQueue Creates PTB KbQueue, see PTB documentation.
-            keys=[KbName(obj.breakthrough_key)]; % All keys on right hand plus trigger, can be found by running KbDemo
+            keys=[KbName(obj.breakthrough_keys)]; % All keys on right hand plus trigger, can be found by running KbDemo
             keylist=zeros(1,256); % Create a list of 256 zeros
             keylist(keys)=1; % Set keys you interested in to 1
             KbQueueCreate(-1,keylist); % Create the queue with the provided keys
@@ -309,11 +324,19 @@ classdef (Abstract) CFS < handle
         introduction(obj);
         make_mondrian_masks(obj);
         textures = import_images(obj, path, varargin);
+        initiate_response_functions(obj);
+        import_trial_matrices(obj);
+        write_subject_info(obj);
         initiate_checkerboard_frame(obj);
         initiate_records_table(obj);
+        adjust_screens(obj);
 
         %run_the_experiment
-        load_parameters(obj, block);
+        load_flashing_parameters(obj);
+        load_trial_matrix_row(obj);
+        load_fixation_parameters(obj);
+        load_rect_parameters(obj);
+        load_mAFC_parameters(obj);
         rest_screen(obj);
         fixation_cross(obj);
         flash(obj);
@@ -329,10 +352,14 @@ classdef (Abstract) CFS < handle
 
     methods (Static, Access = protected)
         [x, seed] = randomise(number_of_elements, repeats);
-        [screen_x_pixels,screen_y_pixels, x_center, y_center, inter_frame_interval, window] = initiate_window(background_color);
-        [x0, y0, x1, y1, i, j] = get_stimulus_position(ninth, size);
+        [window, inter_frame_interval] = initiate_window(background_color);
+        [x0, y0, x1, y1, i, j] = get_stimulus_rect_shift(alignment, size, padding);
         [response, secs] = record_response(evidence);
-        rect = get_rect(side_screen_rect, shift, position, size, xy_ratio);
+        new_rectangle = get_rect(screen_rectangle, alignment, size, padding, xy_ratio);
+        function rgb = hex2rgb(hex)
+            %hex2rgb Transforms hexadecimal color code to MATLAB RGB color code.
+            rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
+        end
     end  
 
     

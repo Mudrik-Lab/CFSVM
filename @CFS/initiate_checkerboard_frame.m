@@ -1,6 +1,6 @@
 function initiate_checkerboard_frame(obj)
 %initiate_checkerboard_frame Calculates checkerboard frame rectangles and colors.
-
+    
     [left_screen_rects, left_screen_colors] = rects_and_colors(obj.left_side_screen, ... 
         obj.checker_rect_length, obj.checker_rect_width, obj.checker_color_codes);
     [right_screen_rects, right_screen_colors] = rects_and_colors(obj.right_side_screen, ... 
@@ -47,7 +47,8 @@ function [checker_rects, checker_colors] = rects_and_colors(screen, checker_rect
     
     % Concatenate sides of the frame
     checker_rects = cat(2, top_rects, left_rects, right_rects, bottom_rects);
-    checker_colors = cat(2, hor_rgb, vert_rgb, flip(vert_rgb, 2), flip(hor_rgb,2));
+    %checker_colors = cat(2, hor_rgb, vert_rgb, flip(vert_rgb, 2), flip(hor_rgb,2));
+    checker_colors = cat(2, hor_rgb, vert_rgb, vert_rgb, hor_rgb);
 
 end
 

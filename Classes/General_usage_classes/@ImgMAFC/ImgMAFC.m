@@ -4,10 +4,11 @@ classdef ImgMAFC < Evidence & Stimulus
     
     properties
         rects
+        img_indices
     end
     
     properties (Constant)
-        RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset'}
+        RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset', 'img_indices'}
     end
 
     methods

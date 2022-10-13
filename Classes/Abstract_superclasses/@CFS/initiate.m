@@ -38,7 +38,7 @@ function initiate(obj)
     end
     
     if class(obj) == "BCFS" || class(obj) == "VACFS"
-        obj.break_response.create_kbqueue();
+        obj.stimulus_break.create_kbqueue();
     end
     
 

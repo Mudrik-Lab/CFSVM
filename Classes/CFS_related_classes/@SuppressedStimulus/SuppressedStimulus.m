@@ -18,7 +18,7 @@ classdef SuppressedStimulus < Stimulus
     end
     
     properties (Constant)
-        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'index'}
+        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'index', 'position'}
     end
     
     methods

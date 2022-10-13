@@ -16,7 +16,7 @@ classdef VACFS < CFS
         masks;
         pas;
         mafc;
-        break_response;
+        stimulus_break;
         results;
     end
     
@@ -46,7 +46,7 @@ classdef VACFS < CFS
                     obj.mafc.show(obj.screen);
                     obj.pas.show(obj.screen);
                     obj.trials.end_time = GetSecs();
-                    obj.break_response.get();
+                    obj.stimulus_break.get();
                     obj.results.import_from(obj);
                     obj.results.add_trial_to_table();
                     obj.results.save(obj.subject_info.code)

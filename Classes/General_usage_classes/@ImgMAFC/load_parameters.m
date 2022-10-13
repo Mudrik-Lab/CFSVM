@@ -18,6 +18,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
     obj.options = horzcat(obj.options, img_textures{randperm(length(img_textures), obj.n_options-1)});
     % Shuffle used prime image with not used ones.
     obj.options = obj.options(randperm(length(obj.options)));
+    obj.img_indices = num2str(cellfun(@(x) find([PTB_textures_indices{:}]==x), obj.options));
     obj.rects = {zeros(obj.n_options,4);zeros(obj.n_options,4)};
     for i = 1:obj.n_options
         left = [screen.left.rect(1)+left_screen_shift*(i-1), ...

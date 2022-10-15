@@ -1,5 +1,5 @@
 # CFS
-**CFS** is an object-oriented high-level MATLAB (2021b+) package based on [Psychtoolbox-3](http://psychtoolbox.org/) for building and running **Continuous Flash Suppression** experiments.
+**CFS** is an object-oriented high-level MATLAB (2021b+) package based on [Psychtoolbox-3](http://psychtoolbox.org/) intended as a well-developed and up-to-date infrastructure for building and running **Continuous Flash Suppression** experiments.
 
 ## Installation
 Just clone or download the repo from the main branch. 
@@ -30,4 +30,4 @@ experiment.fixation = Fixation( ...
 - Make sure that you have either provided all the relevant paths (e.g. path to the directory with stimulus images) or put the experiment data to the default paths.
 
 ### 4. Run the experiment
-Congratulations! You are all set, you may execute the _main.m_ script, which will run the experiment.
+Congrats! You are all set, you may execute the _main.m_ script, which will run the experiment.

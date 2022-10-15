@@ -19,7 +19,7 @@ Assign the `experiment` variable to one of the currently implemented classes:
 experiment = BCFS();
 ```
 ### 3. Customise the experiment
-- Change parameters of the `experiment` properties, e.g. BCFS properties would be `trials`, `screen`, `frame`, `fixation`, `stimulus`, `masks`, `pas`, `stimulus_break`, `results`, `subject_info`. Read more about these in the documentation. For example, if you want the duration of the fixation be equal to 1.5 seconds, you should set the `duration` parameter of the `experiment.fixation` property to 1.5.
+- Change parameters of the `experiment` properties, e.g., BCFS properties would be `trials`, `screen`, `frame`, `fixation`, `stimulus`, `masks`, `pas`, `stimulus_break`, `results`, `subject_info`. For example, if you want the duration of the fixation to be equal to 1.5 seconds, you should set the `duration` parameter of the `experiment.fixation` property to 1.5.
 ```
 experiment.fixation = Fixation( ...
     duration=1.5, ...

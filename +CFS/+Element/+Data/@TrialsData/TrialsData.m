@@ -1,9 +1,8 @@
-classdef TrialsData < handle
+classdef TrialsData < CFS.Element.DataTableElement
     %TRIALSDATA Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        dirpath
         blocks
         n_blocks
         block_index
@@ -20,10 +19,14 @@ classdef TrialsData < handle
     end
 
     methods
-        function obj = TrialsData(dirpath)
+        function obj = TrialsData(parameters)
             %TRIALsData Construct an instance of this class
             %   Detailed explanation goes here
-            obj.dirpath = dirpath;
+            arguments
+                parameters.dirpath
+            end
+            
+            obj.dirpath = parameters.dirpath;
         end
         
         import(obj, experiment)

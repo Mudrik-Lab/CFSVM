@@ -1,4 +1,4 @@
-classdef (Abstract) Stimulus < CFS.Element.ExperimentElement
+classdef (Abstract) Stimulus < CFS.Element.TemporalElement & CFS.Element.SpatialElement
     %STIMULUS Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -15,8 +15,6 @@ classdef (Abstract) Stimulus < CFS.Element.ExperimentElement
         padding
         
         rotation
-        
-        contrast
 
         index
 

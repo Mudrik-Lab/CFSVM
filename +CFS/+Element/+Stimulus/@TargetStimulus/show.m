@@ -15,7 +15,7 @@ function show(obj, experiment)
     % Right screen cross
     Screen(experiment.fixation.args{2}{:});
     % Checkerboard frame
-    Screen('FillRect', experiment.screen.window, experiment.frame.colors, experiment.frame.rects);
+    Screen('FillRect', experiment.screen.window, experiment.frame.color, experiment.frame.rect);
     
     obj.onset = Screen('Flip', experiment.screen.window);
     

@@ -10,8 +10,8 @@ function show(obj, screen)
     Screen('DrawText', screen.window, obj.title, screen.right.x_center-title_length/2, screen.right.rect(2));
     
     for i = 1:obj.n_options
-        Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rects{1}(i,:));
-        Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rects{2}(i,:));
+        Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rect{1}(i,:));
+        Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rect{2}(i,:));
     end
     
     obj.onset = Screen('Flip', screen.window);

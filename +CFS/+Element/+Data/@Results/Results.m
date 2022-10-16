@@ -1,23 +1,25 @@
-classdef Results < handle
+classdef Results < CFS.Element.DataTableElement
     %RESULTS Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
-        dirpath
-        table
         data
         objects
         variables
     end
     
     methods
-        function obj = Results(dirpath, experiment)
+        function obj = Results(experiment, parameters)
             %RESULTS Construct an instance of this class
             %   Detailed explanation goes here
-            obj.dirpath = dirpath;
-            if ~exist(dirpath, 'dir')
-                mkdir(dirpath);
+
+            arguments
+                experiment
+                parameters.dirpath = './!Results'
             end
+
+            obj.dirpath = parameters.dirpath;
+            obj.filename = num2str(experiment.subject_info.code);
 
             obj.objects = {};
             obj.variables = {};
@@ -41,7 +43,6 @@ classdef Results < handle
         end
         import_from(obj, experiment)
         add_trial_to_table(obj);
-        save(obj, subject_code)
     end
 end
 

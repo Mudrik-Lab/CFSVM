@@ -1,4 +1,4 @@
-classdef CheckFrame < handle
+classdef CheckFrame < CFS.Element.SpatialElement
     %CheckFrame Class for handling checkframes on the screen.
     % CheckFrame Properties:
     %   checker_length - length in pixels of every checker rectangle in the checkframe.
@@ -17,10 +17,7 @@ classdef CheckFrame < handle
         % Red-Green {'#00FF00', '#FF0000'}
         % White-Black {'#FFFFFF', '#000000'}
         color_codes
-        % Matrix with checker rectangle coordinates. Every column is rect coords (x0, y0, x1, y1).
-        rects
-        % Matrix with checker rectangle colors. Every column is MATLAB RGB array.
-        colors
+
     end
     
     methods

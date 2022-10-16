@@ -1,7 +1,7 @@
 function adjust(obj, frame)
 %ADJUST Summary of this function goes here
 %   Detailed explanation goes here
-    SHIFT = 15;
+    SHIFT = obj.shift;
     k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w', '=+', '-_' 'Return', 'ESCAPE'};
     temp = num2cell(KbName(k));
     [left, right, up, down, big_hor, small_hor, big_vert, small_vert, big_space, small_space, done, stop] = temp{:};
@@ -12,7 +12,7 @@ function adjust(obj, frame)
     KbQueueCreate(-1,keylist); % Create the queue with the provided keys
 
     
-    Screen('FillRect', obj.window, frame.colors, frame.rects);
+    Screen('FillRect', obj.window, frame.color, frame.rect);
     Screen('Flip', obj.window);
     KbQueueStart;
     while 1
@@ -67,7 +67,7 @@ function adjust(obj, frame)
                     continue;
             end
             frame.initiate(obj.left.rect, obj.right.rect);
-            Screen('FillRect', obj.window, frame.colors, frame.rects);
+            Screen('FillRect', obj.window, frame.color, frame.rect);
             Screen('Flip', obj.window);
         
         catch ME
@@ -75,7 +75,7 @@ function adjust(obj, frame)
                 Screen('CloseAll');
                 rethrow(ME);
             else
-                Screen('FillRect', obj.window, frame.colors, frame.rects);
+                Screen('FillRect', obj.window, frame.color, frame.rect);
                 DrawFormattedText(obj.window, ...
                     ['You have probably reached the limit, ' ...
                     'but maybe not, you can try further or return it as it was.' ...

@@ -3,7 +3,6 @@ classdef ImgMAFC < CFS.Element.Evidence.Evidence & CFS.Element.Stimulus.Stimulus
     %   Detailed explanation goes here
     
     properties
-        rects
         img_indices
     end
     

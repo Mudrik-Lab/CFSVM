@@ -6,8 +6,6 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         % Number of masks flashed per one second.
         temporal_frequency = 10
         
-        % Duration of suppressing pattern in seconds.
-        duration = 5
         
         % Shape: 1 - squares, 2 - circles, 3 - diamonds.
         mondrians_shape = 1
@@ -30,7 +28,6 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
 
         indices_while_fade_in
         indices_while_fade_out
-        rect
 
         seed;
     end
@@ -76,7 +73,7 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         shuffle(obj, seed);
         make_mondrian_masks(obj, x_pixels, y_pixels);
         load_rect_parameters(obj, screen, is_left_suppression);
-        load_flashing_parameters(obj, screen);
+        load_flashing_parameters(obj, screen, stimulus);
 
     end
 end

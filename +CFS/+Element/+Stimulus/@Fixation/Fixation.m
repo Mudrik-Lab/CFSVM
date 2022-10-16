@@ -1,17 +1,15 @@
-classdef Fixation < CFS.Element.ExperimentElement
+classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
     %FIXATION Class for handling fixation cross.
     
     properties
-        % In seconds
-        duration
         
         % Size of the arms of the fixation cross in pixels.
         arm_length
         
         % Line width of the fixation cross in pixels.
         line_width
-        % Fixation cross color in hexadecimal color code (check this in google)
-        color
+
+
         
     end
 

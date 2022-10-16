@@ -8,7 +8,6 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         fade_in_duration
         show_duration
         fade_out_duration
-        rect
         left_rect
         right_rect
         contrasts_in

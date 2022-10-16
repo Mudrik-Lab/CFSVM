@@ -2,9 +2,6 @@ classdef TargetStimulus < CFS.Element.Stimulus.Stimulus
     %TARGETSTIMULUS Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties
-        duration
-    end
 
     properties (Constant)
         RESULTS = {'onset', 'offset', 'index'}

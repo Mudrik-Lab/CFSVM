@@ -19,7 +19,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
     % Shuffle used prime image with not used ones.
     obj.options = obj.options(randperm(length(obj.options)));
     obj.img_indices = num2str(cellfun(@(x) find([PTB_textures_indices{:}]==x), obj.options));
-    obj.rects = {zeros(obj.n_options,4);zeros(obj.n_options,4)};
+    obj.rect = {zeros(obj.n_options,4);zeros(obj.n_options,4)};
     for i = 1:obj.n_options
         left = [screen.left.rect(1)+left_screen_shift*(i-1), ...
             screen.left.rect(2), ...
@@ -29,7 +29,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
             screen.right.rect(2), ...
             screen.right.rect(1)+right_screen_shift*(i), ...
             screen.right.rect(4)];
-        obj.rects{1}(i,:) = obj.get_rect(left);
-        obj.rects{2}(i,:) = obj.get_rect(right);
+        obj.rect{1}(i,:) = obj.get_rect(left);
+        obj.rect{2}(i,:) = obj.get_rect(right);
     end
 end

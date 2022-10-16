@@ -4,6 +4,8 @@ function initiate(obj)
     % initiate_checkerboard_frame, make_mondrian_masks, introduction,
     % get_rect, import_images, initiate_records_table
     
+    obj.subject_info.write()
+
     KbName('UnifyKeyNames');
 
     % Initiate PTB window and keep the data from it.
@@ -24,21 +26,19 @@ function initiate(obj)
     obj.screen.left.rect(3:4) = obj.screen.left.rect(3:4) - obj.frame.checker_width;
     obj.screen.right.rect(1:2) = obj.screen.right.rect(1:2) + obj.frame.checker_width;
     obj.screen.right.rect(3:4) = obj.screen.right.rect(3:4) - obj.frame.checker_width;
-    % Calculate screen parameters.
-    obj.screen.initiate();
 
-    % Warm GetSecs() and WaitSecs() functions;
-    GetSecs();
+
+    % Warm WaitSecs() functions;
     WaitSecs(0.00001);
 
     % Import images from the provided directory and make their PTB textures.
     obj.stimulus.import_images(obj.screen.window);
     
-    if class(obj) == "VPCFS" || class(obj) == "VACFS"
+    if class(obj) == "CFS.Experiment.VPCFS" || class(obj) == "CFS.Experiment.VACFS"
         obj.target.import_images(obj.screen.window);
     end
     
-    if class(obj) == "BCFS" || class(obj) == "VACFS"
+    if class(obj) == "CFS.Experiment.BCFS" || class(obj) == "CFS.Experiment.VACFS"
         obj.stimulus_break.create_kbqueue();
     end
     
@@ -69,6 +69,8 @@ function initiate(obj)
 
     % Create PTB textures of mondrians
     obj.masks.import_images(obj.screen.window, images_number=obj.masks.n_max);
+    
+    
 
     % Show introduction screen.
     obj.show_introduction_screen();

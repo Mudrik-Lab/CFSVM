@@ -3,7 +3,7 @@ function import(obj, experiment)
 %   Detailed explanation goes here
     
     % Load filenames
-    files = dir(strcat(obj.dirpath, '/*.csv'));
+    files = dir(fullfile(obj.dirpath, strcat('*', obj.file_extension)));
     % Remove '.' and '..' from the list of filenames
     for n = 1:length(files)
         path = fullfile(files(n).folder, files(n).name);
@@ -40,27 +40,11 @@ function import(obj, experiment)
             obj.blocks{i}.('stimulus.index')(:) = obj.randomise(experiment.stimulus.textures.len, height(obj.blocks{i}));
         end
         
-        if (class(experiment) == "VPCFS" || class(experiment) == "VACFS") ...
+        if (class(experiment) == "CFS.Experiment.VPCFS" || class(experiment) == "CFS.Experiment.VACFS") ...
                 && ~ismember('target.index', obj.blocks{i}.Properties.VariableNames)
             obj.blocks{i}.('target.index')(:) = obj.randomise(experiment.target.textures.len, height(obj.blocks{i}));
         end
 
-        TF = obj.blocks{i}.('masks.temporal_frequency');
-
-        obj.blocks{i}.('masks.n') = ...
-            TF.*obj.blocks{i}.('masks.duration');
-
-        obj.blocks{i}.('masks.n_before_stimulus') = ...
-            TF.*obj.blocks{i}.('stimulus.appearance_delay')+1;
-
-        obj.blocks{i}.('masks.n_while_fade_in') = ...
-            TF.*obj.blocks{i}.('stimulus.fade_in_duration');
-
-        obj.blocks{i}.('masks.n_while_stimulus') = ...
-            TF.*obj.blocks{i}.('stimulus.show_duration');
-
-        obj.blocks{i}.('masks.n_while_fade_out') = ...
-            TF.*obj.blocks{i}.('stimulus.fade_out_duration');
     end
 end
 

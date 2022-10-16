@@ -64,7 +64,7 @@ function flash(obj)
         % Right screen cross
         Screen(obj.fixation.args{2}{:});
         % Checkerboard frame
-        Screen('FillRect', obj.screen.window, obj.frame.colors, obj.frame.rects);
+        Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
         obj.vbl = Screen('Flip', obj.screen.window, obj.vbl + obj.masks.delay);
     end
     
@@ -79,7 +79,7 @@ function masks_only(obj, mask_index, delay)
     % Right screen cross
     Screen(obj.fixation.args{2}{:});
     % Checkerboard frame
-    Screen('FillRect', obj.screen.window, obj.frame.colors, obj.frame.rects);
+    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
     % Flip
     obj.vbl = Screen('Flip', obj.screen.window, obj.vbl + delay);
 end
@@ -94,7 +94,7 @@ function with_stimulus(obj, mask_index, contrast, delay)
     % Right screen cross
     Screen(obj.fixation.args{2}{:});
     % Checkerboard frame
-    Screen('FillRect', obj.screen.window, obj.frame.colors, obj.frame.rects);
+    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
     % Flip
     obj.vbl = Screen('Flip', obj.screen.window, obj.vbl + delay);
 end

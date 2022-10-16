@@ -49,7 +49,7 @@ classdef VACFS < CFS.Experiment.CFS
                     obj.stimulus_break.get();
                     obj.results.import_from(obj);
                     obj.results.add_trial_to_table();
-                    obj.results.save(obj.subject_info.code)
+                    obj.results.write()
                 end
             end 
         end 
@@ -72,7 +72,7 @@ classdef VACFS < CFS.Experiment.CFS
             obj.stimulus.textures.index = obj.stimulus.textures.PTB_indices{obj.stimulus.index};
             
             obj.pas.load_parameters(obj.screen);
-            if class(obj.mafc) == "ImgMAFC"
+            if class(obj.mafc) == "CFS.Element.Evidence.ImgMAFC"
                 obj.mafc.load_parameters(obj.screen, obj.target.textures.PTB_indices, obj.target.index);
             end
             

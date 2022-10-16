@@ -47,7 +47,7 @@ classdef BCFS < CFS.Experiment.CFS
                     obj.stimulus_break.get();
                     obj.results.import_from(obj);
                     obj.results.add_trial_to_table();
-                    obj.results.save(obj.subject_info.code)
+                    obj.results.write()
                 end
             end 
         end 
@@ -58,7 +58,7 @@ classdef BCFS < CFS.Experiment.CFS
 
             obj.trials.load_trial_parameters(obj);
             
-            obj.masks.load_flashing_parameters(obj.screen);
+            obj.masks.load_flashing_parameters(obj.screen, obj.stimulus);
             obj.masks.load_rect_parameters(obj.screen, obj.subject_info.is_left_suppression)
             obj.masks.shuffle(10*obj.trials.block_index+obj.trials.trial_index);
 

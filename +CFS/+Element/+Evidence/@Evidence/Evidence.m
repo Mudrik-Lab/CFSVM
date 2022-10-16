@@ -1,4 +1,4 @@
-classdef (Abstract) Evidence < CFS.Element.ExperimentElement
+classdef (Abstract) Evidence < CFS.Element.TemporalElement
     %Evidence Summary of this class goes here
     %   Detailed explanation goes here
 

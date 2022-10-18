@@ -6,18 +6,18 @@ classdef VACFS < CFS.Experiment.CFS
     %   run_the_experiment - main function for the experiment loop.
     % See also CFS
    properties
-        screen
-        subject_info
-        trials
-        fixation
-        frame
-        stimulus
-        masks
-        target
-        pas
+        screen CFS.Element.Screen.CustomScreen
+        subject_info CFS.Element.Data.SubjectData
+        trials CFS.Element.Data.TrialsData
+        fixation CFS.Element.Stimulus.Fixation
+        frame CFS.Element.Screen.CheckFrame
+        stimulus CFS.Element.Stimulus.SuppressedStimulus
+        masks CFS.Element.Stimulus.Masks
+        target CFS.Element.Stimulus.TargetStimulus
+        pas CFS.Element.Evidence.PAS
         mafc
-        stimulus_break
-        results
+        stimulus_break CFS.Element.Evidence.BreakResponse
+        results CFS.Element.Data.Results
     end
     
     methods

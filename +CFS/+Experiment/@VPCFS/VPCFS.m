@@ -10,17 +10,17 @@ classdef VPCFS < CFS.Experiment.CFS
     %     target_presentation_duration - duration of target after the suppression. VPCFS only.
     
     properties
-        screen
-        subject_info
-        trials
-        fixation
-        frame
-        stimulus
-        masks
-        target
-        pas
+        screen CFS.Element.Screen.CustomScreen
+        subject_info CFS.Element.Data.SubjectData
+        trials CFS.Element.Data.TrialsData
+        fixation CFS.Element.Stimulus.Fixation
+        frame CFS.Element.Screen.CheckFrame
+        stimulus CFS.Element.Stimulus.SuppressedStimulus
+        masks CFS.Element.Stimulus.Masks
+        target CFS.Element.Stimulus.TargetStimulus
+        pas CFS.Element.Evidence.PAS
         mafc
-        results
+        results CFS.Element.Data.Results
     end
     
     methods

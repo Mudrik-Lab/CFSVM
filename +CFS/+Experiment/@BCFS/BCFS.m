@@ -7,16 +7,16 @@ classdef BCFS < CFS.Experiment.CFS
     % See also CFS
     
     properties
-        screen
-        subject_info
-        trials
-        fixation
-        frame
-        stimulus
-        masks
-        pas
-        stimulus_break
-        results
+        screen CFS.Element.Screen.CustomScreen
+        subject_info CFS.Element.Data.SubjectData
+        trials CFS.Element.Data.TrialsData
+        fixation CFS.Element.Stimulus.Fixation
+        frame CFS.Element.Screen.CheckFrame
+        stimulus CFS.Element.Stimulus.SuppressedStimulus
+        masks CFS.Element.Stimulus.Masks
+        pas CFS.Element.Evidence.PAS
+        stimulus_break CFS.Element.Evidence.BreakResponse
+        results CFS.Element.Data.Results
     end
 
     methods

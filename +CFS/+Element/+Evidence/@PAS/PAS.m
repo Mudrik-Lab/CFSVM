@@ -34,7 +34,7 @@ classdef PAS < CFS.Element.Evidence.Evidence
             obj.n_options = length(obj.keys);
         end
         load_parameters(obj, screen)
-        show(obj, screen)
+        show(obj, screen, frame)
     end
 end
 

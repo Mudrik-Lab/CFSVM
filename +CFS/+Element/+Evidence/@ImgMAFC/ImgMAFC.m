@@ -31,7 +31,7 @@ classdef ImgMAFC < CFS.Element.Evidence.Evidence & CFS.Element.Stimulus.Stimulus
         end
         
         load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
-        show(obj, screen)
+        show(obj, screen, frame)
     end
 end
 

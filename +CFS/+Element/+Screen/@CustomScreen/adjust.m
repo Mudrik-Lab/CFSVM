@@ -10,8 +10,13 @@ function adjust(obj, frame)
     keylist=zeros(1,256); % Create a list of 256 zeros
     keylist(keys)=1; % Set keys you interested in to 1
     KbQueueCreate(-1,keylist); % Create the queue with the provided keys
-
     
+    frame_color_codes = frame.color_codes;
+    frame.color_codes = cellfun(@(hex) (sscanf(hex(2:end), '%2x%2x%2x', [1 3])/255)', ...
+                {'#4A4A4A'}, ...
+                UniformOutput=false);
+    frame.initiate(obj.left.rect, obj.right.rect)
+
     Screen('FillRect', obj.window, frame.color, frame.rect);
     Screen('Flip', obj.window);
     KbQueueStart;
@@ -40,23 +45,23 @@ function adjust(obj, frame)
                     obj.left.rect([2,4]) = obj.left.rect([2,4]) + SHIFT;
                     obj.right.rect([2,4]) = obj.right.rect([2,4]) + SHIFT;
                 case big_hor
-                    obj.left.rect([3]) = obj.left.rect([3]) + SHIFT;
-                    obj.right.rect([3]) = obj.right.rect([3]) + SHIFT;
+                    obj.left.rect(3) = obj.left.rect(3) + SHIFT;
+                    obj.right.rect(3) = obj.right.rect(3) + SHIFT;
                 case small_hor
-                    obj.left.rect([3]) = obj.left.rect([3]) - SHIFT;
-                    obj.right.rect([3]) = obj.right.rect([3]) - SHIFT;
+                    obj.left.rect(3) = obj.left.rect(3) - SHIFT;
+                    obj.right.rect(3) = obj.right.rect(3) - SHIFT;
                 case big_vert
-                    obj.left.rect([4]) = obj.left.rect([4]) + SHIFT;
-                    obj.right.rect([4]) = obj.right.rect([4]) + SHIFT;
+                    obj.left.rect(4) = obj.left.rect(4) + SHIFT;
+                    obj.right.rect(4) = obj.right.rect(4) + SHIFT;
                 case small_vert
-                    obj.left.rect([4]) = obj.left.rect([4]) - SHIFT;
-                    obj.right.rect([4]) = obj.right.rect([4]) - SHIFT;
+                    obj.left.rect(4) = obj.left.rect(4) - SHIFT;
+                    obj.right.rect(4) = obj.right.rect(4) - SHIFT;
                 case big_space
-                    obj.left.rect([3]) = obj.left.rect([3]) - SHIFT;
-                    obj.right.rect([1]) = obj.right.rect([1]) + SHIFT;
+                    obj.left.rect(3) = obj.left.rect(3) - SHIFT;
+                    obj.right.rect(1) = obj.right.rect(1) + SHIFT;
                 case small_space
-                    obj.left.rect([3]) = obj.left.rect([3]) + SHIFT;
-                    obj.right.rect([1]) = obj.right.rect([1]) - SHIFT;
+                    obj.left.rect(3) = obj.left.rect(3) + SHIFT;
+                    obj.right.rect(1) = obj.right.rect(1) - SHIFT;
                 case done
                     break;
                 case stop
@@ -86,5 +91,13 @@ function adjust(obj, frame)
         
     end
     KbQueueStop;
+    frame.color_codes = frame_color_codes;
+    frame.initiate(obj.left.rect, obj.right.rect);
+
+    % Set screens rects inside the checkframe
+    obj.left.rect(1:2) = obj.left.rect(1:2) + frame.checker_width;
+    obj.left.rect(3:4) = obj.left.rect(3:4) - frame.checker_width;
+    obj.right.rect(1:2) = obj.right.rect(1:2) + frame.checker_width;
+    obj.right.rect(3:4) = obj.right.rect(3:4) - frame.checker_width;
 end
 

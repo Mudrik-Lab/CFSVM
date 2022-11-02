@@ -14,7 +14,6 @@ classdef BCFS < CFS.Experiment.CFS
         frame CFS.Element.Screen.CheckFrame
         stimulus CFS.Element.Stimulus.SuppressedStimulus
         masks CFS.Element.Stimulus.Masks
-        pas CFS.Element.Evidence.PAS
         stimulus_break CFS.Element.Evidence.BreakResponse
         results CFS.Element.Data.Results
     end
@@ -42,7 +41,6 @@ classdef BCFS < CFS.Experiment.CFS
                     obj.flash();
                     KbQueueStop();
 
-                    obj.pas.show(obj.screen);
                     obj.trials.end_time = GetSecs();
                     obj.stimulus_break.get();
                     obj.results.import_from(obj);
@@ -68,8 +66,6 @@ classdef BCFS < CFS.Experiment.CFS
             obj.fixation.load_args(obj.screen);
 
             obj.stimulus.textures.index = obj.stimulus.textures.PTB_indices{obj.stimulus.index};
-
-            obj.pas.load_parameters(obj.screen);
 
         end
         

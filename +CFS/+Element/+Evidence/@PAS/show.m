@@ -1,4 +1,4 @@
-function show(obj, screen)
+function show(obj, screen, frame)
 %show Shows PAS screen, waits for the
 % subject response and records it.
 % See also record_response and append_trail_response.
@@ -25,7 +25,9 @@ function show(obj, screen)
             screen.right.rect(1), ...
             obj.right_text_start+(obj.text_size+obj.spacing)*(index-1));
     end
-
+    
+    % Checkerboard frame
+    Screen('FillRect', screen.window, frame.color, frame.rect);
     obj.onset = Screen('Flip', screen.window);
     
     % Wait for the response.

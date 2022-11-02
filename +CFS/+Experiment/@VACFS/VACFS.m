@@ -43,8 +43,8 @@ classdef VACFS < CFS.Experiment.CFS
                     obj.flash();
                     KbQueueStop();
 
-                    obj.mafc.show(obj.screen);
-                    obj.pas.show(obj.screen);
+                    obj.mafc.show(obj.screen, obj.frame);
+                    obj.pas.show(obj.screen, obj.frame);
                     obj.trials.end_time = GetSecs();
                     obj.stimulus_break.get();
                     obj.results.import_from(obj);

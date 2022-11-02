@@ -1,4 +1,4 @@
-function show(obj, screen)
+function show(obj, screen, frame)
 %show Draws and shows mAFC images, waits for the
 % subject response and records it.
 % See also record_response and append_trial_response.
@@ -13,7 +13,9 @@ function show(obj, screen)
         Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rect{1}(i,:));
         Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rect{2}(i,:));
     end
-    
+
+    % Checkerboard frame
+    Screen('FillRect', screen.window, frame.color, frame.rect);
     obj.onset = Screen('Flip', screen.window);
     
     % Wait for the response.

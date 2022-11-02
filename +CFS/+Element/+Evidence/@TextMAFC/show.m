@@ -1,4 +1,4 @@
-function show(obj, screen)
+function show(obj, screen, frame)
 %show Shows text version of mAFC.
     obj.title_size = round(screen.left.x_pixels/15);
     obj.text_size = round(obj.title_size/1.5);
@@ -25,7 +25,10 @@ function show(obj, screen)
             screen.right.rect(1)+(index-(1-0.5/obj.n_options))*right_screen_shift, ...
             screen.right.y_center-obj.text_size);
     end
-    
+
+    % Checkerboard frame
+    Screen('FillRect', screen.window, frame.color, frame.rect);
+
     obj.onset = Screen('Flip', screen.window);
     
     % Wait for the response.

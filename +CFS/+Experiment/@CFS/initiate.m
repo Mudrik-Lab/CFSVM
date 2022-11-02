@@ -12,20 +12,20 @@ function initiate(obj)
     obj.screen.background_color = hex2rgb(obj.screen.background_color);
     obj.initiate_window();
 
-
-    obj.frame.initiate(obj.screen.left.rect, obj.screen.right.rect)
-
-
+    
     obj.screen.adjust(obj.frame);
-    
-    DrawFormattedText(obj.screen.window, 'Preparing the experiment, please wait', 'center', 'center');
+
+    TEXT_SIZE = round(obj.screen.left.x_pixels/24);
+    INSTRUCTION = sprintf('Preparing the experiment, please wait');
+    Screen('TextSize', obj.screen.window, TEXT_SIZE)
+    Screen('DrawText', obj.screen.window, INSTRUCTION, obj.screen.left.rect(1), round(obj.screen.left.y_center-TEXT_SIZE/2));
+    Screen('DrawText', obj.screen.window, INSTRUCTION, obj.screen.right.rect(1), round(obj.screen.right.y_center-TEXT_SIZE/2));
+    % Checkerboard frame
+    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
     Screen('Flip', obj.screen.window);
+
     
-    % Set screens rects inside the checkframe
-    obj.screen.left.rect(1:2) = obj.screen.left.rect(1:2) + obj.frame.checker_width;
-    obj.screen.left.rect(3:4) = obj.screen.left.rect(3:4) - obj.frame.checker_width;
-    obj.screen.right.rect(1:2) = obj.screen.right.rect(1:2) + obj.frame.checker_width;
-    obj.screen.right.rect(3:4) = obj.screen.right.rect(3:4) - obj.frame.checker_width;
+
 
 
     % Warm WaitSecs() functions;

@@ -45,8 +45,8 @@ classdef VPCFS < CFS.Experiment.CFS
                     
                     obj.flash();
                     obj.target.show(obj);
-                    obj.pas.show(obj.screen);
-                    obj.mafc.show(obj.screen);
+                    obj.pas.show(obj.screen, obj.frame);
+                    obj.mafc.show(obj.screen, obj.frame);
                     obj.trials.end_time = GetSecs();
                     obj.results.import_from(obj);
                     obj.results.add_trial_to_table();

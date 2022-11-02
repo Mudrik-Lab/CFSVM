@@ -14,40 +14,22 @@ classdef SubjectData < CFS.Element.DataTableElement
             arguments
                 parameters.dirpath = './!SubjectInfo'
             end
+            
             obj.dirpath = parameters.dirpath;
-
-            % Create object from the class
-            app = CFS.Element.Data.SubjectInfo();
-            %movegui(app.UIFigure, 'center');
-            % Wait for the button to be pushed. Either 'Save' or 'Cancel'.
-            while ~(app.save_clicked || app.cancel_clicked)
-                pause(0.05)
-            end
-        
-            % if cancel button was pushed - delete the object and stop the
-            % experiment execution.
-            % If save button was pushed - save provided data and set suppressing
-            % half of the window. Delete the object at the end.
-            if app.cancel_clicked == 1
-                app.delete;
-                % Stop further execution.
-                error('"Cancel" button was pushed, program execution was stopped.')
+            data.code = input('Subject code\n> ', 's');
+            data.birthdate = input('Date of birth\n> ', 's');
+            data.dominant_eye = input('Dominant eye\n> ', 's');
+            data.dominant_hand = input('Dominant hand\n> ', 's');
+            obj.code = data.code;  
+            if strcmpi(data.dominant_eye, "Left")
+                obj.is_left_suppression = true;
             else
-                obj.code = app.data.code;
-                
-                if app.data.dominant_eye == "Right"
-                    obj.is_left_suppression = false;
-                else
-                    obj.is_left_suppression = true;
-                end
-
-                obj.table = struct2table(app.data);
-                obj.table.time = GetSecs();
-                obj.filename = num2str(obj.code);
-
-                app.delete;
-                
+                obj.is_left_suppression = false;
             end
+
+            obj.table = struct2table(data);
+            obj.table.time = GetSecs();
+            obj.filename = num2str(obj.code);
 
         end
     end

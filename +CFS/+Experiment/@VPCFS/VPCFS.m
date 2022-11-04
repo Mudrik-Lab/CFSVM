@@ -1,15 +1,11 @@
 classdef VPCFS < CFS.Experiment.CFS
-    %VPCFS Visual priming continuous flash suppression.
-    % Child (inherited) class of the CFS parent class.
+    % VPCFS Visual priming continuous flash suppression.
+    % Subclass of the CFS superclass.
     %
-    % VPCFS Methods:
-    %   run_the_experiment - main function for the experiment loop.
-    %   show_targets - shows targets after the suppressing pattern phase.
-    % See also CFS
-    %     prime_images_path - path to a directory with prime images. VPCFS only.
-    %     target_presentation_duration - duration of target after the suppression. VPCFS only.
+    % See also CFS.Experiment.CFS
     
     properties
+
         screen CFS.Element.Screen.CustomScreen
         subject_info CFS.Element.Data.SubjectData
         trials CFS.Element.Data.TrialsData
@@ -21,62 +17,18 @@ classdef VPCFS < CFS.Experiment.CFS
         pas CFS.Element.Evidence.PAS
         mafc
         results CFS.Element.Data.Results
+
     end
     
     methods
 
-        function run_the_experiment(obj)
-            %run_the_experiment Runs the Visual Priming experiment.
-            % Shows fixation cross, flashes the masks, fades in the prime
-            % image, shows the target images, runs PAS and mAFC.
-            obj.initiate();
-            
-            for block = 1:obj.trials.n_blocks
-                obj.trials.block_index = block;
-                for trial = 1:height(obj.trials.blocks{block})
-                    obj.trials.start_time = GetSecs();
-                    obj.trials.trial_index = trial;
-                    obj.load_parameters();
-                    if trial ~= 1 || block ~= 1
-                        obj.show_rest_screen();
-                    end
+        run(obj)
 
-                    obj.vbl = obj.fixation.show(obj);
-                    
-                    obj.flash();
-                    obj.target.show(obj);
-                    obj.pas.show(obj.screen, obj.frame);
-                    obj.mafc.show(obj.screen, obj.frame);
-                    obj.trials.end_time = GetSecs();
-                    obj.results.import_from(obj);
-                    obj.results.add_trial_to_table();
-                    obj.results.write()
-                end
-            end 
-        end 
     end
 
     methods (Access=protected)
-        function load_parameters(obj)
 
-            obj.trials.load_trial_parameters(obj);
-            
-            obj.masks.load_flashing_parameters(obj.screen, obj.stimulus);
-            obj.masks.load_rect_parameters(obj.screen, obj.subject_info.is_left_suppression)
-            obj.masks.shuffle(10*obj.trials.block_index+obj.trials.trial_index);
-
-            obj.stimulus.load_flashing_parameters(obj.masks);
-            obj.stimulus.load_rect_parameters(obj.screen, obj.subject_info.is_left_suppression)
-
-            obj.fixation.load_args(obj.screen);
-            
-            obj.stimulus.textures.index = obj.stimulus.textures.PTB_indices{obj.stimulus.index};
-            
-            obj.pas.load_parameters(obj.screen);
-            if class(obj.mafc) == "CFS.Element.Evidence.ImgMAFC"
-                obj.mafc.load_parameters(obj.screen, obj.stimulus.textures.PTB_indices, obj.stimulus.index);
-            end
-            
-        end
+        load_parameters(obj)
+        
     end
 end

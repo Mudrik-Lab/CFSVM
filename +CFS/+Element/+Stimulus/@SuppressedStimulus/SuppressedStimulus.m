@@ -1,9 +1,8 @@
 classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
-    %SUPPRESSEDSTIMULUS CLass for handling stimulus shown together with CFS
-    %masks.
-    %   Detailed explanation goes here
+% SUPPRESSEDSTIMULUS Stimulus class for manipulating stimulus suppressed by mondrians.
     
     properties
+
         appearance_delay
         fade_in_duration
         show_duration
@@ -14,16 +13,22 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         contrasts_out
         full_contrast_onset
         fade_out_onset
+
     end
     
+
     properties (Constant)
+
         RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'index', 'position'}
+
     end
     
+
     methods
+
         function obj = SuppressedStimulus(dirpath, parameters)
-            %SUPPRESSEDSTIMULUS Construct an instance of this class
-            %   Detailed explanation goes here
+            % SUPPRESSEDSTIMULUS Construct an instance of this class
+
             arguments
                 dirpath {mustBeFolder}
                 parameters.position
@@ -44,6 +49,7 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
             for name = 1:length(parameters_names)
                 obj.(parameters_names{name}) = parameters.(parameters_names{name});
             end
+
         end
         
         load_flashing_parameters(obj, masks);

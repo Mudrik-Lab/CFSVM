@@ -1,10 +1,10 @@
-function show_introduction_screen(obj)
-% SHOW_INTRODUCTION_SCREEN Shows introductory screen.
-
+function show_preparing_screen(obj)
+% SHOW_PREPARING_SCREEN Just informs that the experiment is being prepared.
+    
     % Calculate text size based on screen X size, 24 is quite arbitrary.
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
-    KEY = 'space';
-    INSTRUCTION = sprintf('Introductory screen. Press %s to continue.', upper(KEY));
+    % Text to show.
+    INSTRUCTION = sprintf('Preparing the experiment, please wait');
 
     Screen('TextSize', obj.screen.window, TEXT_SIZE)
     Screen('DrawText', obj.screen.window, INSTRUCTION, obj.screen.left.rect(1), round(obj.screen.left.y_center-TEXT_SIZE/2));
@@ -13,14 +13,6 @@ function show_introduction_screen(obj)
     % Checkerboard frame
     Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
     Screen('Flip', obj.screen.window);
-    
-    % Wait until the right KEY is pressed, then continue.
-    while 1
-        [~, keyCode, ~] = KbWait;
-        if keyCode(KbName(KEY)) == 1
-            break;
-        end
-    end
     
 end
 

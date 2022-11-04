@@ -1,7 +1,7 @@
 function show(obj, screen, frame)
-%show Shows PAS screen, waits for the
-% subject response and records it.
-% See also record_response and append_trail_response.
+% SHOW Shows PAS screen, waits for the subject response and records it.
+% 
+% See also CFS.Element.Evidence.Evidence.record_response
 
     
     

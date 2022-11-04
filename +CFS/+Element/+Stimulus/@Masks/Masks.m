@@ -1,11 +1,10 @@
 classdef Masks < CFS.Element.Stimulus.Stimulus
-    %MASKS Summary of this class goes here
-    %   Detailed explanation goes here
+% MASKS Stimulus class for manipulating mondrian masks.
     
     properties
+
         % Number of masks flashed per one second.
         temporal_frequency = 10
-        
         
         % Shape: 1 - squares, 2 - circles, 3 - diamonds.
         mondrians_shape = 1
@@ -13,9 +12,8 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 see 'help CFS.generate_mondrians'.
         mondrians_color = 15
-        
 
-        n {mustBeInteger, mustBePositive};
+        n {mustBeInteger, mustBePositive}
         n_before_stimulus {mustBeInteger}
         n_while_fade_in {mustBeInteger}
         n_while_stimulus {mustBeInteger}
@@ -29,17 +27,23 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         indices_while_fade_in
         indices_while_fade_out
 
-        seed;
+        seed
+
     end
 
+
     properties (Constant)
+
         RESULTS = {'onset', 'offset', 'seed'}
+
     end
     
+
     methods
+
         function obj = Masks(dirpath, parameters)
-            %MASKS Construct an instance of this class
-            %   Detailed explanation goes here
+            % MASKS Construct an instance of this class
+
             arguments
                 dirpath
                 parameters.temporal_frequency
@@ -60,21 +64,16 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
             for name = 1:length(parameters_names)
                 obj.(parameters_names{name}) = parameters.(parameters_names{name});
             end
+
         end
         
-        function initiate(obj, trial_matrices)
-            %METHOD1 Summary of this method goes here
-            %   Detailed explanation goes here
-            max_temporal_frequency = max(cellfun(@(matrix) (max(matrix.('masks.temporal_frequency'))), trial_matrices));
-            max_mask_duration = max(cellfun(@(matrix) (max(matrix.('masks.duration'))), trial_matrices));
-            obj.n_max = max_temporal_frequency*max_mask_duration+1;
-        end
-
-        shuffle(obj, seed);
-        make_mondrian_masks(obj, x_pixels, y_pixels);
-        load_rect_parameters(obj, screen, is_left_suppression);
-        load_flashing_parameters(obj, screen, stimulus);
+        initiate(obj, trial_matrices)
+        shuffle(obj, seed)
+        make_mondrian_masks(obj, x_pixels, y_pixels)
+        load_rect_parameters(obj, screen, is_left_suppression)
+        load_flashing_parameters(obj, screen, stimulus)
 
     end
+
 end
 

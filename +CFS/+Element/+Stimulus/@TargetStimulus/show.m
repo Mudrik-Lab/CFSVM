@@ -1,6 +1,5 @@
 function show(obj, experiment)
-%show Presents target for the provided-as-parameter duration.
-%   Detailed explanation goes here
+% SHOW Presents target for the provided duration.
 
     target = obj.textures.PTB_indices{obj.index};
 
@@ -21,4 +20,5 @@ function show(obj, experiment)
     
     WaitSecs(obj.duration);
     obj.offset = GetSecs();
+    
 end

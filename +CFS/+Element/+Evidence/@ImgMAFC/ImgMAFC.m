@@ -1,19 +1,25 @@
 classdef ImgMAFC < CFS.Element.Evidence.Evidence & CFS.Element.Stimulus.Stimulus
-    %OBJECTIVEEVIDENCE Summary of this class goes here
-    %   Detailed explanation goes here
+% IMGMAFC Evidence class for initiating and recording image mAFC data.
     
     properties
+
         img_indices
+
     end
     
+
     properties (Constant)
+
         RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset', 'img_indices'}
+
     end
 
+
     methods
+
         function obj = ImgMAFC(parameters)
-            %OBJECTIVEEVIDENCE Construct an instance of this class
-            %   Detailed explanation goes here
+            % IMGMAFC Construct an instance of this class
+
             arguments
                 parameters.keys
                 parameters.title
@@ -32,6 +38,7 @@ classdef ImgMAFC < CFS.Element.Evidence.Evidence & CFS.Element.Stimulus.Stimulus
         
         load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
         show(obj, screen, frame)
-    end
-end
 
+    end
+
+end

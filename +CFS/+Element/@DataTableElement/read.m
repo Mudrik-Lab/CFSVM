@@ -1,6 +1,6 @@
 function read(obj)
-%READ Summary of this function goes here
-%   Detailed explanation goes here
+% READ Reads table.
+
     obj.table = readtable(fullfile(obj.dirpath, ...
             strcat(obj.filename, obj.file_extension)));
 end

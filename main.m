@@ -20,7 +20,7 @@ rng('shuffle', 'twister')
 % for breaking CFS use experiment = BCFS(),
 % for visual adaptation CFS use experiment = VACFS().
 
-experiment = VPCFS();
+experiment = VACFS();
 
 experiment.subject_info = SubjectData( ...
     dirpath="./!SubjectInfo");
@@ -121,12 +121,12 @@ experiment.results = Results( ...
 
 
 
-% Enter the experiment loop and BLOW IT UP
-experiment.run_the_experiment();
+% Execute the experiment.
+experiment.run()
 
 
 % Wait for a key to close the window.
-KbStrokeWait;
+KbStrokeWait
 
 % Clear the screen.
-Screen('CloseAll');
+Screen('CloseAll')

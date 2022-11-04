@@ -1,6 +1,5 @@
 function load_args(obj, screen)
-    %load_args Loads args property with PTB Screen('DrawLines')
-    %arguments.
+% LOAD_ARGS Loads args property with PTB Screen('DrawLines') arguments.
     
     fixation_cross_lines = [[-obj.arm_length obj.arm_length 0 0]; 
         [0 0 -obj.arm_length obj.arm_length]];
@@ -18,4 +17,5 @@ function load_args(obj, screen)
                 [screen.right.x_center, screen.right.y_center], 2 
             } 
         };
+    
 end

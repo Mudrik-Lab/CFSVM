@@ -1,5 +1,8 @@
 function show(obj, screen, frame)
-%show Shows text version of mAFC.
+% SHOW Shows text version of mAFC, waits for the subject response and records it.
+% 
+% See also CFS.Element.Evidence.Evidence.record_response
+
     obj.title_size = round(screen.left.x_pixels/15);
     obj.text_size = round(obj.title_size/1.5);
     left_screen_shift = screen.left.x_pixels/obj.n_options;

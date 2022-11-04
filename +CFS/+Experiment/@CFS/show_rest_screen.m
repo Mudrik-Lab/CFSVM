@@ -1,5 +1,5 @@
 function show_rest_screen(obj)
-%rest_screen Shows rest_screen.
+% SHOW_REST_SCREEN Shows rest_screen.
     text_size = round(obj.screen.left.x_pixels/24);
     KEY = 'return';
     INSTRUCTION = sprintf('Take a slow deep breath. Press %s to continue.', upper(KEY));

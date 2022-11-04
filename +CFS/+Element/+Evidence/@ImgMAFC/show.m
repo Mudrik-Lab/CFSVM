@@ -1,7 +1,8 @@
 function show(obj, screen, frame)
-%show Draws and shows mAFC images, waits for the
-% subject response and records it.
-% See also record_response and append_trial_response.
+% SHOW Draws and shows mAFC images, waits for the subject response and records it.
+%
+% See also CFS.Element.Evidence.Evidence.record_response
+
     obj.title_size = round(screen.left.x_pixels/15);
     Screen('TextSize', screen.window, obj.title_size);
     text_bounds = Screen('TextBounds', screen.window, obj.title);

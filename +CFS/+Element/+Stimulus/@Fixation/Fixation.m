@@ -1,5 +1,5 @@
 classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
-    %FIXATION Class for handling fixation cross.
+% FIXATION Stimulus class for handling fixation "cross".
     
     properties
         
@@ -9,21 +9,27 @@ classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
         % Line width of the fixation cross in pixels.
         line_width
 
-
-        
     end
+
 
     properties (SetAccess = protected)
+
         args
+
     end
+
 
     properties (Constant)
+
         RESULTS = {'onset'}
+
     end
 
+
     methods
+
         function obj = Fixation(parameters)
-            %Fixation Construct an instance of this class
+            % FIXATION Construct an instance of this class
             arguments
                 parameters.duration
                 parameters.arm_length
@@ -34,6 +40,7 @@ classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
             obj.duration = parameters.duration;
             obj.arm_length = parameters.arm_length;
             obj.line_width = parameters.line_width;
+            
             % Convert hex code to matlab RGB code.
             obj.color = sscanf(parameters.color(2:end), '%2x%2x%2x', [1 3])/255;
 
@@ -41,6 +48,8 @@ classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
         
         load_args(obj, screen)
         vbl = show(obj, experiment)
+
     end
+
 end
 

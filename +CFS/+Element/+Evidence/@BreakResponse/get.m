@@ -1,6 +1,7 @@
 function get(obj)
-    %get Gets breaking time from PTB KbQueue.
-    % Get KbQueue records
+% GET Gets breaking time from PTB KbQueue.
+
+% Get KbQueue records
     [pressed, firstPress, ~, ~, ~] = KbQueueCheck();
 
     if pressed
@@ -22,4 +23,5 @@ function get(obj)
         obj.response_kbname = "";
         obj.response_time = 0;
     end
+    
 end

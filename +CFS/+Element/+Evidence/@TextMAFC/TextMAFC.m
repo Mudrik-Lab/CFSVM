@@ -1,19 +1,24 @@
 classdef TextMAFC < CFS.Element.Evidence.Evidence
-    %TEXTMAFC Summary of this class goes here
-    %   Detailed explanation goes here
+% TEXTMAFC Evidence class for initiating and recording text mAFC data.
     
     properties
+
         text_size
+
     end
+
 
     properties (Constant)
+
         RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset'}
+
     end
 
+
     methods
+
         function obj = TextMAFC(parameters)
-            %TEXTMAFC Construct an instance of this class
-            %   Detailed explanation goes here
+            % TEXTMAFC Construct an instance of this class
             arguments
                 parameters.keys
                 parameters.title
@@ -29,6 +34,8 @@ classdef TextMAFC < CFS.Element.Evidence.Evidence
         end
         
         show(obj, screen, frame);
+
     end
+
 end
 

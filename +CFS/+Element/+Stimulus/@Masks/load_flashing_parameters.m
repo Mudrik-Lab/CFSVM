@@ -1,7 +1,9 @@
 function load_flashing_parameters(obj, screen, stimulus)
-    %METHOD2 Summary of this method goes here
-    %   Detailed explanation goes here
+% LOAD_FLASHING_PARAMETERS Calculates parameters for flashing for the
+% current trial.
+
     obj.waitframe = Screen('NominalFrameRate', screen.window)/obj.temporal_frequency;
+    
     obj.delay=1/obj.temporal_frequency - 0.5*screen.inter_frame_interval;
 
     obj.n = obj.temporal_frequency*obj.duration;
@@ -29,4 +31,5 @@ function load_flashing_parameters(obj, screen, stimulus)
     obj.indices_while_fade_out = arrayfun(@(n) (floor(obj.n_cumul_before_fade_out+...
         (obj.n_while_fade_out*obj.waitframe-n)/obj.waitframe)), ...
         1:(obj.n_while_fade_out*obj.waitframe-1));
+
 end

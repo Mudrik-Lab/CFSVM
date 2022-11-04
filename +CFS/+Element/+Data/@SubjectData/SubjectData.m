@@ -1,16 +1,19 @@
 classdef SubjectData < CFS.Element.DataTableElement
-    %SUBJECTDATA Summary of this class goes here
-    %   Detailed explanation goes here
+% SUBJECTDATA Class for inquiring about subject info and for recording it.
     
     properties
+
         code
         is_left_suppression
+
     end
     
+
     methods
+
         function obj = SubjectData(parameters)
-            %SUBJECTDATA Construct an instance of this class
-            %   Detailed explanation goes here
+            % SUBJECTDATA Construct an instance of this class
+
             arguments
                 parameters.dirpath = './!SubjectInfo'
             end
@@ -20,7 +23,9 @@ classdef SubjectData < CFS.Element.DataTableElement
             data.birthdate = input('Date of birth\n> ', 's');
             data.dominant_eye = input('Dominant eye\n> ', 's');
             data.dominant_hand = input('Dominant hand\n> ', 's');
+
             obj.code = data.code;  
+
             if strcmpi(data.dominant_eye, "Left")
                 obj.is_left_suppression = true;
             else
@@ -32,6 +37,8 @@ classdef SubjectData < CFS.Element.DataTableElement
             obj.filename = num2str(obj.code);
 
         end
+
     end
+
 end
 

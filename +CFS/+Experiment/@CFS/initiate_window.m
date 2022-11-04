@@ -1,6 +1,7 @@
 function initiate_window(obj)
-    %initiate_window Calls basic Psychtoolbox settings and initiates window.
-    % Adopted from Peter Scarfe's Psychtoolbox tutorial - it's really good.
+% INITIATE_WINDOW Calls basic Psychtoolbox settings and initiates window.
+%
+% Adopted from Peter Scarfe's Psychtoolbox tutorial - it's really good.
     
     % Here we call some default settings for setting up Psychtoolbox
     PsychDefaultSetup(2);
@@ -14,10 +15,6 @@ function initiate_window(obj)
     % screen.
     screen_number = max(screens);
 
-    % Define black and white
-    %white = WhiteIndex(screen_number);
-    %black = BlackIndex(screen_number);
-
     %Screen('Preference','SkipSyncTests', 2);
     %Screen('Preference', 'VisualDebugLevel', 4);
     
@@ -29,9 +26,6 @@ function initiate_window(obj)
     
     % Get the size of the on-screen window
     Screen('WindowSize', obj.screen.window);
-    
-    % Get the center coordinates of the window
-    %RectCenter(window_rect);
     
     % Retreive the maximum priority number and set the priority to the maximum
     % (concerning OS resources distribution)

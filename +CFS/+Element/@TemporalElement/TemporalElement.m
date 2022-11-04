@@ -1,11 +1,12 @@
 classdef (Abstract) TemporalElement < handle
-    %EXPERIMENTELEMENT Summary of this class goes here
-    %   Detailed explanation goes here
+% TEMPORALELEMENT An abstract class for elements with temporal properties.
     
     properties
+
         onset
         offset
         duration
+        
     end
 
 end

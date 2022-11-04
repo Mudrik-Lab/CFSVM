@@ -1,13 +1,10 @@
 classdef ScreenField < CFS.Element.SpatialElement
-    %SCREENFIELD Summary of this class goes here
-    %   Detailed explanation goes here
+%SCREENFIELD Screen class for describing area on the screen.
         
     methods
+
         function obj = ScreenField(rect)
-            %CUSTOMSCREEN Constructs an instance of this class
-            % Gets optional keyword arguments:
-            % left_screen_rect
-            % right_screen_rect
+            % SCREENFIELD Constructs an instance of this class
 
             arguments
                 rect
@@ -16,9 +13,8 @@ classdef ScreenField < CFS.Element.SpatialElement
             obj.rect = rect;
 
         end
-        
-
 
     end
+
 end
 

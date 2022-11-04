@@ -1,6 +1,5 @@
 function import_from(obj, experiment)
-%import_from Summary of this function goes here
-%   Detailed explanation goes here
+% IMPORT_FROM Imports data from the experiment elements recorded in the trial.
 
     for object = obj.variables
         for var = object{:}(2:end)

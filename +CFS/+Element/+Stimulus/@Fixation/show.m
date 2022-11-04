@@ -1,5 +1,5 @@
 function vbl = show(obj, experiment)
-%show Draws and shows fixation cross on the screen.
+% SHOW Draws and shows fixation cross on the screen.
 
     % Left screen cross
     Screen(obj.args{1}{:});

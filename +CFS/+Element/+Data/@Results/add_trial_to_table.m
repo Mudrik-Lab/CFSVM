@@ -1,5 +1,5 @@
 function add_trial_to_table(obj, varargin)
-    %add_trial_to_table Appends recorded response to the main table.
+% ADD_TRIAL_TO_TABLE Appends recorded response to the table.
     
     obj.data = orderfields(obj.data, obj.table.Properties.VariableNames);
     obj.table = [obj.table;struct2table(obj.data)];

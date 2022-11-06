@@ -33,7 +33,8 @@ function import_images(obj, window, parameters)
         catch
         end
         obj.textures.PTB_indices{img_index} = Screen('MakeTexture', window, image);
-        
+        obj.textures.images_names{img_index} = images(img_index).name;
+
     end
 
     % Get number of textures created. 

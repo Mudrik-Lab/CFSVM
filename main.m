@@ -13,14 +13,11 @@ import CFS.Experiment.* ...
     CFS.Element.Stimulus.*
 
 
-% Randomise random
-rng('shuffle', 'twister')
-
 % Initiate an object, for visual priming CFS use experiment = VPCFS(),
 % for breaking CFS use experiment = BCFS(),
 % for visual adaptation CFS use experiment = VACFS().
 
-experiment = VACFS();
+experiment = VPCFS();
 
 experiment.subject_info = SubjectData( ...
     dirpath="./!SubjectInfo");
@@ -32,7 +29,7 @@ experiment.screen = CustomScreen( ...
     initial_left_screen_rect=[0, 0, 945, 1080], ...
     initial_right_screen_rect=[975, 0, 1920, 1080], ...
     adjust_shift = 15, ...
-    background_color='#E8DAEF');
+    background_color='#FFFFFF'); %'#E8DAEF'
 
 experiment.frame = CheckFrame( ...
     checker_length=30, ...
@@ -117,8 +114,6 @@ end
 experiment.results = Results( ...
     experiment, ...
     dirpath='./!Results');
-
-
 
 
 % Execute the experiment.

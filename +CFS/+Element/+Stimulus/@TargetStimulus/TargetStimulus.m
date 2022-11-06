@@ -4,7 +4,7 @@ classdef TargetStimulus < CFS.Element.Stimulus.Stimulus
 
     properties (Constant)
 
-        RESULTS = {'onset', 'offset', 'index'}
+        RESULTS = {'onset', 'offset', 'index', 'image_name'}
 
     end
 

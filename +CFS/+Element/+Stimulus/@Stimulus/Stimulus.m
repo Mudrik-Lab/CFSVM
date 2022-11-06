@@ -11,6 +11,7 @@ classdef (Abstract) Stimulus < CFS.Element.TemporalElement & CFS.Element.Spatial
         rotation
         index
         textures
+        image_name
         
     end
 

@@ -27,14 +27,12 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         indices_while_fade_in
         indices_while_fade_out
 
-        seed
-
     end
 
 
     properties (Constant)
 
-        RESULTS = {'onset', 'offset', 'seed'}
+        RESULTS = {'onset', 'offset'}
 
     end
     
@@ -68,7 +66,7 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         end
         
         initiate(obj, trial_matrices)
-        shuffle(obj, seed)
+        shuffle(obj)
         make_mondrian_masks(obj, x_pixels, y_pixels)
         load_rect_parameters(obj, screen, is_left_suppression)
         load_flashing_parameters(obj, screen, stimulus)

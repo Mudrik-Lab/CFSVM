@@ -78,11 +78,11 @@ function adjust(obj, frame)
                     obj.left.rect(4) = obj.left.rect(4) - SHIFT;
                     obj.right.rect(4) = obj.right.rect(4) - SHIFT;
                 case big_space
-                    obj.left.rect(3) = obj.left.rect(3) - SHIFT;
-                    obj.right.rect(1) = obj.right.rect(1) + SHIFT;
+                    obj.left.rect([1,3]) = obj.left.rect([1,3]) - SHIFT;
+                    obj.right.rect([1,3]) = obj.right.rect([1,3]) + SHIFT;
                 case small_space
-                    obj.left.rect(3) = obj.left.rect(3) + SHIFT;
-                    obj.right.rect(1) = obj.right.rect(1) - SHIFT;
+                    obj.left.rect([1,3]) = obj.left.rect([1,3]) + SHIFT;
+                    obj.right.rect([1,3]) = obj.right.rect([1,3]) - SHIFT;
                 case done
                     % Stop the adjustment if the 'done' key was pressed.
                     break;

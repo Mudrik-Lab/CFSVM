@@ -2,7 +2,8 @@ function show(obj, screen, frame)
 % SHOW Shows text version of mAFC, waits for the subject response and records it.
 % 
 % See also CFS.Element.Evidence.Evidence.record_response
-
+    
+    PADDING = 10;
     obj.title_size = round(screen.left.x_pixels/15);
     obj.text_size = round(obj.title_size/1.5);
     left_screen_shift = screen.left.x_pixels/obj.n_options;
@@ -11,8 +12,16 @@ function show(obj, screen, frame)
     Screen('TextSize', screen.window, obj.title_size);
     text_bounds = Screen('TextBounds', screen.window, obj.title);
     title_length = text_bounds(3)-text_bounds(1);
-    Screen('DrawText', screen.window, obj.title, screen.left.x_center-title_length/2, screen.left.rect(2));
-    Screen('DrawText', screen.window, obj.title, screen.right.x_center-title_length/2, screen.right.rect(2));
+    Screen('DrawText', ...
+        screen.window, ...
+        obj.title, ...
+        screen.left.x_center-title_length/2, ...
+        screen.left.rect(2)+PADDING);
+    Screen('DrawText', ...
+        screen.window, ...
+        obj.title, ...
+        screen.right.x_center-title_length/2, ...
+        screen.right.rect(2)+PADDING);
 
 
     Screen('TextSize', screen.window, obj.text_size);

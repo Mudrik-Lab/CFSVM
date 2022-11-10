@@ -34,6 +34,9 @@ function initiate_window(obj)
     
     % Set up alpha-blending for smooth (anti-aliased) lines
     Screen('BlendFunction', obj.screen.window, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
+
+    % Display's Refresh Rate
+    obj.screen.frame_rate = Screen('NominalFrameRate', obj.screen.window);
     
     % Measure the vertical refresh rate of the monitor
     obj.screen.inter_frame_interval = Screen('GetFlipInterval', obj.screen.window);

@@ -19,7 +19,7 @@ function run(obj)
             end
 
             obj.vbl = obj.fixation.show(obj);
-            obj.vbl = GetSecs();
+
             KbQueueStart()
             obj.flash()
             KbQueueStop()

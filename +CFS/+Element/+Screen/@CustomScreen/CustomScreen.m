@@ -9,7 +9,8 @@ classdef CustomScreen < handle
         background_color
         window
         inter_frame_interval
-
+        frame_rate
+        
     end
 
 

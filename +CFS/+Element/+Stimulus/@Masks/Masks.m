@@ -13,19 +13,9 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         % for 4...15 see 'help CFS.generate_mondrians'.
         mondrians_color = 15
 
-        n {mustBeInteger, mustBePositive}
-        n_before_stimulus {mustBeInteger}
-        n_while_fade_in {mustBeInteger}
-        n_while_stimulus {mustBeInteger}
-        n_while_fade_out {mustBeInteger}
-        n_cumul_before_fade_out {mustBeInteger}
         n_max
-
-        waitframe
-        delay
-
-        indices_while_fade_in
-        indices_while_fade_out
+        
+        indices
 
     end
 
@@ -69,7 +59,7 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         shuffle(obj)
         make_mondrian_masks(obj, x_pixels, y_pixels)
         load_rect_parameters(obj, screen, is_left_suppression)
-        load_flashing_parameters(obj, screen, stimulus)
+        load_flashing_parameters(obj, screen)
 
     end
 

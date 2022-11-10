@@ -29,7 +29,14 @@ function import_images(obj, window, parameters)
     % not images.
     for img_index = 1:n
         try
-            image = imread(fullfile(images(img_index).folder, images(img_index).name));
+            fullp = fullfile(images(img_index).folder, images(img_index).name);
+            [~, ~, ext] = fileparts(fullp);
+            if ext == ".png"
+                [image, ~, alpha] = imread(fullp);
+                image(:, :, 4) = alpha;
+            else
+                image = imread(fullp);
+            end
         catch
         end
         obj.textures.PTB_indices{img_index} = Screen('MakeTexture', window, image);

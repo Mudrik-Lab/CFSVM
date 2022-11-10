@@ -13,7 +13,9 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         contrasts_out
         full_contrast_onset
         fade_out_onset
-
+        rotation_indices
+        rotation_array
+        
     end
     
 
@@ -52,7 +54,7 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
 
         end
         
-        load_flashing_parameters(obj, masks);
+        load_flashing_parameters(obj, screen);
         load_rect_parameters(obj, screen, is_left_suppression);
         
     end

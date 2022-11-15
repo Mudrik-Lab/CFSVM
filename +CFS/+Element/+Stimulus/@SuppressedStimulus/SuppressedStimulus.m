@@ -13,8 +13,11 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         contrasts_out
         full_contrast_onset
         fade_out_onset
-        rotation_indices
-        rotation_array
+        n_rotations_per_trial
+        rotations_variance
+        rotations_indices
+        rotations_array
+        indices
         
     end
     
@@ -43,6 +46,9 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
                 parameters.fade_in_duration
                 parameters.show_duration
                 parameters.fade_out_duration
+                parameters.n_rotations_per_trial
+                parameters.rotations_variance
+                parameters.n_stimuli_per_trial
             end
             
             obj.dirpath = dirpath;

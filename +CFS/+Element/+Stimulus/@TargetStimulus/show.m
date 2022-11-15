@@ -1,8 +1,8 @@
 function show(obj, experiment)
 % SHOW Presents target for the provided duration.
 
-    target = obj.textures.PTB_indices{obj.index};
-    obj.image_name = obj.textures.images_names(obj.index);
+    target = obj.textures.PTB_indices{obj.index{:}};
+    obj.image_name = obj.textures.images_names(obj.index{:});
     
     Screen('DrawTexture', experiment.screen.window, target, [], ...
         experiment.stimulus.left_rect, 0, 1, obj.contrast);

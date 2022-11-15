@@ -47,10 +47,17 @@ function import(obj, experiment)
         % If indices for specific stimuli images are not provided, create
         % column with random indices. 
         % Check CFS.Element.Data.TrialsData.randomise function
-        if ~ismember('stimulus.index', obj.blocks{i}.Properties.VariableNames)
-            obj.blocks{i}.('stimulus.index')(:) = obj.randomise(experiment.stimulus.textures.len, height(obj.blocks{i}));
+
+
+        intratrial_stimuli_idx = cellfun(@(n) (~isempty(regexp(n, 'stimulus.index\d+', 'once'))), ...
+            obj.blocks{1}.Properties.VariableNames);
+        if any(intratrial_stimuli_idx)
+            obj.blocks{i}.('stimulus.indices')(:) = num2cell(table2array(obj.blocks{i}(:, intratrial_stimuli_idx)), 2);
+            obj.blocks{i} = removevars(obj.blocks{i}, intratrial_stimuli_idx);
+        else
+            obj.blocks{i}.('stimulus.indices')(:) = obj.randomise(experiment.stimulus.textures.len, height(obj.blocks{i}));
         end
-        
+
         % Same thing for target stimulus indices.
         if (class(experiment) == "CFS.Experiment.VPCFS" || class(experiment) == "CFS.Experiment.VACFS") ...
                 && ~ismember('target.index', obj.blocks{i}.Properties.VariableNames)

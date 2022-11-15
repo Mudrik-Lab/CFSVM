@@ -10,6 +10,7 @@ function x = randomise(number_of_elements, repeats)
         i = find(diff(x));
         n = [i numel(x)] - [0 i];
     end
+    x = num2cell(x);
 
 end
 

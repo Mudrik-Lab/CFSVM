@@ -7,7 +7,7 @@ function show_rest_screen(obj)
     KEY = 'return';
     INSTRUCTION = {'Take a slow deep breath.', sprintf('Press %s to continue.', upper(KEY))};
     N_ROWS = length(INSTRUCTION);
-    Screen('TextSize', obj.screen.window, TEXT_SIZE)
+    Screen('TextSize', obj.screen.window, TEXT_SIZE);
 
     for row = 1:N_ROWS
 

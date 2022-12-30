@@ -7,17 +7,11 @@ classdef (Abstract) Evidence < CFS.Element.TemporalElement
         title
         title_size
         options
-
-    end
-    
-
-    properties (SetAccess = protected)
-
         n_options
         response_choice
         response_time
         response_kbname
-        
+
     end
 
 

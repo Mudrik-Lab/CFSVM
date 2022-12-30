@@ -36,7 +36,7 @@ function initiate(obj)
     obj.show_preparing_screen()
 
     % Warm WaitSecs() function.
-    WaitSecs(0.00001)
+    WaitSecs(0.00001);
 
     obj.stimulus.import_images(obj.screen.window)
     
@@ -50,9 +50,9 @@ function initiate(obj)
         obj.stimulus_break.create_kbqueue()
     end
     
-    obj.trials.import(obj)
+    obj.trials.import()
 
-    obj.masks.initiate(obj.trials.blocks)
+    obj.masks.initiate(obj.trials.matrix)
     
     % If the folder provided for masks doesn't exist - generate images to the folder.
     if ~isfolder(obj.masks.dirpath)
@@ -71,6 +71,24 @@ function initiate(obj)
     obj.masks.import_images(obj.screen.window, images_number=obj.masks.n_max)
     
     obj.show_introduction_screen()
+
+    for block = 1:obj.trials.n_blocks
+        for trial = 1:width(obj.trials.matrix{block})
+            exp = obj.trials.matrix{block}{trial};
+            for prop = properties(exp)'
+                if isempty(exp.(prop{:}))
+                    exp.(prop{:}) = obj.(prop{:});
+                else
+                    prop_list = metaclass(exp.(prop{:})).PropertyList;
+                    for idx = 1:length(prop_list)
+                        if isempty(exp.(prop{:}).(prop_list(idx).Name)) && ~prop_list(idx).Dependent
+                            exp.(prop{:}).(prop_list(idx).Name) = obj.(prop{:}).(prop_list(idx).Name);
+                        end
+                    end
+                end
+            end
+        end
+    end
 
 end
 

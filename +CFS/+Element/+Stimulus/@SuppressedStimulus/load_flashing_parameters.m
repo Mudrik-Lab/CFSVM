@@ -25,9 +25,9 @@ function load_flashing_parameters(obj, screen)
     obj.rotations_indices = [obj.rotations_indices, obj.rotations_indices(end)];
     
     % Multiple temporal stimuli
-    time_per_stimulus = total_stimulus_duration/length(obj.indices{:});
+    time_per_stimulus = total_stimulus_duration/width(obj.indices);
     frames_per_stimulus = time_per_stimulus*screen.frame_rate;
-    obj.indices = arrayfun(@(n) (obj.indices{:}(ceil(n/frames_per_stimulus))), ...
+    obj.indices = arrayfun(@(n) (obj.indices(ceil(n/frames_per_stimulus))), ...
         1:(total_stimulus_duration*screen.frame_rate));
     obj.indices = [obj.indices, obj.indices(end)];
     obj.index = obj.indices(1);

@@ -4,12 +4,6 @@ classdef PAS < CFS.Element.Evidence.Evidence
     properties
 
         text_size
-
-    end
-
-
-    properties (Access = protected)
-
         spacing
         left_text_start
         right_text_start

@@ -29,7 +29,7 @@ function adjust(obj, frame)
                 UniformOutput=false);
     
     % Initiate frames with the solid color and provided screen rectangles.
-    frame.initiate(obj.left.rect, obj.right.rect)
+    frame.initiate(obj.left.rect, obj.right.rect);
 
     % Draw frames and flip the screen.
     Screen('FillRect', obj.window, frame.color, frame.rect);

@@ -1,10 +1,7 @@
-%Major script
 
-
-% Clear the workspace and the screen
-Screen('CloseAll');
-close all;
-clear;
+positions = ["UpperLeft" "Top" "UpperRight";
+        "Left" "Center" "Right";
+        "LowerLeft" "Bottom" "LowerRight"];
 
 import CFS.Experiment.* ...
     CFS.Element.Screen.* ...
@@ -18,23 +15,6 @@ import CFS.Experiment.* ...
 % for visual adaptation CFS use experiment = VACFS().
 
 experiment = BCFS();
-
-experiment.subject_info = SubjectData( ...
-    dirpath='./!SubjectInfo');
-
-experiment.trials = TrialsData( ...
-    dirpath='./TrialMatrices/');
-
-experiment.screen = CustomScreen( ...
-    initial_left_screen_rect=[240, 270, 720, 810], ...
-    initial_right_screen_rect=[1200, 270, 1680, 810], ...
-    adjust_shift=15, ...
-    background_color='#E8DAEF'); %'#E8DAEF'
-
-experiment.frame = CheckFrame( ...
-    checker_length=30, ...
-    checker_width=15, ...
-    hex_colors={'#FFFFFF', '#000000'});
 
 experiment.fixation = Fixation( ...
     duration=1, ...
@@ -113,17 +93,26 @@ if class(experiment) == "CFS.Experiment.BCFS" || class(experiment) == "CFS.Exper
 
 end
 
-experiment.results = Results( ...
-    experiment, ...
-    dirpath='./!Results');
 
+if ~exist('.temp', 'dir')
+    mkdir('.temp')
+end
+save('.temp\experiment.mat', 'experiment')
 
-% Execute the experiment.
-experiment.run()
+n_blocks = 5;
+n_trials = [5,6,4,5,7];
 
+trial_matrix = cell(1, n_blocks);
+for block = 1:n_blocks
+    for trial = 1:n_trials(block)
+        load('.temp\experiment.mat');
+        experiment.stimulus.indices = randi(9, [3,3]);
+        %experiment.target.index = randi(2);
+        X = randperm(numel(positions));
+        %experiment.stimulus.position = reshape(positions(X), size(positions));
+        trial_matrix{block}{trial} = experiment;
+    end
+end
 
-% Wait for a key to close the window.
-KbStrokeWait
-
-% Clear the screen.
-Screen('CloseAll')
+rmdir('.temp', 's')
+save('TrialMatrices\experiment.mat', 'trial_matrix')

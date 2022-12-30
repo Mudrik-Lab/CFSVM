@@ -9,11 +9,6 @@ classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
         % Line width of the fixation cross in pixels.
         line_width
 
-    end
-
-
-    properties (SetAccess = protected)
-
         args
 
     end

@@ -4,8 +4,8 @@ classdef TrialsData < CFS.Element.DataTableElement
 % Imports, loads, modifies trial matrices
     
     properties
-
-        blocks
+        
+        matrix
         n_blocks
         block_index
         trial_index
@@ -35,7 +35,7 @@ classdef TrialsData < CFS.Element.DataTableElement
             obj.dirpath = parameters.dirpath;
         end
         
-        import(obj, experiment)
+        import(obj)
         load_trial_parameters(obj, experiment)
 
     end

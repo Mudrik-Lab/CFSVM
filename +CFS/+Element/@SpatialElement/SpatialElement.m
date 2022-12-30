@@ -21,19 +21,35 @@ classdef (Abstract) SpatialElement < handle
     methods
 
         function x_pixels = get.x_pixels(obj)
-            x_pixels = obj.rect(3)-obj.rect(1);
+            if isempty(obj.rect)
+                x_pixels = [];
+            else
+                x_pixels = obj.rect(3)-obj.rect(1);
+            end
         end
 
         function y_pixels = get.y_pixels(obj)
-            y_pixels = obj.rect(4)-obj.rect(2);
+            if isempty(obj.rect)
+                y_pixels = [];
+            else
+                y_pixels = obj.rect(4)-obj.rect(2);
+            end
         end
 
         function x_center = get.x_center(obj)
-            x_center = obj.rect(3)-round((obj.rect(3)-obj.rect(1))/2);
+            if isempty(obj.rect)
+                x_center = [];
+            else
+                x_center = obj.rect(3)-round((obj.rect(3)-obj.rect(1))/2);
+            end
         end
         
         function y_center = get.y_center(obj)
-            y_center = obj.rect(4)-round((obj.rect(4)-obj.rect(2))/2);
+            if isempty(obj.rect)
+                y_center = [];
+            else
+                y_center = obj.rect(4)-round((obj.rect(4)-obj.rect(2))/2);
+            end
         end
         
     end

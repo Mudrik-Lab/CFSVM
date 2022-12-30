@@ -10,7 +10,7 @@ function run(obj)
     for block = 1:obj.trials.n_blocks
         obj.trials.block_index = block;
 
-        for trial = 1:height(obj.trials.blocks{block})
+        for trial = 1:width(obj.trials.matrix{block})
             obj.trials.start_time = GetSecs();
             obj.trials.trial_index = trial;
             obj.load_parameters()

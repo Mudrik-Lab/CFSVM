@@ -73,7 +73,7 @@ function initiate(obj)
     obj.show_introduction_screen()
 
     for block = 1:obj.trials.n_blocks
-        for trial = 1:width(obj.trials.matrix{block})
+        for trial = 1:size(obj.trials.matrix{block}, 2)
             exp = obj.trials.matrix{block}{trial};
             for prop = properties(exp)'
                 if isempty(exp.(prop{:}))

@@ -1,4 +1,4 @@
-function [x0, y0, x1, y1, i, j] = get_stimulus_rect_shift(obj)
+function [x0, y0, x1, y1, i, j] = get_stimulus_rect_shift(obj, position)
 %get_stimulus_rect_shift Calculates fractional shift for every coordinate of a rectangle based on given parameters.
 % alignment - alignment of the rectangle to the screen.
 % Possible alignments are: UpperLeft, Top, UpperRight, Left, Center, Right, 
@@ -31,8 +31,9 @@ function [x0, y0, x1, y1, i, j] = get_stimulus_rect_shift(obj)
     s = ["UpperLeft" "Top" "UpperRight";
         "Left" "Center" "Right";
         "LowerLeft" "Bottom" "LowerRight"];
+
     % Get matrix coordinates of the provided alignment.
-    [i, j] = find(s == obj.position);
+    [i, j] = find(s == position);
     % Calculate X axis coordinates.
     [x0, x1] = coord_shift(j, obj.size, obj.padding);
     % Calculate Y axis coordinates

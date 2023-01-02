@@ -10,6 +10,10 @@ function new_rectangle = get_rect(obj, screen_rectangle)
     % xy_ratio - new_rectangle ratio between X and Y axes lengths.
     % See also get_stimulus_position
     
+    s = ["UpperLeft" "Top" "UpperRight";
+        "Left" "Center" "Right";
+        "LowerLeft" "Bottom" "LowerRight"];
+
     % Extract coordinates from the provided screen rectangle.
     rect_cell = num2cell(screen_rectangle);
     [x0, y0, x1, y1] = rect_cell{:};
@@ -24,14 +28,18 @@ function new_rectangle = get_rect(obj, screen_rectangle)
     % Set rectangle with proper size and x to y ratio.
     unmoved_rect = [0,0,dx*obj.size,dx*obj.size/obj.xy_ratio];
     
-    % Calculate shift from 0 to 1 of every coordinate of the new_rectangle given the provided stimulus alignment.
-    [m0, n0, m1, n1, i, j] = obj.get_stimulus_rect_shift();
-
-    % Calculate X axis center of the new_rectangle.
-    x_center = mean([x0+m0*dx, x0+m1*dx]);
-    % Calculate Y axis center of the new_rectangle.
-    y_center = mean([y0+n0*dy-(1-i)*(1-n0)*rem/2, y0+n1*dy-(3-i)*n1*rem/2]);
+    new_rectangle = [];
+    for idx = 1:numel(s)
+        % Calculate shift from 0 to 1 of every coordinate of the new_rectangle given the provided stimulus alignment.
+        [m0, n0, m1, n1, i, j] = obj.get_stimulus_rect_shift(s(idx));
     
-    % Get the new rectangle
-    new_rectangle = CenterRectOnPointd(unmoved_rect, x_center, y_center);
+        % Calculate X axis center of the new_rectangle.
+        x_center = mean([x0+m0*dx, x0+m1*dx]);
+        % Calculate Y axis center of the new_rectangle.
+        y_center = mean([y0+n0*dy-(1-i)*(1-n0)*rem/2, y0+n1*dy-(3-i)*n1*rem/2]);
+        
+        % Get the new rectangle
+        rect = CenterRectOnPointd(unmoved_rect, x_center, y_center);
+        new_rectangle = [new_rectangle; rect];
+    end
 end

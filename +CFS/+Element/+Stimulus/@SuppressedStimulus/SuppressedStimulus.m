@@ -24,7 +24,7 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
 
     properties (Constant)
 
-        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'index', 'position', 'image_name'}
+        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'position', 'image_name'}
 
     end
     

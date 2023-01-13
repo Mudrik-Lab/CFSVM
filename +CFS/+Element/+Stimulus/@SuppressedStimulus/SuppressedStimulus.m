@@ -9,14 +9,9 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         fade_out_duration
         left_rect
         right_rect
-        contrasts_in
-        contrasts_out
+        contrasts
         full_contrast_onset
         fade_out_onset
-        n_rotations_per_trial
-        rotations_variance
-        rotations_indices
-        rotations_array
         indices
         
     end
@@ -24,7 +19,7 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
 
     properties (Constant)
 
-        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'position', 'image_name'}
+        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'position', 'index', 'image_name'}
 
     end
     
@@ -36,19 +31,16 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
 
             arguments
                 dirpath {mustBeFolder}
-                parameters.position
-                parameters.xy_ratio
-                parameters.size
-                parameters.padding
-                parameters.rotation
-                parameters.contrast
-                parameters.appearance_delay
-                parameters.fade_in_duration
-                parameters.show_duration
-                parameters.fade_out_duration
-                parameters.n_rotations_per_trial
-                parameters.rotations_variance
-                parameters.n_stimuli_per_trial
+                parameters.position = "Center"
+                parameters.xy_ratio = 1
+                parameters.size = 0.5
+                parameters.padding = 0.5
+                parameters.rotation = 0
+                parameters.contrast = 1
+                parameters.appearance_delay = 0
+                parameters.fade_in_duration = 0
+                parameters.show_duration = 1
+                parameters.fade_out_duration = 0
             end
             
             obj.dirpath = dirpath;
@@ -60,7 +52,7 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
 
         end
         
-        load_flashing_parameters(obj, screen);
+        load_flashing_parameters(obj, screen, masks);
         load_rect_parameters(obj, screen, is_left_suppression);
         
     end

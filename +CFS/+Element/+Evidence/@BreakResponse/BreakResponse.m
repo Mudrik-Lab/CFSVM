@@ -15,7 +15,7 @@ classdef BreakResponse < CFS.Element.Evidence.Evidence
             % BREAKRESPONSE Construct an instance of this class
 
             arguments
-                parameters.keys
+                parameters.keys = {'LeftArrow', 'RightArrow'}
             end
 
             parameters_names = fieldnames(parameters);

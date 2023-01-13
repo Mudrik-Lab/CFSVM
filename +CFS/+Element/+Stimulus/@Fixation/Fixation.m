@@ -26,9 +26,9 @@ classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
         function obj = Fixation(parameters)
             % FIXATION Construct an instance of this class
             arguments
-                parameters.duration
-                parameters.arm_length
-                parameters.line_width
+                parameters.duration = 1;
+                parameters.arm_length = 20;
+                parameters.line_width = 4;
                 parameters.color = '#525252';
             end
 

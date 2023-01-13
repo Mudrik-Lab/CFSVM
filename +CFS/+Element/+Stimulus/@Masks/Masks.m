@@ -4,18 +4,22 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
     properties
 
         % Number of masks flashed per one second.
-        temporal_frequency = 10
+        temporal_frequency
         
         % Shape: 1 - squares, 2 - circles, 3 - diamonds.
-        mondrians_shape = 1
+        mondrians_shape
         
         % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 see 'help CFS.generate_mondrians'.
-        mondrians_color = 15
+        mondrians_color
 
         n_max
         
         indices
+
+        args
+
+        vbls
 
     end
 
@@ -33,17 +37,17 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
             % MASKS Construct an instance of this class
 
             arguments
-                dirpath
-                parameters.temporal_frequency
-                parameters.duration
-                parameters.mondrians_shape
-                parameters.mondrians_color
-                parameters.position
-                parameters.xy_ratio
-                parameters.size
-                parameters.padding
-                parameters.rotation
-                parameters.contrast
+                dirpath {mustBeFolder}
+                parameters.temporal_frequency = 10
+                parameters.duration = 5
+                parameters.mondrians_shape = 1
+                parameters.mondrians_color = 15
+                parameters.position = "Center"
+                parameters.xy_ratio = 1
+                parameters.size = 1
+                parameters.padding = 0
+                parameters.rotation = 0
+                parameters.contrast = 1
             end
 
             obj.dirpath = dirpath;

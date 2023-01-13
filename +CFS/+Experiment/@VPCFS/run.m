@@ -15,10 +15,6 @@ function run(obj)
             obj.trials.trial_index = trial;
             obj.load_parameters()
 
-            if trial ~= 1 || block ~= 1
-                obj.show_rest_screen()
-            end
-
             obj.vbl = obj.fixation.show(obj);
             
             obj.flash()
@@ -26,9 +22,7 @@ function run(obj)
             obj.pas.show(obj.screen, obj.frame)
             obj.mafc.show(obj.screen, obj.frame)
             obj.trials.end_time = GetSecs();
-            obj.results.import_from(obj)
-            obj.results.add_trial_to_table()
-            obj.results.write()
+            obj.show_rest_screen()
 
         end
 

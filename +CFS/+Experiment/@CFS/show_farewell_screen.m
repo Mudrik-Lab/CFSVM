@@ -1,10 +1,9 @@
-function show_rest_screen(obj)
-% SHOW_REST_SCREEN Shows rest_screen. Also saves the raw file.
-    
+function show_farewell_screen(obj)
+% SHOW_INTRODUCTION_SCREEN Shows introductory screen.
+
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
-    KEY = 'return';
-    INSTRUCTION = {'Take a slow deep breath.', sprintf('Press %s to continue.', upper(KEY))};
+    INSTRUCTION = {'Thank you!', 'The experiment is finished'};
     N_ROWS = length(INSTRUCTION);
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
 
@@ -31,14 +30,8 @@ function show_rest_screen(obj)
     Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
     Screen('Flip', obj.screen.window);
     
-    save(sprintf("!Raw/%s/block%d_trial%d.mat", obj.subject_info.code, obj.trials.block_index, obj.trials.trial_index), 'obj')
-
-    % Wait until the right KEY is pressed, then continue.
-    while 1
-        [~, keyCode, ~] = KbWait;
-        if keyCode(KbName(KEY)) == 1
-            break;
-        end
-    end
+    % Wait until any key is pressed
+    KbStrokeWait
     
 end
+

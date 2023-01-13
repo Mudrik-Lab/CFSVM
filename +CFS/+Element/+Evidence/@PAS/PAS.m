@@ -24,9 +24,13 @@ classdef PAS < CFS.Element.Evidence.Evidence
             % PAS Construct an instance of this class
 
             arguments
-                parameters.keys
-                parameters.title
-                parameters.options
+                parameters.keys = {'0)', '1!', '2@', '3#'}
+                parameters.title = 'How clear was the experience?'
+                parameters.options = { ...
+                    '0: No experience', ...
+                    '1: A weak experience', ... 
+                    '2: An almost clear experience', ...
+                    '3: A clear experience'}
             end
 
             parameters_names = fieldnames(parameters);

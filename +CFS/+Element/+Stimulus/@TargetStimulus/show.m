@@ -5,10 +5,10 @@ function show(obj, experiment)
     obj.image_name = obj.textures.images_names(obj.index);
     
     Screen('DrawTexture', experiment.screen.window, target, [], ...
-        experiment.stimulus.left_rect, 0, 1, obj.contrast);
+        obj.left_rect, 0, 1, obj.contrast);
 
     Screen('DrawTexture', experiment.screen.window, target, [], ...
-        experiment.stimulus.right_rect, 0, 1, obj.contrast);
+        obj.right_rect, 0, 1, obj.contrast);
     
     % Left screen cross
     Screen(experiment.fixation.args{1}{:});

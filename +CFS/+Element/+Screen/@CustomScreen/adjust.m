@@ -29,7 +29,7 @@ function adjust(obj, frame)
                 UniformOutput=false);
     
     % Initiate frames with the solid color and provided screen rectangles.
-    frame.initiate(obj.left.rect, obj.right.rect);
+    frame.initiate(obj);
 
     % Draw frames and flip the screen.
     Screen('FillRect', obj.window, frame.color, frame.rect);
@@ -98,7 +98,7 @@ function adjust(obj, frame)
             end
         
             % Reinitiate the frames with adjusted screen rectangles.
-            frame.initiate(obj.left.rect, obj.right.rect);
+            frame.initiate(obj);
             Screen('FillRect', obj.window, frame.color, frame.rect);
             Screen('Flip', obj.window);
         
@@ -127,14 +127,8 @@ function adjust(obj, frame)
 
     % Reinitiate the frames with originally provided color codes.
     frame.color_codes = frame_color_codes;
-    frame.initiate(obj.left.rect, obj.right.rect);
+    frame.initiate(obj);
 
-    % Set screens rects inside the checkframe execute following experiment
-    % inside them.
-    obj.left.rect(1:2) = obj.left.rect(1:2) + frame.checker_width;
-    obj.left.rect(3:4) = obj.left.rect(3:4) - frame.checker_width;
-    obj.right.rect(1:2) = obj.right.rect(1:2) + frame.checker_width;
-    obj.right.rect(3:4) = obj.right.rect(3:4) - frame.checker_width;
 
 end
 

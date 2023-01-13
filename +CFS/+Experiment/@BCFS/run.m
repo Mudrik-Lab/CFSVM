@@ -14,9 +14,6 @@ function run(obj)
             obj.trials.start_time = GetSecs();
             obj.trials.trial_index = trial;
             obj.load_parameters()
-            if trial ~= 1 || block ~= 1
-                obj.show_rest_screen()
-            end
 
             obj.vbl = obj.fixation.show(obj);
 
@@ -26,13 +23,11 @@ function run(obj)
 
             obj.trials.end_time = GetSecs();
             obj.stimulus_break.get()
-            obj.results.import_from(obj)
-            obj.results.add_trial_to_table()
-            obj.results.write()
-            
+            obj.show_rest_screen()
         end
 
-    end 
+    end
+    obj.show_farewell_screen();
 
 end 
 

@@ -8,218 +8,34 @@ function flash(obj)
 % are being calculated.
 % 
 % See also CFS.Element.Stimulus.Masks.load_flashing_parameters 
-
-    stop = 0;
-
-
-    %% MASKS ONLY
     
-    % If there is a delay for a stimulus - flash only masks first.
-    if obj.stimulus.appearance_delay ~= 0
-        % Draw first mask
-        masks_only(obj, obj.masks.indices(1))
-        % Flip
-        obj.vbl = Screen('Flip', ...
-            obj.screen.window, ...
-            obj.vbl + obj.fixation.duration - 0.5*obj.screen.inter_frame_interval); %+1/obj.masks.temporal_frequency - 0.5*obj.screen.inter_frame_interval);
-        % Record timing
-        obj.masks.onset = obj.vbl;
-        
-        % Draw only masks for a duration of the stimulus delay.
-        start = 1;
-        stop = obj.stimulus.appearance_delay*obj.screen.frame_rate;
-        for frame = (start+1):stop
-            masks_only(obj, obj.masks.indices(frame))
-            % Flip
-            obj.vbl = Screen('Flip', obj.screen.window);
-        end 
-        
-        % Draw first frame with stimulus
-        with_stimulus(obj, ...
-            1, ...
-            obj.masks.indices(stop+1), ...
-            obj.stimulus.contrasts_in(1), ...
-            obj.stimulus.rotations_indices(1))
-        % Flip
+    draw(obj, 1)
+    obj.vbl = Screen(...
+        'Flip', ...
+        obj.screen.window, ...
+        obj.vbl + obj.fixation.duration - 0.5*obj.screen.inter_frame_interval);
+    obj.vbl_recs(1) = obj.vbl;
+
+    for fr = 2:(obj.masks.duration*obj.screen.frame_rate)
+        draw(obj, fr)
         obj.vbl = Screen('Flip', obj.screen.window);
-        % Record timing
-        obj.stimulus.onset = obj.vbl;   
-
-    else
-        % If there is no stimulus delay, then flash first frame with
-        % stimulus.
-        with_stimulus(obj, ...
-            1, ...
-            obj.masks.indices(1), ...
-            obj.stimulus.contrasts_in(1), ...
-            obj.stimulus.rotations_indices(1))
-        % Flip
-        obj.vbl = Screen('Flip', ...
-            obj.screen.window, ...
-            obj.vbl + 1/obj.masks.temporal_frequency - 0.5*obj.screen.inter_frame_interval);
-        % Record timing
-        obj.masks.onset = obj.vbl;
-        obj.stimulus.onset = obj.vbl;
-    end
-
-
-    %% FADE IN
-
-    start = stop+1;
-    stop = stop+obj.stimulus.fade_in_duration*obj.screen.frame_rate;
-    for frame = (start+1):stop
-        with_stimulus(obj, ...
-            frame+1-start, ...
-            obj.masks.indices(frame), ...
-            obj.stimulus.contrasts_in(frame+1-start), ...
-            obj.stimulus.rotations_indices(frame+1-start))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
+        obj.vbl_recs(fr) = obj.vbl;
     end
     
-    
-
-    %% STIMULUS
-
-    % Set variable for controlling stimulus rotation.
-    if obj.stimulus.fade_in_duration
-        stimulus_frame = frame+1-start;
-    else
-        stimulus_frame = 0;
-    end
-
-    start = stop+1;
-    stop = stop+obj.stimulus.show_duration*obj.screen.frame_rate;
-
-    if obj.stimulus.fade_in_duration ~= 0
-        with_stimulus(obj, ...
-            stimulus_frame+1, ...
-            obj.masks.indices(start), ...
-            obj.stimulus.contrasts_in(end), ...
-            obj.stimulus.rotations_indices(stimulus_frame+1))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
-    end
-    obj.stimulus.full_contrast_onset = obj.vbl;
-
-    for frame = (start+1):stop
-        with_stimulus(obj, ...
-            stimulus_frame+frame+1-start, ...
-            obj.masks.indices(frame), ...
-            obj.stimulus.contrasts_in(end), ...
-            obj.stimulus.rotations_indices(stimulus_frame+frame+1-start))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
-    end
-    
-
-    %% FADE OUT
-
-    stimulus_frame = stimulus_frame+frame+1-start;
-    start = stop+1;
-    stop = stop+obj.stimulus.fade_out_duration*obj.screen.frame_rate;
-
-    if obj.stimulus.fade_out_duration
-
-        with_stimulus(obj, ...
-            stimulus_frame+1, ...
-            obj.masks.indices(start), ...
-            obj.stimulus.contrasts_out(stop+1-start), ...
-            obj.stimulus.rotations_indices(stimulus_frame+1))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
-        % Record timing
-        obj.stimulus.fade_out_onset = obj.vbl;
-
-        for frame = (start+1):stop
-            with_stimulus(obj, ...
-                stimulus_frame+frame+1-start, ...
-                obj.masks.indices(frame), ...
-                obj.stimulus.contrasts_out(stop+1-frame), ...
-                obj.stimulus.rotations_indices(stimulus_frame+frame+1-start))
-            % Flip
-            obj.vbl = Screen('Flip', obj.screen.window);
-        end
-
-        masks_only(obj, obj.masks.indices(stop+1))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
-        % Record timing
-        obj.stimulus.offset = obj.vbl;
-    else
-        masks_only(obj, obj.masks.indices(stop+1))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
-        % Record timing
-        obj.stimulus.fade_out_onset = obj.vbl;
-        obj.stimulus.offset = obj.vbl;
-    end
-
-
-    %% MASKS ONLY
-    start = stop+1;
-    stop = (obj.masks.duration)*obj.screen.frame_rate+1;
-    for frame = (start+1):stop
-        masks_only(obj, obj.masks.indices(frame))
-        % Flip
-        obj.vbl = Screen('Flip', obj.screen.window);
-    end
-    obj.masks.offset = obj.vbl;
-
-
+    draw(obj, fr)
+    obj.vbl = Screen('Flip', obj.screen.window);
+    obj.vbl_recs(end+1) = obj.vbl;
 end
 
 
-function masks_only(obj, mask_index)
-
-    % Mondrian
-    Screen('DrawTexture', ...
-        obj.screen.window, ...
-        obj.masks.textures.PTB_indices{mask_index}, ...
-        [], ...
-        obj.masks.rect, ...
-        0, ...
-        1, ...
-        obj.masks.contrast);
+function draw(obj, fr)
+    % Stimuli and Mondrians
+    Screen(obj.masks.args{fr}{:});
     % Left screen cross
     Screen(obj.fixation.args{1}{:});
     % Right screen cross
     Screen(obj.fixation.args{2}{:});
     % Checkerboard frame
     Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
-
-end
-
-function with_stimulus(obj, frame, mask_index, contrast, rot_index)
     
-    for pos = 1:9
-        temp = find(obj.stimulus.indices(pos, frame, :), 1);
-        if temp
-            % Stimulus
-            Screen('DrawTexture', ...
-                obj.screen.window, ...
-                obj.stimulus.textures.PTB_indices{temp}, ...
-                [], ...
-                obj.stimulus.rect(pos, :), ...
-                obj.stimulus.rotations_array(rot_index), ...
-                1, ...
-                contrast);
-        end
-    end
-    % Mondrian
-    Screen('DrawTexture', ...
-        obj.screen.window, ...
-        obj.masks.textures.PTB_indices{mask_index}, ...
-        [], ...
-        obj.masks.rect, ...
-        0, ...
-        1, ...
-        obj.masks.contrast);
-    % Left screen cross
-    Screen(obj.fixation.args{1}{:});
-    % Right screen cross
-    Screen(obj.fixation.args{2}{:});
-    % Checkerboard frame
-    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
-
 end

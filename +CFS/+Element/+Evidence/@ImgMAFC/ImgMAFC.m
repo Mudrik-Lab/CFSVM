@@ -21,11 +21,11 @@ classdef ImgMAFC < CFS.Element.Evidence.Evidence & CFS.Element.Stimulus.Stimulus
             % IMGMAFC Construct an instance of this class
 
             arguments
-                parameters.keys
-                parameters.title
-                parameters.position
-                parameters.size
-                parameters.xy_ratio
+                parameters.keys = {'LeftArrow', 'RightArrow'}
+                parameters.title = 'Which one have you seen?'
+                parameters.position = 'Center'
+                parameters.size = 0.75
+                parameters.xy_ratio = 1
             end
 
             parameters_names = fieldnames(parameters);

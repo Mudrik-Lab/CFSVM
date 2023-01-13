@@ -1,6 +1,15 @@
-function initiate(obj, left_screen_rect, right_screen_rect)
+function initiate(obj, screen)
     %initiate Initiates checkframe by generating rects and colors
     %matrices for both halves of the screen.
+    
+    % Set screens rects inside the checkframe execute following experiment
+    % inside them.
+    left_screen_rect = screen.left.rect;
+    right_screen_rect = screen.right.rect;
+    left_screen_rect(1:2) = screen.left.rect(1:2) - obj.checker_width;
+    left_screen_rect(3:4) = screen.left.rect(3:4) + obj.checker_width;
+    right_screen_rect(1:2) = screen.right.rect(1:2) - obj.checker_width;
+    right_screen_rect(3:4) = screen.right.rect(3:4) + obj.checker_width;
 
     [l_rects, l_colors] = obj.rects_and_colors(left_screen_rect);
     [r_rects, r_colors] = obj.rects_and_colors(right_screen_rect);

@@ -29,9 +29,9 @@ classdef CheckFrame < CFS.Element.SpatialElement
             % checker_width
             % hex_colors - cell array of character vectors, e.g. {'#FFFFFF', '#000000'}
             arguments
-                parameters.checker_length
-                parameters.checker_width
-                parameters.hex_colors
+                parameters.checker_length = 30
+                parameters.checker_width = 15
+                parameters.hex_colors = {'#FFFFFF', '#000000'}
             end
             obj.checker_length = parameters.checker_length;
             obj.checker_width = parameters.checker_width;
@@ -41,7 +41,7 @@ classdef CheckFrame < CFS.Element.SpatialElement
                 UniformOutput=false);
         end
         
-        initiate(obj, left_screen_rect, right_screen_rect)
+        initiate(obj, screen)
 
     end
 

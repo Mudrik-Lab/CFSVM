@@ -1,19 +1,36 @@
-classdef (Abstract) CFS < handle
-    % CFS An abstract superclass for three types of Continuous Flash Suppression
-    % experiments: Breaking, Visual Priming and Visual Adaptation.
-    % These are implemented in subclasses BCFS, VPCFS and VACFS, respectively.
+classdef (Abstract) CFS < dynamicprops
+    % CFS An abstract superclass for two types of Continuous Flash Suppression
+    % experiments: Breaking and Visual Priming.
+    % These are implemented in subclasses BCFS and VPCFS, respectively.
     %
-    % See also CFS.Experiment.BCFS, CFS.Experiment.VPCFS,
-    % CFS.Experiment.VACFS
+    % See also CFS.Experiment.BCFS, CFS.Experiment.VPCFS
 
     
-    properties (Access = protected)
+    properties
 
         vbl % Timestamp for internal use in flashing.
+        vbl_recs
 
     end
+    
+    properties(Access = protected)
+        dynpropnames
+    end
+    
+    methods
+        function addprop(obj,prop_name)
+            % First add the property to the list of dynamic properties
+            obj.dynpropnames{end+1} = prop_name;
+            % Then call the addprop method of dynamicprops, which actually adds the dynamic property 
+            addprop@dynamicprops(obj,prop_name);
+        end
 
-
+        function dynpropnames=get_dynamic_properties(obj)
+            % Return a list of dynamic properties
+            dynpropnames=obj.dynpropnames;
+        end
+    end
+    
     methods (Abstract)
 
         run(obj)
@@ -35,6 +52,7 @@ classdef (Abstract) CFS < handle
         show_preparing_screen(obj)
         show_introduction_screen(obj)
         show_rest_screen(obj)
+        show_farewell_screen(obj)
         flash(obj)
         
     end

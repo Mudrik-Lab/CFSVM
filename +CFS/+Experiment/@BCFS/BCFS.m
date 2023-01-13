@@ -11,10 +11,8 @@ classdef BCFS < CFS.Experiment.CFS
         trials CFS.Element.Data.TrialsData
         fixation CFS.Element.Stimulus.Fixation
         frame CFS.Element.Screen.CheckFrame
-        stimulus CFS.Element.Stimulus.SuppressedStimulus
         masks CFS.Element.Stimulus.Masks
         stimulus_break CFS.Element.Evidence.BreakResponse
-        results CFS.Element.Data.Results
         
     end
 

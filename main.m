@@ -14,7 +14,7 @@ import CFS.Experiment.* ...
 % Initiate an object, for visual priming CFS use experiment = VPCFS(),
 % for breaking CFS use experiment = BCFS().
 
-experiment = BCFS();
+experiment = VPCFS();
 
 experiment.subject_info = SubjectData( ...
     dirpath='./!SubjectInfo');

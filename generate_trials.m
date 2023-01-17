@@ -14,7 +14,7 @@ import CFS.Experiment.* ...
 % for breaking CFS use experiment = BCFS(),
 % for visual adaptation CFS use experiment = VACFS().
 
-experiment = BCFS();
+experiment = VPCFS();
 
 experiment.fixation = Fixation( ...
     duration=1, ...
@@ -129,7 +129,7 @@ for block = 1:n_blocks
         load('.temp\experiment.mat');
         experiment.stimulus_1.index = randi(8);
         experiment.stimulus_2.index = randi(8);
-        %experiment.target.index = randi(2);
+        experiment.target.index = randi(2);
 %         for stim_idx = 1:length(stimuli)
 %             experiment.(stimuli{stim_idx}).position = positions(randi(9));
 %             experiment.(stimuli{stim_idx}).show_duration = randi([1,2]);

@@ -39,6 +39,7 @@ function show(obj, screen, frame)
     
     % Wait for the response.
     obj.record_response()
+    obj.response_choice = obj.response_choice - 1;
 
     
 end

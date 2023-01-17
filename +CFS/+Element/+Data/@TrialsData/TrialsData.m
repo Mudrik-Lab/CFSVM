@@ -1,10 +1,11 @@
-classdef TrialsData < CFS.Element.DataTableElement
+classdef TrialsData < handle
 % TRIALSDATA Class for manipulating trial matrices.
 %
 % Imports, loads, modifies trial matrices
     
     properties
-        
+
+        dirpath
         matrix
         n_blocks
         block_index
@@ -17,9 +18,6 @@ classdef TrialsData < CFS.Element.DataTableElement
     properties (Constant)
 
         RESULTS = {'block_index', 'trial_index', 'start_time', 'end_time'}
-        VARS_MASKS = ["temporal_frequency", "duration"]
-        VARS_STIMULUS = ["appearance_delay", "fade_in_duration", ...
-            "show_duration", "fade_out_duration"]
 
     end
 

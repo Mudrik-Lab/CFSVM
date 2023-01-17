@@ -1,10 +1,14 @@
-classdef SubjectData < CFS.Element.DataTableElement
+classdef SubjectData < handle
 % SUBJECTDATA Class for inquiring about subject info and for recording it.
     
     properties
-
+        
+        dirpath
+        table
+        filename
         code
         is_left_suppression
+        file_extension = '.csv'
 
     end
     
@@ -38,6 +42,8 @@ classdef SubjectData < CFS.Element.DataTableElement
             obj.filename = num2str(obj.code);
 
         end
+
+        write(obj)
 
     end
 

@@ -1,4 +1,4 @@
-classdef ImgMAFC < CFS.Element.Evidence.Evidence & CFS.Element.Stimulus.Stimulus
+classdef ImgMAFC < CFS.Element.Evidence.ScaleEvidence & CFS.Element.Stimulus.Stimulus
 % IMGMAFC Evidence class for initiating and recording image mAFC data.
     
     properties

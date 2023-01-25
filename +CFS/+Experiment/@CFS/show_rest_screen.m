@@ -3,8 +3,7 @@ function show_rest_screen(obj)
     
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
-    KEY = 'return';
-    INSTRUCTION = {'Take a slow deep breath.', sprintf('Press %s to continue.', upper(KEY))};
+    INSTRUCTION = {'Take a slow deep breath.'};
     N_ROWS = length(INSTRUCTION);
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
 
@@ -30,15 +29,6 @@ function show_rest_screen(obj)
     % Checkerboard frame
     Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
     Screen('Flip', obj.screen.window);
-    
-    save(sprintf("!Raw/%s/block%d_trial%d.mat", obj.subject_info.code, obj.trials.block_index, obj.trials.trial_index), 'obj')
 
-    % Wait until the right KEY is pressed, then continue.
-    while 1
-        [~, keyCode, ~] = KbWait;
-        if keyCode(KbName(KEY)) == 1
-            break;
-        end
-    end
     
 end

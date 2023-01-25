@@ -1,11 +1,9 @@
 classdef TrialsData < handle
-% TRIALSDATA Class for manipulating trial matrices.
-%
-% Imports, loads, modifies trial matrices
+% TRIALSDATA Class for storing and manipulating trial parameters.
     
     properties
 
-        dirpath
+        filepath
         matrix
         n_blocks
         block_index
@@ -27,20 +25,15 @@ classdef TrialsData < handle
             % TRIALSDATA Construct an instance of this class
 
             arguments
-                parameters.dirpath
+                parameters.filepath
             end
             
-            obj.dirpath = parameters.dirpath;
+            obj.filepath = parameters.filepath;
+
         end
         
         import(obj)
         load_trial_parameters(obj, experiment)
-
-    end
-    
-    methods (Static)
-
-        x = randomise(number_of_elements, repeats);
 
     end
 

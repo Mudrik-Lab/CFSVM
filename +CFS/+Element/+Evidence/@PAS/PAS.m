@@ -1,4 +1,4 @@
-classdef PAS < CFS.Element.Evidence.Evidence
+classdef PAS < CFS.Element.Evidence.ScaleEvidence
 % PAS Evidence class for initiating and recording PAS data.
     
     properties

@@ -3,7 +3,7 @@ function show_introduction_screen(obj)
     PADDING = 10;
     % Calculate text size based on screen X size, 24 is quite arbitrary.
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
-    KEY = 'space';
+    KEY = 'return';
     INSTRUCTION = sprintf('Introductory screen. Press %s to continue.', upper(KEY));
 
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
@@ -23,12 +23,7 @@ function show_introduction_screen(obj)
     Screen('Flip', obj.screen.window);
     
     % Wait until the right KEY is pressed, then continue.
-    while 1
-        [~, keyCode, ~] = KbWait;
-        if keyCode(KbName(KEY)) == 1
-            break;
-        end
-    end
+    obj.wait_for_keypress(KEY)
     
 end
 

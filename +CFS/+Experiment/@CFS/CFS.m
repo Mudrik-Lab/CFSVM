@@ -53,6 +53,7 @@ classdef (Abstract) CFS < dynamicprops
         show_introduction_screen(obj)
         show_rest_screen(obj)
         show_farewell_screen(obj)
+        wait_for_keypress(obj, key)
         flash(obj)
         
     end

@@ -1,7 +1,7 @@
 function import(obj)
-% IMPORT Imports trial tables from the provided dirpath.
+% IMPORT Imports trials data from the provided filepath.
 
-    obj.matrix = load(fullfile(obj.dirpath, 'experiment.mat')).trial_matrix;
+    obj.matrix = load(obj.filepath).trial_matrix;
     [~, obj.n_blocks] = size(obj.matrix);
     
 end

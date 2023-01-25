@@ -34,10 +34,11 @@ function initiate(obj)
     end
 
     obj.trials.import()
-
+    
     obj.fixation = Fixation();
 
     obj.frame = obj.trials.matrix{1}{1}.frame;
+
     obj.subject_info.write()
     
     % Switch to the PTB's internal keys naming scheme.

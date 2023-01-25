@@ -31,14 +31,17 @@ classdef CheckFrame < CFS.Element.SpatialElement
             arguments
                 parameters.checker_length = 30
                 parameters.checker_width = 15
-                parameters.hex_colors = {'#FFFFFF', '#000000'}
+                parameters.hex_colors = {}
             end
             obj.checker_length = parameters.checker_length;
             obj.checker_width = parameters.checker_width;
-            % Convert hex codes to matlab RGB codes.
-            obj.color_codes = cellfun(@(hex) (sscanf(hex(2:end), '%2x%2x%2x', [1 3])/255)', ...
-                parameters.hex_colors, ...
-                UniformOutput=false);
+            if ~isempty(parameters.hex_colors)
+                % Convert hex codes to matlab RGB codes.
+                obj.color_codes = cellfun(@(hex) (sscanf(hex(2:end), '%2x%2x%2x', [1 3])/255)', ...
+                    parameters.hex_colors, ...
+                    UniformOutput=false);
+            end
+
         end
         
         initiate(obj, screen)

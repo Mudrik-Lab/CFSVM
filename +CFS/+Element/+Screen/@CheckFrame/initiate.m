@@ -4,6 +4,10 @@ function initiate(obj, screen)
     
     % Set screens rects inside the checkframe execute following experiment
     % inside them.
+    if isempty(obj.color_codes)
+        % Convert hex codes to matlab RGB codes.
+        obj.color_codes = {screen.background_color'};
+    end
     left_screen_rect = screen.left.rect;
     right_screen_rect = screen.right.rect;
     left_screen_rect(1:2) = screen.left.rect(1:2) - obj.checker_width;

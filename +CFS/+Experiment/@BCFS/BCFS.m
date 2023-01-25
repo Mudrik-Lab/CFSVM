@@ -20,7 +20,10 @@ classdef BCFS < CFS.Experiment.CFS
     methods
 
         run(obj)
-
+        function show_grey_background(obj)
+            Screen('Flip', obj.screen.window);
+            obj.wait_for_keypress('space')
+        end
     end
     
 

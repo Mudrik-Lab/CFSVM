@@ -1,9 +1,9 @@
 function load_trial_parameters(obj, experiment)
-% LOAD_TRIAL_PARAMETERS Loads row from the current trial matrix.
+% LOAD_TRIAL_PARAMETERS For the current trial update its parameters.
     
-    STATICS = {'screen', 'subject_info', 'trials'};
+    dont_load = {'screen', 'subject_info', 'trials'};
     
-    for property = setdiff(properties(experiment)', STATICS)
+    for property = setdiff(properties(experiment)', dont_load)
         experiment.(property{:}) = obj.matrix{obj.block_index}{obj.trial_index}.(property{:});
     end
 

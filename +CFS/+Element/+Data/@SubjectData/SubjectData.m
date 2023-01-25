@@ -1,5 +1,5 @@
 classdef SubjectData < handle
-% SUBJECTDATA Class for inquiring about subject info and for recording it.
+% SUBJECTDATA Class for inquiring about subject info and recording it.
     
     properties
         
@@ -8,7 +8,7 @@ classdef SubjectData < handle
         filename
         code
         is_left_suppression
-        file_extension = '.csv'
+        file_extension
 
     end
     
@@ -20,14 +20,24 @@ classdef SubjectData < handle
 
             arguments
                 parameters.dirpath = './!SubjectInfo'
+                parameters.file_extension = '.csv'
             end
             
             obj.dirpath = parameters.dirpath;
+            
+            % If the provided folder doesn't exist - create.
+            if ~exist(obj.dirpath, 'dir')
+                mkdir(obj.dirpath)
+            end
+
+            obj.file_extension = parameters.file_extension;
+
             data.code = input('Subject code\n> ', 's');
             data.birthdate = input('Date of birth\n> ', 's');
             data.dominant_eye = input('Dominant eye\n> ', 's');
             data.dominant_hand = input('Dominant hand\n> ', 's');
             random_struct = rng('shuffle', 'twister');
+
             data.random_seed = random_struct.Seed;
             obj.code = data.code;  
 

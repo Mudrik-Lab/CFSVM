@@ -23,7 +23,8 @@ function run(obj)
             obj.mafc.show(obj.screen, obj.frame)
             obj.trials.end_time = GetSecs();
             obj.show_rest_screen()
-
+            save(sprintf("!Raw/%s/block%d_trial%d.mat", obj.subject_info.code, obj.trials.block_index, obj.trials.trial_index), 'obj')
+            obj.wait_for_keypress('return')
         end
 
     end 

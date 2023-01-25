@@ -8,7 +8,11 @@ function adjust(obj, frame)
     SHIFT = obj.shift;
     % Color to use when adjusting the frames.
     FRAME_COLOR = {'#4A4A4A'};
-
+    TEXT = ['Arrows for changing position of both screens,\n', ...
+        'w,a,s,d for adjusting height and width,\n', ...
+        '=,- for adjusting space between the screens,\n', ...
+        'enter to proceed, escape to exit.'];
+    
     % Array of used keyboard keys
     k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w', '=+', '-_' 'Return', 'ESCAPE'};
 
@@ -33,8 +37,12 @@ function adjust(obj, frame)
 
     % Draw frames and flip the screen.
     Screen('FillRect', obj.window, frame.color, frame.rect);
+
+    DrawFormattedText(obj.window, TEXT, obj.left.rect(1)+frame.checker_width, obj.left.rect(2)+frame.checker_width*2);
+    DrawFormattedText(obj.window, TEXT, obj.right.rect(1)+frame.checker_width, obj.right.rect(2)+frame.checker_width*2);
+
     Screen('Flip', obj.window);
-    
+
     % Start queuing keys.
     KbQueueStart;
 
@@ -100,6 +108,8 @@ function adjust(obj, frame)
             % Reinitiate the frames with adjusted screen rectangles.
             frame.initiate(obj);
             Screen('FillRect', obj.window, frame.color, frame.rect);
+            DrawFormattedText(obj.window, TEXT, obj.left.rect(1)+frame.checker_width, obj.left.rect(2)+frame.checker_width*2);
+            DrawFormattedText(obj.window, TEXT, obj.right.rect(1)+frame.checker_width, obj.right.rect(2)+frame.checker_width*2);
             Screen('Flip', obj.window);
         
         catch ME

@@ -1,6 +1,6 @@
-classdef BreakResponse < CFS.Element.Evidence.Evidence
+classdef BreakResponse < CFS.Element.Evidence.Response
 % BREAKRESPONSE Evidence class for initiating and recording break data.
-
+    
     
     properties (Constant)
 

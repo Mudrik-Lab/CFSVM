@@ -16,11 +16,11 @@ function initiate_window(obj)
     screen_number = max(screens);
 
     %Screen('Preference','SkipSyncTests', 2);
-    %Screen('Preference', 'VisualDebugLevel', 4);
-    
+    %Screen('Preference', 'VisualDebugLevel', 6);
+
     % Open an on-screen window using PsychImaging.
     obj.screen.window = PsychImaging('OpenWindow', screen_number, obj.screen.background_color);
-
+    
     % Just hide the freaking cursor
     HideCursor(obj.screen.window);
     

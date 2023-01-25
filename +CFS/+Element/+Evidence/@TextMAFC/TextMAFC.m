@@ -1,4 +1,4 @@
-classdef TextMAFC < CFS.Element.Evidence.Evidence
+classdef TextMAFC < CFS.Element.Evidence.ScaleEvidence
 % TEXTMAFC Evidence class for initiating and recording text mAFC data.
     
     properties

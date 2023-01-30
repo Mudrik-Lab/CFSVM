@@ -4,7 +4,7 @@ function show_introduction_screen(obj)
     % Calculate text size based on screen X size, 24 is quite arbitrary.
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     KEY = 'return';
-    INSTRUCTION = sprintf('Introductory screen. Press %s to continue.', upper(KEY));
+    INSTRUCTION = sprintf('Hello. Press enter to continue.');
 
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
     Screen('DrawText', ...

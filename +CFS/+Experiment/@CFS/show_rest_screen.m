@@ -3,7 +3,7 @@ function show_rest_screen(obj)
     
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
-    INSTRUCTION = {'Take a slow deep breath.'};
+    INSTRUCTION = {'Press enter to continue.'};
     N_ROWS = length(INSTRUCTION);
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
 

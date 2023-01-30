@@ -82,7 +82,7 @@ function initiate(obj)
         obj.stimulus_break.create_kbqueue()
     end
     
-    obj.masks = Masks(obj.trials.matrix{1}{1}.masks.dirpath);
+    obj.masks = obj.trials.matrix{1}{1}.masks;
     obj.masks.initiate(obj.trials.matrix)
     
     % If the folder provided for masks doesn't exist - generate images to the folder.

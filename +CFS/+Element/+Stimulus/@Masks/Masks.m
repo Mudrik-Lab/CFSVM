@@ -33,15 +33,15 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
 
     methods
 
-        function obj = Masks(dirpath, parameters)
+        function obj = Masks(parameters)
             % MASKS Construct an instance of this class
 
             arguments
-                dirpath {mustBeFolder}
+                parameters.dirpath = './Masks/'
                 parameters.temporal_frequency = 10
                 parameters.duration = 5
                 parameters.mondrians_shape = 1
-                parameters.mondrians_color = 15
+                parameters.mondrians_color = 1
                 parameters.position = "Center"
                 parameters.xy_ratio = 1
                 parameters.size = 1
@@ -50,7 +50,6 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
                 parameters.contrast = 1
             end
 
-            obj.dirpath = dirpath;
             parameters_names = fieldnames(parameters);
             
             for name = 1:length(parameters_names)

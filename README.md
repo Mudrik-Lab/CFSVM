@@ -6,4 +6,4 @@
 2. Double-click to install it as a MATLAB add-on.
 
 ## Documentation
-Tutorial and API documentation is available [here](https://www.notion.so/genuster/CFS-b411d6868230472791e59083a5fd1390).
+Tutorial and API reference are available [here](https://www.notion.so/genuster/CFS-b411d6868230472791e59083a5fd1390).

@@ -1,0 +1,488 @@
+<deployment-project plugin="plugin.toolbox" plugin-version="1.0">
+  <configuration build-checksum="4095460075" file="C:\Users\Gennadiy\Documents\Gennadiy\Masking-CFS\CFS\ToolboxPackagingConfiguration.prj" location="C:\Users\Gennadiy\Documents\Gennadiy\Masking-CFS\CFS" name="ToolboxPackagingConfiguration" target="target.toolbox" target-name="Package Toolbox">
+    <param.appname>CFS</param.appname>
+    <param.authnamewatermark>Gennadiy Belonosov</param.authnamewatermark>
+    <param.email>gennadiyb@mail.tau.ac.il</param.email>
+    <param.company>MudrikLab</param.company>
+    <param.summary>Continuous Flash Suppression experiments for MATLAB</param.summary>
+    <param.description>CFS is an object-oriented high-level MATLAB (2021b+) package based on Psychtoolbox-3 intended as a well-developed and up-to-date framework for building and running Continuous Flash Suppression experiments.</param.description>
+    <param.screenshot>C:\Users\Gennadiy\Documents\Gennadiy\Masking-CFS\Docs\mondrian_1.png</param.screenshot>
+    <param.version>0.1</param.version>
+    <param.output>${PROJECT_ROOT}\CFS.mltbx</param.output>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.guid>b5064d63-87de-41f2-9c38-b6e5fc4e6e71</param.guid>
+    <param.exclude.filters>% List files contained in your toolbox folder that you would like to exclude
+% from packaging.  Excludes should be listed relative to the toolbox folder.
+% Some examples of how to specify excludes are provided below:
+%
+% A single file in the toolbox folder:
+% .svn
+%
+% A single file in a subfolder of the toolbox folder:
+% example/.svn
+%
+% All files in a subfolder of the toolbox folder:
+% example/*
+%
+% All files of a certain name in all subfolders of the toolbox folder:
+% **/.svn
+%
+% All files matching a pattern in all subfolders of the toolbox folder:
+% **/*.bak
+%
+resources/project/*
+.SimulinkProject/*
+_SimulinkProject/*
+resources/.Project/*
+resources/_Project/*
+**/*.prj
+**/.git
+!Processed
+!Processed/1.csv
+!Processed/HZ4.csv
+!Processed/test.csv
+!Raw
+!Raw/ 1
+!Raw/1
+!Raw/1/block1_trial1.mat
+!Raw/1/block1_trial10.mat
+!Raw/1/block1_trial2.mat
+!Raw/1/block1_trial3.mat
+!Raw/1/block1_trial4.mat
+!Raw/1/block1_trial5.mat
+!Raw/1/block1_trial6.mat
+!Raw/1/block1_trial7.mat
+!Raw/1/block1_trial8.mat
+!Raw/1/block1_trial9.mat
+!Raw/HZ4
+!Raw/HZ4/block1_trial1.mat
+!Raw/HZ4/block1_trial10.mat
+!Raw/HZ4/block1_trial11.mat
+!Raw/HZ4/block1_trial12.mat
+!Raw/HZ4/block1_trial13.mat
+!Raw/HZ4/block1_trial14.mat
+!Raw/HZ4/block1_trial15.mat
+!Raw/HZ4/block1_trial16.mat
+!Raw/HZ4/block1_trial17.mat
+!Raw/HZ4/block1_trial18.mat
+!Raw/HZ4/block1_trial19.mat
+!Raw/HZ4/block1_trial2.mat
+!Raw/HZ4/block1_trial20.mat
+!Raw/HZ4/block1_trial21.mat
+!Raw/HZ4/block1_trial22.mat
+!Raw/HZ4/block1_trial23.mat
+!Raw/HZ4/block1_trial24.mat
+!Raw/HZ4/block1_trial25.mat
+!Raw/HZ4/block1_trial26.mat
+!Raw/HZ4/block1_trial27.mat
+!Raw/HZ4/block1_trial28.mat
+!Raw/HZ4/block1_trial29.mat
+!Raw/HZ4/block1_trial3.mat
+!Raw/HZ4/block1_trial30.mat
+!Raw/HZ4/block1_trial4.mat
+!Raw/HZ4/block1_trial5.mat
+!Raw/HZ4/block1_trial6.mat
+!Raw/HZ4/block1_trial7.mat
+!Raw/HZ4/block1_trial8.mat
+!Raw/HZ4/block1_trial9.mat
+!Results
+!Results/1.csv
+!Results/100500.csv
+!Results/12345.csv
+!Results/abc.csv
+!Results/bcfs_raw.csv
+!Results/HZ4.csv
+!Results/test.csv
+!Results/vpcfs_raw.csv
+!SubjectInfo
+!SubjectInfo/ 1.csv
+!SubjectInfo/0.csv
+!SubjectInfo/1.csv
+!SubjectInfo/100500.csv
+!SubjectInfo/11.csv
+!SubjectInfo/12123.csv
+!SubjectInfo/12345.csv
+!SubjectInfo/4.csv
+!SubjectInfo/abc.csv
+!SubjectInfo/bcfs.csv
+!SubjectInfo/for stim = stimuli1.csv
+!SubjectInfo/HZ4.csv
+!SubjectInfo/test.csv
+!SubjectInfo/vpcfs.csv
++CFS/+Element/+Evidence/@ScaleEvidence/ScaleEvidence.m
+CFS.mltbx
+Images
+Images/Adapter_images
+Images/Adapter_images/prime_left.png
+Images/Adapter_images/prime_right.png
+Images/Adapter_images/target_Left.png
+Images/Adapter_images/target_Right.png
+Images/Gabors
+Images/Gabors/0.png
+Images/Gabors/0_g.png
+Images/suppressed_images
+Images/suppressed_images/1.png
+Images/suppressed_images/2.png
+Images/suppressed_images/3.png
+Images/suppressed_images/4.png
+Images/suppressed_images/5.png
+Images/suppressed_images/6.png
+Images/suppressed_images/7.png
+Images/suppressed_images/8.png
+Images/suppressed_images/9.png
+Images/Target_images
+Images/Target_images/Conf_Certain.png
+Images/Target_images/Conf_Uncertain.png
+Masks
+Masks/mondrian_1.png
+Masks/mondrian_10.png
+Masks/mondrian_11.png
+Masks/mondrian_12.png
+Masks/mondrian_13.png
+Masks/mondrian_14.png
+Masks/mondrian_15.png
+Masks/mondrian_16.png
+Masks/mondrian_17.png
+Masks/mondrian_18.png
+Masks/mondrian_19.png
+Masks/mondrian_2.png
+Masks/mondrian_20.png
+Masks/mondrian_21.png
+Masks/mondrian_22.png
+Masks/mondrian_23.png
+Masks/mondrian_24.png
+Masks/mondrian_25.png
+Masks/mondrian_26.png
+Masks/mondrian_27.png
+Masks/mondrian_28.png
+Masks/mondrian_29.png
+Masks/mondrian_3.png
+Masks/mondrian_30.png
+Masks/mondrian_31.png
+Masks/mondrian_32.png
+Masks/mondrian_33.png
+Masks/mondrian_34.png
+Masks/mondrian_35.png
+Masks/mondrian_36.png
+Masks/mondrian_37.png
+Masks/mondrian_38.png
+Masks/mondrian_39.png
+Masks/mondrian_4.png
+Masks/mondrian_40.png
+Masks/mondrian_41.png
+Masks/mondrian_42.png
+Masks/mondrian_43.png
+Masks/mondrian_44.png
+Masks/mondrian_45.png
+Masks/mondrian_46.png
+Masks/mondrian_47.png
+Masks/mondrian_48.png
+Masks/mondrian_49.png
+Masks/mondrian_5.png
+Masks/mondrian_50.png
+Masks/mondrian_51.png
+Masks/mondrian_6.png
+Masks/mondrian_7.png
+Masks/mondrian_8.png
+Masks/mondrian_9.png
+TrialMatrix
+TrialMatrix/experiment.mat
+TrialMatrix/test.mat
+resources
+.git*
+LICENSE
+README.md</param.exclude.filters>
+    <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
+    <param.examples />
+    <param.demosxml />
+    <param.apps />
+    <param.registered.apps />
+    <param.docs />
+    <param.getting.started.guide>${PROJECT_ROOT}\doc\GettingStarted.mlx</param.getting.started.guide>
+    <param.matlabpath.excludes />
+    <param.javaclasspath.excludes />
+    <param.exported.on.package>false</param.exported.on.package>
+    <param.required.addons />
+    <param.matlab.project.id>6aa7a588-7b85-49b5-9a52-f902ca50d29c</param.matlab.project.id>
+    <param.matlab.project.name>CFS</param.matlab.project.name>
+    <param.release.start>R2022b</param.release.start>
+    <param.release.end>latest</param.release.end>
+    <param.release.current.only>false</param.release.current.only>
+    <param.compatiblity.windows>true</param.compatiblity.windows>
+    <param.compatiblity.macos>false</param.compatiblity.macos>
+    <param.compatiblity.linux>false</param.compatiblity.linux>
+    <param.compatiblity.matlabonline>false</param.compatiblity.matlabonline>
+    <param.installation.map />
+    <param.additional.sw.names />
+    <param.additional.sw.licenses />
+    <param.additional.sw.win.url />
+    <param.additional.sw.mac.url />
+    <param.additional.sw.linux.url />
+    <unset>
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.output />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.exclude.pcodedmfiles />
+      <param.examples />
+      <param.demosxml />
+      <param.apps />
+      <param.registered.apps />
+      <param.docs />
+      <param.matlabpath.excludes />
+      <param.javaclasspath.excludes />
+      <param.exported.on.package />
+      <param.required.addons />
+      <param.release.current.only />
+      <param.compatiblity.windows />
+      <param.additional.sw.names />
+      <param.additional.sw.licenses />
+      <param.additional.sw.win.url />
+      <param.additional.sw.mac.url />
+      <param.additional.sw.linux.url />
+    </unset>
+    <fileset.rootdir>
+      <file>${PROJECT_ROOT}</file>
+    </fileset.rootdir>
+    <fileset.rootfiles>
+      <file>${PROJECT_ROOT}\+CFS</file>
+      <file>${PROJECT_ROOT}\Examples</file>
+    </fileset.rootfiles>
+    <fileset.depfun.included />
+    <fileset.depfun.excluded>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\DrawFormattedText.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\GetMouse.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\HideCursor.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbCheck.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbName.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbQueueCheck.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbQueueCreate.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbQueueReserve.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbQueueStart.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbQueueStop.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbReleaseWait.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbStrokeWait.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\KbWait.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\LoadPsychHID.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MachAbsoluteTimeClockFrequency.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\Datapixx.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\GetSecs.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\IOPort.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\moglcore.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\PsychHID.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\PsychVulkanCore.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\Screen.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\MatlabWindowsFilesR2007a\WaitSecs.mexw64</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\psychlasterror.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\psychrethrow.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\SetMouse.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychBasic\ShowCursor.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychColorimetric\ConvertRGBSourceToRGBTargetColorSpace.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychColorimetric\RGBToXYZMatrix.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychColorimetric\XYZToRGBMatrix.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychContributed\ple.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychDocumentation\PsychPaidSupportAndServices.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychFiles\PsychtoolboxConfigDir.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\AddImageUndistortionToGLOperator.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\AddToGLOperator.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\BitsPlusPlus.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\CountSlotsInGLOperator.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\CreateDisplayWarp.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\CreateGLOperator.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\CreatePseudoGrayLUT.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychDontAutoResetOneshotFlags.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeed16BPCFixed.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeed16BPCFloat.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeed32BPCFloat.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedDualPass.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedDualWindowOutput.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedFastBackingStore.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedFastOffscreenWindows.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedFinalizedFBOSinks.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedHalfHeightWindow.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedHalfWidthWindow.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedImageProcessing.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedMultiPass.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedOtherStreamInput.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedOutputConversion.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedRetinaResolution.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedTripleWidthWindow.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychNeedTwiceWidthWindow.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychSkipSwapForFlipOnce.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychSkipTimestampingForFlipOnce.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychSkipWaitForFlipOnce.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychUse32BPCFloatAsap.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\kPsychUseExternalSinkTextures.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychColorCorrection.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychHDR.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychHelperCreateARGB2101010RemapCLUT.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychHelperCreateGenericLuminanceToRGBA16MaxLUT.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychHelperCreateGenericLuminanceToRGBA8LUT.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychHelperCreateRemapCLUT.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychHelperCreateRGB111110RemapCLUTAMDDCE8.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychImaging.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychVideoSwitcher.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\PsychVulkan.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychGLImageProcessing\SetCompressedStereoSideBySideParameters.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\BitsPlusToolbox\bitsEncodeDIO.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\BitsPlusToolbox\bitsGoggles.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\BitsPlusToolbox\BitsPlusDIO2Matrix.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\DatapixxToolbox\DatapixxBasic\PsychDataPixx.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\FindSerialPort.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\GetKeyboardIndices.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\GetKeypadIndices.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\GetMouseIndices.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\PsychGPURasterizerOffsets.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychHardware\PsychGPUTestAndTweakGammaTables.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychJava\PsychJavaSwingCleanup.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychJava\psychusejava.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychObsolete\IsOS9.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychObsolete\IsWindows.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\AssertGLSL.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\AssertMex.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\AssertOpenGL.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\AssertOSX.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\BackupCluts.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\Is64Bit.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsARM.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsGLES.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsLinux.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsMinimumOSXVersion.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsOctave.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsOSX.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsWayland.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\IsWin.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\kPsychExternalDisplayMethod.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\kPsychNeedHDRWindow.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\LoadIdentityClut.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\OSName.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\PsychDefaultSetup.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\PsychGPUControl.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\PsychNumel.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\psychrange.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\PsychtoolboxRoot.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\RestoreCluts.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\SaveIdentityClut.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\sca.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\streq.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\WhiteIndex.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOneliners\WrapString.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\LoadGLSLProgramFromFiles.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\LoadShaderFromFile.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\core\InitializeMatlabOpenGL.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\core\mor.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glActiveTexture.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glAttachShader.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glBegin.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glBindTexture.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glCallList.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glColor3ub.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glColor4f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glColorMask.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glCompileShader.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glCreateProgram.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glCreateShader.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glDeleteTextures.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glDisable.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glDisableClientState.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glDrawArrays.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glDrawPixels.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glEnable.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glEnableClientState.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glEnd.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glEndList.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glEvalMesh2.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGenLists.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGenTextures.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGetError.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGetIntegerv.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGetString.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGetTexLevelParameteriv.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glGetUniformLocation.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glIsList.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glLinkProgram.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glMap2d.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glMapGrid2d.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glNewList.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glPointSize.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glPopAttrib.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glPushAttrib.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glRasterPos2f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glRasterPos2i.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glRotatef.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glShaderSource.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTexCoord2f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTexCoordPointer.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTexImage2D.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTexImage3D.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTexParameteri.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTexSubImage2D.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glTranslatef.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\gluErrorString.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniform1f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniform1i.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniform2f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniform3f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniform3fv.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniformMatrix3fv.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUniformMatrix4fv.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glUseProgram.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glVertex2f.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glVertex2i.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\glVertexPointer.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychOpenGL\MOGL\wrap\moglsingle.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\MachGetPriorityFlavor.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\MachGetPriorityMex.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\MachSetPriorityMex.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\MachSetStandardPriority.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\MachSetTimeConstraintPriority.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\MaxPriority.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychPriority\Priority.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\CenterRect.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\CenterRectOnPointd.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\ClipRect.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\OffsetRect.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectBottom.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectCenter.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectCenterd.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectHeight.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectLeft.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectRight.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectTop.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\RectWidth.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\ScaleRect.m</file>
+      <file>C:\Users\Gennadiy\Documents\MATLAB\Psychtoolbox\PsychRects\SetRect.m</file>
+    </fileset.depfun.excluded>
+    <fileset.package />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}" name="CFS.mltbx" optional="false">C:\Users\Gennadiy\Documents\Gennadiy\Masking-CFS\CFS\CFS.mltbx</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2022b</root>
+      <toolboxes />
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

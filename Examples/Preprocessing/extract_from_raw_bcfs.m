@@ -1,5 +1,5 @@
 
-code = '1';
+code = 'HZ4';
 run(code)
 
 

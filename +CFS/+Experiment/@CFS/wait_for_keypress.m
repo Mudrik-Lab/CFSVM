@@ -1,7 +1,7 @@
 function wait_for_keypress(obj, key)
     %WAIT_FOR_KEYPRESS
     % Wait until the right KEY is pressed, then continue.
-    % If control-esc was pressed - end the experiment.
+    % If shift-esc was pressed - end the experiment.
 
     while 1
 

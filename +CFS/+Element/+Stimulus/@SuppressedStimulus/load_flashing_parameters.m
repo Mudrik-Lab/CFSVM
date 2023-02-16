@@ -1,33 +1,9 @@
 function load_flashing_parameters(obj, screen, masks)
 % LOAD_FLASHING_PARAMETERS Calculates contrasts arrays for flashing.
-
-    %obj.textures.index = obj.textures.PTB_indices{obj.index};
     
-%     obj.contrasts_in = obj.contrast/ ...
-%         (obj.fade_in_duration*screen.frame_rate+1): ...
-%         obj.contrast/(obj.fade_in_duration*screen.frame_rate+1): ...
-%         obj.contrast;
-%     obj.contrasts_out = obj.contrast/ ...
-%         (obj.fade_out_duration*screen.frame_rate+1): ...
-%         obj.contrast/(obj.fade_out_duration*screen.frame_rate+1): ...
-%         obj.contrast;
-    
-    %% Intratrial changes
-    total_stimulus_duration = obj.fade_in_duration+obj.show_duration+obj.fade_out_duration;
-    total_frames = total_stimulus_duration*screen.frame_rate;
     obj.image_name = obj.textures.images_names(obj.index);
-
-    % Rotations
-%     time_per_rotation = total_stimulus_duration/obj.n_rotations_per_trial;
-%     frames_per_rotation = time_per_rotation*screen.frame_rate;
-%     obj.rotations_array = arrayfun(@(n) (obj.rotation+randi([-obj.rotations_variance, obj.rotations_variance])), ...
-%         1:obj.n_rotations_per_trial);
-%     obj.rotations_indices = arrayfun(@(n) (ceil(n/frames_per_rotation)), ...
-%         1:(total_frames));
-%     obj.rotations_indices = [obj.rotations_indices, obj.rotations_indices(end)];
     
-    
-    %obj.indices = false(1, masks.duration*screen.frame_rate);
+    % Calculate indiced for appearance
     cumul = [ ...
         false(1, obj.appearance_delay*screen.frame_rate), ...
         true(1, obj.fade_in_duration*screen.frame_rate), ...
@@ -35,7 +11,7 @@ function load_flashing_parameters(obj, screen, masks)
         true(1, obj.fade_out_duration*screen.frame_rate)];
     obj.indices = [cumul, false(1, masks.duration*screen.frame_rate-length(cumul))];
     
-    %obj.contrasts = zeros(1, masks.duration*screen.frame_rate);
+    % Calculate indices for contrasts
     cumul = [ ...
         zeros(1, obj.appearance_delay*screen.frame_rate), ...
         obj.contrast/(obj.fade_in_duration*screen.frame_rate): ...
@@ -46,6 +22,5 @@ function load_flashing_parameters(obj, screen, masks)
         -obj.contrast/(obj.fade_out_duration*screen.frame_rate+1): ...
         obj.contrast/(obj.fade_out_duration*screen.frame_rate+1)];
     obj.contrasts = [cumul, zeros(1, masks.duration*screen.frame_rate-length(cumul))];
-
 
 end

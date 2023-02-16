@@ -15,11 +15,9 @@ function initiate_window(obj)
     % screen.
     screen_number = max(screens);
 
-    %Screen('Preference','SkipSyncTests', 2);
-    %Screen('Preference', 'VisualDebugLevel', 6);
-
     % Open an on-screen window using PsychImaging.
-    obj.screen.window = PsychImaging('OpenWindow', screen_number, obj.screen.background_color); %[0,0,1960,1080]
+    % For video recording using OBS studio add the screen size argument [0,0,1960,1080]
+    obj.screen.window = PsychImaging('OpenWindow', screen_number, obj.screen.background_color); 
     
     % Just hide the freaking cursor
     HideCursor(obj.screen.window);

@@ -58,7 +58,7 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
 
         end
         
-        initiate(obj, trial_matrices)
+        get_max(obj, trial_matrices)
         shuffle(obj)
         make_mondrian_masks(obj, x_pixels, y_pixels)
         load_rect_parameters(obj, screen, is_left_suppression)

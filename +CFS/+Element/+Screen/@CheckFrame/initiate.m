@@ -10,6 +10,8 @@ function initiate(obj, screen)
     end
     left_screen_rect = screen.left.rect;
     right_screen_rect = screen.right.rect;
+
+    % Correct screen rect for the checker width before calculating rects and colors
     left_screen_rect(1:2) = screen.left.rect(1:2) - obj.checker_width;
     left_screen_rect(3:4) = screen.left.rect(3:4) + obj.checker_width;
     right_screen_rect(1:2) = screen.right.rect(1:2) - obj.checker_width;

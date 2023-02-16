@@ -1,9 +1,9 @@
 function show_farewell_screen(obj)
-% SHOW_INTRODUCTION_SCREEN Shows introductory screen.
+% SHOW_INTRODUCTION_SCREEN Shows farewell screen.
 
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
-    INSTRUCTION = {'Thank you!', 'The experiment is finished'};
+    INSTRUCTION = {'Thank you!', 'The experiment has finished'};
     N_ROWS = length(INSTRUCTION);
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
 
@@ -16,13 +16,13 @@ function show_farewell_screen(obj)
             obj.screen.window, ...
             INSTRUCTION{row}, ...
             round(obj.screen.left.x_center-text_length/2), ...
-            obj.screen.left.y_center-(TEXT_SIZE+SPACING)*N_ROWS/2+(TEXT_SIZE+SPACING)*(row-1));
+            round(obj.screen.left.y_center-(TEXT_SIZE+SPACING)*N_ROWS/2+(TEXT_SIZE+SPACING)*(row-1)));
 
         Screen('DrawText', ...
             obj.screen.window, ...
             INSTRUCTION{row}, ...
             round(obj.screen.right.x_center-text_length/2), ...
-            obj.screen.right.y_center-(TEXT_SIZE+SPACING)*(N_ROWS/2-row+1));
+            round(obj.screen.right.y_center-(TEXT_SIZE+SPACING)*(N_ROWS/2-row+1)));
 
     end
 

@@ -8,13 +8,12 @@ classdef (Abstract) CFS < dynamicprops
     
     properties
 
-        vbl % Timestamp for internal use in flashing.
-        vbl_recs
+        vbl_recs % Variable for recording flip timestamps.
 
     end
     
     properties(Access = protected)
-        dynpropnames
+        dynpropnames % Variable for saving names of dynamic properties.
     end
     
     methods
@@ -49,12 +48,13 @@ classdef (Abstract) CFS < dynamicprops
         
         initiate(obj)
         initiate_window(obj)
+        preload_stim_and_masks_args(obj, stim_props)
         show_preparing_screen(obj)
         show_introduction_screen(obj)
         show_rest_screen(obj)
         show_farewell_screen(obj)
         wait_for_keypress(obj, key)
-        flash(obj)
+        flash(obj, vbl)
         
     end
 

@@ -1,48 +1,34 @@
 function initiate(obj)
-% INITIATE Prepares the experiment for execution.
-%
-% Writes subject_info to file, initiates PTB window, 
-% runs screen adjustment for stereoscope, imports stimuli images, 
-% trial matrices, masks (generates them if need) and shows the
-% introductory screen and more.
-% 
-% See also 
-% <p> 
-% initiate_window <br>
-% show_preparing_screen <br> 
-% show_introduction_screen <br>
-% CFS.Element.Data.SubjectData.write <br>
-% CFS.Element.Screen.CustomScreen.adjust <br> 
-% CFS.Element.Stimulus.Stimulus.import_images <br> 
-% CFS.Element.Evidence.BreakResponse.create_kbqueue <br> 
-% CFS.Element.Data.TrialsData.import <br>
-% CFS.Element.Stimulus.Masks.initiate <br>
-% CFS.Element.Stimulus.Masks.make_mondrian_masks <br> 
-% </p>
+% INITIATE Makes all the preparations for the CFS experiment to run.
+
     import CFS.Element.Screen.* ...
         CFS.Element.Data.* ...
         CFS.Element.Evidence.* ...
         CFS.Element.Stimulus.*
 
-        % Create folder for the raw trial results
+    % Create folder for the raw trial results
     if ~exist("!Raw", 'dir')
         mkdir("!Raw")
     end
     
+    % Create folder for the current subject's raw trial results
     if ~exist("!Raw/"+obj.subject_info.code, 'dir')
         mkdir("!Raw/"+obj.subject_info.code)
     end
 
     obj.trials.import()
     
+    % Initialize fixation property
     obj.fixation = Fixation();
 
+    % Initialize frame property with parameters from the first trial.
     obj.frame = obj.trials.matrix{1}{1}.frame;
 
+    % Write to disk provided subject data.
     obj.subject_info.write()
     
     % Switch to the PTB's internal keys naming scheme.
-    KbName('UnifyKeyNames')
+    KbName('UnifyKeyNames');
     
     % Convert hex to MATLAB rgb color code.
     obj.screen.background_color = hex2rgb(obj.screen.background_color);
@@ -56,6 +42,7 @@ function initiate(obj)
     % Warm WaitSecs() function.
     WaitSecs(0.00001);
     
+    % Import images for every SuppressedStimulus property.
     prop_list = obj.trials.matrix{1}{1}.get_dynamic_properties;
     for prop_idx = 1:length(prop_list)
         c = class(obj.trials.matrix{1}{1}.(prop_list{prop_idx}));
@@ -67,27 +54,30 @@ function initiate(obj)
         end
     end
 
-    % Imports target images, relevant only for VPCFS and VACFS experiments.
+    % Relevant only for VPCFS.
+    % Initialize and import target property, Initialize mafc and pas.
     if class(obj) == "CFS.Experiment.VPCFS"
         obj.target = TargetStimulus(obj.trials.matrix{1}{1}.target.dirpath);
         obj.target.import_images(obj.screen.window)
 
-        obj.mafc = ImgMAFC();
+        obj.mafc = obj.trials.matrix{1}{1}.mafc;
         obj.pas = PAS();
     end
     
-    % Creates PTB KbQueue, relevant only for BCFS and VACFS experiments.
+    % Relevant only for BCFS.
+    % Initialize breaking response property and create PTB KbQueue.
     if class(obj) == "CFS.Experiment.BCFS"
         obj.stimulus_break = BreakResponse(keys=obj.trials.matrix{1}{1}.stimulus_break.keys);
         obj.stimulus_break.create_kbqueue()
     end
     
+    % Initialize masks property with parameters from the first trial.
     obj.masks = obj.trials.matrix{1}{1}.masks;
-    obj.masks.initiate(obj.trials.matrix)
+    obj.masks.get_max(obj.trials.matrix)
     
-    % If the folder provided for masks doesn't exist - generate images to the folder.
+    % If the folder provided for masks doesn't exist - generate masks into the folder.
     if ~isfolder(obj.masks.dirpath)
-        % Use masks size according to the corresponding screen size.
+        % Get masks size according to the corresponding screen size.
         if obj.subject_info.is_left_suppression == true
             x = obj.screen.left.x_pixels;
             y = obj.screen.left.y_pixels;
@@ -101,24 +91,11 @@ function initiate(obj)
     % Import images and create PTB textures of the masks.
     obj.masks.import_images(obj.screen.window, images_number=obj.masks.n_max)
 
-    for block = 1:obj.trials.n_blocks
-        for trial = 1:size(obj.trials.matrix{block}, 2)
-            exp = obj.trials.matrix{block}{trial};
-            for prop = properties(exp)'
-                if isempty(exp.(prop{:}))
-                    exp.(prop{:}) = obj.(prop{:});
-                else
-                    prop_list = metaclass(exp.(prop{:})).PropertyList;
-                    for idx = 1:length(prop_list)
-                        if isempty(exp.(prop{:}).(prop_list(idx).Name)) && ~prop_list(idx).Dependent
-                            exp.(prop{:}).(prop_list(idx).Name) = obj.(prop{:}).(prop_list(idx).Name);
-                        end
-                    end
-                end
-            end
-        end
-    end
+    % Update every trial with initialized parameters.
+    obj.trials.update(obj)
 
+    obj.load_parameters();
+    
     obj.show_introduction_screen()
 
 end

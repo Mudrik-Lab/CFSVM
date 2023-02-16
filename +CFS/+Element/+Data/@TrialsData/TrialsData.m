@@ -34,6 +34,7 @@ classdef TrialsData < handle
         
         import(obj)
         load_trial_parameters(obj, experiment)
+        update(obj, cur_exp)
 
     end
 

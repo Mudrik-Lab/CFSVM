@@ -36,9 +36,7 @@ classdef SubjectData < handle
             data.birthdate = input('Date of birth\n> ', 's');
             data.dominant_eye = input('Dominant eye\n> ', 's');
             data.dominant_hand = input('Dominant hand\n> ', 's');
-            random_struct = rng('shuffle', 'twister');
-
-            data.random_seed = random_struct.Seed;
+            
             obj.code = data.code;  
 
             if strcmpi(data.dominant_eye, "Left")

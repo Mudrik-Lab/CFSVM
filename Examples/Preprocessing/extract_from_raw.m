@@ -1,16 +1,14 @@
+function extract_from_raw(subject_code)
+%EXTRACT_FROM_RAW
 
-code = '1';
-run(code)
-
-
-
-function run(code)
-    trials = load_trials(code);
+    trials = load_trials(subject_code);
     set_times(trials)
     variables = get_variables(trials);
     tab = create_table(variables);
-    tab = extract_data(trials, tab, variables, code);
-    process_data(tab, code)
+    tab = extract_data(trials, tab, variables, subject_code);
+    exp = string(regexp(class(trials{1}.obj), '\w+CFS', 'match'));
+    process_data(tab, subject_code, exp)
+    
 end
 
 
@@ -114,7 +112,7 @@ function tab = extract_data(trials, tab, variables, code)
 end
 
 
-function process_data(tab, code)
+function process_data(tab, code, exp)
     new_columns = {'break_response', 'is_break_correct', 'break_response_time', ...
      'block_index', 'trial_index', 'trial_start_time', 'trial_end_time', ...
      'trial_duration', 'masks_duration', 'fixation_duration'};
@@ -128,9 +126,7 @@ function process_data(tab, code)
     end
     
     TP = table;
-    
-    keys = dictionary(["1", "2", ""], ["Left", "Right", "0"]);
-    
+
     TP.block_index = tab.trials_block_index;
     TP.trial_index = tab.trials_trial_index;
     TP.trial_start_time = tab.trials_start_time;
@@ -148,15 +144,23 @@ function process_data(tab, code)
         TP.(sprintf('stimulus_%d_fade_in_duration', stim_idx)) = tab.(sprintf('stimulus_%d_full_contrast_onset', stim_idx)) - tab.(sprintf('stimulus_%d_onset', stim_idx));
         TP.(sprintf('stimulus_%d_fade_out_duration', stim_idx)) = tab.(sprintf('stimulus_%d_offset', stim_idx)) - tab.(sprintf('stimulus_%d_fade_out_onset', stim_idx));
     end
-    TP.target_duration = tab.target_offset - tab.target_onset;
-    TP.target_image_name = tab.target_image_name;
-    TP.target_index = tab.target_index;
-    TP.pas_duration = tab.pas_response_time - tab.pas_onset;
-    TP.pas_response_choice = tab.pas_response_choice;
-    TP.mafc_duration = tab.mafc_response_time - tab.mafc_onset;
-    TP.mafc_response_choice = tab.mafc_response_choice;
-    if ismember('mafc_img_indices', tab.Properties.VariableNames)
-        TP.mafc_img_indices = tab.mafc_img_indices;
+
+    if exp=="BCFS"
+        keys = dictionary(["1", "2", ""], ["Left", "Right", "0"]);
+        TP.break_response = keys(tab.stimulus_break_response_choice);
+        TP.is_break_correct = TP.break_response == tab.stimulus_1_position; 
+        TP.break_response_time = tab.stimulus_break_response_time;
+    elseif exp=="VPCFS"
+        TP.target_duration = tab.target_offset - tab.target_onset;
+        TP.target_image_name = tab.target_image_name;
+        TP.target_index = tab.target_index;
+        TP.pas_duration = tab.pas_response_time - tab.pas_onset;
+        TP.pas_response_choice = tab.pas_response_choice;
+        TP.mafc_duration = tab.mafc_response_time - tab.mafc_onset;
+        TP.mafc_response_choice = tab.mafc_response_choice;
+        if ismember('mafc_img_indices', tab.Properties.VariableNames)
+            TP.mafc_img_indices = tab.mafc_img_indices;
+        end
     end
     
     if ~exist("!Processed", 'dir')
@@ -244,7 +248,7 @@ function [cs,index] = sort_nat(c,mode)
     comp(:,ndigcols) = num_dig(:,activecols);
     % Sort rows of composite matrix and use index to sort c in ascending or
     % descending order, depending on mode.
-    [unused, index] = sortrows(comp);
+    [~, index] = sortrows(comp);
     if is_descend
 	    index = index(end:-1:1);
     end

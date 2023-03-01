@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Tutorial &#8212; CFS v0.2.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API reference" href="%2BCFS.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_round.bmp" class="logo__image only-light" alt="CFS"/>
+    <script>document.write(`<img src="_static/logo_round.bmp" class="logo__image only-dark" alt="CFS"/>`);</script>
+  
+  
+    <p class="title logo__title">CFS</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="%2BCFS.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="%2BCFS.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Tutorial</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">#</a></h1>
+<p><em>Created on January 31, 2023 by Gennadiy Belonosov: <a class="reference external" href="mailto:gennadiyb&#37;&#52;&#48;mail&#46;tau&#46;ac&#46;il">gennadiyb<span>&#64;</span>mail<span>&#46;</span>tau<span>&#46;</span>ac<span>&#46;</span>il</a><br />
+Last edit: February 23, 2023</em></p>
+<p>💡 We will try to roughly simulate Experiment 2 from the original Tsuchiya and Koch <a class="reference external" href="https://doi.org/10.1038/nn1500">study</a>.</p>
+<section id="start-from-installing-the-package">
+<h2>Start from installing the package.<a class="headerlink" href="#start-from-installing-the-package" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="installation.html"><span class="doc std std-doc">How to install</span></a></p></li>
+</ul>
+</section>
+<section id="a-word-of-caution">
+<h2>A word of caution<a class="headerlink" href="#a-word-of-caution" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>This tutorial is only intended to present the capabilities and some functions of the package.</p></li>
+<li><p>Exact replication of the original Tsuchiya &amp; Koch experiments is possible, but requires deeper modifications of the code, which are only briefly introduced here.</p></li>
+<li><p>For simplicity, Gabor patch parameters such as spatial frequency, luminance etc. are ignored.</p></li>
+<li><p>The Gabor patches were generated <a class="reference external" href="https://www.cogsci.nl/gabor-generator">here</a>.</p></li>
+</ul>
+</section>
+<section id="extracting-parameters-from-tsuchiya-kochs-experiment-2">
+<h2>Extracting parameters from Tsuchiya &amp; Koch’s experiment #2<a class="headerlink" href="#extracting-parameters-from-tsuchiya-kochs-experiment-2" title="Permalink to this heading">#</a></h2>
+<p><img alt="Untitled" src="_images/tnk.png" /></p>
+<p>Let’s examine experiment #2 in the <a class="reference external" href="https://www.nature.com/articles/nn1500#Sec9">Methods section</a> and <a class="reference external" href="https://www.nature.com/articles/nn1500#Sec15">Supplementary Table 1</a> of the paper to extract relevant parameters.</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  The contrast of two Gabor patches was set to 30%</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  The phase and orientation of the Gabors were choosen randomly</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  The flashing frequency of the Mondrians was 10 Hz</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  Adaptation continued for 5 seconds</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  After the adaptation grey background was shown</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  20 trials with Gabor patches on both sides</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  10 trials with a Gabor patch only on the side that is not suppressed by Mondrians</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  The 10 trials are randomly interleaved with the 20 trials</p></li>
+</ul>
+</section>
+<section id="preparing-the-experiment">
+<h2>Preparing the experiment<a class="headerlink" href="#preparing-the-experiment" title="Permalink to this heading">#</a></h2>
+<section id="create-the-experiment-folder">
+<h3>Create the experiment folder<a class="headerlink" href="#create-the-experiment-folder" title="Permalink to this heading">#</a></h3>
+<p>I will name it simply simply the <code class="docutils literal notranslate"><span class="pre">Experiment</span></code> folder in the <em>Documents</em>, for example:</p>
+<p><em>C:\Users\Gennadiy\Documents\Experiment</em></p>
+</section>
+<section id="stimuli">
+<h3>Stimuli<a class="headerlink" href="#stimuli" title="Permalink to this heading">#</a></h3>
+<p>Create new folder inside the <code class="docutils literal notranslate"><span class="pre">Experiment</span></code> and put in it two Gabor images with transparent backgrounds and opposite phases, like these:</p>
+<p><img alt="Untitled" src="_images/gabor1.png" /></p>
+<p><img alt="Untitled" src="_images/gabor2.png" /></p>
+</section>
+<section id="trial-matrix">
+<h3>Trial matrix<a class="headerlink" href="#trial-matrix" title="Permalink to this heading">#</a></h3>
+<p>We will start by generating trials. You can just open the example script by running <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">TnK_generate_trials</span></code> in the MATLAB command window.</p>
+<p>Or you can create your own <code class="docutils literal notranslate"><span class="pre">generate_trials.m</span></code> file and follow the tutorial.</p>
+<p>The main idea of this script is to create an experiment object for each trial and save it in one .mat file. Let’s construct the script command by command.</p>
+<section id="import-the-package">
+<h4>Import the package<a class="headerlink" href="#import-the-package" title="Permalink to this heading">#</a></h4>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFS</span><span class="p">.</span><span class="n">Experiment</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Screen</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Evidence</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Stimulus</span><span class="o">.*</span>
+</pre></div>
+</div>
+</section>
+<section id="choose-the-experiment-type">
+<h4>Choose the experiment type<a class="headerlink" href="#choose-the-experiment-type" title="Permalink to this heading">#</a></h4>
+<p>We will use <strong>BCFS</strong> template for this experiment, as there is no need for **VPCFS-**related mAFC and PAS</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BCFS</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="initialize-the-objects-properties">
+<h4>Initialize the object’s properties<a class="headerlink" href="#initialize-the-objects-properties" title="Permalink to this heading">#</a></h4>
+<p><strong>BCFS</strong> template has multiple required properties:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Class</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>screen</p></td>
+<td><p>CustomScreen</p></td>
+</tr>
+<tr class="row-odd"><td><p>subject_info</p></td>
+<td><p>SubjectData</p></td>
+</tr>
+<tr class="row-even"><td><p>trials</p></td>
+<td><p>TrialsData</p></td>
+</tr>
+<tr class="row-odd"><td><p>fixation</p></td>
+<td><p>Fixation</p></td>
+</tr>
+<tr class="row-even"><td><p>frame</p></td>
+<td><p>CheckFrame</p></td>
+</tr>
+<tr class="row-odd"><td><p>masks</p></td>
+<td><p>Masks</p></td>
+</tr>
+<tr class="row-even"><td><p>stimulus_break</p></td>
+<td><p>BreakResponse</p></td>
+</tr>
+</tbody>
+</table>
+<p>We will initialize only a few of them here: <strong>fixation</strong>, <strong>frame</strong>, <strong>masks</strong>, <strong>stimulus_break</strong>. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.</p>
+<p>Let’s start with <strong>fixation</strong> and <strong>frame</strong>, though the order doesn’t really matter. The <strong>Fixation</strong> and <strong>CheckFrame</strong> classes has some customisation parameters, but we won’t set them here, they are not critical for our needs. You can read more about the parameters in the API.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">fixation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Fixation</span><span class="p">();</span>
+<span class="n">experiment</span><span class="p">.</span><span class="n">frame</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CheckFrame</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Next, we will set the <strong>masks</strong> property. The first parameter we will provide is the path to the folder containing Mondrian images. If you want to generate Mondrians from scratch, set the <strong>mondrians_shape</strong> and <strong>mondrians_color</strong> parameters. The masks will be generated in the provided path.</p>
+<p>We will set <strong>temporal_frequency</strong> to 10 Hz, <strong>duration</strong> to 5 seconds, and <strong>position</strong> to “Right” (so that it suppresses only the right Gabor patch).</p>
+<p>To adjust the Mondrians’ position, we will set <strong>size</strong> to 0.45 (1 will fill the whole right side, 0.5 will fill half of the right side depending on <strong>position</strong>), <strong>padding</strong> to 0.5 (0 will align to the frame, 1 will align to the center of the fixation cross), and <strong>xy_ratio</strong> to 1 (square). You can also change the contrast and rotation if desired.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">masks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Masks</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;./Masks/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">mondrians_shape</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">mondrians_color</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">temporal_frequency</span><span class="p">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Right&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.45</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">padding</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">contrast</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">rotation</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now we will add two stimuli properties for the Gabor patches.</p>
+<p>Create the properties first:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">addprop</span><span class="p">(</span><span class="s">&#39;stimulus_1&#39;</span><span class="p">);</span>
+<span class="n">experiment</span><span class="p">.</span><span class="n">addprop</span><span class="p">(</span><span class="s">&#39;stimulus_2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then initialize them. We will provide path to the folder with different (phase and orientation) Gabors.</p>
+<p>We will set <em>show_duration</em> for both of them equal to 5 seconds. We will set different <em>position</em> for them: “Left” for the first and “Right” for the second.</p>
+<p>We will set <em>contrast</em> to 0.3 (30%), <em>size</em> to 0.4, <em>padding</em> to 0.5 and <em>xy_ratio</em> to 1.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SuppressedStimulus</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;./Images&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">show_duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Left&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">		</span><span class="nb">contrast</span><span class="p">=</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">padding</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SuppressedStimulus</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;./Images&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">show_duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Right&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">		</span><span class="nb">contrast</span><span class="p">=</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">padding</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Here you can set parameters for the <em>stimulus_break</em> property, which basically records the time and the key pressed by subject. It’s not much relevant for our needs here, so we will just initialize it and move on.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_break</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BreakResponse</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>To be able to create independent experiment object for every trial, we will record our <em>experiment</em> object to the file and then we will load this file for every trial.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">~</span><span class="nb">exist</span><span class="p">(</span><span class="s">&#39;.temp&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;dir&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">mkdir</span><span class="p">(</span><span class="s">&#39;.temp&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">save</span><span class="p">(</span><span class="s">&#39;.temp\experiment.mat&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;experiment&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s set number of blocks and trials. It works this way: number of blocks is a natural number and number of trials is a list of length=n_blocks containing number of trials for every block.</p>
+<p>The last line will initialize a cell array for the trial matrix.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">n_blocks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">n_trials</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">30</span><span class="p">];</span>
+<span class="n">trial_matrix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n_blocks</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, all 30 trials we will randomise Gabor images and their orientations for both stimuli properties.</p>
+<p>For 10 of these 30 trials we will set the contrast for the second stimulus to 0, so that it doesn’t appear.</p>
+<p>Afterwards, we will shuffle the trials.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">orientations</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">135</span><span class="p">];</span>
+<span class="n">n_images</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">block</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="n">trial</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">30</span>
+<span class="w">    </span><span class="nb">load</span><span class="p">(</span><span class="s">&#39;.temp\experiment.mat&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_1</span><span class="p">.</span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">randi</span><span class="p">(</span><span class="n">n_images</span><span class="p">);</span>
+<span class="w">    </span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_1</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">orientations</span><span class="p">(</span><span class="nb">randi</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">orientations</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">    </span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_2</span><span class="p">.</span><span class="n">index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">randi</span><span class="p">(</span><span class="n">n_images</span><span class="p">);</span>
+<span class="w">    </span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_2</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">orientations</span><span class="p">(</span><span class="nb">randi</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">orientations</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">trial</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">        </span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_2</span><span class="p">.</span><span class="n">contrast</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">trial_matrix</span><span class="p">{</span><span class="n">block</span><span class="p">}{</span><span class="n">trial</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">experiment</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">trial_matrix</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">trial_matrix</span><span class="p">{</span><span class="mi">1</span><span class="p">}(</span><span class="nb">randperm</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">trial_matrix</span><span class="p">{</span><span class="mi">1</span><span class="p">})));</span>
+</pre></div>
+</div>
+<p>Save the trial matrix to the file:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">~</span><span class="nb">exist</span><span class="p">(</span><span class="s">&#39;TrialMatrix&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;dir&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">mkdir</span><span class="p">(</span><span class="s">&#39;TrialMatrix&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">save</span><span class="p">(</span><span class="s">&#39;TrialMatrix\experiment.mat&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;trial_matrix&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Don’t forget to clean temp files:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">rmdir</span><span class="p">(</span><span class="s">&#39;.temp&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Don’t forget to run the code! You will find the file with trial matrix in the directory you provided to the <code class="docutils literal notranslate"><span class="pre">save()</span></code> function.</p>
+</section>
+</section>
+<section id="grey-background">
+<h3>Grey background<a class="headerlink" href="#grey-background" title="Permalink to this heading">#</a></h3>
+<p>Back to our checklist - we still need to create a grey background after flashing mondrians.</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  Two Gabor patches of 30% contrast</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  Random phase and orientation of the adaptor</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  The mondrians flashed at 10 Hz</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  5 seconds of adaptation - duration of the mondrians’ flashing</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  Grey background after the adaptation</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  20 trials with Gabor patches on both sides</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  10 trials with a Gabor patch only on the side that is not suppressed by the CFS</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  10 catch trials are randomly interleaved with 20 CFS trials</p></li>
+</ul>
+<p>Doing this will be a little bit more complicated, but not impossible.</p>
+<p>We will start by editing the BCFS class: <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">CFS.Experiment.BCFS</span></code></p>
+<p>Navigate to the section with methods definition:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">methods</span>
+<span class="w">    </span><span class="nb">run</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Now we can create our show_grey_background method after the <em>run(obj)</em> function.</p>
+<p>We will only flip the screen once to show us the background. After the flip we want to wait until some key will be pressed, e.g., <em>space.</em></p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">methods</span>
+<span class="w">    </span><span class="nb">run</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="w">    </span><span class="k">function</span><span class="w"> </span><span class="nf">show_grey_background</span><span class="p">(</span>obj<span class="p">)</span>
+<span class="w">        </span><span class="n">Screen</span><span class="p">(</span><span class="s">&#39;Flip&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">window</span><span class="p">);</span>
+<span class="w">				</span><span class="n">obj</span><span class="p">.</span><span class="n">wait_for_keypress</span><span class="p">(</span><span class="s">&#39;space&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>Now open the <em>run</em> method: <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">CFS.Experiment.BCFS.run</span></code></p>
+<p>And add the <code class="docutils literal notranslate"><span class="pre">obj.show_grey_background()</span></code> between <code class="docutils literal notranslate"><span class="pre">obj.stimulus_break.get()</span></code> and <code class="docutils literal notranslate"><span class="pre">obj.show_rest_screen()</span></code>:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">stimulus_break</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">show_grey_background</span><span class="p">()</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">show_rest_screen</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You can also comment out the <code class="docutils literal notranslate"><span class="pre">obj.show_rest_screen()</span></code> if you don’t want it to be shown.</p>
+<p>Congrats! We are almost there!</p>
+</section>
+</section>
+<section id="the-last-step-before-the-run">
+<h2>The last step before the run<a class="headerlink" href="#the-last-step-before-the-run" title="Permalink to this heading">#</a></h2>
+<p>So far we’ve generated the trials. Now we want to run the experiment.</p>
+<p>Again, you can either use the example: <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">TnK_main</span></code> file or you can create <code class="docutils literal notranslate"><span class="pre">main.m</span></code>. Make sure the relative paths to the stimuli images and masks you provided while generating trials are preserved.</p>
+<p>Let’s start building our <code class="docutils literal notranslate"><span class="pre">main.m</span></code> script.</p>
+<p>Clear the workspace and the screen:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Screen</span><span class="p">(</span><span class="s">&#39;CloseAll&#39;</span><span class="p">);</span>
+<span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="nb">clear</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Import the package:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFS</span><span class="p">.</span><span class="n">Experiment</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Screen</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span>
+</pre></div>
+</div>
+<p>Initialize the BCFS object</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BCFS</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Initialize <em>subject_info</em> property by providing directory to save the info in.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">subject_info</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SubjectData</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">dirpath</span><span class="p">=</span><span class="s">&#39;./!SubjectInfo&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Initialize <em>trials</em> property by providing a path to the already generated file with the trial matrix.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">trials</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TrialsData</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">filepath</span><span class="p">=</span><span class="s">&#39;./TrialMatrix/experiment.mat&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Initialize <em>screen</em> property by providing rectangles for left and right screens. The first two numbers in the arrays are x and y pixels of the upper left rectangle vertex, the last two numbers are x and y pixels of the lower right vertex.</p>
+<p>We will also provide hex code for the background color - #AEAEAE grey here.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">screen</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CustomScreen</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">initial_left_screen_rect</span><span class="p">=[</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w"> </span><span class="mi">930</span><span class="p">,</span><span class="w"> </span><span class="mi">810</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">initial_right_screen_rect</span><span class="p">=[</span><span class="mi">990</span><span class="p">,</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w"> </span><span class="mi">1890</span><span class="p">,</span><span class="w"> </span><span class="mi">810</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">background_color</span><span class="p">=</span><span class="s">&#39;#AEAEAE&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The last two lines of code are quite self explanatory:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Execute the experiment.</span>
+<span class="n">experiment</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c">% Clear the screen.</span>
+<span class="n">Screen</span><span class="p">(</span><span class="s">&#39;CloseAll&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s it! You can run the script now!</p>
+</section>
+<section id="running-the-experiment">
+<h2>Running the experiment<a class="headerlink" href="#running-the-experiment" title="Permalink to this heading">#</a></h2>
+<p>Right after executing the script you’ll see the dialogue for collecting the subject data:</p>
+<p><img alt="Untitled" src="_images/subjinfo.png" /></p>
+<p>Now you will proceed to the experiment itself.</p>
+<p>And that’s it! Once you’ve adjusted the screens, you’ll see the introduction screen. After that, the CFS will begin.</p>
+<p><a class="reference external" href="https://drive.google.com/file/d/1GaprHYRkqoBciiAhCTZY-zux2j1I_oIb/view">Example run of the experiment</a></p>
+</section>
+<section id="the-data">
+<h2>The data<a class="headerlink" href="#the-data" title="Permalink to this heading">#</a></h2>
+<p>The raw trial data will appear in the <code class="docutils literal notranslate"><span class="pre">!Raw</span></code> folder. Every <code class="docutils literal notranslate"><span class="pre">.mat</span></code> file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.</p>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">extract_from_raw_bcfs.m</span></code> script to extract the data from the raw files. It will create two csv tables in <code class="docutils literal notranslate"><span class="pre">!Results</span></code> and <code class="docutils literal notranslate"><span class="pre">!Processed</span></code> folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).</p>
+<p><img alt="Raw files" src="_images/rawfiles.png" /></p>
+<p>Raw files</p>
+<p><img alt="Extracted from raw, unprocessed CSV" src="_images/results_unprocessed.png" /></p>
+<p>Extracted from raw, unprocessed CSV</p>
+<p><img alt="Processed CSV" src="_images/results_processed.png" /></p>
+<p>Processed CSV</p>
+</section>
+<section id="thanks">
+<h2>Thanks!<a class="headerlink" href="#thanks" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="%2BCFS.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-from-installing-the-package">Start from installing the package.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-word-of-caution">A word of caution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-parameters-from-tsuchiya-kochs-experiment-2">Extracting parameters from Tsuchiya &amp; Koch’s experiment #2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-experiment">Preparing the experiment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-experiment-folder">Create the experiment folder</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stimuli">Stimuli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trial-matrix">Trial matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-package">Import the package</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-the-experiment-type">Choose the experiment type</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-the-objects-properties">Initialize the object’s properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grey-background">Grey background</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-last-step-before-the-run">The last step before the run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-experiment">Running the experiment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thanks">Thanks!</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/tutorial.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner"></div>
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://sphinx-doc.org/">Sphinx</a> 6.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

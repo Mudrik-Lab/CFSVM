@@ -6,4 +6,4 @@
 2. Double-click to install it as a MATLAB add-on.
 
 ## Documentation
-Tutorial and API reference are available [here](https://genuster.notion.site/CFS-b14619bfb10e4fe4bd28d808473ac69c).
+Tutorial and API reference are available [here](https://mudrik-lab.github.io/CFS/).

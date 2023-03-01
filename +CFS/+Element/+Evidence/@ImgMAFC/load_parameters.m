@@ -1,5 +1,11 @@
 function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
-% LOAD_MAFC_PARAMETERS Loads parameters for mAFC screen for current trial.
+% Loads parameters for mAFC screen for the trial.
+%
+% Args:
+%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
+%   PTB_textures_indices: Cell array of ints representing loaded PTB textures.
+%   shown_texture_index: Int representing PTB texture shown as stimulus.
+%
 
     img_textures = PTB_textures_indices;
     obj.options = {};

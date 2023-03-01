@@ -1,30 +1,44 @@
 classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
-% FIXATION Stimulus class for handling fixation "cross".
-    
-    properties
-        
-        % Size of the arms of the fixation cross in pixels.
-        arm_length
-        
-        % Line width of the fixation cross in pixels.
-        line_width
-
-        args
-
-    end
-
+% Handling fixation cross.
+%
+% Derived from :class:`~+CFS.+Element.@TemporalElement` and 
+% :class:`~+CFS.+Element.@SpatialElement` classes.
+%
 
     properties (Constant)
 
+        % Parameters to parse into the processed results table.
         RESULTS = {'onset'}
 
     end
 
 
+    properties
+        
+        % Int - size of the arms of the fixation cross in pixels.
+        arm_length
+        % Int - line width of the fixation cross in pixels.
+        line_width
+        % Cell array storing arguments for PTB's Screen('DrawLines'). 
+        args
+
+    end
+
+
+
+
+
     methods
 
         function obj = Fixation(parameters)
-            % FIXATION Construct an instance of this class
+        %
+        % Args:
+        %   duration: Float secs
+        %   arm_length: Int pixels
+        %   line_width: Int pixels
+        %   color: Char array for HEX color.
+        %
+
             arguments
                 parameters.duration = 1;
                 parameters.arm_length = 20;

@@ -1,8 +1,12 @@
 function show(obj, screen, frame)
-% SHOW Shows PAS screen, waits for the subject response and records it.
+% Shows PAS screen, waits for the subject response and records it.
 % 
-% See also CFS.Element.Evidence.Evidence.record_response
-
+% See also :func:`~+CFS.+Element.+Evidence.@ScaleEvidence.record_response`.
+%
+% Args:
+%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
+%   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
+%
 
     PADDING = 10;
     Screen('TextSize', screen.window, obj.title_size);
@@ -40,8 +44,7 @@ function show(obj, screen, frame)
     % Wait for the response.
     obj.record_response()
     obj.response_choice = obj.response_choice - 1;
-
-    
+  
 end
 
 

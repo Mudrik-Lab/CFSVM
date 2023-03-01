@@ -1,8 +1,12 @@
 function adjust(obj, frame)
-% ADJUST Creates interface for adjusting screens to the stereoscope view.
+% Creates interface for adjusting screens to the stereoscope view.
 %
 % Creates two solid frames, that can be moved, resized or shifted relative
 % to each other by keyboard keys.
+%
+% Args:
+%   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
+%
 
     % Number of pixels to change on a keypress.
     SHIFT = obj.shift;

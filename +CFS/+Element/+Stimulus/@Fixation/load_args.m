@@ -1,5 +1,8 @@
 function load_args(obj, screen)
-% LOAD_ARGS Loads args property with PTB Screen('DrawLines') arguments.
+% Loads args property with PTB Screen('DrawLines') arguments.
+%
+% Args:
+%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
     
     fixation_cross_lines = [[-obj.arm_length obj.arm_length 0 0]; 
         [0 0 -obj.arm_length obj.arm_length]];

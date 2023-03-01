@@ -1,15 +1,16 @@
 classdef CustomScreen < handle
-% CUSTOMSCREEN Screen class for storing parameters of the left and right areas.
+% Storing and manipulating left and right screen areas.
     
     properties
 
-        left
-        right
-        shift
-        background_color
-        window
-        inter_frame_interval
-        frame_rate
+        left  % :class:`~+CFS.+Element.+Screen.@ScreenField` object.
+        right  % :class:`~+CFS.+Element.+Screen.@ScreenField` object.
+        % Int for number of pixels shifted on keypress while adjusting screens.
+        shift 
+        background_color  % Char array of 7 chars containing HEX color.
+        window  % PTB window object.
+        inter_frame_interval  % Float for time between two frames ≈ 1/frame_rate.
+        frame_rate  % Float for display refresh rate.
         
     end
 
@@ -17,10 +18,13 @@ classdef CustomScreen < handle
     methods
         
         function obj = CustomScreen(parameters)
-            % CUSTOMSCREEN Constructs an instance of this class
-            % Gets optional keyword arguments:
-            % left_screen_rect
-            % right_screen_rect
+        %
+        % Args:
+        %   background_color: Char array of 7 chars containing HEX color.
+        %   left_screen_rect: [x0, y0, x1, y1] array with pixel positions.
+        %   right_screen_rect: [x0, y0, x1, y1] array with pixel positions.
+        %   adjust_shift: Int for number of pixels shifted on keypress while adjusting screens.
+        %
             arguments
                 parameters.background_color
                 parameters.initial_left_screen_rect = [0, 0, 945, 1080];

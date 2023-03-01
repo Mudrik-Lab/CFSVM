@@ -1,7 +1,8 @@
 function get(obj)
-% GET Gets breaking time from PTB KbQueue.
+% Gets response properties from the PTB KbQueue.
+%
 
-% Get KbQueue records
+    % Get KbQueue records
     [pressed, firstPress, ~, ~, ~] = KbQueueCheck();
 
     if pressed

@@ -1,5 +1,9 @@
 function preload_stim_and_masks_args(obj, stim_props)
-%PRELOAD_STIM_AND_MASKS_ARGS Precalculates PTB DrawTexture args for a trial.
+% Precalculates DrawTexture args for stimuli and masks for a trial.
+%
+% Args:
+%   stim_props: A cell array of chars with names for stimuli properties.
+%
 
     % Get number of frames 
     n_fr = obj.masks.duration*obj.screen.frame_rate;

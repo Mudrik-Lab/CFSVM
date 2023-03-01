@@ -1,9 +1,11 @@
 function run(obj)
-% RUN Executes the visual priming CFS experiment.
+% Executes the visual priming CFS experiment.
 %
-% Firstly initiates the experiment, then for every trial loads parameters,
-% shows rest screen and fixation cross, flashes masks and stimuli, 
-% shows PAS and mAFC questions, records responses, writes results.
+% First initiates the experiment, then for every trial loads parameters,
+% fixation cross, flashes masks and stimuli, 
+% shows PAS and mAFC questions, records responses, writes results and shows
+% rest screen.
+%
 
     obj.initiate();
 

@@ -1,7 +1,12 @@
 function show(obj, screen, frame)
-% SHOW Draws and shows mAFC images, waits for the subject response and records it.
+% Draws and shows mAFC images, waits for the subject response and records it.
+% 
+% See also :func:`~+CFS.+Element.+Evidence.@ScaleEvidence.record_response`.
 %
-% See also CFS.Element.Evidence.Evidence.record_response
+% Args:
+%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
+%   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
+%
 
     PADDING=10;
     obj.title_size = round(screen.left.x_pixels/15);

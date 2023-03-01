@@ -1,12 +1,17 @@
 classdef (Abstract) Response < handle
-% Response An abstract class for description of subject response.
+% A base class for describing subject response.
+%
+% Base for :class:`~+CFS.+Element.+Evidence.@ScaleEvidence`.
+%
 
     properties
-
-        keys
-        response_choice
-        response_time
-        response_kbname
+        
+        % Cell array of chars with PTB keys. 
+        % Read more `here <http://psychtoolbox.org/docs/KbName>`_.
+        keys  
+        response_choice  % Int - index of response choice in keys.
+        response_time  % Float
+        response_kbname  % PTB char array representing pressed key.
 
     end
 

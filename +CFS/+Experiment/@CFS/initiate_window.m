@@ -1,8 +1,9 @@
 function initiate_window(obj)
-% INITIATE_WINDOW Calls basic Psychtoolbox settings and initiates window.
+% Calls basic Psychtoolbox settings.
 %
-% Adopted from Peter Scarfe's Psychtoolbox tutorial - it's really good.
-    
+% Adopted and modified from `Peter Scarfe's Psychtoolbox tutorial <https://peterscarfe.com/ptbtutorials.html>`_.
+%
+
     % Here we call some default settings for setting up Psychtoolbox
     PsychDefaultSetup(2);
     
@@ -16,7 +17,7 @@ function initiate_window(obj)
     screen_number = max(screens);
 
     % Open an on-screen window using PsychImaging.
-    % For video recording using OBS studio add the screen size argument [0,0,1960,1080]
+    % For video recording using OBS studio add the screen size argument [0,0,1920,1080]
     obj.screen.window = PsychImaging('OpenWindow', screen_number, obj.screen.background_color); 
     
     % Just hide the freaking cursor
@@ -38,4 +39,5 @@ function initiate_window(obj)
     
     % Measure the vertical refresh rate of the monitor
     obj.screen.inter_frame_interval = Screen('GetFlipInterval', obj.screen.window);
+
 end

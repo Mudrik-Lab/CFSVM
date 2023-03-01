@@ -1,9 +1,12 @@
 classdef BreakResponse < CFS.Element.Evidence.Response
-% BREAKRESPONSE Evidence class for initiating and recording break data.
-    
+% Initiating and recording break data.
+%
+% Derived from :class:`~+CFS.+Element.+Evidence.@Response` class.
+%
     
     properties (Constant)
-
+        
+        % Parameters to parse into the processed results table.
         RESULTS = {'response_time', 'response_choice', 'response_kbname'}
 
     end
@@ -12,7 +15,6 @@ classdef BreakResponse < CFS.Element.Evidence.Response
     methods
 
         function obj = BreakResponse(parameters)
-            % BREAKRESPONSE Construct an instance of this class
 
             arguments
                 parameters.keys = {'LeftArrow', 'RightArrow'}

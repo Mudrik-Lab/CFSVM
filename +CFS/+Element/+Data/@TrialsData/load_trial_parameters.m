@@ -1,5 +1,8 @@
 function load_trial_parameters(obj, experiment)
-% LOAD_TRIAL_PARAMETERS For the current trial update its parameters.
+% Updates parameters for current trial.
+%
+% Args:
+%   experiment: An experiment object to update properties in.
     
     dont_load = {'screen', 'subject_info', 'trials'};
     

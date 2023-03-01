@@ -1,10 +1,16 @@
 function import_images(obj, window, parameters)
-% import_images Loads images from the provided path and makes an array of PTB textures from it.
-
+% Loads images from the provided path and makes an array of PTB textures from it.
+%
+% Args:
+%   window: PTB window object.
+%   images_number: (Optional) Number of textures to create.
+%
     arguments
+
         obj
         window
         parameters.images_number
+
     end
     
     % Load filenames

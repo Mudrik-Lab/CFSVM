@@ -1,28 +1,31 @@
 classdef PAS < CFS.Element.Evidence.ScaleEvidence
-% PAS Evidence class for initiating and recording PAS data.
-    
-    properties
-
-        text_size
-        spacing
-        left_text_start
-        right_text_start
-
-    end
-
+% Initiating and recording PAS data.
+%
+% Derived from :class:`~+CFS.+Element.+Evidence.@ScaleEvidence`.
+%
 
     properties (Constant)
-
+        
+        % Parameters to parse into the processed results table.
         RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset'}
 
     end
-        
+
+
+    properties
+
+        text_size  % Int.
+        spacing  % Int - round(obj.text_size/2).
+        left_text_start  % Int - for the left screen.
+        right_text_start  % Int - for the right screen.
+
+    end
+
 
     methods
 
         function obj = PAS(parameters)
-            % PAS Construct an instance of this class
-
+            
             arguments
                 parameters.keys = {'0)', '1!', '2@', '3#'}
                 parameters.title = 'How clear was the experience?'

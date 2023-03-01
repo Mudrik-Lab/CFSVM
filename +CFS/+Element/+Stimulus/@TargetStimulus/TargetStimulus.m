@@ -1,22 +1,33 @@
 classdef TargetStimulus < CFS.Element.Stimulus.Stimulus
-% TARGETSTIMULUS Stimulus class for manipulating target stimulus.
-    
-    properties
-        left_rect
-        right_rect
-    end
-    
-    properties (Constant)
+% Manipulating target stimulus.
+%
+% Derived from :class:`~+CFS.+Element.+Stimulus.@Stimulus`.
+%
 
+
+    properties (Constant)
+        
+        % Parameters to parse into the processed results table.
         RESULTS = {'onset', 'offset', 'index', 'image_name'}
 
     end
 
 
+    properties
+
+        % [x0, y0, x1, y1] array - stimulus rect on the left screen.
+        left_rect
+        % [x0, y0, x1, y1] array - stimulus rect on the right screen.
+        right_rect
+
+    end
+    
+
+
+
     methods
 
         function obj = TargetStimulus(dirpath, parameters)
-            % TARGETSTIMULUS Construct an instance of this class
 
             arguments
                 dirpath {mustBeFolder}

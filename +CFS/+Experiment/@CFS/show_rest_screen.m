@@ -1,6 +1,7 @@
 function show_rest_screen(obj)
-% SHOW_REST_SCREEN Shows rest_screen.
-    
+% Flips screen to the rest message.
+%
+
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
     INSTRUCTION = {'Press enter to continue.'};

@@ -1,35 +1,40 @@
 classdef Masks < CFS.Element.Stimulus.Stimulus
-% MASKS Stimulus class for manipulating mondrian masks.
-    
+% Manipulating Mondrian masks.
+%
+% Derived from :class:`~+CFS.+Element.+Stimulus.@Stimulus`.
+%
+
+
+    properties (Constant)
+        
+        % Parameters to parse into the processed results table.
+        RESULTS = {'onset', 'offset'}
+
+    end
+
+
     properties
 
-        % Number of masks flashed per one second.
+        % Float in Hz, number of masks flashed per one second.
         temporal_frequency
-        
-        % Shape: 1 - squares, 2 - circles, 3 - diamonds.
+        % Int - shape: 1 - squares, 2 - circles, 3 - diamonds.
         mondrians_shape
-        
-        % Color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
-        % for 4...15 see 'help CFS.generate_mondrians'.
+        % Int - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
+        % for 4...15 check
+        % :func:`~+CFS.+Element.+Stimulus.@Masks.make_mondrian_masks`.
         mondrians_color
-
+        % Int - overall max number of Masks from blocks and trials.
         n_max
-        
+        % 1D array representing masks index for every frame.
         indices
-
+        % Cell array storing arguments for PTB's Screen('DrawTextures') for
+        % masks, stimuli, fixation and checkframe.
         args
-
+        % 1D array recording onset times of every frame.
         vbls
 
     end
 
-
-    properties (Constant)
-
-        RESULTS = {'onset', 'offset'}
-
-    end
-    
 
     methods
 

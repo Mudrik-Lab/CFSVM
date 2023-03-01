@@ -1,5 +1,9 @@
 function get_max(obj, trial_matrix)
-% get_max Gets maximum number of masks from all blocks and trials.
+% Gets overall maximum number of masks from all blocks and trials.
+%
+% Args:
+%   trial_matrix: Cell array with blocks and trials from the trials object.
+%
     
     temp_freqs = cellfun(@(block) (cellfun(@(trial) (trial.masks.temporal_frequency), block)), trial_matrix, UniformOutput=false);
     mask_durations = cellfun(@(block) (cellfun(@(trial) (trial.masks.duration), block)), trial_matrix, UniformOutput=false);

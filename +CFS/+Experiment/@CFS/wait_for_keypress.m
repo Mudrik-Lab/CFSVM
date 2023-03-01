@@ -1,8 +1,11 @@
 function wait_for_keypress(obj, key)
-    %WAIT_FOR_KEYPRESS
-    % Wait until the right KEY is pressed, then continue.
-    % If shift-esc was pressed - end the experiment.
-
+% Waits until the provided key is pressed, then continue.
+%
+% Interrupts the experiment if shift-esc was presses. 
+% 
+% Args:
+%   key: A char array with the PTB key, check KbDemo for more info.
+%
     while 1
 
         [~, keyCode, ~] = KbWait;

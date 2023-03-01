@@ -1,5 +1,9 @@
 function show(obj, experiment)
-% SHOW Presents target for the provided duration.
+% Presents target for the provided duration.
+%
+% Args:
+%   experiment: An experiment object.
+%
 
     target = obj.textures.PTB_indices{obj.index};
     obj.image_name = obj.textures.images_names(obj.index);

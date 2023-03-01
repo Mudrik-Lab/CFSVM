@@ -1,14 +1,13 @@
 function new_rectangle = get_rect(obj, screen_rectangle)
-    %get_rect Returns array with pixels coordinates for the new_rectangle in a
-    % given screen_rectangle, new_rectangle alignment, its size, padding and its X to Y ratio.
-    % screen_rect - array with pixels coordinated for the field in which new rectangle can be located.
-    % alignment - alignment to one of the ninths, check get_stimulus_position method.
-    % size - size of the new rectangle as a fraction of the provided screen_rectangle.
-    % padding - shift of the stimulus from the side towards the center of
-    % the screen_rectangle. From 0 to 1, where 1 means alignment to the
-    % center of the screen.
-    % xy_ratio - new_rectangle ratio between X and Y axes lengths.
-    % See also get_stimulus_position
+% Returns array with pixels coordinates for the new_rectangle in a
+% given screen_rectangle, new_rectangle alignment, its size, padding and its X to Y ratio.
+%
+% Args:
+%   screen_rectangle: [x0, y0, x1, y1] array with pixel positions.
+%
+% Returns:
+%   [x0, y0, x1, y1]: resized and positioned rectangle array.
+%
     
 
     % Extract coordinates from the provided screen rectangle.

@@ -1,10 +1,14 @@
 classdef ScreenField < CFS.Element.SpatialElement
-%SCREENFIELD Screen class for describing area on the screen.
+% A concrete class from the abstract
+% :class:`~+CFS.+Element.@SpatialElement`.
+%
+% Describes left and the right part of the screen as properties of 
+% :class:`~+CFS.+Element.+Screen.@CustomScreen`.
+%
         
     methods
 
         function obj = ScreenField(rect)
-            % SCREENFIELD Constructs an instance of this class
 
             arguments
                 rect

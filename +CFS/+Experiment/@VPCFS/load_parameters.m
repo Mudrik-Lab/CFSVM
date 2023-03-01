@@ -1,8 +1,10 @@
 function load_parameters(obj)
-% LOAD_PARAMETERS Loads parameters for every trial.
+% Precalculates and updates parameters for every oncoming trial.
 %
-% Loads parameters from trial table and then precalculates other
-% parameters that depend on it, i.e. masks, stimuli, fixation, pas and mafc parameters.
+% Loads parameters from trial matrix and then precalculates other
+% parameters that depend on initialised window, i.e. masks, stimuli, 
+% fixation, pas and mafc parameters.
+%
 
     for block = 1:obj.trials.n_blocks
         obj.trials.block_index = block;
@@ -10,7 +12,7 @@ function load_parameters(obj)
             obj.trials.trial_index = trial;
 
             % Get an array of stimuli properties
-            prop_list = obj.trials.matrix{block}{trial}.get_dynamic_properties;
+            prop_list = obj.trials.matrix{block}{trial}.get_dyn_props;
             stim_props = {};
             for prop_idx = 1:length(prop_list)
                 c = class(obj.trials.matrix{block}{trial}.(prop_list{prop_idx}));

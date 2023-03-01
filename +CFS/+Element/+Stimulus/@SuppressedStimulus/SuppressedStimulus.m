@@ -1,33 +1,47 @@
 classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
-% SUPPRESSEDSTIMULUS Stimulus class for manipulating stimulus suppressed by mondrians.
-    
-    properties
-
-        appearance_delay
-        fade_in_duration
-        show_duration
-        fade_out_duration
-        left_rect
-        right_rect
-        contrasts
-        full_contrast_onset
-        fade_out_onset
-        indices
-        
-    end
-    
+% Manipulating stimulus suppressed by mondrians.
+%
+% Derived from :class:`~+CFS.+Element.+Stimulus.@Stimulus`.
+%
 
     properties (Constant)
-
+        
+        % Parameters to parse into the processed results table.
         RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'position', 'index', 'image_name'}
 
     end
+
     
+    properties
+        
+        % Float - seconds of Mondrians flashing before stimulus appearance
+        appearance_delay 
+        % Float - duration in seconds of stimulus fade in.
+        fade_in_duration
+        % Float - duration in seconds of stable contrast stimulus presentation.
+        show_duration
+        % Float - duration in seconds of stimulus fade out.
+        fade_out_duration
+        % [x0, y0, x1, y1] array - stimulus rect on the left screen.
+        left_rect
+        % [x0, y0, x1, y1] array - stimulus rect on the right screen.
+        right_rect
+        % 1D array representing contrast for every frame of flashing.
+        contrasts
+        % 1D array representing by 1 if stimulus is shown for current frame.
+        indices
+        % Onset time of stable contrast stimulus
+        full_contrast_onset
+        % Onset time of stimulus dissapearance
+        fade_out_onset
+
+        
+    end
+
 
     methods
 
         function obj = SuppressedStimulus(dirpath, parameters)
-            % SUPPRESSEDSTIMULUS Construct an instance of this class
 
             arguments
                 dirpath {mustBeFolder}

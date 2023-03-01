@@ -1,33 +1,30 @@
 function [x0, y0, x1, y1, i, j] = get_stimulus_rect_shift(obj, position)
-%get_stimulus_rect_shift Calculates fractional shift for every coordinate of a rectangle based on given parameters.
-% alignment - alignment of the rectangle to the screen.
-% Possible alignments are: UpperLeft, Top, UpperRight, Left, Center, Right, 
-% LowerLeft, Bottom, LowerRight. 
-% size - fractional size, i.e from 0 to 1, e.g. 1 will fill 100% of the provided screen.
-% padding - fractional padding, i.e from 0 to 1, e.g. 1 will pad the rectangle to the center of the screen.
-%
-% Matrix 's' represents possible positions of rectangle on the screen, when
-% divided into ninths like this:
-%   |"UpperLeft"  "Top"     "UpperRight"|    |1    2    3|
-%   |"Left"       "Center"  "Right"     | OR |4    5    6|
-%   |"LowerLeft"  "Bottom"  "LowerRight"|    |7    8    9|
-%
-% Corresponding indicies of the matrix will be:
-%   |1,1    1,2    1,3|
-%   |2,1    2,2    2,3|
-%   |3,1    3,2    3,3|
+% Calculates fractional shift for every coordinate of a rectangle based on given parameters.
 %
 % If you define the rectangle position by the upper left and lower right 
 % verticies (as the PTB does), you may see that positions with the same
 % row indicies will have the same Y coordinates and those with the same
 % column indicied will have the same X coordinates.
+%
+% Args:
+%   position: Char array describing a ninth of a screen.
+%
+% Returns:
+%   [x0, y0, x1, y1, i, j]: Array containing:
+%
+%   - x0: Float describing correction to the x0 coordinate.
+%   - y0: Float describing correction to the y0 coordinate.
+%   - x1: Float describing correction to the x1 coordinate.
+%   - y1: Float describing correction to the y1 coordinate.
+%   - i: Int describing row position in a position matrix.
+%   - j: Int describing column position in a position matrix.
 
     % If size greater-or-equal to half of the screen, padding doesn't matter. 
     if obj.size >= 0.5
         obj.padding = 0;
     end
     
-    % String array of possible alignments.
+    % Position matrix.
     s = ["UpperLeft" "Top" "UpperRight";
         "Left" "Center" "Right";
         "LowerLeft" "Bottom" "LowerRight"];
@@ -41,7 +38,7 @@ function [x0, y0, x1, y1, i, j] = get_stimulus_rect_shift(obj, position)
 end
 
 function [coord0, coord1] = coord_shift(index, size, padding)
-%coord_shift Calculates actual shifts for the provided index.
+% Calculates actual shifts for the provided index.
     switch index
         case 1
             coord0 = (0.5-size)*padding;

@@ -1,33 +1,29 @@
 classdef (Abstract) CFS < dynamicprops
-    % CFS An abstract superclass for two types of Continuous Flash Suppression
-    % experiments: Breaking and Visual Priming.
-    % These are implemented in subclasses BCFS and VPCFS, respectively.
-    %
-    % See also CFS.Experiment.BCFS, CFS.Experiment.VPCFS
-
+% Base for :class:`~+CFS.+Experiment.@BCFS` and :class:`~+CFS.+Experiment.@VPCFS` classes.
+% 
+% Describes common methods for CFS experiments, e.g. flash() for 
+% flashing stimuli/mondrians etc. or initiate() for initiating CFS
+% properties.
+%
     
     properties
 
-        vbl_recs % Variable for recording flip timestamps.
+        vbl_recs  % An array for recording flip timestamps while flashing.
 
     end
     
     properties(Access = protected)
-        dynpropnames % Variable for saving names of dynamic properties.
+
+        dynpropnames  % Variable for saving names of dynamic properties.
+
     end
     
     methods
-        function addprop(obj,prop_name)
-            % First add the property to the list of dynamic properties
-            obj.dynpropnames{end+1} = prop_name;
-            % Then call the addprop method of dynamicprops, which actually adds the dynamic property 
-            addprop@dynamicprops(obj,prop_name);
-        end
 
-        function dynpropnames=get_dynamic_properties(obj)
-            % Return a list of dynamic properties
-            dynpropnames=obj.dynpropnames;
-        end
+        addprop(obj, prop_name)
+
+        dynpropnames = get_dyn_props(obj)
+
     end
     
     methods (Abstract)

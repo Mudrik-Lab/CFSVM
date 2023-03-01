@@ -1,5 +1,7 @@
 function show_introduction_screen(obj)
-% SHOW_INTRODUCTION_SCREEN Shows introductory screen.
+% Flips screen to the introduction.
+%
+
     PADDING = 10;
     % Calculate text size based on screen X size, 24 is quite arbitrary.
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);

@@ -1,5 +1,6 @@
 function show_farewell_screen(obj)
-% SHOW_INTRODUCTION_SCREEN Shows farewell screen.
+% Flips screen to the farewell.
+%
 
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);

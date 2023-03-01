@@ -1,11 +1,12 @@
 classdef (Abstract) TemporalElement < handle
-% TEMPORALELEMENT An abstract class for elements with temporal properties.
-    
+% A base class for describing elements with temporal properties.
+%
+
     properties
 
-        onset
-        offset
-        duration
+        onset  % Float - time of onset
+        offset  % Float - time of offset
+        duration  % Float
         
     end
 

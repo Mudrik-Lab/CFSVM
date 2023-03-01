@@ -1,16 +1,22 @@
 classdef ImgMAFC < CFS.Element.Evidence.ScaleEvidence & CFS.Element.Stimulus.Stimulus
-% IMGMAFC Evidence class for initiating and recording image mAFC data.
-    
-    properties
-
-        img_indices
-
-    end
-    
+% Initiating and recording image mAFC data.
+%
+% Derived from :class:`~+CFS.+Element.+Evidence.@ScaleEvidence` and
+% :class:`~+CFS.+Element.+Stimulus.@Stimulus` classes.
+%
+ 
 
     properties (Constant)
-
+        
+        % Parameters to parse into the processed results table.
         RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset', 'img_indices'}
+
+    end
+
+
+    properties
+
+        img_indices  % Char array with images indices separated by spaces.
 
     end
 
@@ -18,7 +24,6 @@ classdef ImgMAFC < CFS.Element.Evidence.ScaleEvidence & CFS.Element.Stimulus.Sti
     methods
 
         function obj = ImgMAFC(parameters)
-            % IMGMAFC Construct an instance of this class
 
             arguments
                 parameters.keys = {'LeftArrow', 'RightArrow'}

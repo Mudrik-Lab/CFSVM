@@ -1,8 +1,13 @@
 function show(obj, screen, frame)
-% SHOW Shows text version of mAFC, waits for the subject response and records it.
+% Shows text version of mAFC, waits for the subject response and records it.
 % 
-% See also CFS.Element.Evidence.Evidence.record_response
-    
+% See also :func:`~+CFS.+Element.+Evidence.@ScaleEvidence.record_response`.
+%
+% Args:
+%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
+%   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
+%
+
     PADDING = 10;
     obj.title_size = round(screen.left.x_pixels/15);
     obj.text_size = round(obj.title_size/1.5);

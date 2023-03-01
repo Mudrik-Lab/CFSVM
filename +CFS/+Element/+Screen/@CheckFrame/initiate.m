@@ -1,6 +1,9 @@
 function initiate(obj, screen)
-    %initiate Initiates checkframe by generating rects and colors
-    %matrices for both halves of the screen.
+% Initiates checkframe by generating rects and colors matrices for 
+% both parts of the screen.
+%
+% Args:
+%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
     
     % Set screens rects inside the checkframe execute following experiment
     % inside them.
@@ -22,4 +25,5 @@ function initiate(obj, screen)
 
     obj.rect = cat(2, l_rects, r_rects);
     obj.color = cat(2, l_colors, r_colors);
+    
 end

@@ -1,8 +1,8 @@
 function create_kbqueue(obj)
-% CREATE_KBQUEUE Creates PTB KbQueue. 
+% Creates PTB KbQueue. 
 %
-% For more information, check <a href="matlab: 
-% web('http://psychtoolbox.org/docs/KbQueueCreate')">PTB documentation</a>.
+% For more information, check `PTB documentation <http://psychtoolbox.org/docs/KbQueueCreate>`_.
+%
 
     keys=[KbName(obj.keys)]; % All keys on right hand plus trigger, can be found by running KbDemo
     keylist=zeros(1,256); % Create a list of 256 zeros

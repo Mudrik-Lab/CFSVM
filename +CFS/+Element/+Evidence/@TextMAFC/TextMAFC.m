@@ -1,16 +1,20 @@
 classdef TextMAFC < CFS.Element.Evidence.ScaleEvidence
-% TEXTMAFC Evidence class for initiating and recording text mAFC data.
-    
-    properties
+% Initiating and recording text mAFC data.
+%
+% Derived from :class:`~+CFS.+Element.+Evidence.@ScaleEvidence` class.
+%   
 
-        text_size
+    properties (Constant)
+        
+        % Parameters to parse into the processed results table.
+        RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset'}
 
     end
 
 
-    properties (Constant)
+    properties
 
-        RESULTS = {'response_time', 'response_choice', 'response_kbname', 'onset'}
+        text_size % Int.
 
     end
 
@@ -18,7 +22,7 @@ classdef TextMAFC < CFS.Element.Evidence.ScaleEvidence
     methods
 
         function obj = TextMAFC(parameters)
-            % TEXTMAFC Construct an instance of this class
+
             arguments
                 parameters.keys
                 parameters.title

@@ -1,10 +1,11 @@
 function run(obj)
-% RUN Executes the breaking CFS experiment.
+% Executes the breaking CFS experiment.
 %
-% Firstly initiates the experiment, then for every trial loads parameters,
-% shows rest screen and fixation cross, flashes masks and stimuli, records
-% responses, writes results.
-    
+% First initiates the experiment, then for every trial update parameters,
+% shows fixation crosses, flashes masks and stimuli, records
+% responses, writes results and shows rest screen.
+%
+
     obj.initiate()
     
     for block = 1:obj.trials.n_blocks

@@ -1,9 +1,14 @@
 function flash(obj, vbl)
-% FLASH Flashes stimuli, masks, fixations and checkframe.
-% The main method for flashing CFS and recording its timings.
+% Flashes stimuli, masks, fixations and checkframe.
+%
+% This is the main method for flashing CFS and recording its timings.
+% 
+% Args:
+%   vbl: An integer for vertical retrace timing from the fixation.show().
+%
     
-    % First flashing frame is being delayed to present an initial fixation 
-    % for the exact duration.
+    % First flashing frame is being delayed to present an initial fixation
+    % for its exact duration.
     draw(obj, 1)
     obj.vbl_recs(1) = Screen(...
         'Flip', ...
@@ -20,6 +25,7 @@ function flash(obj, vbl)
     % to the next experiment stage (e.g., rest screen).
     draw(obj, fr)
     obj.vbl_recs(end+1) = Screen('Flip', obj.screen.window);
+
 end
 
 

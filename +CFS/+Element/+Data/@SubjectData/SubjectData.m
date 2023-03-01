@@ -1,14 +1,14 @@
 classdef SubjectData < handle
-% SUBJECTDATA Class for inquiring about subject info and recording it.
-    
+% Inquiry about and recording of the subject info.
+%
+
     properties
         
-        dirpath
-        table
-        filename
-        code
-        is_left_suppression
-        file_extension
+        dirpath  % Char array for path to directory in which to save the data.
+        table  % Table for recording the data
+        code  % Anytype for subject code
+        is_left_suppression  % Bool, true if dominant eye is left
+        file_extension  % Char array, .csv is a default
 
     end
     
@@ -16,7 +16,7 @@ classdef SubjectData < handle
     methods
 
         function obj = SubjectData(parameters)
-            % SUBJECTDATA Construct an instance of this class
+            % Inquires subject info and puts it into table.
 
             arguments
                 parameters.dirpath = './!SubjectInfo'
@@ -29,8 +29,11 @@ classdef SubjectData < handle
             if ~exist(obj.dirpath, 'dir')
                 mkdir(obj.dirpath)
             end
-
+            
             obj.file_extension = parameters.file_extension;
+            if obj.file_extension(1) ~= '.'
+                obj.file_extension = ['.', obj.file_extension];
+            end
 
             data.code = input('Subject code\n> ', 's');
             data.birthdate = input('Date of birth\n> ', 's');
@@ -47,7 +50,6 @@ classdef SubjectData < handle
 
             obj.table = struct2table(data);
             obj.table.time = GetSecs();
-            obj.filename = num2str(obj.code);
 
         end
 

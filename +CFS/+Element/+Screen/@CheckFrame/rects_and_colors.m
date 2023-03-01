@@ -1,5 +1,15 @@
 function [rects, colors] = rects_and_colors(obj, screen_rect)
-%rects_and_colors Calculates rectangles (x0,y0,x1,y1) and their colors for a rectangle checkframe.
+% Calculates rectangles [x0,y0,x1,y1] and their colors for a checkframe.
+%
+% Args:
+%   screen_rect: [x0, y0, x1, y1] array with pixel positions.
+%
+% Returns:
+%   [4xN matrix, 3xN matrix]: two matrices:
+%
+%   - 4xN matrix describing rectangle of every checker.
+%   - 3xN matrix describing RGB color of every checker.
+%
 
     % Get coordinates from the provided screen rectangle.
     rect_cell = num2cell(screen_rect);
@@ -44,8 +54,8 @@ function [rects, colors] = rects_and_colors(obj, screen_rect)
 end
 
 function rects = get_edge_checker_rects(start_coord, checker_length, checker_width, number_of_checkers, edge_shift, is_y)
-%get_checker_rects Calculates edge rects, given start_coord of the edge,
-%checker parameters, edge shift and boolean is_y if the edge is vertical.
+% Calculates edge rects, given start_coord of the edge, checker parameters, 
+% edge shift and boolean is_y if the edge is vertical.
 
     coord00=start_coord:checker_length:start_coord+checker_length*(number_of_checkers-1);
     coord10=zeros(1, number_of_checkers) + edge_shift;
@@ -60,8 +70,8 @@ function rects = get_edge_checker_rects(start_coord, checker_length, checker_wid
 end
 
 function c = nearest_divisor_of_N_to_n(N, n)
-%nearest_divisor_of_N_to_n Given two whole numbers, N and n, 
-% finds a third whole number c that holds N_mod_c==0 and has the minimal abs(c−m). 
+% Given two whole numbers, N and n, finds a third whole number c 
+% that holds N_mod_c==0 and has the minimal abs(c−m). 
     
     % Find all divisors of N
     K = 1:ceil(sqrt(N));

@@ -1,5 +1,6 @@
 function initiate(obj)
-% INITIATE Makes all the preparations for the CFS experiment to run.
+% Makes all the preparations for the CFS experiment to run.
+%
 
     import CFS.Element.Screen.* ...
         CFS.Element.Data.* ...
@@ -43,7 +44,7 @@ function initiate(obj)
     WaitSecs(0.00001);
     
     % Import images for every SuppressedStimulus property.
-    prop_list = obj.trials.matrix{1}{1}.get_dynamic_properties;
+    prop_list = obj.trials.matrix{1}{1}.get_dyn_props;
     for prop_idx = 1:length(prop_list)
         c = class(obj.trials.matrix{1}{1}.(prop_list{prop_idx}));
         if c == "CFS.Element.Stimulus.SuppressedStimulus"
@@ -101,6 +102,6 @@ function initiate(obj)
 end
 
 function rgb = hex2rgb(hex)
-    %hex2rgb Transforms hexadecimal color code to MATLAB RGB color code.
+% Transforms hexadecimal color code to MATLAB RGB color code.
     rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
 end

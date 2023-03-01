@@ -1,5 +1,5 @@
 function make_mondrian_masks(obj, x_pixels, y_pixels)
-% make_mondrian_masks Generates masks and writes them to the dirpath.
+% Generates masks and writes them to the dirpath.
 % 
 % This function creates Mondrian masks that can be used for continuous
 % flash suppression. The shape of the elements of the masks is normally
@@ -21,8 +21,12 @@ function make_mondrian_masks(obj, x_pixels, y_pixels)
 % When you use this code in a publication, please cite one of his articles
 % using this method.
 % This code or any parts of it may not be used for commercial purposes 
-% without the explicit agreement of the author. Please contact him via
-% http://martin-hebart.de
+% without the explicit agreement of the author.
+%
+% Args:
+%   x_pixels: Int - width of the generated Mondrians.
+%   y_pixels: Int - height of the generated Mondrians.
+%
 
     sizes = 0.04:0.01:0.18; % in percent of x-dimension
     sizes = sizes.*1.2;

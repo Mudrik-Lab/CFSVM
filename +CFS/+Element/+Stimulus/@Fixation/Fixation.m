@@ -25,18 +25,15 @@ classdef Fixation < CFS.Element.TemporalElement & CFS.Element.SpatialElement
     end
 
 
-
-
-
     methods
 
         function obj = Fixation(parameters)
         %
         % Args:
-        %   duration: Float secs
-        %   arm_length: Int pixels
-        %   line_width: Int pixels
-        %   color: Char array for HEX color.
+        %   duration: :attr:`.+CFS.+Element.@TemporalElement.TemporalElement.duration`
+        %   arm_length: :attr:`~.+CFS.+Element.+Stimulus.@Fixation.Fixation.arm_length`
+        %   line_width: :attr:`~.+CFS.+Element.+Stimulus.@Fixation.Fixation.line_width`
+        %   color: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.color`
         %
 
             arguments

@@ -1,13 +1,10 @@
-function get(obj)
-% Gets response properties from the PTB KbQueue.
+function get(obj, pressed, first_press)
+% Processes response properties from the PTB KbQueue.
 %
-
-    % Get KbQueue records
-    [pressed, firstPress, ~, ~, ~] = KbQueueCheck();
 
     if pressed
         % Get only nonzero timings.
-        firstPress = firstPress(1,KbName(convertStringsToChars(obj.keys)));
+        firstPress = first_press(1,KbName(convertStringsToChars(obj.keys)));
         % Get sorted array of numeric codes converted from keys provided as
         % a parameter.
         sorted_codes = sort(KbName(obj.keys));

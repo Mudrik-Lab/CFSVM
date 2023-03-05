@@ -39,20 +39,33 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
     methods
 
         function obj = Masks(parameters)
-            % MASKS Construct an instance of this class
+        %
+        % Args:
+        %   dirpath: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
+        %   temporal_frequency: :attr:`~.+CFS.+Element.+Stimulus.@Masks.Masks.temporal_frequency`
+        %   duration: :attr:`.+CFS.+Element.@TemporalElement.TemporalElement.duration`
+        %   position: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.size`
+        %   padding: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.padding`
+        %   rotation: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
+        %   mondrians_shape: :attr:`~.+CFS.+Element.+Stimulus.@Masks.Masks.mondrians_shape`
+        %   mondrians_color: :attr:`~.+CFS.+Element.+Stimulus.@Masks.Masks.mondrians_color`
+        %
 
             arguments
                 parameters.dirpath = './Masks/'
                 parameters.temporal_frequency = 10
                 parameters.duration = 5
-                parameters.mondrians_shape = 1
-                parameters.mondrians_color = 1
                 parameters.position = "Center"
                 parameters.xy_ratio = 1
                 parameters.size = 1
                 parameters.padding = 0
                 parameters.rotation = 0
                 parameters.contrast = 1
+                parameters.mondrians_shape = 1
+                parameters.mondrians_color = 1
             end
 
             parameters_names = fieldnames(parameters);

@@ -20,10 +20,10 @@ classdef CustomScreen < handle
         function obj = CustomScreen(parameters)
         %
         % Args:
-        %   background_color: Char array of 7 chars containing HEX color.
+        %   background_color: :attr:`~.+CFS.+Element.+Screen.@CustomScreen.CustomScreen.background_color`
         %   left_screen_rect: [x0, y0, x1, y1] array with pixel positions.
         %   right_screen_rect: [x0, y0, x1, y1] array with pixel positions.
-        %   adjust_shift: Int for number of pixels shifted on keypress while adjusting screens.
+        %   adjust_shift: :attr:`~.+CFS.+Element.+Screen.@CustomScreen.CustomScreen.shift`
         %
             arguments
                 parameters.background_color

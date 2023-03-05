@@ -42,6 +42,20 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
     methods
 
         function obj = SuppressedStimulus(dirpath, parameters)
+        %
+        % Args:
+        %   dirpath: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
+        %   position: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.size`
+        %   padding: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.padding`
+        %   rotation: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
+        %   appearance_delay: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.appearance_delay`
+        %   fade_in_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_in_duration`
+        %   show_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.show_duration`
+        %   fade_out_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_out_duration`
+        %
 
             arguments
                 dirpath {mustBeFolder}

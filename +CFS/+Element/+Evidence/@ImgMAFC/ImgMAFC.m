@@ -24,6 +24,14 @@ classdef ImgMAFC < CFS.Element.Evidence.ScaleEvidence & CFS.Element.Stimulus.Sti
     methods
 
         function obj = ImgMAFC(parameters)
+        %
+        % Args:
+        %   keys: :attr:`.+CFS.+Element.+Evidence.@Response.Response.keys`
+        %   title: :attr:`.+CFS.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
+        %   position: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.position`
+        %   size: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.size`
+        %   xy_ratio: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
+        %
 
             arguments
                 parameters.keys = {'LeftArrow', 'RightArrow'}

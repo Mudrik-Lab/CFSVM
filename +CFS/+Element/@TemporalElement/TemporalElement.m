@@ -4,9 +4,9 @@ classdef (Abstract) TemporalElement < handle
 
     properties
 
-        onset  % Float - time of onset
-        offset  % Float - time of offset
-        duration  % Float
+        onset  % Float - onset time
+        offset  % Float - offset time
+        duration  % Float - duration time
         
     end
 

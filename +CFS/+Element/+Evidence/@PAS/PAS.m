@@ -25,7 +25,13 @@ classdef PAS < CFS.Element.Evidence.ScaleEvidence
     methods
 
         function obj = PAS(parameters)
-            
+        %
+        % Args:
+        %   keys: :attr:`.+CFS.+Element.+Evidence.@Response.Response.keys`
+        %   title: :attr:`.+CFS.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
+        %   options: :attr:`.+CFS.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.options`
+        %
+        
             arguments
                 parameters.keys = {'0)', '1!', '2@', '3#'}
                 parameters.title = 'How clear was the experience?'

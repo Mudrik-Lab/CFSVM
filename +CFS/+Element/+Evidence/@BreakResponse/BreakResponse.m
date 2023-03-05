@@ -15,7 +15,11 @@ classdef BreakResponse < CFS.Element.Evidence.Response
     methods
 
         function obj = BreakResponse(parameters)
-
+        %
+        % Args:
+        %   keys: :attr:`.+CFS.+Element.+Evidence.@Response.Response.keys`
+        %
+        
             arguments
                 parameters.keys = {'LeftArrow', 'RightArrow'}
             end
@@ -26,7 +30,7 @@ classdef BreakResponse < CFS.Element.Evidence.Response
             end
         end
 
-        get(obj);
+        get(obj, pressed, first_press);
         create_kbqueue(obj);
 
     end

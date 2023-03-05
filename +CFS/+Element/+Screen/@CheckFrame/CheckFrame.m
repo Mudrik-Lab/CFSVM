@@ -23,9 +23,9 @@ classdef CheckFrame < CFS.Element.SpatialElement
         function obj = CheckFrame(parameters)
         %
         % Args:
-        %   checker_length: Int.
-        %   checker_width: Int.
-        %   hex_colors: Cell array of chars.
+        %   checker_length: :attr:`~.+CFS.+Element.+Screen.@CheckFrame.CheckFrame.checker_length`
+        %   checker_width: :attr:`~.+CFS.+Element.+Screen.@CheckFrame.CheckFrame.checker_width`
+        %   hex_colors: :attr:`~.+CFS.+Element.+Screen.@CheckFrame.CheckFrame.color_codes`
         %
             arguments
                 parameters.checker_length = 30

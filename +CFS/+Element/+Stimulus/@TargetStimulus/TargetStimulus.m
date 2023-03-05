@@ -28,7 +28,18 @@ classdef TargetStimulus < CFS.Element.Stimulus.Stimulus
     methods
 
         function obj = TargetStimulus(dirpath, parameters)
-
+        %
+        % Args:
+        %   dirpath: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
+        %   duration: :attr:`.+CFS.+Element.@TemporalElement.TemporalElement.duration`
+        %   position: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.size`
+        %   padding: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.padding`
+        %   rotation: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
+        %
+        
             arguments
                 dirpath {mustBeFolder}
                 parameters.duration = 1

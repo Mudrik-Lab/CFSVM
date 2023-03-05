@@ -35,6 +35,7 @@ classdef BCFS < CFS.Experiment.CFS
     methods (Access = protected)
 
         load_parameters(obj)
+        [pressed, first_press] = flash(obj, vbl)
         
     end
 

@@ -16,8 +16,13 @@ classdef SubjectData < handle
     methods
 
         function obj = SubjectData(parameters)
-            % Inquires subject info and puts it into table.
-
+        % Inquires subject info and puts it into table.
+        %
+        % Args:
+        %   dirpath: :attr:`~.+CFS.+Element.+Data.@SubjectData.SubjectData.dirpath`
+        %   file_extenstion: :attr:`~.+CFS.+Element.+Data.@SubjectData.SubjectData.file_extension`
+        %
+        
             arguments
                 parameters.dirpath = './!SubjectInfo'
                 parameters.file_extension = '.csv'

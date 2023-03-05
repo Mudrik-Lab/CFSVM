@@ -32,7 +32,8 @@ function set_times(trials)
         exp = trials{trial_idx}.obj;
         trials{trial_idx}.obj.masks.onset = exp.vbl_recs(1);
         trials{trial_idx}.obj.masks.offset = exp.vbl_recs(end);
-    
+        n_fr = length(exp.vbl_recs);
+
         stimuli = regexp(properties(exp), 'stimulus_\d', 'match', 'once');
         stimuli = sort(stimuli(~cellfun('isempty', stimuli)));
 
@@ -52,14 +53,28 @@ function set_times(trials)
                 exp.(stimuli{stim_idx}).show_duration+ ...
                 exp.(stimuli{stim_idx}).fade_out_duration)*exp.screen.frame_rate+1;
             
-            trials{trial_idx}.obj.(stimuli{stim_idx}).onset = exp.vbl_recs(onset_fr);
-            trials{trial_idx}.obj.(stimuli{stim_idx}).full_contrast_onset = exp.vbl_recs(full_fr);
-            trials{trial_idx}.obj.(stimuli{stim_idx}).fade_out_onset = exp.vbl_recs(fade_out_fr);
-            trials{trial_idx}.obj.(stimuli{stim_idx}).offset = exp.vbl_recs(offset_fr);
+            if class(exp) == "CFS.Experiment.BCFS"
+                trials{trial_idx}.obj.(stimuli{stim_idx}).onset = check_frames(onset_fr, n_fr, exp);
+                trials{trial_idx}.obj.(stimuli{stim_idx}).full_contrast_onset = check_frames(full_fr, n_fr, exp);
+                trials{trial_idx}.obj.(stimuli{stim_idx}).fade_out_onset = check_frames(fade_out_fr, n_fr, exp);
+                trials{trial_idx}.obj.(stimuli{stim_idx}).offset = check_frames(offset_fr, n_fr, exp);
+            else
+                trials{trial_idx}.obj.(stimuli{stim_idx}).onset = exp.vbl_recs(onset_fr);
+                trials{trial_idx}.obj.(stimuli{stim_idx}).full_contrast_onset = exp.vbl_recs(full_fr);
+                trials{trial_idx}.obj.(stimuli{stim_idx}).fade_out_onset = exp.vbl_recs(fade_out_fr);
+                trials{trial_idx}.obj.(stimuli{stim_idx}).offset = exp.vbl_recs(offset_fr);
+            end
         end
     end
 end
 
+function time = check_frames(frame, n_fr, exp)
+    if frame <= n_fr
+        time = exp.vbl_recs(frame);
+    else
+        time = exp.vbl_recs(end);
+    end
+end
 
 function variables = get_variables(trials)
     objects = {};
@@ -148,8 +163,8 @@ function process_data(tab, code, exp)
     if exp=="BCFS"
         keys = dictionary(["1", "2", ""], ["Left", "Right", "0"]);
         TP.break_response = keys(tab.stimulus_break_response_choice);
-        TP.is_break_correct = TP.break_response == tab.stimulus_1_position; 
-        TP.break_response_time = tab.stimulus_break_response_time;
+        TP.is_break_correct = TP.break_response == tab.stimulus_1_position;
+        TP.break_response_time = tab.stimulus_break_response_time - tab.masks_onset;
     elseif exp=="VPCFS"
         TP.target_duration = tab.target_offset - tab.target_onset;
         TP.target_image_name = tab.target_image_name;

@@ -26,7 +26,11 @@ classdef TrialsData < handle
     methods
 
         function obj = TrialsData(parameters)
-
+        %
+        % Args:
+        %   filepath: :attr:`~.+CFS.+Element.+Data.@TrialsData.TrialsData.filepath`
+        %
+        
             arguments
                 parameters.filepath
             end

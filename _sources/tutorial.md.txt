@@ -355,7 +355,7 @@ And that's it! Once you’ve adjusted the screens, you'll see the introduction s
 
 The raw trial data will appear in the `!Raw` folder. Every `.mat` file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.
 
-You can run `extract_from_raw_bcfs.m` script to extract the data from the raw files. It will create two csv tables in `!Results` and `!Processed` folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).
+You can run `extract_from_raw.m` script to extract the data from the raw files. It will create two csv tables in `!Results` and `!Processed` folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).
 
 ![Raw files](tutorial/rawfiles.png)
 

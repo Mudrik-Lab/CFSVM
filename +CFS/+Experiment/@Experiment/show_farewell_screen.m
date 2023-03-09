@@ -1,10 +1,10 @@
-function show_rest_screen(obj)
-% Flips screen to the rest message.
+function show_farewell_screen(obj)
+% Flips screen to the farewell.
 %
 
     TEXT_SIZE = round(obj.screen.left.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
-    INSTRUCTION = {'Press enter to continue.'};
+    INSTRUCTION = {'Thank you!', 'The experiment has finished'};
     N_ROWS = length(INSTRUCTION);
     Screen('TextSize', obj.screen.window, TEXT_SIZE);
 
@@ -26,10 +26,15 @@ function show_rest_screen(obj)
             round(obj.screen.right.y_center-(TEXT_SIZE+SPACING)*(N_ROWS/2-row+1)));
 
     end
-
-    % Checkerboard frame
-    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
+    
+    if isa(obj, 'CFS.Experiment.CFS')
+        % Checkerboard frame
+        Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
+    end
     Screen('Flip', obj.screen.window);
-
+    
+    % Wait until any key is pressed
+    KbStrokeWait
     
 end
+

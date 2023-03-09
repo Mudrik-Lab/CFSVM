@@ -14,15 +14,14 @@ function adjust(obj, frame)
     FRAME_COLOR = {'#4A4A4A'};
     TEXT = ['Arrows for changing position of both screens,\n', ...
         'w,a,s,d for adjusting height and width,\n', ...
-        '=,- for adjusting space between the screens,\n', ...
         'enter to proceed, escape to exit.'];
     
     % Array of used keyboard keys
-    k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w', '=+', '-_' 'Return', 'ESCAPE'};
+    k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w', 'Return', 'ESCAPE'};
 
     % Assign keyboard keys to corresponding variables.
     temp = num2cell(KbName(k));
-    [left, right, up, down, big_hor, small_hor, big_vert, small_vert, big_space, small_space, done, stop] = temp{:};
+    [left, right, up, down, big_hor, small_hor, big_vert, small_vert, done, stop] = temp{:};
     
     % Create KbQueue for recording provided keys.
     keys=[KbName(k)]; % All keys on right hand plus trigger, can be found by running KbDemo
@@ -30,6 +29,9 @@ function adjust(obj, frame)
     keylist(keys)=1; % Set keys you interested in to 1
     KbQueueCreate(-1,keylist); % Create the queue with the provided keys
     
+    if isempty(frame.color_codes)
+        frame.color_codes = {obj.background_color'};
+    end
     % Temporarily change frames colors to the provided one.
     frame_color_codes = frame.color_codes;
     frame.color_codes = cellfun(@(hex) (sscanf(hex(2:end), '%2x%2x%2x', [1 3])/255)', ...
@@ -37,13 +39,12 @@ function adjust(obj, frame)
                 UniformOutput=false);
     
     % Initiate frames with the solid color and provided screen rectangles.
-    frame.initiate(obj);
+    frame.initiate(obj.field);
 
     % Draw frames and flip the screen.
     Screen('FillRect', obj.window, frame.color, frame.rect);
 
-    DrawFormattedText(obj.window, TEXT, obj.left.rect(1)+frame.checker_width, obj.left.rect(2)+frame.checker_width*2);
-    DrawFormattedText(obj.window, TEXT, obj.right.rect(1)+frame.checker_width, obj.right.rect(2)+frame.checker_width*2);
+    DrawFormattedText(obj.window, TEXT, obj.field.rect(1)+frame.checker_width, obj.field.rect(2)+frame.checker_width*2);
 
     Screen('Flip', obj.window);
 
@@ -66,35 +67,21 @@ function adjust(obj, frame)
         try
             switch key   
                 case left
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) - SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) - SHIFT;
+                    obj.field.rect([1,3]) = obj.field.rect([1,3]) - SHIFT;
                 case right
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) + SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) + SHIFT;
+                    obj.field.rect([1,3]) = obj.field.rect([1,3]) + SHIFT;
                 case up
-                    obj.left.rect([2,4]) = obj.left.rect([2,4]) - SHIFT;
-                    obj.right.rect([2,4]) = obj.right.rect([2,4]) - SHIFT;
+                    obj.field.rect([2,4]) = obj.field.rect([2,4]) - SHIFT;
                 case down
-                    obj.left.rect([2,4]) = obj.left.rect([2,4]) + SHIFT;
-                    obj.right.rect([2,4]) = obj.right.rect([2,4]) + SHIFT;
+                    obj.field.rect([2,4]) = obj.field.rect([2,4]) + SHIFT;
                 case big_hor
-                    obj.left.rect(3) = obj.left.rect(3) + SHIFT;
-                    obj.right.rect(3) = obj.right.rect(3) + SHIFT;
+                    obj.field.rect(3) = obj.field.rect(3) + SHIFT;
                 case small_hor
-                    obj.left.rect(3) = obj.left.rect(3) - SHIFT;
-                    obj.right.rect(3) = obj.right.rect(3) - SHIFT;
+                    obj.field.rect(3) = obj.field.rect(3) - SHIFT;
                 case big_vert
-                    obj.left.rect(4) = obj.left.rect(4) + SHIFT;
-                    obj.right.rect(4) = obj.right.rect(4) + SHIFT;
+                    obj.field.rect(4) = obj.field.rect(4) + SHIFT;
                 case small_vert
-                    obj.left.rect(4) = obj.left.rect(4) - SHIFT;
-                    obj.right.rect(4) = obj.right.rect(4) - SHIFT;
-                case big_space
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) - SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) + SHIFT;
-                case small_space
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) + SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) - SHIFT;
+                    obj.field.rect(4) = obj.field.rect(4) - SHIFT;
                 case done
                     % Stop the adjustment if the 'done' key was pressed.
                     break;
@@ -110,10 +97,10 @@ function adjust(obj, frame)
             end
         
             % Reinitiate the frames with adjusted screen rectangles.
-            frame.initiate(obj);
+            frame.reset();
+            frame.initiate(obj.field);
             Screen('FillRect', obj.window, frame.color, frame.rect);
-            DrawFormattedText(obj.window, TEXT, obj.left.rect(1)+frame.checker_width, obj.left.rect(2)+frame.checker_width*2);
-            DrawFormattedText(obj.window, TEXT, obj.right.rect(1)+frame.checker_width, obj.right.rect(2)+frame.checker_width*2);
+            DrawFormattedText(obj.window, TEXT, obj.field.rect(1)+frame.checker_width, obj.field.rect(2)+frame.checker_width*2);
             Screen('Flip', obj.window);
         
         catch ME
@@ -125,7 +112,6 @@ function adjust(obj, frame)
                 % If can't reduce screen no more - show warning.
                 % If there is another exception it will be catched here as
                 % well.
-                Screen('FillRect', obj.window, frame.color, frame.rect);
                 DrawFormattedText(obj.window, ...
                     ['You have probably reached the limit, ' ...
                     'but maybe not, you can try further or return it as it was.' ...
@@ -141,7 +127,8 @@ function adjust(obj, frame)
 
     % Reinitiate the frames with originally provided color codes.
     frame.color_codes = frame_color_codes;
-    frame.initiate(obj);
+    frame.reset();
+    frame.initiate(obj.field);
 
 
 end

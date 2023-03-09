@@ -20,8 +20,10 @@ function show_preparing_screen(obj)
         obj.screen.right.rect(1)+PADDING, ...
         round(obj.screen.right.y_center-TEXT_SIZE/2));
     
-    % Checkerboard frame
-    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
+    if isa(obj, 'CFS.Experiment.CFS')
+        % Checkerboard frame
+        Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
+    end
     Screen('Flip', obj.screen.window);
     
 end

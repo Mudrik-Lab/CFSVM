@@ -45,7 +45,7 @@ classdef CheckFrame < CFS.Element.SpatialElement
         end
         
         initiate(obj, screen)
-
+        reset(obj)
     end
 
     methods (Access = protected)

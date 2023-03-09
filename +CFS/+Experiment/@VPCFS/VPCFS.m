@@ -16,8 +16,8 @@ classdef VPCFS < CFS.Experiment.CFS
         fixation CFS.Element.Stimulus.Fixation
         % :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
         frame CFS.Element.Screen.CheckFrame
-        % :class:`~+CFS.+Element.+Stimulus.@Masks` object.
-        masks CFS.Element.Stimulus.Masks
+        % :class:`~+CFS.+Element.+Stimulus.@Mondrians` object.
+        masks CFS.Element.Stimulus.Mondrians
         % :class:`~+CFS.+Element.+Stimulus.@TargetStimulus` object.
         target CFS.Element.Stimulus.TargetStimulus
         % :class:`~+CFS.+Element.+Evidence.@PAS` object.

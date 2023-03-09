@@ -1,4 +1,4 @@
-classdef Masks < CFS.Element.Stimulus.Stimulus
+classdef Mondrians < CFS.Element.Stimulus.Stimulus
 % Manipulating Mondrian masks.
 %
 % Derived from :class:`~+CFS.+Element.+Stimulus.@Stimulus`.
@@ -21,9 +21,9 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         mondrians_shape
         % Int - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 check
-        % :func:`~+CFS.+Element.+Stimulus.@Masks.make_mondrian_masks`.
+        % :func:`~+CFS.+Element.+Stimulus.@Mondrians.make_mondrians`.
         mondrians_color
-        % Int - overall max number of Masks from blocks and trials.
+        % Int - overall max number of masks from blocks and trials.
         n_max
         % 1D array representing masks index for every frame.
         indices
@@ -38,11 +38,11 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
 
     methods
 
-        function obj = Masks(parameters)
+        function obj = Mondrians(parameters)
         %
         % Args:
         %   dirpath: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
-        %   temporal_frequency: :attr:`~.+CFS.+Element.+Stimulus.@Masks.Masks.temporal_frequency`
+        %   temporal_frequency: :attr:`~.+CFS.+Element.+Stimulus.@Mondrians.Mondrians.temporal_frequency`
         %   duration: :attr:`.+CFS.+Element.@TemporalElement.TemporalElement.duration`
         %   position: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.position`
         %   xy_ratio: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
@@ -50,8 +50,8 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         %   padding: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.padding`
         %   rotation: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
         %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
-        %   mondrians_shape: :attr:`~.+CFS.+Element.+Stimulus.@Masks.Masks.mondrians_shape`
-        %   mondrians_color: :attr:`~.+CFS.+Element.+Stimulus.@Masks.Masks.mondrians_color`
+        %   mondrians_shape: :attr:`~.+CFS.+Element.+Stimulus.@Mondrians.Mondrians.mondrians_shape`
+        %   mondrians_color: :attr:`~.+CFS.+Element.+Stimulus.@Mondrians.Mondrians.mondrians_color`
         %
 
             arguments
@@ -78,7 +78,7 @@ classdef Masks < CFS.Element.Stimulus.Stimulus
         
         get_max(obj, trial_matrices)
         shuffle(obj)
-        make_mondrian_masks(obj, x_pixels, y_pixels)
+        make_mondrians(obj, x_pixels, y_pixels)
         load_rect_parameters(obj, screen, is_left_suppression)
         load_flashing_parameters(obj, screen)
 

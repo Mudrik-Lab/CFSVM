@@ -86,7 +86,7 @@ function initiate(obj)
             x = obj.screen.right.x_pixels;
             y = obj.screen.right.y_pixels;
         end
-        obj.masks.make_mondrian_masks(x,y)
+        obj.masks.make_mondrians(x,y)
     end
 
     % Import images and create PTB textures of the masks.

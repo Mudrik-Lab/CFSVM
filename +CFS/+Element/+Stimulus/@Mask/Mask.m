@@ -2,8 +2,16 @@ classdef Mask < CFS.Element.Stimulus.Stimulus
     %MASK Summary of this class goes here
     %   Detailed explanation goes here
     
+    properties (Constant)
+        
+        % Parameters to parse into the processed results table.
+        RESULTS = {'onset', 'offset'}
+
+    end
+
     properties
         soa
+        blank
     end
     
     methods
@@ -12,6 +20,7 @@ classdef Mask < CFS.Element.Stimulus.Stimulus
             arguments
                 parameters.dirpath = './Masks/'
                 parameters.duration = 0.1
+                parameters.blank = 0.5
                 parameters.soa = 0.2
                 parameters.position = "Center"
                 parameters.xy_ratio = 1

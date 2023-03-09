@@ -1,4 +1,4 @@
-function make_mondrian_masks(obj, x_pixels, y_pixels)
+function make_mondrians(obj, x_pixels, y_pixels)
 % Generates masks and writes them to the dirpath.
 % 
 % This function creates Mondrian masks that can be used for continuous

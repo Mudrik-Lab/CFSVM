@@ -34,8 +34,8 @@ function load_parameters(obj)
             end
             
             obj.frame.reset()
-            obj.frame.initiate(obj.screen.left)
-            obj.frame.initiate(obj.screen.right)
+            obj.frame.initiate(obj.screen.fields{1})
+            obj.frame.initiate(obj.screen.fields{2})
             
             obj.fixation.load_args(obj.screen)
         

@@ -1,23 +1,16 @@
-classdef CustomScreen < handle
+classdef StereoScreen < CFS.Element.Screen.CustomScreen
 % Storing and manipulating left and right screen areas.
     
     properties
-        % Cell array of :class:`~+CFS.+Element.+Screen.@ScreenField` objects.
-        fields
-        % Int for number of pixels shifted on keypress while adjusting screens.
-        shift
-        % Char array of 7 chars containing HEX color.
-        background_color
 
-        window  % PTB window object.
-        inter_frame_interval  % Float for time between two frames ≈ 1/frame_rate.
-        frame_rate  % Float for display refresh rate.
+        fields  % Cell array of :class:`~+CFS.+Element.+Screen.@ScreenField` objects.
+        
     end
 
 
     methods
         
-        function obj = CustomScreen(parameters)
+        function obj = StereoScreen(parameters)
         %
         % Args:
         %   background_color: :attr:`~.+CFS.+Element.+Screen.@CustomScreen.CustomScreen.background_color`
@@ -41,7 +34,7 @@ classdef CustomScreen < handle
                 second_rect = [ ...
                     screen_size(3)-parameters.initial_rect(3), ...
                     parameters.initial_rect(2), ...
-                    screen_size(3)-parameters.initial_rect(1), ...
+                    screen_size(3)-parameters.initial_rect(3), ...
                     parameters.initial_rect(4)];
                 obj.fields{2} = CFS.Element.Screen.ScreenField(second_rect);
             end

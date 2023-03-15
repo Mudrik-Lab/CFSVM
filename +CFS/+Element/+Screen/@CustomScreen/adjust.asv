@@ -8,8 +8,6 @@ function adjust(obj, frame)
 %   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
 %
 
-    % Number of pixels to change on a keypress.
-    SHIFT = obj.shift;
     % Color to use when adjusting the frames.
     FRAME_COLOR = {'#4A4A4A'};
     TEXT = ['Arrows for changing position of both screens,\n', ...
@@ -40,15 +38,18 @@ function adjust(obj, frame)
                 UniformOutput=false);
     
     % Initiate frames with the solid color and provided screen rectangles.
-    frame.initiate(obj.left);
-    frame.initiate(obj.right);
+    initiate_fields(obj, frame)
 
     % Draw frames and flip the screen.
     Screen('FillRect', obj.window, frame.color, frame.rect);
-
-    DrawFormattedText(obj.window, TEXT, obj.left.rect(1)+frame.checker_width, obj.left.rect(2)+frame.checker_width*2);
-    DrawFormattedText(obj.window, TEXT, obj.right.rect(1)+frame.checker_width, obj.right.rect(2)+frame.checker_width*2);
-
+    
+    for n = 1:length(obj.fields)
+        DrawFormattedText( ...
+            obj.window, ...
+            TEXT, ...
+            obj.fields{n}.rect(1)+frame.checker_width, ...
+            obj.fields{n}.rect(2)+frame.checker_width*2);
+    end
     Screen('Flip', obj.window);
 
     % Start queuing keys.
@@ -70,35 +71,25 @@ function adjust(obj, frame)
         try
             switch key   
                 case left
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) - SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) - SHIFT;
+                    correct_fields(obj, coords=[1,3], is_minus=[true, true])
                 case right
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) + SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) + SHIFT;
+                    correct_fields(obj, coords=[1,3], is_minus=[false, false])
                 case up
-                    obj.left.rect([2,4]) = obj.left.rect([2,4]) - SHIFT;
-                    obj.right.rect([2,4]) = obj.right.rect([2,4]) - SHIFT;
+                    correct_fields(obj, coords=[2,4], is_minus=[true, true])
                 case down
-                    obj.left.rect([2,4]) = obj.left.rect([2,4]) + SHIFT;
-                    obj.right.rect([2,4]) = obj.right.rect([2,4]) + SHIFT;
+                    correct_fields(obj, coords=[2,4], is_minus=[false, false])
                 case big_hor
-                    obj.left.rect(3) = obj.left.rect(3) + SHIFT;
-                    obj.right.rect(3) = obj.right.rect(3) + SHIFT;
+                    correct_fields(obj, coords=[3], is_minus=[false, false])
                 case small_hor
-                    obj.left.rect(3) = obj.left.rect(3) - SHIFT;
-                    obj.right.rect(3) = obj.right.rect(3) - SHIFT;
+                    correct_fields(obj, coords=[3], is_minus=[true, true])
                 case big_vert
-                    obj.left.rect(4) = obj.left.rect(4) + SHIFT;
-                    obj.right.rect(4) = obj.right.rect(4) + SHIFT;
+                    correct_fields(obj, coords=[4], is_minus=[false, false])
                 case small_vert
-                    obj.left.rect(4) = obj.left.rect(4) - SHIFT;
-                    obj.right.rect(4) = obj.right.rect(4) - SHIFT;
+                    correct_fields(obj, coords=[4], is_minus=[true, true])
                 case big_space
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) - SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) + SHIFT;
+                    correct_fields(obj, coords=[1,3], is_minus=[true, false])
                 case small_space
-                    obj.left.rect([1,3]) = obj.left.rect([1,3]) + SHIFT;
-                    obj.right.rect([1,3]) = obj.right.rect([1,3]) - SHIFT;
+                    correct_fields(obj, coords=[1,3], is_minus=[false, true])
                 case done
                     % Stop the adjustment if the 'done' key was pressed.
                     break;
@@ -115,8 +106,7 @@ function adjust(obj, frame)
         
             % Reinitiate the frames with adjusted screen rectangles.
             frame.reset();
-            frame.initiate(obj.left);
-            frame.initiate(obj.right);
+            initiate_fields(obj, frame)
             Screen('FillRect', obj.window, frame.color, frame.rect);
             DrawFormattedText(obj.window, TEXT, obj.left.rect(1)+frame.checker_width, obj.left.rect(2)+frame.checker_width*2);
             DrawFormattedText(obj.window, TEXT, obj.right.rect(1)+frame.checker_width, obj.right.rect(2)+frame.checker_width*2);
@@ -153,3 +143,31 @@ function adjust(obj, frame)
 
 end
 
+function correct_fields(obj, coords, is_minus)
+    for n = 1:length(obj.fields)
+        if is_minus(n)
+            obj.fields{n}.rect(coords) = obj.fields{n}.rect(coords) - obj.shift;
+        else
+            obj.fields{n}.rect(coords) = obj.fields{n}.rect(coords) + obj.shift;
+        end
+    end
+end
+
+function initiate_fields_and_draw(obj, frame)
+
+    for n = 1:length(obj.fields)
+        frame.initiate(obj.fields{n})
+    end
+    % Draw frames and flip the screen.
+    Screen('FillRect', obj.window, frame.color, frame.rect);
+    
+    for n = 1:length(obj.fields)
+        DrawFormattedText( ...
+            obj.window, ...
+            TEXT, ...
+            obj.fields{n}.rect(1)+frame.checker_width, ...
+            obj.fields{n}.rect(2)+frame.checker_width*2);
+    end
+    Screen('Flip', obj.window);
+    
+end

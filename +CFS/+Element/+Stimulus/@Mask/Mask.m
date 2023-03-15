@@ -37,6 +37,8 @@ classdef Mask < CFS.Element.Stimulus.Stimulus
             end
 
         end
+
+        load_rect_parameters(obj, screen)
         
     end
 end

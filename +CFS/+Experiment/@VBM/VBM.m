@@ -5,7 +5,7 @@ classdef VBM < CFS.Experiment.Experiment
     properties
 
         % :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
-        screen CFS.Element.Screen.MonoScreen
+        screen CFS.Element.Screen.CustomScreen
         % :class:`~+CFS.+Element.+Data.@SubjectData` object.
         subject_info CFS.Element.Data.SubjectData
         % :class:`~+CFS.+Element.+Data.@TrialsData` object.
@@ -27,6 +27,7 @@ classdef VBM < CFS.Experiment.Experiment
 
         initiate(obj)
         flash(obj)
+
 
     end
     

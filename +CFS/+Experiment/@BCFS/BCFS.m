@@ -8,7 +8,7 @@ classdef BCFS < CFS.Experiment.CFS
     properties
         
         % :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
-        screen CFS.Element.Screen.StereoScreen
+        screen CFS.Element.Screen.CustomScreen
         % :class:`~+CFS.+Element.+Data.@SubjectData` object.
         subject_info CFS.Element.Data.SubjectData
         % :class:`~+CFS.+Element.+Data.@TrialsData` object.

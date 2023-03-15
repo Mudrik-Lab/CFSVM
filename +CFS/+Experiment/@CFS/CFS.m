@@ -32,7 +32,7 @@ classdef (Abstract) CFS < CFS.Experiment.Experiment
         initiate(obj)
         preload_stim_and_masks_args(obj, stim_props)
         flash(obj, vbl)
-        
+
     end
 
 end

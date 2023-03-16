@@ -154,9 +154,9 @@ function process_data(tab, code, exp)
 
     if exp=="BCFS"
         keys = dictionary(["1", "2", ""], ["Left", "Right", "0"]);
-        TP.break_response = keys(tab.stimulus_break_response_choice);
+        TP.break_response = keys(tab.breakthrough_response_choice);
         TP.is_break_correct = TP.break_response == tab.stimulus_1_position;
-        TP.break_response_time = tab.stimulus_break_response_time - tab.masks_onset;
+        TP.break_response_time = tab.breakthrough_response_time - tab.masks_onset;
     elseif exp=="VPCFS"
         TP.target_duration = tab.target_offset - tab.target_onset;
         TP.target_image_name = tab.target_image_name;

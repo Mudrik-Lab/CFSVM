@@ -68,8 +68,8 @@ function initiate(obj)
     % Relevant only for BCFS.
     % Initialize breaking response property and create PTB KbQueue.
     if class(obj) == "CFS.Experiment.BCFS"
-        obj.stimulus_break = BreakResponse(keys=obj.trials.matrix{1}{1}.stimulus_break.keys);
-        obj.stimulus_break.create_kbqueue()
+        obj.breakthrough = BreakResponse(keys=obj.trials.matrix{1}{1}.breakthrough.keys);
+        obj.breakthrough.create_kbqueue()
     end
     
     % Initialize masks property with parameters from the first trial.

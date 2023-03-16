@@ -66,6 +66,7 @@ classdef Mondrians < CFS.Element.Stimulus.Stimulus
                 parameters.contrast = 1
                 parameters.mondrians_shape = 1
                 parameters.mondrians_color = 1
+                parameters.blank = 0
             end
 
             parameters_names = fieldnames(parameters);

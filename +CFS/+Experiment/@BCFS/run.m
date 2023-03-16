@@ -23,7 +23,7 @@ function run(obj)
             KbQueueStop()
 
             obj.trials.end_time = GetSecs();
-            obj.stimulus_break.get(pressed, first_press)
+            obj.breakthrough.get(pressed, first_press)
             obj.show_rest_screen()
             save(sprintf("!Raw/%s/block%d_trial%d.mat", obj.subject_info.code, obj.trials.block_index, obj.trials.trial_index), 'obj')
             obj.wait_for_keypress('return')

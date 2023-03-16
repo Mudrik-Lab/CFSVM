@@ -20,7 +20,7 @@ classdef BCFS < CFS.Experiment.CFS
         % :class:`~+CFS.+Element.+Stimulus.@Mondrians` object.
         masks CFS.Element.Stimulus.Mondrians
         % :class:`~+CFS.+Element.+Evidence.@BreakResponse` object.
-        stimulus_break CFS.Element.Evidence.BreakResponse
+        breakthrough CFS.Element.Evidence.BreakResponse
         
     end
 

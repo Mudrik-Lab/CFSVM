@@ -1,4 +1,4 @@
-function show(obj, screen, frame)
+function show(obj, exp)
 % Shows text version of mAFC, waits for the subject response and records it.
 % 
 % See also :func:`~+CFS.+Element.+Evidence.@ScaleEvidence.record_response`.
@@ -7,12 +7,13 @@ function show(obj, screen, frame)
 %   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
 %   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
 %
-
+    
+    screen = exp.screen;
     PADDING = 10;
-    obj.title_size = round(screen.left.x_pixels/15);
+    obj.title_size = round(screen.fields{1}.x_pixels/15);
     obj.text_size = round(obj.title_size/1.5);
-    left_screen_shift = screen.left.x_pixels/obj.n_options;
-    right_screen_shift = screen.right.x_pixels/obj.n_options;
+    left_screen_shift = screen.fields{1}.x_pixels/obj.n_options;
+    right_screen_shift = screen.fields{2}.x_pixels/obj.n_options;
 
     Screen('TextSize', screen.window, obj.title_size);
     text_bounds = Screen('TextBounds', screen.window, obj.title);
@@ -20,13 +21,13 @@ function show(obj, screen, frame)
     Screen('DrawText', ...
         screen.window, ...
         obj.title, ...
-        screen.left.x_center-title_length/2, ...
-        screen.left.rect(2)+PADDING);
+        screen.fields{1}.x_center-title_length/2, ...
+        screen.fields{1}.rect(2)+PADDING);
     Screen('DrawText', ...
         screen.window, ...
         obj.title, ...
-        screen.right.x_center-title_length/2, ...
-        screen.right.rect(2)+PADDING);
+        screen.fields{2}.x_center-title_length/2, ...
+        screen.fields{2}.rect(2)+PADDING);
 
 
     Screen('TextSize', screen.window, obj.text_size);
@@ -34,17 +35,19 @@ function show(obj, screen, frame)
         Screen('DrawText', ...
             screen.window, ...
             obj.options{index}, ...
-            screen.left.rect(1)+(index-(1-0.5/obj.n_options))*left_screen_shift, ...
-            screen.left.y_center-obj.text_size);
+            screen.fields{1}.rect(1)+(index-(1-0.5/obj.n_options))*left_screen_shift, ...
+            screen.fields{1}.y_center-obj.text_size);
         Screen('DrawText', ...
             screen.window, ...
             obj.options{index}, ...
-            screen.right.rect(1)+(index-(1-0.5/obj.n_options))*right_screen_shift, ...
-            screen.right.y_center-obj.text_size);
+            screen.fields{2}.rect(1)+(index-(1-0.5/obj.n_options))*right_screen_shift, ...
+            screen.fields{2}.y_center-obj.text_size);
     end
 
-    % Checkerboard frame
-    Screen('FillRect', screen.window, frame.color, frame.rect);
+    if isa(exp, "CFS.Experiment.CFS")
+        % Checkerboard frame
+        Screen('FillRect', screen.window, exp.frame.color, exp.frame.rect);
+    end
 
     obj.onset = Screen('Flip', screen.window);
     

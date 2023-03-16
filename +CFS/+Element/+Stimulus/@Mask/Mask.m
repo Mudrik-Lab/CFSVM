@@ -11,7 +11,10 @@ classdef Mask < CFS.Element.Stimulus.Stimulus
 
     properties
         soa
-        blank
+        % [x0, y0, x1, y1] array - stimulus rect on the left screen.
+        left_rect
+        % [x0, y0, x1, y1] array - stimulus rect on the right screen.
+        right_rect
     end
     
     methods
@@ -20,8 +23,8 @@ classdef Mask < CFS.Element.Stimulus.Stimulus
             arguments
                 parameters.dirpath = './Masks/'
                 parameters.duration = 0.1
-                parameters.blank = 0.5
                 parameters.soa = 0.2
+                parameters.blank = 0
                 parameters.position = "Center"
                 parameters.xy_ratio = 1
                 parameters.size = 1
@@ -38,7 +41,7 @@ classdef Mask < CFS.Element.Stimulus.Stimulus
 
         end
 
-        load_rect_parameters(obj, screen)
+        load_rect_parameters(obj, screen, is_left_suppression)
         
     end
 end

@@ -29,6 +29,8 @@ classdef (Abstract) Stimulus < CFS.Element.TemporalElement & CFS.Element.Spatial
         textures
         % Cell array of chars with name of current image.
         image_name
+
+        blank
         
     end
 

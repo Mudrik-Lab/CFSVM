@@ -5,7 +5,7 @@ function load_rect_parameters(obj, screen)
 %   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
 %
 
-    obj.left_rect = obj.get_rect(screen.left.rect);
-    obj.right_rect =  obj.get_rect(screen.right.rect);
+    obj.left_rect = obj.get_rect(screen.fields{1}.rect);
+    obj.right_rect =  obj.get_rect(screen.fields{2}.rect);
 end
 

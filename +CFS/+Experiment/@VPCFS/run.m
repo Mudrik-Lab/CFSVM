@@ -21,8 +21,8 @@ function run(obj)
             
             obj.flash(vbl)
             obj.target.show(obj)
-            obj.pas.show(obj.screen, obj.frame)
-            obj.mafc.show(obj.screen, obj.frame)
+            obj.pas.show(obj)
+            obj.mafc.show(obj)
             obj.trials.end_time = GetSecs();
             obj.show_rest_screen()
             save(sprintf("!Raw/%s/block%d_trial%d.mat", obj.subject_info.code, obj.trials.block_index, obj.trials.trial_index), 'obj')

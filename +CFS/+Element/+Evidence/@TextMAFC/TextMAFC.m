@@ -43,7 +43,7 @@ classdef TextMAFC < CFS.Element.Evidence.ScaleEvidence
             obj.n_options = length(obj.keys);
         end
         
-        show(obj, screen, frame);
+        show(obj, exp);
 
     end
 

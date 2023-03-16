@@ -1,5 +1,5 @@
 function run(obj)
-% Executes the breaking CFS experiment.
+% Executes the VBM experiment.
 %
 % First initiates the experiment, then for every trial update parameters,
 % shows fixation crosses, flashes masks and stimuli, records
@@ -15,13 +15,11 @@ function run(obj)
             obj.trials.start_time = GetSecs();
             obj.trials.trial_index = trial;
             obj.trials.load_trial_parameters(obj);
-            
-            %vbl = obj.fixation.show(obj);
 
-            KbQueueStart()
             obj.flash();
-            KbQueueStop()
-
+            
+            obj.pas.show(obj);
+            obj.mafc.show(obj);
             obj.trials.end_time = GetSecs();
             obj.show_rest_screen()
             save(sprintf("!Raw/%s/block%d_trial%d.mat", obj.subject_info.code, obj.trials.block_index, obj.trials.trial_index), 'obj')

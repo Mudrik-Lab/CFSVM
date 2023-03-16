@@ -1,5 +1,5 @@
-classdef VBM < CFS.Experiment.Experiment
-    %VBM Summary of this class goes here
+classdef VSM < CFS.Experiment.VM
+    %VFBM Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -12,24 +12,23 @@ classdef VBM < CFS.Experiment.Experiment
         trials CFS.Element.Data.TrialsData
         % :class:`~+CFS.+Element.+Stimulus.@Fixation` object.
         fixation CFS.Element.Stimulus.Fixation
-        % :class:`~+CFS.+Element.+Stimulus.@Masks` object.
-        mask CFS.Element.Stimulus.Mask
-
+        % :class:`~+CFS.+Element.+Stimulus.@Mask` object.
+        f_mask CFS.Element.Stimulus.Mask
+        % :class:`~+CFS.+Element.+Stimulus.@Mask` object.
+        b_mask CFS.Element.Stimulus.Mask
+        % :class:`~+CFS.+Element.+Evidence.@PAS` object.
+        pas CFS.Element.Evidence.PAS
+        % Either :class:`~+CFS.+Element.+Evidence.@ImgMAFC` or 
+        % :class:`~+CFS.+Element.+Evidence.@TextMAFC` object.
+        mafc
+        
     end
 
     methods
-
-        run(obj)
-
-    end
-
-    methods(Access=protected)
-
-        initiate(obj)
+        
         flash(obj)
 
-
     end
+
     
 end
-

@@ -18,8 +18,6 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         appearance_delay 
         % Float - duration in seconds of stimulus fade in.
         fade_in_duration
-        % Float - duration in seconds of stable contrast stimulus presentation.
-        show_duration
         % Float - duration in seconds of stimulus fade out.
         fade_out_duration
         % [x0, y0, x1, y1] array - stimulus rect on the left screen.
@@ -53,7 +51,7 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
         %   appearance_delay: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.appearance_delay`
         %   fade_in_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_in_duration`
-        %   show_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.show_duration`
+        %   duration: :attr:`~.+CFS.+Element.@TemporalElement.TemporalElement.duration`
         %   fade_out_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_out_duration`
         %
 
@@ -67,8 +65,9 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
                 parameters.contrast = 1
                 parameters.appearance_delay = 0
                 parameters.fade_in_duration = 0
-                parameters.show_duration = 1
+                parameters.duration = 1
                 parameters.fade_out_duration = 0
+                parameters.blank = 0
             end
             
             obj.dirpath = dirpath;

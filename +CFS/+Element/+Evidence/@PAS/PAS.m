@@ -51,7 +51,7 @@ classdef PAS < CFS.Element.Evidence.ScaleEvidence
         end
 
         load_parameters(obj, screen)
-        show(obj, screen, frame)
+        show(obj, exp)
 
     end
 

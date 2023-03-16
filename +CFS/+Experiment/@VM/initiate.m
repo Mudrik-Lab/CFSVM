@@ -52,12 +52,31 @@ function initiate(obj)
         end
     end
     
-    
-    % Initialize masks property with parameters from the first trial.
-    obj.mask = obj.trials.matrix{1}{1}.mask;
+    if class(obj) == "CFS.Experiment.VSM"
+        % Initialize masks property with parameters from the first trial.
+        obj.f_mask = obj.trials.matrix{1}{1}.f_mask;
+        obj.b_mask = obj.trials.matrix{1}{1}.b_mask;
+        % Import images and create PTB textures of the masks.
+        obj.f_mask.import_images(obj.screen.window)
+        obj.b_mask.import_images(obj.screen.window)
+    else
+        % Initialize masks property with parameters from the first trial.
+        obj.mask = obj.trials.matrix{1}{1}.mask;
+        % Import images and create PTB textures of the masks.
+        obj.mask.import_images(obj.screen.window)
+        
+        if obj.mask.soa < 0
+            obj.flash = @obj.f_flash;
+        elseif obj.mask.soa > 0
+            obj.flash = @obj.b_flash;
+        else
+            obj.flash = @obj.s_flash;
+        end
+    end
 
-    % Import images and create PTB textures of the masks.
-    obj.mask.import_images(obj.screen.window)
+    % Initialize mafc and pas.
+    obj.mafc = obj.trials.matrix{1}{1}.mafc;
+    obj.pas = PAS();
 
     % Update every trial with initialized parameters.
     obj.trials.update(obj)

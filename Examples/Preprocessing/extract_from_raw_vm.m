@@ -1,12 +1,11 @@
-function extract_from_raw(subject_code)
+function extract_from_raw_vm(subject_code)
 %EXTRACT_FROM_RAW
 
     trials = load_trials(subject_code);
-    set_times(trials)
     variables = get_variables(trials);
     tab = create_table(variables);
     tab = extract_data(trials, tab, variables, subject_code);
-    exp = string(regexp(class(trials{1}.obj), '\w+CFS', 'match'));
+    exp = string(regexp(class(trials{1}.obj), 'V\wM', 'match'));
     process_data(tab, subject_code, exp)
     
 end
@@ -25,56 +24,6 @@ function trials = load_trials(code)
 
 end
 
-
-function set_times(trials)
-    for trial_idx = 1:length(trials) 
-    
-        exp = trials{trial_idx}.obj;
-        trials{trial_idx}.obj.masks.onset = exp.vbl_recs(1);
-        trials{trial_idx}.obj.masks.offset = exp.vbl_recs(end);
-        n_fr = length(exp.vbl_recs);
-
-        stimuli = regexp(properties(exp), 'stimulus_\d', 'match', 'once');
-        stimuli = sort(stimuli(~cellfun('isempty', stimuli)));
-
-        for stim_idx = 1:length(stimuli)
-    
-            onset_fr = exp.(stimuli{stim_idx}).appearance_delay*exp.screen.frame_rate+1;
-            
-            full_fr = (exp.(stimuli{stim_idx}).appearance_delay+ ...
-                exp.(stimuli{stim_idx}).fade_in_duration)*exp.screen.frame_rate+1;
-            
-            fade_out_fr = (exp.(stimuli{stim_idx}).appearance_delay+ ...
-                exp.(stimuli{stim_idx}).fade_in_duration+ ...
-                exp.(stimuli{stim_idx}).show_duration)*exp.screen.frame_rate+1;
-            
-            offset_fr = (exp.(stimuli{stim_idx}).appearance_delay+ ...
-                exp.(stimuli{stim_idx}).fade_in_duration+ ...
-                exp.(stimuli{stim_idx}).show_duration+ ...
-                exp.(stimuli{stim_idx}).fade_out_duration)*exp.screen.frame_rate+1;
-            
-            if class(exp) == "CFS.Experiment.BCFS"
-                trials{trial_idx}.obj.(stimuli{stim_idx}).onset = check_frames(onset_fr, n_fr, exp);
-                trials{trial_idx}.obj.(stimuli{stim_idx}).full_contrast_onset = check_frames(full_fr, n_fr, exp);
-                trials{trial_idx}.obj.(stimuli{stim_idx}).fade_out_onset = check_frames(fade_out_fr, n_fr, exp);
-                trials{trial_idx}.obj.(stimuli{stim_idx}).offset = check_frames(offset_fr, n_fr, exp);
-            else
-                trials{trial_idx}.obj.(stimuli{stim_idx}).onset = exp.vbl_recs(onset_fr);
-                trials{trial_idx}.obj.(stimuli{stim_idx}).full_contrast_onset = exp.vbl_recs(full_fr);
-                trials{trial_idx}.obj.(stimuli{stim_idx}).fade_out_onset = exp.vbl_recs(fade_out_fr);
-                trials{trial_idx}.obj.(stimuli{stim_idx}).offset = exp.vbl_recs(offset_fr);
-            end
-        end
-    end
-end
-
-function time = check_frames(frame, n_fr, exp)
-    if frame <= n_fr
-        time = exp.vbl_recs(frame);
-    else
-        time = exp.vbl_recs(end);
-    end
-end
 
 function variables = get_variables(trials)
     objects = {};
@@ -128,17 +77,9 @@ end
 
 
 function process_data(tab, code, exp)
-    new_columns = {'break_response', 'is_break_correct', 'break_response_time', ...
-     'block_index', 'trial_index', 'trial_start_time', 'trial_end_time', ...
-     'trial_duration', 'masks_duration', 'fixation_duration'};
 
-    stimulus_columns = {'stimulus_%d_position', 'stimulus_%d_duration', 'stimulus_%d_delay_duration', 'stimulus_%d_fade_in_duration', 'stimulus_%d_full_contrast_duration', ...
-             'stimulus_%d_fade_out_duration'};
-    stimuli = regexp(tab.Properties.VariableNames, 'stimulus_\d', 'match', 'once');
+    stimuli = regexp(tab.Properties.VariableNames, 'stimulus(_\d)*', 'match', 'once');
     stimuli = sort(unique(stimuli(~cellfun('isempty', stimuli))));
-    for stim_idx = 1:length(stimuli)
-        new_columns = [new_columns, cellfun(@(x) (sprintf(x, stim_idx)), stimulus_columns, 'UniformOutput', false)];
-    end
     
     TP = table;
 
@@ -147,36 +88,41 @@ function process_data(tab, code, exp)
     TP.trial_start_time = tab.trials_start_time;
     TP.trial_end_time = tab.trials_end_time;
     TP.trial_duration = TP.trial_end_time - TP.trial_start_time;
-    TP.masks_duration = tab.masks_offset - tab.masks_onset;
-    TP.fixation_duration = tab.masks_onset - tab.fixation_onset;
-    for stim_idx = 1:length(stimuli)
-        TP.(sprintf('stimulus_%d_image_name', stim_idx)) = tab.(sprintf('stimulus_%d_image_name', stim_idx));
-        TP.(sprintf('stimulus_%d_index', stim_idx)) = tab.(sprintf('stimulus_%d_index', stim_idx));
-        TP.(sprintf('stimulus_%d_position', stim_idx)) = tab.(sprintf('stimulus_%d_position', stim_idx));
-        TP.(sprintf('stimulus_%d_delay_duration', stim_idx)) = tab.(sprintf('stimulus_%d_onset', stim_idx)) - tab.masks_onset;
-        TP.(sprintf('stimulus_%d_duration', stim_idx)) = tab.(sprintf('stimulus_%d_offset', stim_idx)) - tab.(sprintf('stimulus_%d_onset', stim_idx));
-        TP.(sprintf('stimulus_%d_full_contrast_duration', stim_idx)) = tab.(sprintf('stimulus_%d_fade_out_onset', stim_idx)) - tab.(sprintf('stimulus_%d_full_contrast_onset', stim_idx));
-        TP.(sprintf('stimulus_%d_fade_in_duration', stim_idx)) = tab.(sprintf('stimulus_%d_full_contrast_onset', stim_idx)) - tab.(sprintf('stimulus_%d_onset', stim_idx));
-        TP.(sprintf('stimulus_%d_fade_out_duration', stim_idx)) = tab.(sprintf('stimulus_%d_offset', stim_idx)) - tab.(sprintf('stimulus_%d_fade_out_onset', stim_idx));
-    end
+    if exp=="VSM"
+        TP.fixation_duration = tab.f_mask_onset - tab.fixation_onset;
+        TP.f_mask_duration = tab.f_mask_offset - tab.f_mask_onset;
+        TP.b_mask_duration = tab.b_mask_offset - tab.b_mask_onset;
+        for stim_idx = 1:length(stimuli)
+            TP.(sprintf('%s_image_name', stimuli{stim_idx})) = tab.(sprintf('%s_image_name', stimuli{stim_idx}));
+            TP.(sprintf('%s_index', stimuli{stim_idx})) = tab.(sprintf('%s_index', stimuli{stim_idx}));
+            TP.(sprintf('%s_position', stimuli{stim_idx})) = tab.(sprintf('%s_position', stimuli{stim_idx}));
+            TP.(sprintf('%s_f_soa', stimuli{stim_idx})) = tab.f_mask_onset - tab.(sprintf('%s_onset', stimuli{stim_idx}));
+            TP.(sprintf('%s_b_soa', stimuli{stim_idx})) = tab.b_mask_onset - tab.(sprintf('%s_onset', stimuli{stim_idx}));
+            TP.(sprintf('%s_duration', stimuli{stim_idx})) = tab.(sprintf('%s_offset', stimuli{stim_idx})) - tab.(sprintf('%s_onset', stimuli{stim_idx}));
+        end
 
-    if exp=="BCFS"
-        keys = dictionary(["1", "2", ""], ["Left", "Right", "0"]);
-        TP.break_response = keys(tab.stimulus_break_response_choice);
-        TP.is_break_correct = TP.break_response == tab.stimulus_1_position;
-        TP.break_response_time = tab.stimulus_break_response_time - tab.masks_onset;
-    elseif exp=="VPCFS"
-        TP.target_duration = tab.target_offset - tab.target_onset;
-        TP.target_image_name = tab.target_image_name;
-        TP.target_index = tab.target_index;
-        TP.pas_duration = tab.pas_response_time - tab.pas_onset;
-        TP.pas_response_choice = tab.pas_response_choice;
-        TP.mafc_duration = tab.mafc_response_time - tab.mafc_onset;
-        TP.mafc_response_choice = tab.mafc_response_choice;
-        if ismember('mafc_img_indices', tab.Properties.VariableNames)
-            TP.mafc_img_indices = tab.mafc_img_indices;
+    elseif exp=="VTM"
+        TP.fixation_duration = tab.mask_onset - tab.fixation_onset;
+        TP.mask_duration = tab.mask_offset - tab.mask_onset;  
+        for stim_idx = 1:length(stimuli)
+            TP.(sprintf('%s_image_name', stimuli{stim_idx})) = tab.(sprintf('%s_image_name', stimuli{stim_idx}));
+            TP.(sprintf('%s_index', stimuli{stim_idx})) = tab.(sprintf('%s_index', stimuli{stim_idx}));
+            TP.(sprintf('%s_position', stimuli{stim_idx})) = tab.(sprintf('%s_position', stimuli{stim_idx}));
+            TP.(sprintf('%s_soa', stimuli{stim_idx})) = tab.mask_onset - tab.(sprintf('%s_onset', stimuli{stim_idx}));
+            TP.(sprintf('%s_duration', stimuli{stim_idx})) = tab.(sprintf('%s_offset', stimuli{stim_idx})) - tab.(sprintf('%s_onset', stimuli{stim_idx}));
         end
     end
+
+
+
+    TP.pas_duration = tab.pas_response_time - tab.pas_onset;
+    TP.pas_response_choice = tab.pas_response_choice;
+    TP.mafc_duration = tab.mafc_response_time - tab.mafc_onset;
+    TP.mafc_response_choice = tab.mafc_response_choice;
+    if ismember('mafc_img_indices', tab.Properties.VariableNames)
+        TP.mafc_img_indices = tab.mafc_img_indices;
+    end
+
     
     if ~exist("!Processed", 'dir')
         mkdir("!Processed")

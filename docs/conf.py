@@ -7,10 +7,10 @@ import os
 
 # -- Project information -----------------------------------------------------
 
-project = 'CFS'
+project = 'CFSVM'
 copyright = '2023'
 author = 'Gennadiy Belonosov'
-release = 'v0.2.0'
+release = 'v0.3.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -78,9 +78,9 @@ html_theme_options = {
         },
     ],
     "logo": {
-        "text": "CFS",
+        "text": "CFSVM",
         "image": "_static/logo_round.bmp",
-        "alt_text": "CFS",
+        "alt_text": "Continuous flash suppression & Visual masking",
     },
 }
 

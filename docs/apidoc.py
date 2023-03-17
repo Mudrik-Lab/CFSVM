@@ -77,7 +77,7 @@ def main(args):
 This is a Matlab toolbox which provides the following packages/namespaces:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
 
    {toolbox_name}/*
@@ -114,7 +114,6 @@ def _autodoc_toolbox(path):
 .. mat:automodule:: {pkg}
    :members:
    :undoc-members:
-   :show-inheritance:
 
 '''
 
@@ -124,7 +123,6 @@ def _autodoc_toolbox(path):
 .. mat:automodule:: {toolbox_name}.{subpkg}
    :members:
    :undoc-members:
-   :show-inheritance:
 '''
 
     n_sub_packages = 0

@@ -37,6 +37,6 @@ classdef VPCFS < CFS.Experiment.CFS
     methods (Access=protected)
 
         load_parameters(obj)
-        
+        flash(obj, vbl)
     end
 end

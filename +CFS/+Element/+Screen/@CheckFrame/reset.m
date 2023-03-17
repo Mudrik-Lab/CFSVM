@@ -1,7 +1,9 @@
 function reset(obj)
-%RESET Summary of this function goes here
-%   Detailed explanation goes here
+% Empties rect and color props.
+%
+
     obj.rect = [];
     obj.color = [];
+
 end
 

@@ -21,10 +21,25 @@ function flash(obj, vbl)
         obj.vbl_recs(fr) = Screen('Flip', obj.screen.window);
     end
     
-    % Present the last frame for a longer time to enable smooth transition
-    % to the next experiment stage (e.g., rest screen).
-    draw(obj, fr)
-    obj.vbl_recs(end+1) = Screen('Flip', obj.screen.window);
+    if obj.masks.blank > 0
+        
+        % Show blank screen for the duration provided in 'blank'.
+        draw_fixation_and_frame(obj)
+        obj.vbl_recs(end+1) = Screen('Flip', obj.screen.window);
+
+        draw_fixation_and_frame(obj)
+        Screen('Flip', ...
+            obj.screen.window, ...
+            obj.vbl_recs(end-1)+obj.masks.blank-0.5*obj.screen.inter_frame_interval);
+            
+    else
+
+        % Present the last frame for a longer time to enable smooth transition
+        % to the next experiment stage (e.g., rest screen).
+        draw(obj, fr)
+        obj.vbl_recs(end+1) = Screen('Flip', obj.screen.window);
+
+    end
 
 end
 
@@ -32,6 +47,10 @@ end
 function draw(obj, fr)
     % Stimuli and Mondrians
     Screen(obj.masks.args{fr}{:});
+    draw_fixation_and_frame(obj)
+end
+
+function draw_fixation_and_frame(obj)
     % Left screen cross
     Screen(obj.fixation.args{1}{:});
     % Right screen cross

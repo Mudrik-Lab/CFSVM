@@ -29,7 +29,8 @@ classdef (Abstract) Stimulus < CFS.Element.TemporalElement & CFS.Element.Spatial
         textures
         % Cell array of chars with name of current image.
         image_name
-
+        % Float in seconds for showing blank screen after the stimulus presentation.
+        % Has the effect in only very specific cases.
         blank
         
     end

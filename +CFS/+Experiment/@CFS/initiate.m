@@ -32,7 +32,7 @@ function initiate(obj)
     KbName('UnifyKeyNames');
     
     % Convert hex to MATLAB rgb color code.
-    obj.screen.background_color = hex2rgb(obj.screen.background_color);
+    obj.screen.background_color = obj.hex2rgb(obj.screen.background_color);
 
     obj.initiate_window()
 
@@ -101,7 +101,3 @@ function initiate(obj)
 
 end
 
-function rgb = hex2rgb(hex)
-% Transforms hexadecimal color code to MATLAB RGB color code.
-    rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
-end

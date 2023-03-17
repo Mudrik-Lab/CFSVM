@@ -1,5 +1,5 @@
 function run(obj)
-% Executes the VBM experiment.
+% Executes the visual masking experiment.
 %
 % First initiates the experiment, then for every trial update parameters,
 % shows fixation crosses, flashes masks and stimuli, records

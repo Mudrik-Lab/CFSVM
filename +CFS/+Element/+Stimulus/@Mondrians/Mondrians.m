@@ -52,6 +52,7 @@ classdef Mondrians < CFS.Element.Stimulus.Stimulus
         %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
         %   mondrians_shape: :attr:`~.+CFS.+Element.+Stimulus.@Mondrians.Mondrians.mondrians_shape`
         %   mondrians_color: :attr:`~.+CFS.+Element.+Stimulus.@Mondrians.Mondrians.mondrians_color`
+        %   blank: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.blank`
         %
 
             arguments

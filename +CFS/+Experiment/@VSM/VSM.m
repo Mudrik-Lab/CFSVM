@@ -1,6 +1,10 @@
 classdef VSM < CFS.Experiment.VM
-    %VFBM Summary of this class goes here
-    %   Detailed explanation goes here
+% Visual sandwich masking.
+%
+% Contains forward and backward masks - f_mask and b_mask, respectively.
+%
+% Derived from :class:`~+CFS.+Experiment.@VM`.
+%
     
     properties
 

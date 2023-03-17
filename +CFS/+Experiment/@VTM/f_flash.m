@@ -1,11 +1,8 @@
 function f_flash(obj)
-% Flashes stimuli, masks, fixations and checkframe.
+% Flashes stimuli, masks, fixations.
 %
-% This is the main method for flashing CFS and recording its timings.
+% This is the main method for flashing forward VM and recording its timings.
 % 
-% Args:
-%   vbl: An integer for vertical retrace timing from the fixation.show().
-%
 
     obj.draw(fixation=true)
     obj.fixation.onset = Screen('Flip', obj.screen.window);

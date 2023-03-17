@@ -1,9 +1,9 @@
 function initiate(obj, screenfield)
-% Initiates checkframe by generating rects and colors matrices for 
-% both parts of the screen.
+% Initiates checkframe for a screenfield by generating 
+% rects and colors matrices.
 %
 % Args:
-%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
+%   screen: :class:`~+CFS.+Element.+Screen.@ScreenField` object.
 
     
     screen_rect = screenfield.rect;

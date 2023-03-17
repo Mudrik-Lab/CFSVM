@@ -51,8 +51,9 @@ classdef SuppressedStimulus < CFS.Element.Stimulus.Stimulus
         %   contrast: :attr:`.+CFS.+Element.@SpatialElement.SpatialElement.contrast`
         %   appearance_delay: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.appearance_delay`
         %   fade_in_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_in_duration`
-        %   duration: :attr:`~.+CFS.+Element.@TemporalElement.TemporalElement.duration`
+        %   duration: :attr:`.+CFS.+Element.@TemporalElement.TemporalElement.duration`
         %   fade_out_duration: :attr:`~.+CFS.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_out_duration`
+        %   blank: :attr:`.+CFS.+Element.+Stimulus.@Stimulus.Stimulus.blank`
         %
 
             arguments

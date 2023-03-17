@@ -1,11 +1,8 @@
 function s_flash(obj)
-% Flashes stimuli, masks, fixations and checkframe.
+% Flashes stimuli, masks, fixations.
 %
-% This is the main method for flashing CFS and recording its timings.
+% This is the main method for flashing simulatenous VM and recording its timings.
 % 
-% Args:
-%   vbl: An integer for vertical retrace timing from the fixation.show().
-%
 
     draw(obj, fixation=true)
     obj.fixation.onset = Screen('Flip', obj.screen.window);

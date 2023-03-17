@@ -1,5 +1,5 @@
 classdef (Abstract) SpatialElement < handle
-% A base class for describing elements with spatial properties.
+% A base class describing elements with spatial properties.
 %
     
     properties

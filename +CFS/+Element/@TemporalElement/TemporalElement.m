@@ -1,5 +1,5 @@
 classdef (Abstract) TemporalElement < handle
-% A base class for describing elements with temporal properties.
+% A base class describing elements with temporal properties.
 %
 
     properties

@@ -2,7 +2,7 @@ classdef ScreenField < CFS.Element.SpatialElement
 % A concrete class from the abstract
 % :class:`~+CFS.+Element.@SpatialElement`.
 %
-% Describes left and the right part of the screen as properties of 
+% Describes fields of the screen as properties of 
 % :class:`~+CFS.+Element.+Screen.@CustomScreen`.
 %
         

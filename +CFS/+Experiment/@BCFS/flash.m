@@ -37,7 +37,8 @@ function [pressed, first_press] = flash(obj, vbl)
     
     
     if obj.masks.blank > 0
-
+        
+        % Show blank screen for the duration provided in 'blank'.
         draw_fixation_and_frame(obj)
         obj.vbl_recs(end+1) = Screen('Flip', obj.screen.window);
 
@@ -45,6 +46,7 @@ function [pressed, first_press] = flash(obj, vbl)
         Screen('Flip', ...
             obj.screen.window, ...
             obj.vbl_recs(end-1)+obj.masks.blank-0.5*obj.screen.inter_frame_interval);
+            
     else
 
         % Present the last frame for a longer time to enable smooth transition

@@ -1,7 +1,7 @@
 function adjust(obj, frame)
 % Creates interface for adjusting screens to the stereoscope view.
 %
-% Creates two solid frames, that can be moved, resized or shifted relative
+% Creates solid frame[s], that can be moved, resized or shifted relative
 % to each other by keyboard keys.
 %
 % Args:
@@ -11,16 +11,26 @@ function adjust(obj, frame)
     % Color to use when adjusting the frames.
     FRAME_COLOR = {'#4A4A4A'};
     TEXT = ['Arrows for changing position of both screens,\n', ...
-        'w,a,s,d for adjusting height and width,\n', ...
-        '=,- for adjusting space between the screens,\n', ...
-        'enter to proceed, escape to exit.'];
+        'w,a,s,d for adjusting height and width,\n'];
     
     % Array of used keyboard keys
-    k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w', '=+', '-_' 'Return', 'ESCAPE'};
-
+    k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w'};
+    if length(obj.fields) > 1
+        TEXT = [TEXT, '=,- for adjusting space between the screens,\n'];
+        k = [k, {'=+', '-_'}];
+    end
+    TEXT = [TEXT, 'enter to proceed, escape to exit.'];
+    k = [k, {'Return', 'ESCAPE'}];
     % Assign keyboard keys to corresponding variables.
     temp = num2cell(KbName(k));
-    [left, right, up, down, big_hor, small_hor, big_vert, small_vert, big_space, small_space, done, stop] = temp{:};
+
+    if length(obj.fields) > 1
+        [left, right, up, down, big_hor, small_hor, big_vert, small_vert, big_space, small_space, done, stop] = temp{:};
+    else
+        [left, right, up, down, big_hor, small_hor, big_vert, small_vert, done, stop] = temp{:};
+        big_space = '';
+        small_space = '';
+    end
     
     % Create KbQueue for recording provided keys.
     keys=[KbName(k)]; % All keys on right hand plus trigger, can be found by running KbDemo

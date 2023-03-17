@@ -4,8 +4,7 @@ function show(obj, exp)
 % See also :func:`~+CFS.+Element.+Evidence.@ScaleEvidence.record_response`.
 %
 % Args:
-%   screen: :class:`~+CFS.+Element.+Screen.@CustomScreen` object.
-%   frame: :class:`~+CFS.+Element.+Screen.@CheckFrame` object.
+%   exp: An experiment object.
 %
 
     screen = exp.screen;

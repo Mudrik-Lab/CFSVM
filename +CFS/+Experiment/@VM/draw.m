@@ -1,4 +1,11 @@
 function draw(obj, parameters)
+% Optionally draws fixation, stimulus and mask.
+%
+% Args:
+%   fixation: bool
+%   stim: bool
+%   mask: :class:`.+CFS.+Element.+Stimulus.@Mask`
+%
 
     arguments
         obj

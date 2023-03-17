@@ -1,4 +1,4 @@
-function wait_for_keypress(obj, key)
+function wait_for_keypress(key)
 % Waits until the provided key is pressed, then continue.
 %
 % Interrupts the experiment if shift-esc was presses. 

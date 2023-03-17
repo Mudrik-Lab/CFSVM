@@ -33,6 +33,10 @@ function load_parameters(obj)
                 obj.(stim_props{prop_idx}).load_rect_parameters(obj.screen, obj.subject_info.is_left_suppression)
             end
             
+            obj.frame.reset()
+            obj.frame.initiate(obj.screen.fields{1})
+            obj.frame.initiate(obj.screen.fields{2})
+            
             obj.target.load_rect_parameters(obj.screen);
             
             obj.fixation.load_args(obj.screen)

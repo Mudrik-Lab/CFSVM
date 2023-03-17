@@ -7,6 +7,7 @@ function load_rect_parameters(obj, screen, is_left_suppression)
 %
     
     if length(screen.fields) > 1
+        
         obj.left_rect = obj.get_rect(screen.fields{1}.rect);
         obj.right_rect =  obj.get_rect(screen.fields{2}.rect);
         
@@ -16,8 +17,10 @@ function load_rect_parameters(obj, screen, is_left_suppression)
             obj.rect = obj.left_rect;
         end
 
-    else
+    elseif length(screen.fields) == 1
+
         obj.rect = obj.get_rect(screen.fields{1}.rect);
+
     end
 
 end

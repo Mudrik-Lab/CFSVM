@@ -1,6 +1,10 @@
 classdef VTM < CFS.Experiment.VM
-    %VBM Summary of this class goes here
-    %   Detailed explanation goes here
+% Visual temporal masking.
+%
+% Depending on soa either forward, simultaneous or backward masking.
+%
+% Derived from :class:`~+CFS.+Experiment.@VM`.
+%
     
     properties
 
@@ -19,7 +23,9 @@ classdef VTM < CFS.Experiment.VM
         % Either :class:`~+CFS.+Element.+Evidence.@ImgMAFC` or 
         % :class:`~+CFS.+Element.+Evidence.@TextMAFC` object.
         mafc
+        % Handler for either forward, sim or backward masking flashing.
         flash
+
     end
 
     methods

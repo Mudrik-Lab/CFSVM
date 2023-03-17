@@ -19,8 +19,8 @@ classdef SubjectData < handle
         % Inquires subject info and puts it into table.
         %
         % Args:
-        %   dirpath: :attr:`~.+CFS.+Element.+Data.@SubjectData.SubjectData.dirpath`
-        %   file_extenstion: :attr:`~.+CFS.+Element.+Data.@SubjectData.SubjectData.file_extension`
+        %   dirpath: :attr:`~.+CFSVM.+Element.+Data.@SubjectData.SubjectData.dirpath`
+        %   file_extenstion: :attr:`~.+CFSVM.+Element.+Data.@SubjectData.SubjectData.file_extension`
         %
         
             arguments

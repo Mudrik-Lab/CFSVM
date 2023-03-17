@@ -1,9 +1,10 @@
 classdef (Abstract) CFS < CFS.Experiment.Experiment
 % Base for :class:`~+CFS.+Experiment.@BCFS` and :class:`~+CFS.+Experiment.@VPCFS` classes.
 % 
-% Describes common methods for CFS experiments, e.g. flash() for 
-% flashing stimuli/mondrians etc. or initiate() for initiating CFS
+% Describes common methods for CFS experiments, e.g. initiate() for initiating CFS
 % properties.
+%
+% Derived from :class:`~+CFS.+Experiment.@Experiment`.
 %
     
     properties
@@ -31,7 +32,6 @@ classdef (Abstract) CFS < CFS.Experiment.Experiment
         
         initiate(obj)
         preload_stim_and_masks_args(obj, stim_props)
-        flash(obj, vbl)
 
     end
 

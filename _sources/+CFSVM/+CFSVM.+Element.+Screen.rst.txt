@@ -3,18 +3,18 @@
 
 +Element.+Screen.@CheckFrame class
 ----------------------------------
-.. mat:automodule:: +CFS.+Element.+Screen.@CheckFrame
+.. mat:automodule:: +CFSVM.+Element.+Screen.@CheckFrame
    :members:
    :undoc-members:
 
 +Element.+Screen.@CustomScreen class
 ------------------------------------
-.. mat:automodule:: +CFS.+Element.+Screen.@CustomScreen
+.. mat:automodule:: +CFSVM.+Element.+Screen.@CustomScreen
    :members:
    :undoc-members:
 
 +Element.+Screen.@ScreenField class
 -----------------------------------
-.. mat:automodule:: +CFS.+Element.+Screen.@ScreenField
+.. mat:automodule:: +CFSVM.+Element.+Screen.@ScreenField
    :members:
    :undoc-members:

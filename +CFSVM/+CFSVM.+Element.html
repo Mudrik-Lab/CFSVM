@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>+Element package &#8212; CFS v0.2.0 documentation</title>
+    <title>+Element package &#8212; CFSVM v0.3.0 documentation</title>
   
   
   
@@ -41,11 +41,11 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '+CFS/+CFS.+Element';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/+CFSVM.+Element';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="+Element.+Data package" href="%2BCFS.%2BElement.%2BData.html" />
-    <link rel="prev" title="API reference" href="../%2BCFS.html" />
+    <link rel="next" title="+Element.+Data package" href="%2BCFSVM.%2BElement.%2BData.html" />
+    <link rel="prev" title="API reference" href="../%2BCFSVM.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -111,11 +111,11 @@
       
     
     
-    <img src="../_static/logo_round.bmp" class="logo__image only-light" alt="CFS"/>
-    <script>document.write(`<img src="../_static/logo_round.bmp" class="logo__image only-dark" alt="CFS"/>`);</script>
+    <img src="../_static/logo_round.bmp" class="logo__image only-light" alt="Continuous flash suppression & Visual masking"/>
+    <script>document.write(`<img src="../_static/logo_round.bmp" class="logo__image only-dark" alt="Continuous flash suppression & Visual masking"/>`);</script>
   
   
-    <p class="title logo__title">CFS</p>
+    <p class="title logo__title">CFSVM</p>
   
 </a></div>
     
@@ -144,13 +144,13 @@
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../tutorial.html">
-                        Tutorial
+                        CFS tutorial
                       </a>
                     </li>
                 
 
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../%2BCFS.html">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
@@ -270,13 +270,13 @@ document.write(`
 
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../tutorial.html">
-                        Tutorial
+                        CFS tutorial
                       </a>
                     </li>
                 
 
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../%2BCFS.html">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
@@ -340,11 +340,11 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">+Element package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFS.%2BElement.%2BData.html">+Element.+Data package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFS.%2BElement.%2BEvidence.html">+Element.+Evidence package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFS.%2BElement.%2BScreen.html">+Element.+Screen package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFS.%2BElement.%2BStimulus.html">+Element.+Stimulus package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFS.%2BExperiment.html">+Experiment package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BData.html">+Element.+Data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BEvidence.html">+Element.+Evidence package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BScreen.html">+Element.+Screen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BStimulus.html">+Element.+Stimulus package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BExperiment.html">+Experiment package</a></li>
 </ul>
 </div>
 </nav></div>
@@ -383,7 +383,7 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../%2BCFS.html" class="nav-link">API reference</a></li>
+    <li class="breadcrumb-item"><a href="../%2BCFSVM.html" class="nav-link">API reference</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">+Element package</li>
   </ul>
@@ -402,81 +402,93 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="element-package">
-<h1>+Element package<a class="headerlink" href="#element-package" title="Permalink to this heading">#</a></h1>
-<section id="module-+CFS.+Element.&#64;SpatialElement">
-<span id="element-spatialelement-class"></span><h2>+Element.&#64;SpatialElement class<a class="headerlink" href="#module-+CFS.+Element.@SpatialElement" title="Permalink to this heading">#</a></h2>
+  <section id="module-+CFSVM.+Element">
+<span id="element-package"></span><h1>+Element package<a class="headerlink" href="#module-+CFSVM.+Element" title="Permalink to this heading">#</a></h1>
+<section id="module-+CFSVM.+Element.+Data">
+<span id="element-data-package"></span><h2>+Element.+Data package<a class="headerlink" href="#module-+CFSVM.+Element.+Data" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-+CFSVM.+Element.+Evidence">
+<span id="element-evidence-package"></span><h2>+Element.+Evidence package<a class="headerlink" href="#module-+CFSVM.+Element.+Evidence" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-+CFSVM.+Element.+Screen">
+<span id="element-screen-package"></span><h2>+Element.+Screen package<a class="headerlink" href="#module-+CFSVM.+Element.+Screen" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-+CFSVM.+Element.+Stimulus">
+<span id="element-stimulus-package"></span><h2>+Element.+Stimulus package<a class="headerlink" href="#module-+CFSVM.+Element.+Stimulus" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="module-+CFSVM.+Element.&#64;SpatialElement">
+<span id="element-spatialelement-class"></span><h2>+Element.&#64;SpatialElement class<a class="headerlink" href="#module-+CFSVM.+Element.@SpatialElement" title="Permalink to this heading">#</a></h2>
 <dl class="mat class">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFS.+Element.&#64;SpatialElement.</span></span><span class="sig-name descname"><span class="pre">SpatialElement</span></span><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement" title="Permalink to this definition">#</a></dt>
-<dd><p>A base class for describing elements with spatial properties.</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;SpatialElement.</span></span><span class="sig-name descname"><span class="pre">SpatialElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement" title="Permalink to this definition">#</a></dt>
+<dd><p>A base class describing elements with spatial properties.</p>
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.color">
-<span class="sig-name descname"><span class="pre">color</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.color" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.color">
+<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.color" title="Permalink to this definition">#</a></dt>
 <dd><p>[R, G, B] array for R, G, B ranging from 0 to 1.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.contrast">
-<span class="sig-name descname"><span class="pre">contrast</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.contrast" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.contrast">
+<span class="sig-name descname"><span class="pre">contrast</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.contrast" title="Permalink to this definition">#</a></dt>
 <dd><p>Float from 0 to 1</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.rect">
-<span class="sig-name descname"><span class="pre">rect</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.rect" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.rect" title="Permalink to this definition">#</a></dt>
 <dd><p>[x0, y0, x1, y1] array with pixel positions for the
 element’s rectangle.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.x_center">
-<span class="sig-name descname"><span class="pre">x_center</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.x_center" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.x_center">
+<span class="sig-name descname"><span class="pre">x_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.x_center" title="Permalink to this definition">#</a></dt>
 <dd><p>Int - center pixel, for even width lesser value is chosed.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.x_pixels">
-<span class="sig-name descname"><span class="pre">x_pixels</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.x_pixels" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.x_pixels">
+<span class="sig-name descname"><span class="pre">x_pixels</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.x_pixels" title="Permalink to this definition">#</a></dt>
 <dd><p>Int - width in pixels.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.y_center">
-<span class="sig-name descname"><span class="pre">y_center</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.y_center" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_center">
+<span class="sig-name descname"><span class="pre">y_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_center" title="Permalink to this definition">#</a></dt>
 <dd><p>Int - center pixel, for even height lesser value is chosed.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;SpatialElement.SpatialElement.y_pixels">
-<span class="sig-name descname"><span class="pre">y_pixels</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@SpatialElement.SpatialElement.y_pixels" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_pixels">
+<span class="sig-name descname"><span class="pre">y_pixels</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_pixels" title="Permalink to this definition">#</a></dt>
 <dd><p>Int - height in pixels.</p>
 </dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-+CFS.+Element.&#64;TemporalElement">
-<span id="element-temporalelement-class"></span><h2>+Element.&#64;TemporalElement class<a class="headerlink" href="#module-+CFS.+Element.@TemporalElement" title="Permalink to this heading">#</a></h2>
+<section id="module-+CFSVM.+Element.&#64;TemporalElement">
+<span id="element-temporalelement-class"></span><h2>+Element.&#64;TemporalElement class<a class="headerlink" href="#module-+CFSVM.+Element.@TemporalElement" title="Permalink to this heading">#</a></h2>
 <dl class="mat class">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;TemporalElement.TemporalElement">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFS.+Element.&#64;TemporalElement.</span></span><span class="sig-name descname"><span class="pre">TemporalElement</span></span><a class="headerlink" href="#+CFS.+Element.@TemporalElement.TemporalElement" title="Permalink to this definition">#</a></dt>
-<dd><p>A base class for describing elements with temporal properties.</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;TemporalElement.</span></span><span class="sig-name descname"><span class="pre">TemporalElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement" title="Permalink to this definition">#</a></dt>
+<dd><p>A base class describing elements with temporal properties.</p>
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;TemporalElement.TemporalElement.duration">
-<span class="sig-name descname"><span class="pre">duration</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@TemporalElement.TemporalElement.duration" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.duration" title="Permalink to this definition">#</a></dt>
 <dd><p>Float - duration time</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;TemporalElement.TemporalElement.offset">
-<span class="sig-name descname"><span class="pre">offset</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@TemporalElement.TemporalElement.offset" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.offset" title="Permalink to this definition">#</a></dt>
 <dd><p>Float - offset time</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFS.+Element.&#64;TemporalElement.TemporalElement.onset">
-<span class="sig-name descname"><span class="pre">onset</span></span><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#+CFS.+Element.@TemporalElement.TemporalElement.onset" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.onset">
+<span class="sig-name descname"><span class="pre">onset</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.onset" title="Permalink to this definition">#</a></dt>
 <dd><p>Float - onset time</p>
 </dd></dl>
 
@@ -494,7 +506,7 @@ element’s rectangle.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../%2BCFS.html"
+       href="../%2BCFSVM.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -503,7 +515,7 @@ element’s rectangle.</p>
       </div>
     </a>
     <a class="right-next"
-       href="%2BCFS.%2BElement.%2BData.html"
+       href="%2BCFSVM.%2BElement.%2BData.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -526,14 +538,18 @@ element’s rectangle.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFS.+Element.@SpatialElement">+Element.@SpatialElement class</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFS.+Element.@TemporalElement">+Element.@TemporalElement class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Data">+Element.+Data package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Evidence">+Element.+Evidence package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Screen">+Element.+Screen package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Stimulus">+Element.+Stimulus package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.@SpatialElement">+Element.@SpatialElement class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.@TemporalElement">+Element.@TemporalElement class</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../_sources/+CFS/+CFS.+Element.rst.txt">
+    <a href="../_sources/+CFSVM/+CFSVM.+Element.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
@@ -582,7 +598,7 @@ element’s rectangle.</p>
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
 </p></div>
       
     </div>

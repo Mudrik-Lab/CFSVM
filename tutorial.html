@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Tutorial &#8212; CFS v0.2.0 documentation</title>
+    <title>CFS tutorial &#8212; CFSVM v0.3.0 documentation</title>
   
   
   
@@ -44,7 +44,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API reference" href="%2BCFS.html" />
+    <link rel="next" title="API reference" href="%2BCFSVM.html" />
     <link rel="prev" title="Installation" href="installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -111,11 +111,11 @@
       
     
     
-    <img src="_static/logo_round.bmp" class="logo__image only-light" alt="CFS"/>
-    <script>document.write(`<img src="_static/logo_round.bmp" class="logo__image only-dark" alt="CFS"/>`);</script>
+    <img src="_static/logo_round.bmp" class="logo__image only-light" alt="Continuous flash suppression & Visual masking"/>
+    <script>document.write(`<img src="_static/logo_round.bmp" class="logo__image only-dark" alt="Continuous flash suppression & Visual masking"/>`);</script>
   
   
-    <p class="title logo__title">CFS</p>
+    <p class="title logo__title">CFSVM</p>
   
 </a></div>
     
@@ -144,13 +144,13 @@
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        Tutorial
+                        CFS tutorial
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="%2BCFS.html">
+                      <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
@@ -270,13 +270,13 @@ document.write(`
 
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="#">
-                        Tutorial
+                        CFS tutorial
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="%2BCFS.html">
+                      <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
@@ -366,7 +366,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Tutorial</li>
+    <li class="breadcrumb-item active" aria-current="page">CFS tutorial</li>
   </ul>
 </nav>
 </div>
@@ -383,13 +383,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">#</a></h1>
-<p><em>Created on January 31, 2023 by Gennadiy Belonosov: <a class="reference external" href="mailto:gennadiyb&#37;&#52;&#48;mail&#46;tau&#46;ac&#46;il">gennadiyb<span>&#64;</span>mail<span>&#46;</span>tau<span>&#46;</span>ac<span>&#46;</span>il</a><br />
-Last edit: February 23, 2023</em></p>
+  <section id="cfs-tutorial">
+<h1>CFS tutorial<a class="headerlink" href="#cfs-tutorial" title="Permalink to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Author</span><span class="p">:</span> <span class="n">Gennadiy</span> <span class="n">Belonosov</span> <span class="o">&lt;</span><span class="n">gennadiyb</span><span class="nd">@mail</span><span class="o">.</span><span class="n">tau</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">il</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 <p>💡 We will try to roughly simulate Experiment 2 from the original Tsuchiya and Koch <a class="reference external" href="https://doi.org/10.1038/nn1500">study</a>.</p>
 <section id="start-from-installing-the-package">
-<h2>Start from installing the package.<a class="headerlink" href="#start-from-installing-the-package" title="Permalink to this heading">#</a></h2>
+<h2>Start from installing the package<a class="headerlink" href="#start-from-installing-the-package" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="installation.html"><span class="doc std std-doc">How to install</span></a></p></li>
 </ul>
@@ -433,22 +434,22 @@ Last edit: February 23, 2023</em></p>
 </section>
 <section id="trial-matrix">
 <h3>Trial matrix<a class="headerlink" href="#trial-matrix" title="Permalink to this heading">#</a></h3>
-<p>We will start by generating trials. You can just open the example script by running <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">TnK_generate_trials</span></code> in the MATLAB command window.</p>
-<p>Or you can create your own <code class="docutils literal notranslate"><span class="pre">generate_trials.m</span></code> file and follow the tutorial.</p>
+<p>We will start by generating trials.
+You can just open the example script by running <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">TnK_generate_trials</span></code> in the MATLAB command window. Or you can create your own <code class="docutils literal notranslate"><span class="pre">generate_trials.m</span></code> file and follow the tutorial.</p>
 <p>The main idea of this script is to create an experiment object for each trial and save it in one .mat file. Let’s construct the script command by command.</p>
 <section id="import-the-package">
 <h4>Import the package<a class="headerlink" href="#import-the-package" title="Permalink to this heading">#</a></h4>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFS</span><span class="p">.</span><span class="n">Experiment</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Screen</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Evidence</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Stimulus</span><span class="o">.*</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Experiment</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Screen</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Evidence</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Stimulus</span><span class="o">.*</span>
 </pre></div>
 </div>
 </section>
 <section id="choose-the-experiment-type">
 <h4>Choose the experiment type<a class="headerlink" href="#choose-the-experiment-type" title="Permalink to this heading">#</a></h4>
-<p>We will use <strong>BCFS</strong> template for this experiment, as there is no need for **VPCFS-**related mAFC and PAS</p>
+<p>We will use <strong>BCFS</strong> template for this experiment, as there is no need for <strong>VPCFS</strong>-related mAFC and PAS</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BCFS</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -479,15 +480,15 @@ Last edit: February 23, 2023</em></p>
 <td><p>CheckFrame</p></td>
 </tr>
 <tr class="row-odd"><td><p>masks</p></td>
-<td><p>Masks</p></td>
+<td><p>Mondrians</p></td>
 </tr>
-<tr class="row-even"><td><p>stimulus_break</p></td>
+<tr class="row-even"><td><p>breakthrough</p></td>
 <td><p>BreakResponse</p></td>
 </tr>
 </tbody>
 </table>
-<p>We will initialize only a few of them here: <strong>fixation</strong>, <strong>frame</strong>, <strong>masks</strong>, <strong>stimulus_break</strong>. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.</p>
-<p>Let’s start with <strong>fixation</strong> and <strong>frame</strong>, though the order doesn’t really matter. The <strong>Fixation</strong> and <strong>CheckFrame</strong> classes has some customisation parameters, but we won’t set them here, they are not critical for our needs. You can read more about the parameters in the API.</p>
+<p>We will initialize only a few of them here: <strong>fixation</strong>, <strong>frame</strong>, <strong>masks</strong>, <strong>breakthrough</strong>. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.</p>
+<p>Let’s start with <strong>fixation</strong> and <strong>frame</strong>, though the order doesn’t really matter. The <strong>Fixation</strong> and <strong>CheckFrame</strong> classes have some customisation parameters, but we won’t set them here, as they are not critical for our needs. You can read more about the parameters in the <a class="reference internal" href="%2BCFSVM.html"><span class="std std-doc">API</span></a>.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">fixation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Fixation</span><span class="p">();</span>
 <span class="n">experiment</span><span class="p">.</span><span class="n">frame</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CheckFrame</span><span class="p">();</span>
 </pre></div>
@@ -495,18 +496,20 @@ Last edit: February 23, 2023</em></p>
 <p>Next, we will set the <strong>masks</strong> property. The first parameter we will provide is the path to the folder containing Mondrian images. If you want to generate Mondrians from scratch, set the <strong>mondrians_shape</strong> and <strong>mondrians_color</strong> parameters. The masks will be generated in the provided path.</p>
 <p>We will set <strong>temporal_frequency</strong> to 10 Hz, <strong>duration</strong> to 5 seconds, and <strong>position</strong> to “Right” (so that it suppresses only the right Gabor patch).</p>
 <p>To adjust the Mondrians’ position, we will set <strong>size</strong> to 0.45 (1 will fill the whole right side, 0.5 will fill half of the right side depending on <strong>position</strong>), <strong>padding</strong> to 0.5 (0 will align to the frame, 1 will align to the center of the fixation cross), and <strong>xy_ratio</strong> to 1 (square). You can also change the contrast and rotation if desired.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">masks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Masks</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="s">&#39;./Masks/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">mondrians_shape</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">mondrians_color</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">temporal_frequency</span><span class="p">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Right&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.45</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">padding</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="nb">contrast</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">rotation</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span>
+<p>Finally, we will set <strong>blank</strong> to 5 seconds, which will show a blank screen with fixations after the masks flashing has been ended.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="o">.</span><span class="n">masks</span> <span class="o">=</span> <span class="n">Mondrians</span><span class="p">(</span> <span class="o">...</span>
+    <span class="s1">&#39;./Masks/&#39;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">mondrians_shape</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">mondrians_color</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">temporal_frequency</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">duration</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">position</span><span class="o">=</span><span class="s2">&quot;Right&quot;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">size</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">padding</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">xy_ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">contrast</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">blank</span><span class="o">=</span><span class="mi">5</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Now we will add two stimuli properties for the Gabor patches.</p>
@@ -518,26 +521,26 @@ Last edit: February 23, 2023</em></p>
 <p>Then initialize them. We will provide path to the folder with different (phase and orientation) Gabors.</p>
 <p>We will set <em>show_duration</em> for both of them equal to 5 seconds. We will set different <em>position</em> for them: “Left” for the first and “Right” for the second.</p>
 <p>We will set <em>contrast</em> to 0.3 (30%), <em>size</em> to 0.4, <em>padding</em> to 0.5 and <em>xy_ratio</em> to 1.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SuppressedStimulus</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="s">&#39;./Images&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">show_duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Left&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">		</span><span class="nb">contrast</span><span class="p">=</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">padding</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SuppressedStimulus</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="s">&#39;./Images&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">show_duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Right&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">		</span><span class="nb">contrast</span><span class="p">=</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">padding</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="o">.</span><span class="n">stimulus_1</span> <span class="o">=</span> <span class="n">SuppressedStimulus</span><span class="p">(</span> <span class="o">...</span>
+    <span class="s1">&#39;./Images&#39;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">show_duration</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">position</span><span class="o">=</span><span class="s2">&quot;Left&quot;</span><span class="p">,</span> <span class="o">...</span>
+	<span class="n">contrast</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">padding</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">xy_ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">experiment</span><span class="o">.</span><span class="n">stimulus_2</span> <span class="o">=</span> <span class="n">SuppressedStimulus</span><span class="p">(</span> <span class="o">...</span>
+    <span class="s1">&#39;./Images&#39;</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">show_duration</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">position</span><span class="o">=</span><span class="s2">&quot;Right&quot;</span><span class="p">,</span> <span class="o">...</span>
+	<span class="n">contrast</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">padding</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">...</span>
+    <span class="n">xy_ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Here you can set parameters for the <em>stimulus_break</em> property, which basically records the time and the key pressed by subject. It’s not much relevant for our needs here, so we will just initialize it and move on.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_break</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BreakResponse</span><span class="p">();</span>
+<p>Here you can set parameters for the <em>breakthrough</em> property, which basically records the time and the key pressed by subject. It’s not much relevant for our needs here, so we will just initialize it and move on.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">breakthrough</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BreakResponse</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>To be able to create independent experiment object for every trial, we will record our <em>experiment</em> object to the file and then we will load this file for every trial.</p>
@@ -587,55 +590,14 @@ Last edit: February 23, 2023</em></p>
 </pre></div>
 </div>
 <p>Don’t forget to run the code! You will find the file with trial matrix in the directory you provided to the <code class="docutils literal notranslate"><span class="pre">save()</span></code> function.</p>
-</section>
-</section>
-<section id="grey-background">
-<h3>Grey background<a class="headerlink" href="#grey-background" title="Permalink to this heading">#</a></h3>
-<p>Back to our checklist - we still need to create a grey background after flashing mondrians.</p>
-<ul class="contains-task-list simple">
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  Two Gabor patches of 30% contrast</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  Random phase and orientation of the adaptor</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  The mondrians flashed at 10 Hz</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  5 seconds of adaptation - duration of the mondrians’ flashing</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox">  Grey background after the adaptation</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  20 trials with Gabor patches on both sides</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  10 trials with a Gabor patch only on the side that is not suppressed by the CFS</p></li>
-<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox">  10 catch trials are randomly interleaved with 20 CFS trials</p></li>
-</ul>
-<p>Doing this will be a little bit more complicated, but not impossible.</p>
-<p>We will start by editing the BCFS class: <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">CFS.Experiment.BCFS</span></code></p>
-<p>Navigate to the section with methods definition:</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">methods</span>
-<span class="w">    </span><span class="nb">run</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-<p>Now we can create our show_grey_background method after the <em>run(obj)</em> function.</p>
-<p>We will only flip the screen once to show us the background. After the flip we want to wait until some key will be pressed, e.g., <em>space.</em></p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">methods</span>
-<span class="w">    </span><span class="nb">run</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="w">    </span><span class="k">function</span><span class="w"> </span><span class="nf">show_grey_background</span><span class="p">(</span>obj<span class="p">)</span>
-<span class="w">        </span><span class="n">Screen</span><span class="p">(</span><span class="s">&#39;Flip&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">window</span><span class="p">);</span>
-<span class="w">				</span><span class="n">obj</span><span class="p">.</span><span class="n">wait_for_keypress</span><span class="p">(</span><span class="s">&#39;space&#39;</span><span class="p">)</span>
-<span class="w">    </span><span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-</div>
-<p>Now open the <em>run</em> method: <code class="docutils literal notranslate"><span class="pre">edit</span> <span class="pre">CFS.Experiment.BCFS.run</span></code></p>
-<p>And add the <code class="docutils literal notranslate"><span class="pre">obj.show_grey_background()</span></code> between <code class="docutils literal notranslate"><span class="pre">obj.stimulus_break.get()</span></code> and <code class="docutils literal notranslate"><span class="pre">obj.show_rest_screen()</span></code>:</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">stimulus_break</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-<span class="n">obj</span><span class="p">.</span><span class="n">show_grey_background</span><span class="p">()</span>
-<span class="n">obj</span><span class="p">.</span><span class="n">show_rest_screen</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>You can also comment out the <code class="docutils literal notranslate"><span class="pre">obj.show_rest_screen()</span></code> if you don’t want it to be shown.</p>
 <p>Congrats! We are almost there!</p>
+</section>
 </section>
 </section>
 <section id="the-last-step-before-the-run">
 <h2>The last step before the run<a class="headerlink" href="#the-last-step-before-the-run" title="Permalink to this heading">#</a></h2>
 <p>So far we’ve generated the trials. Now we want to run the experiment.</p>
-<p>Again, you can either use the example: <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">TnK_main</span></code> file or you can create <code class="docutils literal notranslate"><span class="pre">main.m</span></code>. Make sure the relative paths to the stimuli images and masks you provided while generating trials are preserved.</p>
+<p>Again, you can either use the example: <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">TnK_main</span></code> file or you can create your own <code class="docutils literal notranslate"><span class="pre">main.m</span></code>. Make sure the relative paths to the stimuli images and masks you provided while generating trials are preserved.</p>
 <p>Let’s start building our <code class="docutils literal notranslate"><span class="pre">main.m</span></code> script.</p>
 <p>Clear the workspace and the screen:</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Screen</span><span class="p">(</span><span class="s">&#39;CloseAll&#39;</span><span class="p">);</span>
@@ -644,42 +606,41 @@ Last edit: February 23, 2023</em></p>
 </pre></div>
 </div>
 <p>Import the package:</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFS</span><span class="p">.</span><span class="n">Experiment</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Screen</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">CFS</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Experiment</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Screen</span><span class="o">.*</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span>
 </pre></div>
 </div>
 <p>Initialize the BCFS object</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BCFS</span><span class="p">();</span>
 </pre></div>
 </div>
-<p>Initialize <em>subject_info</em> property by providing directory to save the info in.</p>
+<p>Initialize <strong>subject_info</strong> property by providing directory to save the info in.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">subject_info</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SubjectData</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">dirpath</span><span class="p">=</span><span class="s">&#39;./!SubjectInfo&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Initialize <em>trials</em> property by providing a path to the already generated file with the trial matrix.</p>
+<p>Initialize <strong>trials</strong> property by providing a path to the already generated file with the trial matrix.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">trials</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">TrialsData</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">filepath</span><span class="p">=</span><span class="s">&#39;./TrialMatrix/experiment.mat&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Initialize <em>screen</em> property by providing rectangles for left and right screens. The first two numbers in the arrays are x and y pixels of the upper left rectangle vertex, the last two numbers are x and y pixels of the lower right vertex.</p>
-<p>We will also provide hex code for the background color - #AEAEAE grey here.</p>
+<p>Initialize <strong>screen</strong> property by setting <em>is_stereo</em> to <code class="docutils literal notranslate"><span class="pre">true</span></code> and providing rectangle for the left screen field. The first two numbers in the rect array are x and y pixels of the upper left rectangle vertex, the last two numbers are x and y pixels of the lower right vertex.
+The right field will be set symmetrically to the left one.</p>
+<p>We will also provide hex code for the background color - <em>#AEAEAE</em> grey here.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">screen</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CustomScreen</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">initial_left_screen_rect</span><span class="p">=[</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w"> </span><span class="mi">930</span><span class="p">,</span><span class="w"> </span><span class="mi">810</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">initial_right_screen_rect</span><span class="p">=[</span><span class="mi">990</span><span class="p">,</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w"> </span><span class="mi">1890</span><span class="p">,</span><span class="w"> </span><span class="mi">810</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">is_stereo</span><span class="p">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">initial_rect</span><span class="p">=[</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w"> </span><span class="mi">930</span><span class="p">,</span><span class="w"> </span><span class="mi">810</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">background_color</span><span class="p">=</span><span class="s">&#39;#AEAEAE&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The last two lines of code are quite self explanatory:</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Execute the experiment.</span>
-<span class="n">experiment</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
 
-<span class="c">% Clear the screen.</span>
 <span class="n">Screen</span><span class="p">(</span><span class="s">&#39;CloseAll&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>That’s it! You can run the script now!</p>
+<p>That’s it! You can run the <code class="docutils literal notranslate"><span class="pre">main.m</span></code> script now!</p>
 </section>
 <section id="running-the-experiment">
 <h2>Running the experiment<a class="headerlink" href="#running-the-experiment" title="Permalink to this heading">#</a></h2>
@@ -692,7 +653,7 @@ Last edit: February 23, 2023</em></p>
 <section id="the-data">
 <h2>The data<a class="headerlink" href="#the-data" title="Permalink to this heading">#</a></h2>
 <p>The raw trial data will appear in the <code class="docutils literal notranslate"><span class="pre">!Raw</span></code> folder. Every <code class="docutils literal notranslate"><span class="pre">.mat</span></code> file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.</p>
-<p>You can run <code class="docutils literal notranslate"><span class="pre">extract_from_raw.m</span></code> script to extract the data from the raw files. It will create two csv tables in <code class="docutils literal notranslate"><span class="pre">!Results</span></code> and <code class="docutils literal notranslate"><span class="pre">!Processed</span></code> folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).</p>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">CFSVM.extract_from_raw_cfs(subject_code)</span></code> (subject_code will be ‘HZ4’ in this example) script to extract the data from the raw files. It will create two csv tables in <code class="docutils literal notranslate"><span class="pre">!Results</span></code> and <code class="docutils literal notranslate"><span class="pre">!Processed</span></code> folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).</p>
 <p><img alt="Raw files" src="_images/rawfiles.png" /></p>
 <p>Raw files</p>
 <p><img alt="Extracted from raw, unprocessed CSV" src="_images/results_unprocessed.png" /></p>
@@ -723,7 +684,7 @@ Last edit: February 23, 2023</em></p>
       </div>
     </a>
     <a class="right-next"
-       href="%2BCFS.html"
+       href="%2BCFSVM.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -746,7 +707,7 @@ Last edit: February 23, 2023</em></p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-from-installing-the-package">Start from installing the package.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-from-installing-the-package">Start from installing the package</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-word-of-caution">A word of caution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-parameters-from-tsuchiya-kochs-experiment-2">Extracting parameters from Tsuchiya &amp; Koch’s experiment #2</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-experiment">Preparing the experiment</a><ul class="nav section-nav flex-column">
@@ -758,7 +719,6 @@ Last edit: February 23, 2023</em></p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-the-objects-properties">Initialize the object’s properties</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grey-background">Grey background</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-last-step-before-the-run">The last step before the run</a></li>
@@ -819,7 +779,7 @@ Last edit: February 23, 2023</em></p>
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
 </p></div>
       
     </div>

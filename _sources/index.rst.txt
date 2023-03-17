@@ -12,7 +12,7 @@ Welcome to CFS's documentation!
 
     installation
     tutorial
-    +CFS
+    +CFSVM
 
 
 

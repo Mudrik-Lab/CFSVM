@@ -7,4 +7,4 @@ This is a Matlab toolbox which provides the following packages/namespaces:
    :maxdepth: 1
    :glob:
 
-   +CFS/*
+   +CFSVM/*

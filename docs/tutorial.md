@@ -1,11 +1,12 @@
-# Tutorial
+# CFS tutorial
 
-*Created on January 31, 2023 by Gennadiy Belonosov: [gennadiyb@mail.tau.ac.il](mailto:gennadiyb@mail.tau.ac.il)\
-Last edit: February 23, 2023*
+```
+Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
+```
 
 💡 We will try to roughly simulate Experiment 2 from the original Tsuchiya and Koch [study](https://doi.org/10.1038/nn1500).
 
-## Start from installing the package.
+## Start from installing the package
 - [How to install](installation)
 
 ## A word of caution
@@ -48,25 +49,24 @@ Create new folder inside the `Experiment` and put in it two Gabor images with tr
 
 ### Trial matrix
 
-We will start by generating trials. You can just open the example script by running `open TnK_generate_trials` in the MATLAB command window.
-
-Or you can create your own `generate_trials.m` file and follow the tutorial.
+We will start by generating trials. 
+You can just open the example script by running `open TnK_generate_trials` in the MATLAB command window. Or you can create your own `generate_trials.m` file and follow the tutorial.
 
 The main idea of this script is to create an experiment object for each trial and save it in one .mat file. Let’s construct the script command by command.
 
 #### Import the package
 
 ```matlab
-import CFS.Experiment.* ...
-    CFS.Element.Screen.* ...
-    CFS.Element.Data.* ...
-    CFS.Element.Evidence.* ...
-    CFS.Element.Stimulus.*
+import CFSVM.Experiment.* ...
+    CFSVM.Element.Screen.* ...
+    CFSVM.Element.Data.* ...
+    CFSVM.Element.Evidence.* ...
+    CFSVM.Element.Stimulus.*
 ```
 
 #### Choose the experiment type
 
-We will use **BCFS** template for this experiment, as there is no need for **VPCFS-**related mAFC and PAS
+We will use **BCFS** template for this experiment, as there is no need for **VPCFS**-related mAFC and PAS
 
 ```matlab
 experiment = BCFS();
@@ -83,12 +83,12 @@ experiment = BCFS();
 | trials  | TrialsData |
 | fixation | Fixation |
 | frame  | CheckFrame |
-| masks  | Masks |
-| stimulus_break  | BreakResponse |
+| masks  | Mondrians |
+| breakthrough  | BreakResponse |
 
-We will initialize only a few of them here: **fixation**, **frame**, **masks**, **stimulus_break**. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.
+We will initialize only a few of them here: **fixation**, **frame**, **masks**, **breakthrough**. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.
 
-Let’s start with **fixation** and **frame**, though the order doesn’t really matter. The **Fixation** and **CheckFrame** classes has some customisation parameters, but we won’t set them here, they are not critical for our needs. You can read more about the parameters in the API.
+Let’s start with **fixation** and **frame**, though the order doesn’t really matter. The **Fixation** and **CheckFrame** classes have some customisation parameters, but we won’t set them here, as they are not critical for our needs. You can read more about the parameters in the [API](./+CFSVM.rst).
 
 ```matlab
 experiment.fixation = Fixation();
@@ -101,8 +101,10 @@ We will set **temporal_frequency** to 10 Hz, **duration** to 5 seconds, and **po
 
 To adjust the Mondrians' position, we will set **size** to 0.45 (1 will fill the whole right side, 0.5 will fill half of the right side depending on **position**), **padding** to 0.5 (0 will align to the frame, 1 will align to the center of the fixation cross), and **xy_ratio** to 1 (square). You can also change the contrast and rotation if desired.
 
-```matlab
-experiment.masks = Masks( ...
+Finally, we will set **blank** to 5 seconds, which will show a blank screen with fixations after the masks flashing has been ended.
+
+```
+experiment.masks = Mondrians( ...
     './Masks/', ...
     mondrians_shape=1, ...
     mondrians_color=1, ...
@@ -113,7 +115,8 @@ experiment.masks = Masks( ...
     padding=0.5, ...
     xy_ratio=1, ...
     contrast=1, ...
-    rotation=0);
+    rotation=0,
+    blank=5);
 ```
 
 Now we will add two stimuli properties for the Gabor patches.
@@ -131,12 +134,12 @@ We will set *show_duration* for both of them equal to 5 seconds. We will set dif
 
 We will set *contrast* to 0.3 (30%), *size* to 0.4, *padding* to 0.5 and *xy_ratio* to 1.
 
-```matlab
+```
 experiment.stimulus_1 = SuppressedStimulus( ...
     './Images', ...
     show_duration=5, ...
     position="Left", ...
-		contrast=0.3, ...
+	contrast=0.3, ...
     size=0.4, ...
     padding=0.5, ...
     xy_ratio=1);
@@ -144,16 +147,16 @@ experiment.stimulus_2 = SuppressedStimulus( ...
     './Images', ...
     show_duration=5, ...
     position="Right", ...
-		contrast=0.3, ...
+	contrast=0.3, ...
     size=0.4, ...
     padding=0.5, ...
     xy_ratio=1);
 ```
 
-Here you can set parameters for the *stimulus_break* property, which basically records the time and the key pressed by subject. It’s not much relevant for our needs here, so we will just initialize it and move on.
+Here you can set parameters for the *breakthrough* property, which basically records the time and the key pressed by subject. It’s not much relevant for our needs here, so we will just initialize it and move on.
 
 ```matlab
-experiment.stimulus_break = BreakResponse();
+experiment.breakthrough = BreakResponse();
 ```
 
 To be able to create independent experiment object for every trial, we will record our *experiment* object to the file and then we will load this file for every trial.
@@ -217,66 +220,13 @@ rmdir('.temp', 's')
 
 Don’t forget to run the code! You will find the file with trial matrix in the directory you provided to the `save()` function.
 
-### Grey background
-
-Back to our checklist - we still need to create a grey background after flashing mondrians.
-
-- [x]  Two Gabor patches of 30% contrast
-- [x]  Random phase and orientation of the adaptor
-- [x]  The mondrians flashed at 10 Hz
-- [x]  5 seconds of adaptation - duration of the mondrians’ flashing
-- [ ]  Grey background after the adaptation
-- [x]  20 trials with Gabor patches on both sides
-- [x]  10 trials with a Gabor patch only on the side that is not suppressed by the CFS
-- [x]  10 catch trials are randomly interleaved with 20 CFS trials
-
-Doing this will be a little bit more complicated, but not impossible.
-
-We will start by editing the BCFS class: `edit CFS.Experiment.BCFS`
-
-Navigate to the section with methods definition:
-
-```matlab
-methods
-    run(obj)
-end
-```
-
-Now we can create our show_grey_background method after the *run(obj)* function. 
-
-We will only flip the screen once to show us the background. After the flip we want to wait until some key will be pressed, e.g., *space.*
-
-```matlab
-methods
-    run(obj)
-    function show_grey_background(obj)
-        Screen('Flip', obj.screen.window);
-				obj.wait_for_keypress('space')
-    end
-end
-```
-
- 
-
-Now open the *run* method: `edit CFS.Experiment.BCFS.run`
-
-And add the `obj.show_grey_background()` between `obj.stimulus_break.get()` and `obj.show_rest_screen()`:
-
-```matlab
-obj.stimulus_break.get()
-obj.show_grey_background()
-obj.show_rest_screen()
-```
-
-You can also comment out the `obj.show_rest_screen()` if you don’t want it to be shown.
-
 Congrats! We are almost there!
 
 ## The last step before the run
 
 So far we’ve generated the trials. Now we want to run the experiment.
 
-Again, you can either use the example: `open TnK_main` file or you can create `main.m`. Make sure the relative paths to the stimuli images and masks you provided while generating trials are preserved.
+Again, you can either use the example: `open TnK_main` file or you can create your own `main.m`. Make sure the relative paths to the stimuli images and masks you provided while generating trials are preserved.
 
 Let’s start building our `main.m` script.
 
@@ -291,9 +241,9 @@ clear;
 Import the package:
 
 ```matlab
-import CFS.Experiment.* ...
-    CFS.Element.Screen.* ...
-    CFS.Element.Data.*
+import CFSVM.Experiment.* ...
+    CFSVM.Element.Screen.* ...
+    CFSVM.Element.Data.*
 ```
 
 Initialize the BCFS object
@@ -302,42 +252,41 @@ Initialize the BCFS object
 experiment = BCFS();
 ```
 
-Initialize *subject_info* property by providing directory to save the info in.
+Initialize **subject_info** property by providing directory to save the info in.
 
 ```matlab
 experiment.subject_info = SubjectData( ...
     dirpath='./!SubjectInfo');
 ```
 
-Initialize *trials* property by providing a path to the already generated file with the trial matrix.
+Initialize **trials** property by providing a path to the already generated file with the trial matrix.
 
 ```matlab
 experiment.trials = TrialsData( ...
     filepath='./TrialMatrix/experiment.mat');
 ```
 
-Initialize *screen* property by providing rectangles for left and right screens. The first two numbers in the arrays are x and y pixels of the upper left rectangle vertex, the last two numbers are x and y pixels of the lower right vertex.
+Initialize **screen** property by setting *is_stereo* to `true` and providing rectangle for the left screen field. The first two numbers in the rect array are x and y pixels of the upper left rectangle vertex, the last two numbers are x and y pixels of the lower right vertex.
+The right field will be set symmetrically to the left one.
 
-We will also provide hex code for the background color - #AEAEAE grey here.
+We will also provide hex code for the background color - *#AEAEAE* grey here.
 
 ```matlab
 experiment.screen = CustomScreen( ...
-    initial_left_screen_rect=[30, 270, 930, 810], ...
-    initial_right_screen_rect=[990, 270, 1890, 810], ...
+    is_stereo=true, ...
+    initial_rect=[30, 270, 930, 810], ...
     background_color='#AEAEAE');
 ```
 
 The last two lines of code are quite self explanatory:
 
 ```matlab
-% Execute the experiment.
 experiment.run()
 
-% Clear the screen.
 Screen('CloseAll')
 ```
 
-That’s it! You can run the script now!
+That’s it! You can run the `main.m` script now!
 
 ## Running the experiment
 
@@ -355,7 +304,7 @@ And that's it! Once you’ve adjusted the screens, you'll see the introduction s
 
 The raw trial data will appear in the `!Raw` folder. Every `.mat` file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.
 
-You can run `extract_from_raw.m` script to extract the data from the raw files. It will create two csv tables in `!Results` and `!Processed` folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).
+You can run `CFSVM.extract_from_raw_cfs(subject_code)` (subject_code will be 'HZ4' in this example) script to extract the data from the raw files. It will create two csv tables in `!Results` and `!Processed` folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).
 
 ![Raw files](tutorial/rawfiles.png)
 

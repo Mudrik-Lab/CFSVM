@@ -2,7 +2,7 @@ function show_farewell_screen(obj)
 % Flips screen to the farewell.
 %
 
-    TEXT_SIZE = round(obj.screen.left.x_pixels/24);
+    TEXT_SIZE = round(obj.screen.fields{1}.x_pixels/24);
     SPACING = round(TEXT_SIZE/2);
     INSTRUCTION = {'Thank you!', 'The experiment has finished'};
     N_ROWS = length(INSTRUCTION);

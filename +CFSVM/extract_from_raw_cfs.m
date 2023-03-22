@@ -1,5 +1,12 @@
 function extract_from_raw_cfs(subject_code)
-%EXTRACT_FROM_RAW
+% Extracts timings and durations from the raw trial bCFS/VPCFS records.
+%
+% Saves timings and a histogram of interframe intervals
+% in !Results folder and durations in !Processed folder.
+%
+% Args:
+%   subject_code: str
+%
 
     trials = load_trials(subject_code);
     set_times(trials)
@@ -10,7 +17,6 @@ function extract_from_raw_cfs(subject_code)
     process_data(tab, subject_code, exp)
     
 end
-
 
 function trials = load_trials(code)
 
@@ -121,9 +127,40 @@ function tab = extract_data(trials, tab, variables, code)
         mkdir("!Results")
     end
     
+    if ~exist(strcat("!Results/", code), 'dir')
+        mkdir(strcat("!Results/", code))
+    end
+    
     writetable(tab, ...
-            fullfile("!Results", ...
+            fullfile(strcat("!Results/", code), ...
                 strcat(code, ".csv")))
+
+    ifis = get_ifis(trials);
+    save_ifis_histogram(ifis, code);
+
+end
+
+
+function save_ifis_histogram(ifis, code)
+    f = figure('visible','off');
+    ifis = horzcat(ifis{:});
+    histogram(ifis)
+    title(sprintf( ...
+        'Duration of interframe intervals for flashing\n mean = %f, std = %f', ...
+        [mean(ifis), std(ifis)]))
+    xlabel('Interframe interval duration (sec)')
+    ylabel('Count')
+    saveas(f,sprintf('!Results/%s/ifis_histogram.png', code))
+end
+
+
+function ifis = get_ifis(trials)
+    ifis = cell(1, length(trials));
+    for trial_idx = 1:length(trials)
+        exp = trials{trial_idx}.obj;
+        ifi = exp.vbl_recs(2:end)-exp.vbl_recs(1:end-1);
+        ifis{trial_idx} = ifi;
+    end
 end
 
 

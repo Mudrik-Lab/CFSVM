@@ -24,7 +24,7 @@ classdef VSM < CFSVM.Experiment.VM
         pas CFSVM.Element.Evidence.PAS
         % Either :class:`~+CFSVM.+Element.+Evidence.@ImgMAFC` or 
         % :class:`~+CFSVM.+Element.+Evidence.@TextMAFC` object.
-        mafc CFSVM.Element.Evidence.ScaleEvidence
+        mafc {mustBeMAFC} = CFSVM.Element.Evidence.ImgMAFC()
         
     end
 
@@ -35,4 +35,10 @@ classdef VSM < CFSVM.Experiment.VM
     end
 
     
+end
+
+function mustBeMAFC(a)
+    if ~(isa(a,'CFSVM.Element.Evidence.ImgMAFC') || isa(a,'CFSVM.Element.Evidence.TextMAFC'))
+        error("mafc object must be instantiated from one of the mAFC classes.")
+    end
 end

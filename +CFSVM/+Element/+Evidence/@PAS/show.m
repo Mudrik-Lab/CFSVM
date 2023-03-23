@@ -45,7 +45,7 @@ function show(obj, experiment)
     
     if isa(experiment, "CFSVM.Experiment.CFS")
         % Checkerboard frame
-        Screen('FillRect', screen.window, experiment.frame.color, experiment.frame.rect);
+        Screen('FillRect', screen.window, experiment.frame.colors, experiment.frame.rects);
     end
     obj.onset = Screen('Flip', screen.window);
     

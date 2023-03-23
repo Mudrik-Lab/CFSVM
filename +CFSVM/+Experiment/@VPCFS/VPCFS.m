@@ -24,7 +24,7 @@ classdef VPCFS < CFSVM.Experiment.CFS
         pas CFSVM.Element.Evidence.PAS
         % Either :class:`~+CFSVM.+Element.+Evidence.@ImgMAFC` or 
         % :class:`~+CFSVM.+Element.+Evidence.@TextMAFC` object.
-        mafc
+        mafc CFSVM.Element.Evidence.ScaleEvidence
 
     end
     
@@ -40,3 +40,4 @@ classdef VPCFS < CFSVM.Experiment.CFS
         flash(obj, vbl)
     end
 end
+

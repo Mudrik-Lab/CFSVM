@@ -15,23 +15,23 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
     properties
         
         % Float - seconds of Mondrians flashing before stimulus appearance
-        appearance_delay 
+        appearance_delay {mustBeNonnegative}
         % Float - duration in seconds of stimulus fade in.
-        fade_in_duration
+        fade_in_duration {mustBeNonnegative}
         % Float - duration in seconds of stimulus fade out.
-        fade_out_duration
+        fade_out_duration {mustBeNonnegative}
         % [x0, y0, x1, y1] array - stimulus rect on the left screen.
-        left_rect
+        left_rect (1,4) {mustBeInteger}
         % [x0, y0, x1, y1] array - stimulus rect on the right screen.
-        right_rect
+        right_rect (1,4) {mustBeInteger}
         % 1D array representing contrast for every frame of flashing.
-        contrasts
-        % 1D array representing by 1 if stimulus is shown for current frame.
-        indices
+        contrasts {mustBeInRange(contrasts,0,1)}
+        % 1D array representing shown for current frame stimulus when set to 1.
+        indices {mustBeInteger, mustBeInRange(indices,0,1)}
         % Onset time of stable contrast stimulus
-        full_contrast_onset
+        full_contrast_onset {mustBeNonnegative}
         % Onset time of stimulus dissapearance
-        fade_out_onset
+        fade_out_onset {mustBeNonnegative}
 
         
     end

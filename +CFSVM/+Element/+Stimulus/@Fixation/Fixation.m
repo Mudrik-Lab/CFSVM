@@ -16,11 +16,11 @@ classdef Fixation < CFSVM.Element.TemporalElement & CFSVM.Element.SpatialElement
     properties
         
         % Int - size of the arms of the fixation cross in pixels.
-        arm_length
+        arm_length {mustBeNonnegative, mustBeInteger}
         % Int - line width of the fixation cross in pixels.
-        line_width
+        line_width {mustBeNonnegative, mustBeInteger}
         % Cell array storing arguments for PTB's Screen('DrawLines'). 
-        args
+        args cell
 
     end
 

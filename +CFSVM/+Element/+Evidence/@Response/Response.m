@@ -6,12 +6,18 @@ classdef (Abstract) Response < handle
 
     properties
         
-        % Cell array of chars with PTB keys. 
+        % Cell array of chars with PTB keys.
         % Read more `here <http://psychtoolbox.org/docs/KbName>`_.
-        keys  
-        response_choice  % Int - index of response choice in keys.
-        response_time  % Float
-        response_kbname  % PTB char array representing pressed key.
+        keys cell {mustBeText}
+
+        % Int - index of response choice in keys.
+        response_choice {mustBeInteger}
+
+        % Float
+        response_time {mustBeNonnegative}
+
+        % PTB char array representing pressed key.
+        response_kbname {mustBeText} = ''
 
     end
 

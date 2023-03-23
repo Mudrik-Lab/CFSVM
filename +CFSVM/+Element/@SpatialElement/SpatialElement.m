@@ -6,9 +6,13 @@ classdef (Abstract) SpatialElement < handle
 
         % [x0, y0, x1, y1] array with pixel positions for the 
         % element's rectangle.
-        rect  
-        contrast  % Float from 0 to 1
-        color  % [R, G, B] array for R, G, B ranging from 0 to 1.
+        rect (1,4) {mustBeNonnegative}
+
+        % Float from 0 to 1
+        contrast (1,1) {mustBeInRange(contrast, 0, 1)} 
+        
+        % [R, G, B] array for R, G, B ranging from 0 to 1.
+        color (1,3) {mustBeInRange(color, 0, 1)} 
        
     end
 

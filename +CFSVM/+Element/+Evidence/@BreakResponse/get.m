@@ -17,7 +17,7 @@ function get(obj, pressed, first_press)
     else
         % If not pressed set breaking key to an empty string and time to
         % zero.
-        obj.response_choice = "";
+        obj.response_choice = -1;
         obj.response_kbname = "";
         obj.response_time = 0;
     end

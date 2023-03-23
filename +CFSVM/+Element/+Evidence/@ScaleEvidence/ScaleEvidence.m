@@ -9,10 +9,17 @@ classdef (Abstract) ScaleEvidence < CFSVM.Element.Evidence.Response & CFSVM.Elem
 
     properties
 
-        title  % Char array representing title or question shown on screen.
-        title_size  % Int
-        options  % Cell array of chars 
-        n_options  % Int - length(obj.keys)
+        % Char array representing title or question shown on screen.
+        title {mustBeTextScalar} = ''
+
+        % Int
+        title_size {mustBeNonnegative, mustBeInteger}  
+
+        % Cell array 
+        options cell 
+
+        % Int - length(obj.keys)
+        n_options {mustBeInteger} 
 
     end
     

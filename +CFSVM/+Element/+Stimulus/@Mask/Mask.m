@@ -16,11 +16,11 @@ classdef Mask < CFSVM.Element.Stimulus.Stimulus
         % Float - stimulus onset asynchrony between stimulus and mask.
         % For soa < 0 - forward masking, soa == 0 - simultaneous masking,
         % soa > 0 - backward masking
-        soa
+        soa {mustBeReal}
         % [x0, y0, x1, y1] array - stimulus rect on the left screen.
-        left_rect
+        left_rect (1,4) {mustBeInteger}
         % [x0, y0, x1, y1] array - stimulus rect on the right screen.
-        right_rect
+        right_rect (1,4) {mustBeInteger}
 
     end
     

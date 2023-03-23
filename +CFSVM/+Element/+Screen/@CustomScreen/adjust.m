@@ -50,7 +50,7 @@ function adjust(obj, frame)
     % Initiate frames with the solid color and provided screen rectangles.
     initiate_fields(obj, frame)
     % Draw frames and flip the screen.
-    Screen('FillRect', obj.window, frame.color, frame.rect);
+    Screen('FillRect', obj.window, frame.colors, frame.rects);
     draw_text(obj, frame, TEXT)
     Screen('Flip', obj.window);
 
@@ -110,7 +110,7 @@ function adjust(obj, frame)
             frame.reset();
             initiate_fields(obj, frame)
             % Draw frames and flip the screen.
-            Screen('FillRect', obj.window, frame.color, frame.rect);
+            Screen('FillRect', obj.window, frame.colors, frame.rects);
             draw_text(obj, frame, TEXT)
             Screen('Flip', obj.window);
         

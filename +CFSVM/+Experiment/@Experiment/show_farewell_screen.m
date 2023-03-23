@@ -31,7 +31,7 @@ function show_farewell_screen(obj)
     
     if isa(obj, "CFSVM.Experiment.CFS")
         % Checkerboard frame
-        Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
+        Screen('FillRect', obj.screen.window, obj.frame.colors, obj.frame.rects);
     end
 
     Screen('Flip', obj.screen.window);

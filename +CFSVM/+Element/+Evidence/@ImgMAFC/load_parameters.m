@@ -31,7 +31,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
     obj.options = obj.options(randperm(length(obj.options)));
 
     obj.img_indices = num2str(cellfun(@(x) find([PTB_textures_indices{:}]==x), obj.options));
-    obj.rect = {zeros(obj.n_options,4);zeros(obj.n_options,4)};
+    obj.rects = {zeros(obj.n_options,4);zeros(obj.n_options,4)};
 
     for i = 1:obj.n_options
         left = [screen.fields{1}.rect(1)+left_screen_shift*(i-1), ...
@@ -39,7 +39,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
             screen.fields{1}.rect(1)+left_screen_shift*(i), ...
             screen.fields{1}.rect(4)];
 
-        obj.rect{1}(i,:) = obj.get_rect(left);
+        obj.rects{1}(i,:) = obj.get_rect(left);
 
         if length(screen.fields) > 1
             right = [screen.fields{2}.rect(1)+right_screen_shift*(i-1), ...
@@ -47,7 +47,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
                 screen.fields{2}.rect(1)+right_screen_shift*(i), ...
                 screen.fields{2}.rect(4)];
             
-            obj.rect{2}(i,:) = obj.get_rect(right);
+            obj.rects{2}(i,:) = obj.get_rect(right);
         end
         
     end

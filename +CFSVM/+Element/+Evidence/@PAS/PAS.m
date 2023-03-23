@@ -14,10 +14,10 @@ classdef PAS < CFSVM.Element.Evidence.ScaleEvidence
 
     properties
 
-        text_size  % Int.
-        spacing  % Int - round(obj.text_size/2).
-        left_text_start  % Int - for the left screen.
-        right_text_start  % Int - for the right screen.
+        text_size {mustBeNonnegative, mustBeInteger} % Int.
+        spacing {mustBeNonnegative, mustBeInteger} % Int - round(obj.text_size/2).
+        left_text_start {mustBeNonnegative, mustBeInteger} % Int - for the left screen.
+        right_text_start {mustBeNonnegative, mustBeInteger} % Int - for the right screen.
 
     end
 

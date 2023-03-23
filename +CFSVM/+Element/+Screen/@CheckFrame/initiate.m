@@ -4,7 +4,7 @@ function initiate(obj, screenfield)
 %
 % Args:
 %   screen: :class:`~+CFSVM.+Element.+Screen.@ScreenField` object.
-
+%
     
     screen_rect = screenfield.rect;
 
@@ -14,7 +14,7 @@ function initiate(obj, screenfield)
 
     [rects, colors] = obj.rects_and_colors(screen_rect);
 
-    obj.rect = cat(2, obj.rect, rects);
-    obj.color = cat(2, obj.color, colors);
+    obj.rects = cat(2, obj.rects, rects);
+    obj.colors = cat(2, obj.colors, colors);
     
 end

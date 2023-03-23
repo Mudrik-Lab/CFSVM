@@ -14,7 +14,7 @@ classdef TextMAFC < CFSVM.Element.Evidence.ScaleEvidence
 
     properties
 
-        text_size % Int.
+        text_size {mustBeNonnegative, mustBeInteger} % Int.
 
     end
 

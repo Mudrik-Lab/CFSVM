@@ -27,15 +27,15 @@ function show(obj, experiment)
     end
     
     for i = 1:obj.n_options
-        Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rect{1}(i,:));
+        Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rects{1}(i,:));
         if length(screen.fields) > 1
-            Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rect{2}(i,:));
+            Screen('DrawTexture', screen.window, obj.options{i}, [], obj.rects{2}(i,:));
         end
     end
 
     if isa(experiment, "CFSVM.Experiment.CFS")
         % Checkerboard frame
-        Screen('FillRect', screen.window, experiment.frame.color, experiment.frame.rect);
+        Screen('FillRect', screen.window, experiment.frame.colors, experiment.frame.rects);
     end
     obj.onset = Screen('Flip', screen.window);
     

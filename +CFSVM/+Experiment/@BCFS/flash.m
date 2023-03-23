@@ -71,5 +71,5 @@ function draw_fixation_and_frame(obj)
     % Right screen cross
     Screen(obj.fixation.args{2}{:});
     % Checkerboard frame
-    Screen('FillRect', obj.screen.window, obj.frame.color, obj.frame.rect);
+    Screen('FillRect', obj.screen.window, obj.frame.colors, obj.frame.rects);
 end

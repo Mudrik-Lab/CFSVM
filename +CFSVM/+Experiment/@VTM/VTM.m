@@ -22,9 +22,9 @@ classdef VTM < CFSVM.Experiment.VM
         pas CFSVM.Element.Evidence.PAS
         % Either :class:`~+CFSVM.+Element.+Evidence.@ImgMAFC` or 
         % :class:`~+CFSVM.+Element.+Evidence.@TextMAFC` object.
-        mafc
+        mafc CFSVM.Element.Evidence.ScaleEvidence
         % Handler for either forward, sim or backward masking flashing.
-        flash
+        flash 
 
     end
 

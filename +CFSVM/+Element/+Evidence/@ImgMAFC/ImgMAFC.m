@@ -16,7 +16,11 @@ classdef ImgMAFC < CFSVM.Element.Evidence.ScaleEvidence & CFSVM.Element.Stimulus
 
     properties
 
-        img_indices  % Char array with images indices separated by spaces.
+        % Char array with images indices separated by spaces.
+        img_indices
+
+        % A cell array of two arrays with size {[n_options,4]; [n_options,4]}
+        rects cell
 
     end
 

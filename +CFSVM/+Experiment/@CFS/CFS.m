@@ -9,7 +9,7 @@ classdef (Abstract) CFS < CFSVM.Experiment.Experiment
     
     properties
 
-        vbl_recs  % An array for recording flip timestamps while flashing.
+        vbl_recs {mustBeNonnegative}  % An array for recording flip timestamps while flashing.
 
     end
     

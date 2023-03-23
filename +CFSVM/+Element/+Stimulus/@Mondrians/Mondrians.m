@@ -16,22 +16,22 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
     properties
 
         % Float in Hz, number of masks flashed per one second.
-        temporal_frequency
+        temporal_frequency {mustBeNonnegative}
         % Int - shape: 1 - squares, 2 - circles, 3 - diamonds.
-        mondrians_shape
+        mondrians_shape {mustBeInRange(mondrians_shape, 1, 3), mustBeInteger}
         % Int - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
         % for 4...15 check
         % :func:`~+CFSVM.+Element.+Stimulus.@Mondrians.make_mondrians`.
-        mondrians_color
+        mondrians_color {mustBeInRange(mondrians_color, 1, 15), mustBeInteger}
         % Int - overall max number of masks from blocks and trials.
-        n_max
+        n_max {mustBeNonnegative, mustBeInteger}
         % 1D array representing masks index for every frame.
-        indices
+        indices {mustBeInteger}
         % Cell array storing arguments for PTB's Screen('DrawTextures') for
         % masks, stimuli, fixation and checkframe.
-        args
+        args cell
         % 1D array recording onset times of every frame.
-        vbls
+        vbls {mustBeNonnegative}
 
     end
 

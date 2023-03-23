@@ -7,14 +7,18 @@ classdef CheckFrame < CFSVM.Element.SpatialElement
     properties
 
         % Int - length in pixels of every checker rectangle in the checkframe.
-        checker_length
+        checker_length {mustBeNonnegative, mustBeInteger}
         % Int - width in pixels of every checker rectangle in the checkframe.
-        checker_width
+        checker_width {mustBeNonnegative, mustBeInteger}
         % Cell array of chars contating HEX color codes
         % e.g. {'#0072BD', '#D95319', '#EDB120', '#7E2F8E'}
         % Red-Green {'#00FF00', '#FF0000'}
         % White-Black {'#FFFFFF', '#000000'}
-        color_codes
+        color_codes cell
+        % A matrix of size (4,N) for N=number of checkers.
+        rects {mustBeReal} 
+        % A matrix of size (3,N) for N=number of checkers
+        colors {mustBeInRange(colors, 0, 1)}
 
     end
     

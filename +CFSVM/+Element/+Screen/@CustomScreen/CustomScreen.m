@@ -4,17 +4,17 @@ classdef CustomScreen < handle
     properties
 
         % Cell array of :class:`~+CFSVM.+Element.+Screen.@ScreenField` objects.
-        fields
+        fields cell
         % Int for number of pixels shifted on keypress while adjusting screens.
-        shift
+        shift {mustBePositive, mustBeInteger}
         % Char array of 7 chars containing HEX color.
         background_color
         % PTB window object.
-        window
+        window 
         % Float for time between two frames ≈ 1/frame_rate.
-        inter_frame_interval
+        inter_frame_interval {mustBeNumeric}
         % Float for display refresh rate.
-        frame_rate
+        frame_rate {mustBeNumeric}
 
     end
 
@@ -31,10 +31,10 @@ classdef CustomScreen < handle
         %
         
             arguments
-                parameters.background_color
-                parameters.is_stereo = false;
-                parameters.initial_rect = [0,0,945,1080]
-                parameters.shift = 15
+                parameters.background_color {mustBeHex}
+                parameters.is_stereo {mustBeNumericOrLogical} = false;
+                parameters.initial_rect (1,4) {mustBeInteger} = [0,0,950,1080]
+                parameters.shift = 10
             end
             
             obj.background_color = parameters.background_color;
@@ -59,3 +59,8 @@ classdef CustomScreen < handle
 
 end
 
+function mustBeHex(a)
+    if ~regexp(a, "#[\d, A-F]{6}", 'ignorecase')
+        error("Provided hex color is wrong.")
+    end
+end

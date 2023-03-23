@@ -10,14 +10,26 @@ classdef TrialsData < handle
     end
 
     properties
-
-        filepath  % Char array - path to the .mat file
-        matrix  % Nested cell array for trial matrix.
-        n_blocks  % Int - number of blocks in trial matrix.
-        block_index  % Int - current block.
-        trial_index  % Int - current trial.
-        start_time  % Float - trial onset.
-        end_time  % Float - trial offset
+        % Char array - path to the .mat file
+        filepath
+        
+        % Nested cell array for trial matrix.
+        matrix cell 
+        
+        % Int - number of blocks in trial matrix.
+        n_blocks {mustBeInteger} 
+        
+        % Int - current block.
+        block_index {mustBeInteger} 
+        
+        % Int - current trial.
+        trial_index {mustBeInteger} 
+        
+        % Float - trial onset.
+        start_time {mustBeNonnegative} 
+        
+        % Float - trial offset
+        end_time {mustBeNonnegative} 
 
     end
 
@@ -32,7 +44,7 @@ classdef TrialsData < handle
         %
         
             arguments
-                parameters.filepath
+                parameters.filepath {mustBeFile}
             end
             
             obj.filepath = parameters.filepath;

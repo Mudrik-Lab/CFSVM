@@ -4,14 +4,23 @@ classdef SubjectData < handle
 
     properties
         
-        dirpath  % Char array for path to directory in which to save the data.
-        table  % Table for recording the data
-        code  % Anytype for subject code
-        is_left_suppression  % Bool, true if dominant eye is left
-        file_extension  % Char array, .csv is a default
+        % Char array for path to directory in which to save the data.
+        dirpath
+
+        % Table for recording the data.
+        table table
+
+        % Char array for subject code.
+        code {mustBeTextScalar} = '1'
+
+        % Bool, true if dominant eye is left.
+        is_left_suppression {mustBeNumericOrLogical}
+
+        % Char array, .csv is a default, must start with a dot.
+        file_extension
 
     end
-    
+
 
     methods
 
@@ -24,8 +33,8 @@ classdef SubjectData < handle
         %
         
             arguments
-                parameters.dirpath = './!SubjectInfo'
-                parameters.file_extension = '.csv'
+                parameters.dirpath {mustBeTextScalar} = './!SubjectInfo'
+                parameters.file_extension {mustBeTextScalar, mustStartWithDot} = '.csv'
             end
             
             obj.dirpath = parameters.dirpath;
@@ -57,6 +66,7 @@ classdef SubjectData < handle
             obj.table.time = GetSecs();
 
         end
+      
 
         write(obj)
 
@@ -64,3 +74,8 @@ classdef SubjectData < handle
 
 end
 
+function mustStartWithDot(a)
+    if ~startsWith(a, '.')
+        error("File extension must start with a dot")
+    end
+end

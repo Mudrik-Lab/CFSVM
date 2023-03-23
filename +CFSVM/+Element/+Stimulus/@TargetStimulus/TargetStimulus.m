@@ -16,9 +16,9 @@ classdef TargetStimulus < CFSVM.Element.Stimulus.Stimulus
     properties
 
         % [x0, y0, x1, y1] array - stimulus rect on the left screen.
-        left_rect
+        left_rect (1,4) {mustBeInteger}
         % [x0, y0, x1, y1] array - stimulus rect on the right screen.
-        right_rect
+        right_rect (1,4) {mustBeInteger}
 
     end
     

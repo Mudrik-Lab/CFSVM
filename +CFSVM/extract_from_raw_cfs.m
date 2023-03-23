@@ -13,8 +13,7 @@ function extract_from_raw_cfs(subject_code)
     variables = get_variables(trials);
     tab = create_table(variables);
     tab = extract_data(trials, tab, variables, subject_code);
-    exp = string(regexp(class(trials{1}.obj), '\w+CFS', 'match'));
-    process_data(tab, subject_code, exp)
+    process_data(tab, subject_code, trials)
     
 end
 
@@ -164,7 +163,9 @@ function ifis = get_ifis(trials)
 end
 
 
-function process_data(tab, code, exp)
+function process_data(tab, code, trials)
+    
+    exp = string(regexp(class(trials{1}.obj), '\w+CFS', 'match'));
 
     stimuli = regexp(tab.Properties.VariableNames, 'stimulus(_\d)*', 'match', 'once');
     stimuli = sort(unique(stimuli(~cellfun('isempty', stimuli))));
@@ -190,18 +191,25 @@ function process_data(tab, code, exp)
     end
 
     if exp=="BCFS"
-        keys = dictionary(["1", "2", ""], ["Left", "Right", "0"]);
-        TP.break_response = keys(tab.breakthrough_response_choice);
-        TP.is_break_correct = TP.break_response == tab.stimulus_1_position;
+        break_keys = trials{1}.obj.breakthrough.keys;
+        keys = dictionary([string(1:length(break_keys)), "-1"], [convertCharsToStrings(break_keys), "-1"]);
+        TP.break_response_index = tab.breakthrough_response_choice;
+        TP.break_response_key = keys(tab.breakthrough_response_choice);
         TP.break_response_time = tab.breakthrough_response_time - tab.masks_onset;
     elseif exp=="VPCFS"
+        pas_keys = trials{1}.obj.pas.keys;
+        pas_keys = dictionary(string(1:length(pas_keys)), convertCharsToStrings(pas_keys));
+        mafc_keys = trials{1}.obj.mafc.keys;
+        mafc_keys = dictionary(string(1:length(mafc_keys)), convertCharsToStrings(mafc_keys));
         TP.target_duration = tab.target_offset - tab.target_onset;
         TP.target_image_name = tab.target_image_name;
         TP.target_index = tab.target_index;
         TP.pas_duration = tab.pas_response_time - tab.pas_onset;
-        TP.pas_response_choice = tab.pas_response_choice;
+        TP.pas_response_choice_index = tab.pas_response_choice;
+        TP.pas_response_choice_key = pas_keys(tab.pas_response_choice);
         TP.mafc_duration = tab.mafc_response_time - tab.mafc_onset;
-        TP.mafc_response_choice = tab.mafc_response_choice;
+        TP.mafc_response_choice_index = tab.mafc_response_choice;
+        TP.mafc_response_choice_key = mafc_keys(tab.mafc_response_choice);
         if ismember('mafc_img_indices', tab.Properties.VariableNames)
             TP.mafc_img_indices = tab.mafc_img_indices;
         end

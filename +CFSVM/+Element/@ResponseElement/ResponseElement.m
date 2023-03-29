@@ -1,7 +1,8 @@
-classdef (Abstract) Response < handle
+classdef (Abstract) ResponseElement < handle
 % A base class for describing subject response.
 %
-% Base for :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence`.
+% Base for :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence`
+% and :class:`~+CFSVM.+Element.+Evidence.@BreakResponse`.
 %
 
     properties

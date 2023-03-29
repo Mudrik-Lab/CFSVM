@@ -1,9 +1,9 @@
-classdef (Abstract) ScaleEvidence < CFSVM.Element.Evidence.Response & CFSVM.Element.TemporalElement
+classdef (Abstract) ScaleEvidence < CFSVM.Element.ResponseElement & CFSVM.Element.TemporalElement
 % A base class for description of scale-based evidence classes like 
 % :class:`~+CFSVM.+Element.+Evidence.@PAS` and
 % :class:`~+CFSVM.+Element.+Evidence.@ImgMAFC`.
 %
-% Derived from :class:`~+CFSVM.+Element.+Evidence.@Response` 
+% Derived from :class:`~+CFSVM.+Element.@ResponseElement` 
 % and :class:`~+CFSVM.+Element.@TemporalElement` classes.
 %
 

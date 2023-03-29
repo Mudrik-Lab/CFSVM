@@ -30,7 +30,7 @@ classdef ImgMAFC < CFSVM.Element.Evidence.ScaleEvidence & CFSVM.Element.Stimulus
         function obj = ImgMAFC(parameters)
         %
         % Args:
-        %   keys: :attr:`.+CFSVM.+Element.+Evidence.@Response.Response.keys`
+        %   keys: :attr:`.+CFSVM.+Element.@ResponseElement.ResponseElement.keys`
         %   title: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
         %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
         %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`

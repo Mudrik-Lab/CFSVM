@@ -24,7 +24,7 @@ classdef TextMAFC < CFSVM.Element.Evidence.ScaleEvidence
         function obj = TextMAFC(parameters)
         %
         % Args:
-        %   keys: :attr:`.+CFSVM.+Element.+Evidence.@Response.Response.keys`
+        %   keys: :attr:`.+CFSVM.+Element.@ResponseElement.ResponseElement.keys`
         %   title: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
         %   options: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.options`
         %

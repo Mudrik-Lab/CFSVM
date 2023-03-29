@@ -80,11 +80,11 @@ function initiate(obj)
     if ~isfolder(obj.masks.dirpath)
         % Get masks size according to the corresponding screen size.
         if obj.subject_info.is_left_suppression == true
-            x = obj.screen.left.x_pixels;
-            y = obj.screen.left.y_pixels;
+            x = obj.screen.fields{1}.x_pixels;
+            y = obj.screen.fields{1}.y_pixels;
         else
-            x = obj.screen.right.x_pixels;
-            y = obj.screen.right.y_pixels;
+            x = obj.screen.fields{2}.x_pixels;
+            y = obj.screen.fields{2}.y_pixels;
         end
         obj.masks.make_mondrians(x,y)
     end

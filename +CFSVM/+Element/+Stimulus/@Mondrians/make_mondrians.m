@@ -103,7 +103,8 @@ function make_mondrians(obj, x_pixels, y_pixels)
         masks{i_mask} = mask((1:y_pixels) +ceil(max(sizes)/2),(1:x_pixels) +ceil(max(sizes)/2),:); % crop mask
     end
 
-    path = sprintf('./%s',obj.dirpath);
+    % path = sprintf('./%s',obj.dirpath);
+    path = obj.dirpath;
     if ~exist(path, 'dir')
         mkdir(path);
     end

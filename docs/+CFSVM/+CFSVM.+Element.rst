@@ -7,27 +7,9 @@
    :undoc-members:
 
 
-+Element.+Data package
-----------------------
-.. mat:automodule:: +CFSVM.+Element.+Data
-   :members:
-   :undoc-members:
-
-+Element.+Evidence package
---------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence
-   :members:
-   :undoc-members:
-
-+Element.+Screen package
-------------------------
-.. mat:automodule:: +CFSVM.+Element.+Screen
-   :members:
-   :undoc-members:
-
-+Element.+Stimulus package
---------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus
++Element.@ResponseElement class
+-------------------------------
+.. mat:automodule:: +CFSVM.+Element.@ResponseElement
    :members:
    :undoc-members:
 

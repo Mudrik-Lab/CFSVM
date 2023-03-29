@@ -12,9 +12,7 @@ classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.Spa
         % Char array. One of 'UpperLeft', 'Top', 'UpperRight', 'Left',
         % 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'
         position {mustBeMember(position, { ...
-                    'UpperLeft', 'Top', 'UpperRight', ...
-                    'Left', 'Center', 'Right', ...
-                    'LowerLeft', 'Bottom', 'LowerRight'})} = "Center"
+                    'UpperLeft', 'Top', 'UpperRight', 'Left', 'Center', 'Right', 'LowerLeft', 'Bottom', 'LowerRight'})} = "Center"
         % Nonnegative float describing x/y of the stimulus image.
         xy_ratio {mustBeNonnegative}
         % Float between 0 and 1, when 0 is not shown and 1 fills whole 
@@ -49,7 +47,7 @@ classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.Spa
 
     methods (Access=protected)
 
-        [x0,y0,x1,y1,i,j] = get_stimulus_rect_shift(obj, position);
+        [x0,y0,x1,y1,ir,ic] = get_stimulus_rect_shift(obj, position);
 
     end
     

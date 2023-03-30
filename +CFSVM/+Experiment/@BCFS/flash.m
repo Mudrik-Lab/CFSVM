@@ -29,8 +29,6 @@ function [pressed, first_press] = flash(obj, vbl)
     for fr = 2:(obj.masks.duration*obj.screen.frame_rate)
         draw(obj, fr)
         obj.vbl_recs(fr) = Screen('Flip', obj.screen.window);
-        imageArray = Screen('GetImage', obj.screen.window, [], [], 1, []);
-        imwrite(imageArray, sprintf('screen_%d.png', obj.trials.trial_index))
         [pressed, first_press, ~, ~, ~] = KbQueueCheck();
         if pressed
             return;

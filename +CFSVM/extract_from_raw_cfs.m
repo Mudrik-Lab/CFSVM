@@ -1,31 +1,35 @@
-function extract_from_raw_cfs(subject_code)
+function extract_from_raw_cfs(path_to_raw_trials, subject_code)
 % Extracts timings and durations from the raw trial bCFS/VPCFS records.
 %
 % Saves timings and a histogram of interframe intervals
 % in !Results folder and durations in !Processed folder.
 %
 % Args:
+%   path_to_raw_trials: str - path to the Raw Trials folder.
 %   subject_code: str
-%
 
-    trials = load_trials(subject_code);
+    trials = load_trials(path_to_raw_trials, subject_code);
     set_times(trials)
     variables = get_variables(trials);
     tab = create_table(variables);
-    tab = extract_data(trials, tab, variables, subject_code);
-    process_data(tab, subject_code, trials)
+    tab = extract_data(trials, tab, variables, path_to_raw_trials, subject_code);
+    process_data(tab, path_to_raw_trials, subject_code, trials)
     
 end
 
-function trials = load_trials(code)
+function trials = load_trials(path_to_raw_trials, code)
 
-    filenames = dir(sprintf("!Raw/%s/*.mat", code));
+    filenames = dir(sprintf("%s/%s/*.mat", path_to_raw_trials, code));
     filenames = {filenames(:).name};
     filenames = sort_nat(filenames);
 
     trials = cell(1, length(filenames));
     for file_idx = 1:length(filenames)
-        trials{file_idx} = load(sprintf("!Raw/%s/%s",code,filenames{file_idx}));
+        trials{file_idx} = load(sprintf( ...
+            "%s/%s/%s", ...
+            path_to_raw_trials, ...
+            code, ...
+            filenames{file_idx}));
     end
 
 end
@@ -112,7 +116,7 @@ function tab = create_table(variables)
 end
 
 
-function tab = extract_data(trials, tab, variables, code)
+function tab = extract_data(trials, tab, variables, path_to_raw_trials, code)
     for trial_idx = 1:length(trials)
         for object = variables
             for var = object{:}(2:end)
@@ -122,25 +126,22 @@ function tab = extract_data(trials, tab, variables, code)
         data = orderfields(data, tab.Properties.VariableNames);
         tab = [tab;struct2table(data, AsArray=true)];
     end
-    if ~exist("!Results", 'dir')
-        mkdir("!Results")
-    end
     
-    if ~exist(strcat("!Results/", code), 'dir')
-        mkdir(strcat("!Results/", code))
+    if ~exist(strcat(path_to_raw_trials, "/../Extracted/", code), 'dir')
+        mkdir(strcat(path_to_raw_trials, "/../Extracted/", code))
     end
     
     writetable(tab, ...
-            fullfile(strcat("!Results/", code), ...
-                strcat(code, ".csv")))
+            fullfile(strcat(path_to_raw_trials, "/../Extracted/", code), ...
+                strcat(code, "_extracted.csv")))
 
     ifis = get_ifis(trials);
-    save_ifis_histogram(ifis, code);
+    save_ifis_histogram(ifis, path_to_raw_trials, code);
 
 end
 
 
-function save_ifis_histogram(ifis, code)
+function save_ifis_histogram(ifis, path_to_raw_trials, code)
     f = figure('visible','off');
     ifis = horzcat(ifis{:});
     histogram(ifis)
@@ -149,7 +150,13 @@ function save_ifis_histogram(ifis, code)
         [mean(ifis), std(ifis)]))
     xlabel('Interframe interval duration (sec)')
     ylabel('Count')
-    saveas(f,sprintf('!Results/%s/ifis_histogram.png', code))
+    saveas(f,strcat( ...
+        path_to_raw_trials, ...
+        "/../Extracted/", ...
+        code, ...
+        '/', ...
+        code, ...
+        '_ifis_histogram.png'))
 end
 
 
@@ -163,7 +170,7 @@ function ifis = get_ifis(trials)
 end
 
 
-function process_data(tab, code, trials)
+function process_data(tab, path_to_raw_trials, code, trials)
     
     exp = string(regexp(class(trials{1}.obj), '\w+CFS', 'match'));
 
@@ -215,13 +222,13 @@ function process_data(tab, code, trials)
         end
     end
     
-    if ~exist("!Processed", 'dir')
-        mkdir("!Processed")
+    if ~exist(strcat(path_to_raw_trials, "/../Processed/"), 'dir')
+        mkdir(strcat(path_to_raw_trials, "/../Processed/"))
     end
     
     writetable(TP, ...
-            fullfile("!Processed", ...
-                strcat(code, ".csv")))
+            fullfile(strcat(path_to_raw_trials, "/../Processed/"), ...
+                strcat(code, "_processed.csv")))
 end
 
 

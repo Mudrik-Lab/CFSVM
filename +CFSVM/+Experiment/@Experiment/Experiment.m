@@ -9,11 +9,18 @@ classdef (Abstract) Experiment < dynamicprops
     properties(Access = protected)
 
         dynpropnames  % Variable for saving names of dynamic properties.
-
+        save_to_dir
     end
     
 
     methods
+
+        function obj = Experiment(parameters)
+            arguments
+                parameters.save_to_dir {mustBeTextScalar} = "./Raw"
+            end
+            obj.save_to_dir = parameters.save_to_dir;
+        end
 
         addprop(obj, prop_name)
         dynpropnames = get_dyn_props(obj)

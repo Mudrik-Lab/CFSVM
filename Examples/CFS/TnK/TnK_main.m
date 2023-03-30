@@ -14,13 +14,13 @@ import CFSVM.Experiment.* ...
 % Initiate an object, for visual priming CFS use experiment = VPCFS(),
 % for breaking CFS use experiment = BCFS().
 
-experiment = BCFS();
+experiment = BCFS(save_to_dir="../../../Raw Data/Behavioral");
 
 experiment.subject_info = SubjectData( ...
-    dirpath='./!SubjectInfo');
+    dirpath='../../../Raw Data/Demographics');
 
 experiment.trials = TrialsData( ...
-    filepath='./TrialMatrix/experiment.mat');
+    filepath='../TrialMatrix/experiment.mat');
 
 experiment.screen = CustomScreen( ...
     is_stereo=true, ...

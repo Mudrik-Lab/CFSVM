@@ -1,4 +1,4 @@
-function extract_from_raw_vm(subject_code)
+function extract_from_raw_vm(path_to_raw_trials, subject_code)
 % Extracts timings and durations from the raw trial VSM/VTM records.
 %
 % Saves timings in !Results folder and durations in !Processed folder.
@@ -7,25 +7,29 @@ function extract_from_raw_vm(subject_code)
 %   subject_code: str
 %
 
-    trials = load_trials(subject_code);
+    trials = load_trials(path_to_raw_trials,subject_code);
     variables = get_variables(trials);
     tab = create_table(variables);
-    tab = extract_data(trials, tab, variables, subject_code);
+    tab = extract_data(trials, tab, variables, path_to_raw_trials, subject_code);
     exp = string(regexp(class(trials{1}.obj), 'V\wM', 'match'));
-    process_data(tab, subject_code, exp)
+    process_data(tab, path_to_raw_trials, subject_code, exp)
     
 end
 
 
-function trials = load_trials(code)
+function trials = load_trials(path_to_raw_trials, code)
 
-    filenames = dir(sprintf("!Raw/%s/*.mat", code));
+    filenames = dir(sprintf("%s/%s/*.mat", path_to_raw_trials, code));
     filenames = {filenames(:).name};
     filenames = sort_nat(filenames);
 
     trials = cell(1, length(filenames));
     for file_idx = 1:length(filenames)
-        trials{file_idx} = load(sprintf("!Raw/%s/%s",code,filenames{file_idx}));
+        trials{file_idx} = load(sprintf( ...
+            "%s/%s/%s", ...
+            path_to_raw_trials, ...
+            code, ...
+            filenames{file_idx}));
     end
 
 end
@@ -62,7 +66,7 @@ function tab = create_table(variables)
 end
 
 
-function tab = extract_data(trials, tab, variables, code)
+function tab = extract_data(trials, tab, variables, path_to_raw_trials, code)
     for trial_idx = 1:length(trials)
         for object = variables
             for var = object{:}(2:end)
@@ -72,17 +76,17 @@ function tab = extract_data(trials, tab, variables, code)
         data = orderfields(data, tab.Properties.VariableNames);
         tab = [tab;struct2table(data, AsArray=true)];
     end
-    if ~exist("!Results", 'dir')
-        mkdir("!Results")
+    if ~exist(strcat(path_to_raw_trials, "/../Extracted/", code), 'dir')
+        mkdir(strcat(path_to_raw_trials, "/../Extracted/", code))
     end
     
     writetable(tab, ...
-            fullfile("!Results", ...
-                strcat(code, ".csv")))
+            fullfile(strcat(path_to_raw_trials, "/../Extracted/", code), ...
+                strcat(code, "_extracted.csv")))
 end
 
 
-function process_data(tab, code, exp)
+function process_data(tab, path_to_raw_trials, code, exp)
 
     stimuli = regexp(tab.Properties.VariableNames, 'stimulus(_\d)*', 'match', 'once');
     stimuli = sort(unique(stimuli(~cellfun('isempty', stimuli))));
@@ -130,13 +134,13 @@ function process_data(tab, code, exp)
     end
 
     
-    if ~exist("!Processed", 'dir')
-        mkdir("!Processed")
+    if ~exist(strcat(path_to_raw_trials, "/../Processed/"), 'dir')
+        mkdir(strcat(path_to_raw_trials, "/../Processed/"))
     end
     
     writetable(TP, ...
-            fullfile("!Processed", ...
-                strcat(code, ".csv")))
+            fullfile(strcat(path_to_raw_trials, "/../Processed/"), ...
+                strcat(code, "_processed.csv")))
 end
 
 

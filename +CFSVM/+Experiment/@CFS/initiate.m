@@ -8,13 +8,13 @@ function initiate(obj)
         CFSVM.Element.Stimulus.*
 
     % Create folder for the raw trial results
-    if ~exist("!Raw", 'dir')
-        mkdir("!Raw")
+    if ~exist(obj.save_to_dir, 'dir')
+        mkdir(obj.save_to_dir)
     end
     
     % Create folder for the current subject's raw trial results
-    if ~exist("!Raw/"+obj.subject_info.code, 'dir')
-        mkdir("!Raw/"+obj.subject_info.code)
+    if ~exist(strcat(obj.save_to_dir,"/RawTrials/", obj.subject_info.code), 'dir')
+        mkdir(strcat(obj.save_to_dir,"/RawTrials/", obj.subject_info.code))
     end
 
     obj.trials.import()

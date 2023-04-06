@@ -1,5 +1,5 @@
-extract functions
-==================
+Data processing functions
+----------------------------
 
 .. mat:autofunction:: +CFSVM.extract_from_raw_cfs
 

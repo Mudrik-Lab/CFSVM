@@ -1,4 +1,10 @@
 function generate(obj, n_images)
+% Generates and saves Mondrians.
+%
+% Args:
+%   n_images: Int number of Mondrians to generate.
+%
+
     w = waitbar(0, 'Starting');
     psds_matrix = [];
     for m = 1:n_images

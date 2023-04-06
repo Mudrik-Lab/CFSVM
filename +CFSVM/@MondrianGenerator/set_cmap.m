@@ -1,4 +1,14 @@
 function set_cmap(obj, colormap, parameters)
+% Will generate MATLAB colormap gradient from white to
+% rgb_triplet color with n_tones.
+%
+% Args:
+%   colormap: One of 'grayscale', 'reds', 'blues', 'greens', 'rgb',
+%       'original'.
+%   n_tones: (Optional) Int describing number of color tones to create,
+%       relevant only for shades colormaps
+%
+
     arguments
         obj
         colormap

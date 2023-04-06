@@ -1,4 +1,12 @@
 function [freqs, psds] = get_psd(obj, img)
+%
+%
+% Args:
+%   img: [x_pixels, y_pixels, n_colors] array - img to calculate psd from.
+%
+% Returns:
+%   [freqs, psds]: two arrays with length=n_freqs.
+%
 
     [row,col] = size(img);
     gray_img = im2gray(img);

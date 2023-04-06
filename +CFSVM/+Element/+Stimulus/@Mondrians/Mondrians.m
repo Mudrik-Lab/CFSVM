@@ -17,12 +17,6 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
 
         % Float in Hz, number of masks flashed per one second.
         temporal_frequency {mustBeNonnegative}
-        % Int - shape: 1 - squares, 2 - circles, 3 - diamonds.
-        mondrians_shape {mustBeInRange(mondrians_shape, 1, 3), mustBeInteger}
-        % Int - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
-        % for 4...15 check
-        % :func:`~+CFSVM.+Element.+Stimulus.@Mondrians.make_mondrians`.
-        mondrians_color {mustBeInRange(mondrians_color, 1, 15), mustBeInteger}
         % Int - overall max number of masks from blocks and trials.
         n_max {mustBeNonnegative, mustBeInteger}
         % 1D array representing masks index for every frame.
@@ -65,8 +59,6 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
                 parameters.padding = 0
                 parameters.rotation = 0
                 parameters.contrast = 1
-                parameters.mondrians_shape = 1
-                parameters.mondrians_color = 1
                 parameters.blank = 0
             end
 
@@ -80,7 +72,6 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
         
         get_max(obj, trial_matrices)
         shuffle(obj)
-        make_mondrians(obj, x_pixels, y_pixels)
         load_rect_parameters(obj, screen, is_left_suppression)
         load_flashing_parameters(obj, screen)
 

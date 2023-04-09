@@ -20,6 +20,9 @@ extensions = [
     'sphinx.ext.napoleon',
     'myst_parser']
 
+
+myst_heading_anchors = 5
+
 this_dir = os.path.dirname(os.path.abspath(__name__))
 matlab_src_dir = os.path.abspath(os.path.join(this_dir, '..'))
 primary_domain = 'mat'

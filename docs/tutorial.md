@@ -4,58 +4,89 @@
 Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
 ```
 
-💡 We will try to roughly simulate Experiment 2 from the original Tsuchiya and Koch [study](https://doi.org/10.1038/nn1500).
+💡 Here we explain how to use the CFSVM package to create a CFS experiment. As a reference, we roughly implemented Experiment 2 from the original Tsuchiya and Koch  [study](https://doi.org/10.1038/nn1500).
 
 ## Start from installing the package
 - [How to install](installation)
 
 ## A word of caution
 
-- This tutorial is only intended to present the capabilities and some functions of the package.
-- Exact replication of the original Tsuchiya & Koch experiments is possible, but requires deeper modifications of the code, which are only briefly introduced here.
+- This tutorial is only intended to present the potential use and some functions of the package.
+- An exact replication of the original Tsuchiya & Koch experiments is possible, but requires deeper modifications of the code, which are not discussed here.
 - For simplicity, Gabor patch parameters such as spatial frequency, luminance etc. are ignored.
 - The Gabor patches were generated [here](https://www.cogsci.nl/gabor-generator).
 
 ## Extracting parameters from Tsuchiya & Koch’s experiment #2
 
-![Untitled](tutorial/tnk.png)
+| ![Methods figure from Tsuchiya & Koch, 2005](tutorial/tnk.png) | 
+|:--:| 
+| *Methods figure from Tsuchiya & Koch, 2005* |
 
-Let's examine experiment #2 in the [Methods section](https://www.nature.com/articles/nn1500#Sec9) and [Supplementary Table 1](https://www.nature.com/articles/nn1500#Sec15) of the paper to extract relevant parameters.
+| ![Figure created using the package](tutorial/cfs_description.png) | 
+|:--:| 
+| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two grating at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen.* |
 
-- [ ]  The contrast of two Gabor patches was set to 30%
-- [ ]  The phase and orientation of the Gabors were choosen randomly
-- [ ]  The flashing frequency of the Mondrians was 10 Hz
-- [ ]  Adaptation continued for 5 seconds
-- [ ]  After the adaptation grey background was shown
-- [ ]  20 trials with Gabor patches on both sides
-- [ ]  10 trials with a Gabor patch only on the side that is not suppressed by Mondrians
-- [ ]  The 10 trials are randomly interleaved with the 20 trials
+We extracted the following parameters from the [Methods section](https://www.nature.com/articles/nn1500#Sec9) and [Supplementary Table 1](https://www.nature.com/articles/nn1500#Sec15) of the paper:
+
+- The contrast of two Gabor patches was set to 30%.
+- The phase and orientation of the Gabors were choosen randomly.
+- The flashing frequency of the Mondrians was 10 Hz.
+- Adaptation continued for 5 seconds.
+- After the adaptation a gray background was shown.
+- In 20 experimental trials two Gabor patches were simultaneously shown on both the left and right sides of the display presented to the left eye (see figure above).
+- In 10 catch trials, a Gabor patch was presented only on the non-suppressed side of the display (e.g., if the Mondrians are presented on the right side, as in the figure above, only the left side Gabor will appear).
+- The 10 catch trials were randomly interleaved with the 20 experimental trials.
 
 ## Preparing the experiment
+💡 The following section explains how to use the package to program your experiment.
 
 ### Create the experiment folder
-
-I will name it simply simply the `Experiment` folder in the *Documents*, for example:
-
-*C:\Users\Gennadiy\Documents\Experiment*
+We will organize the experiment according to the [HLC lab handbook](https://osf.io/5kfrc/wiki/Chapter%203:%20Data%20Organization/).
+The initial folder structure will look like this (only relevant for this tutorial folders are shown):
+```
+TnK_experiment_2/
+├── Experiment/
+│   └── RUN_ME/
+|       ├── Code/
+|       └── Stimuli/
+└── Raw Data/
+    └── Behavioral/
+```
 
 ### Stimuli
 
-Create new folder inside the `Experiment` and put in it two Gabor images with transparent backgrounds and opposite phases, like these: 
+Create a new folder called `Suppressed` inside the `Stimuli` and put in it two Gabor images with transparent backgrounds and opposite phases, like these:
 
-![Untitled](tutorial/gabor1.png)
+![Gabor1](tutorial/gabor1.png) ![Gabor2](tutorial/gabor2.png)
 
-![Untitled](tutorial/gabor2.png)
+Your `RUN_ME` folder structure should now look somewhat like this:
+```
+RUN_ME/
+├── Code/
+└── Stimuli/
+    └── Suppressed/
+        ├── gabor_1.png
+        └── gabor_2.png
+```
 
 ### Trial matrix
-
-We will start by generating trials. 
-You can just open the example script by running `open TnK_generate_trials` in the MATLAB command window. Or you can create your own `generate_trials.m` file and follow the tutorial.
-
-The main idea of this script is to create an experiment object for each trial and save it in one .mat file. Let’s construct the script command by command.
+We will start by generating a list of trials specifying the experimental conditions. 
+1. Navigate to the `Code` folder in the MATLAB files panel (or using the `cd` command).
+2. To generate trials:
+    - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step before the run](#the-last-step-before-the-run) section in this tutorial. 
+    - Or you can create your own *generate_trials.m* file based on your needs. If you follow this way, your `RUN_ME` folder structure will now look like this:
+```
+RUN_ME/
+├── Code/
+|   └── generate_trials.m
+└── Stimuli/
+    └── Suppressed/
+        ├── gabor_1.png
+        └── gabor_2.png
+```
+💡 The main idea of this script is to create an experiment object for each trial and save it in one `.mat` file. Let’s go over the script command by command.
 
 #### Import the package
-
 ```matlab
 import CFSVM.Experiment.* ...
     CFSVM.Element.Screen.* ...
@@ -65,8 +96,13 @@ import CFSVM.Experiment.* ...
 ```
 
 #### Choose the experiment type
+There are two types of CFS experiment in the package: BCFS (breaking CFS) and VPCFS (visual priming CFS).
+The two types have many common properties, as they are both Continuous Flash Suppression, yet they are different from each other in the following ways:
+- The **BCFS** code includes a breakthrough property, which records the participant’s response during the time, indicating that she detected the stimulus. The trial then stops when this response is recorded.
+- The **VPCFS** code includes the mafc and pas properties which define the objective ( multiple-alternative forced choice) and subjective (perceptual awareness scale) measures of consciousness, respectively.
 
-We will use **BCFS** template for this experiment, as there is no need for **VPCFS**-related mAFC and PAS
+As in this experiment neither of mAFC or PAS is used, we will build the experiment with the **BCFS** template.
+
 
 ```matlab
 experiment = BCFS();
@@ -74,7 +110,7 @@ experiment = BCFS();
 
 #### Initialize the object’s properties
 
-**BCFS** template has multiple required properties:
+The **BCFS** template has multiple required properties:
 
 | Property | Class |
 | --- | --- |
@@ -88,37 +124,79 @@ experiment = BCFS();
 
 We will initialize only a few of them here: **fixation**, **frame**, **masks**, **breakthrough**. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.
 
-Let’s start with **fixation** and **frame**, though the order doesn’t really matter. The **Fixation** and **CheckFrame** classes have some customisation parameters, but we won’t set them here, as they are not critical for our needs. You can read more about the parameters in the [API](./+CFSVM.rst).
-
+##### Fixation and Frame
+Let’s start with **fixation** and **frame**, though the order doesn’t really matter. The Fixation class has some parameters that can be changed, but we won’t set them here, as they are not critical for our needs. You can read more about the parameters in the [API](./+CFSVM.rst).
 ```matlab
 experiment.fixation = Fixation();
-experiment.frame = CheckFrame();
 ```
 
-Next, we will set the **masks** property. The first parameter we will provide is the path to the folder containing Mondrian images. If you want to generate Mondrians from scratch, set the **mondrians_shape** and **mondrians_color** parameters. The masks will be generated in the provided path.
+As for the CheckFrame: although the frames don’t appear in the original experiment, we will use them here as it is a common practice in the HLC lab. We will set **hex_colors** to black and white (`#000000` and `#FFFFFF`), **checker_length** to 30 pixels and **checker_width** to 15 pixels (checker is the small rectangle; the frame consists of multiple checkers).
+```matlab
+experiment.frame = CheckFrame( ...
+    hex_colors={'#000000', '#FFFFFF'}, ...
+    checker_length=30, ...
+    checker_width=15);
+```
+##### Masks generation
+Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into `RUN_ME/Stimuli/Masks/` folder and skip to the [masks initialization](#masks-initialization). Otherwise, we will use the MondrianGenerator. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: [(Wang & Han, 2022)](https://doi.org/10.3758/s13428-022-01903-7), [GitHub](https://github.com/guandongwang/cfs_crafter).
 
-We will set **temporal_frequency** to 10 Hz, **duration** to 5 seconds, and **position** to "Right" (so that it suppresses only the right Gabor patch).
+1. Import the MondrianGenerator class and construct the generator object. The generator will randomly locate a specific numbers of figures (defined as **n_figures**, 1000 by default) that are shaped in a specific manner (defined as **type**, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to **x(y)_pixels**×**min_fraction** and the maximum radius equal to **x(y)_pixels**×**max_fraction** inside the `provided_path/Masks/` folder (here `Stimuli/Masks/`).
+```matlab
+import CFSVM.MondrianGenerator
+generator = MondrianGenerator( ...
+    '../Stimuli/', ... % Will generate Mondrians inside path/Masks/
+    type='rectangle', ... % Available shapes are ‘rectangle’, ‘square’, ‘ellipse’, ‘circle’, ‘rhombus’ and ‘45_rotated_square’.
+    x_pixels=512, ... % Width of generated images in pixels
+    y_pixels=512, ... % Height of generated images in pixels
+    min_fraction=1/20, ... % Minimal possible radius of a figure.
+    max_fraction=1/8, ... % Maximal possible radius of a figure.
+    n_figures=1000);
 
-To adjust the Mondrians' position, we will set **size** to 0.45 (1 will fill the whole right side, 0.5 will fill half of the right side depending on **position**), **padding** to 0.5 (0 will align to the frame, 1 will align to the center of the fixation cross), and **xy_ratio** to 1 (square). You can also change the contrast and rotation if desired.
+```
 
-Finally, we will set **blank** to 5 seconds, which will show a blank screen with fixations after the masks flashing has been ended.
+2. If we want to set the colormap to grayscale, we can use either the **set_cmap()** or **set_shades()** methods (don’t use both of them). For colorful Mondrians we can replace 'grayscale' with the 'original' in the code below, which will generate Mondrians with common RGB colors. For other color options, please, refer to the documentation. If you want to use your own colormap - you can directly set the [MATLAB-formatted](https://www.mathworks.com/help/matlab/ref/colormap.html) colormap directly to the **cmap** property of the generator.
+```matlab
+generator.set_cmap('grayscale', n_tones=5)
+% generator.set_shades([0,0,0], 5);
+% generator.cmap = [0 0 0
+%             0.3 0.3 0.3 
+%             0.5 0.5 0.5 
+%             0.7 0.7 0.7 
+%             1 1 1]
+
+```
+
+3. We will provide the generator object with the physical properties of the display, so it will be able to calculate the power spectral densities of the Mondrians (the output .png and .csv files will be saved inside the `provided_path/` folder). The arguments are: width in cm, width in pixels, height in cm, height in pixels, viewing distance in cm.
+```matlab
+generator.set_physical_properties(60, 1920, 33.5, 1080, 45)
+```
+Now we will run the generator using the **generate()** method, which takes **n_mondrians** as an argument. In general, **n_mondrians**=temporal_frequency×duration+1 will generate enough masks, so that they are not repeated in a single trial. Here we will generate 10Hz*5sec+1=51 Mondrians.
+```matlab
+generator.generate(51)
+```
+
+##### Masks initialization
+Now, with generated Mondrians, we will set the **masks** property.
+The first parameter we will define is the relative path to the folder containing the Mondrian images. We will set **temporal_frequency** to 10 Hz, **duration** to 5 seconds, and **position** to "Right" (so that the masks suppress only the right Gabor patch).
+To adjust the Mondrians’ position, we will set **size** to 0.45 (1 will fill the whole right eye field, 0.5 will fill half of the right eye field depending on position), **padding** to 0.3 (0 will align to the frame, 1 will align to the center of the fixation cross), and xy_ratio to 1 (square). You can also change the **contrast** and **rotation** if desired.
+Finally, we will set **blank** to 5 seconds, to present a blank screen with fixation crosses and frames after the CFS stimulation has ended.
+
 
 ```
 experiment.masks = Mondrians( ...
-    './Masks/', ...
-    mondrians_shape=1, ...
-    mondrians_color=2, ...
+    '../Stimuli/Masks', ...
     temporal_frequency=10, ...
     duration=5, ...
     position="Right", ...
     size=0.45, ...
-    padding=0.5, ...
+    padding=0.3, ...
     xy_ratio=1, ...
     contrast=1, ...
     rotation=0,
     blank=5);
 ```
 
+##### Stimuli
 Now we will add two stimuli properties for the Gabor patches.
 
 Create the properties first:
@@ -128,39 +206,36 @@ experiment.addprop('stimulus_1');
 experiment.addprop('stimulus_2');
 ```
 
-Then initialize them. We will provide path to the folder with different (phase and orientation) Gabors.
+Then we will initialize them. As a first parameter we will provide a path to the folder with two Gabors that we presented here earlier.
 
-We will set *show_duration* for both of them equal to 5 seconds. We will set different *position* for them: “Left” for the first and “Right” for the second.
-
-We will set *contrast* to 0.3 (30%), *size* to 0.4, *padding* to 0.5 and *xy_ratio* to 1.
-
+We will set **show_duration** for both of the parameters to 5 seconds. We will set a different **position** for them: "Left" for the first and "Right" for the second.
+We will set **contrast** to 0.3 (30%), **size** to 0.5, **padding** to 0.5 and **xy_ratio** to 1.
 ```
 experiment.stimulus_1 = SuppressedStimulus( ...
-    './Images', ...
+    '../Stimuli/Suppressed/', ...
     show_duration=5, ...
     position="Left", ...
-	contrast=0.3, ...
-    size=0.4, ...
+    contrast=0.3, ...
+    size=0.5, ...
     padding=0.5, ...
     xy_ratio=1);
 experiment.stimulus_2 = SuppressedStimulus( ...
-    './Images', ...
+    '../Stimuli/Suppressed/', ...
     show_duration=5, ...
     position="Right", ...
-	contrast=0.3, ...
-    size=0.4, ...
+    contrast=0.3, ...
+    size=0.5, ...
     padding=0.5, ...
     xy_ratio=1);
 ```
-
-Here you can set parameters for the *breakthrough* property, which basically records the time and the key pressed by subject. It’s not much relevant for our needs here, so we will just initialize it and move on.
+##### Breakthrough
+Here you can set the parameters for the **breakthrough** property, which basically records the time and the key pressed by the participant. This is not very relevant for our needs here, so we will just initialize it and move on.
 
 ```matlab
 experiment.breakthrough = BreakResponse();
 ```
 
-To be able to create independent experiment object for every trial, we will record our *experiment* object to the file and then we will load this file for every trial.
-
+Our experiment object is ready now. But we want to create an array of experiment objects with slight differences between them (e.g, different orientation of the Gabor stimuli). As there is no easy way in MATLAB to create a deep copy of our object, we will use a workaround: save the experiment object to file and then load it every iteration in the for-loop described below.
 ```matlab
 if ~exist('.temp', 'dir')
     mkdir('.temp')
@@ -168,8 +243,7 @@ end
 save('.temp\experiment.mat', 'experiment')
 ```
 
-Let’s set number of blocks and trials. It works this way: number of blocks is a natural number and number of trials is a list of length=n_blocks containing number of trials for every block.
-
+Now, let’s set the number of blocks and trials. The number of blocks should be a natural number and the number of trials is defined by a list of `length=n_blocks` containing the number of trials in every block. For example, if we want to have one block with 20 trials and another block with 30 trials we will set `n_blocks = 2`, `n_trials = [20, 30]`. But in the current experiment, there is only one block with 30 trials.
 The last line will initialize a cell array for the trial matrix.
 
 ```matlab
@@ -178,98 +252,108 @@ n_trials = [30];
 trial_matrix = cell(1, n_blocks);
 ```
 
-Now, all 30 trials we will randomise Gabor images and their orientations for both stimuli properties. 
+Now, for all 30 trials we will randomize the Gabor images and their orientations for both stimuli properties.
+For 10 of these 30 trials we will set the **contrast** for the second stimulus to 0, so that the right Gabor doesn’t appear.
+After every block (here we have only one), we will shuffle the trials.
 
-For 10 of these 30 trials we will set the contrast for the second stimulus to 0, so that it doesn’t appear.
-
-Afterwards, we will shuffle the trials.
 
 ```matlab
 orientations = [0, 45, 90, 135];
 n_images = 2;
-block = 1;
-for trial = 1:30
-    load('.temp\experiment.mat');
-    experiment.stimulus_1.index = randi(n_images);
-    experiment.stimulus_1.rotation = orientations(randi(length(orientations), 1));
-    experiment.stimulus_2.index = randi(n_images);
-    experiment.stimulus_2.rotation = orientations(randi(length(orientations), 1));
-    if trial >= 20
-        experiment.stimulus_2.contrast = 0;
-    end
-    trial_matrix{block}{trial} = experiment;
-end
-
-trial_matrix{1} = trial_matrix{1}(randperm(numel(trial_matrix{1})));
+for block = 1:n_blocks
+    for trial = 1:n_trials(block)
+        load('.temp/experiment.mat');
+        experiment.stimulus_1.index = randi(n_images);
+        experiment.stimulus_1.rotation = orientations(randi(length(orientations), 1));
+        experiment.stimulus_2.index = randi(n_images);
+        experiment.stimulus_2.rotation = orientations(randi(length(orientations), 1));
+        if trial >= 20
+            experiment.stimulus_2.contrast = 0;
+        end
+        trial_matrix{block}{trial} = experiment;
+    end 
+    trial_matrix{block} = trial_matrix{block}(randperm(numel(trial_matrix{block})));
+end 
 ```
 
 Save the trial matrix to the file:
 
 ```matlab
-if ~exist('TrialMatrix', 'dir')
-    mkdir('TrialMatrix')
+if ~exist('../TrialMatrix', 'dir')
+    mkdir('../TrialMatrix')
 end
-save('TrialMatrix\experiment.mat', 'trial_matrix')
+save('../TrialMatrix/experiment.mat', 'trial_matrix')
 ```
 
-Don’t forget to clean temp files:
-
+Clean .temp folder we’ve created earlier, we don’t need it anymore:
 ```matlab
 rmdir('.temp', 's')
 ```
 
-Don’t forget to run the code! You will find the file with trial matrix in the directory you provided to the `save()` function.
+Don’t forget to execute the code before running the experiment! After executing it you will find the file with the trial matrix in the `RUN_ME/TrialMatrix/` directory and generated Mondrians in the `RUN_ME/Stimuli/Masks/`.
+Your `RUN_ME` folder structure now should look like this :
+```
+RUN_ME/
+├── Code/
+|   ├── generate_trials.m
+|   └── main.m
+├── Stimuli/
+|   ├── Suppressed/
+|   |   ├── gabor_1.png
+|   |   └── gabor_2.png
+|   └── Masks/
+|       ├── mondrian_1.png
+|	|   ⋮    ⋮    ⋮    ⋮
+|       └── mondrian_<n>.png
+└── TrialMatrix/
+    └──experiment.mat
+```
 
 Congrats! We are almost there!
 
 ## The last step before the run
 
 So far we’ve generated the trials. Now we want to run the experiment.
-
-Again, you can either use the example: `open TnK_main` file or you can create your own `main.m`. Make sure the relative paths to the stimuli images and masks you provided while generating trials are preserved.
-
-Let’s start building our `main.m` script.
-
-Clear the workspace and the screen:
-
+Let’s start building our `main.m` script, which we will put inside the `Code` folder near the `generate_trials.m` script. 
+We will now go over a few parameters that can be adjusted to create specific settings you want.
+First, we will make sure that the workspace and the screen are cleared:
 ```matlab
 Screen('CloseAll');
 close all;
 clear;
 ```
 
-Import the package:
-
+Import parts of the package we will use here:
 ```matlab
 import CFSVM.Experiment.* ...
     CFSVM.Element.Screen.* ...
     CFSVM.Element.Data.*
 ```
 
-Initialize the BCFS object
-
+Initialize the BCFS object and provide it with the **save_to_dir** - path to the folder you want the results to be saved. According to the lab handbook this will be `Raw Data/Behavioral/`.
 ```matlab
-experiment = BCFS();
+experiment = BCFS(save_to_dir='../../../Raw Data/Behavioral');
 ```
 
-Initialize **subject_info** property by providing directory to save the info in.
-
+Initialize the **subject_info** property by providing a directory to save the info in.
+We will put it in `Tnk_experiment_2/Raw Data/Demographics`.
 ```matlab
 experiment.subject_info = SubjectData( ...
-    dirpath='./!SubjectInfo');
+    dirpath='../../../Raw Data/Demographics');
 ```
 
 Initialize **trials** property by providing a path to the already generated file with the trial matrix.
 
 ```matlab
 experiment.trials = TrialsData( ...
-    filepath='./TrialMatrix/experiment.mat');
+    filepath='../TrialMatrix/experiment.mat');
 ```
 
-Initialize **screen** property by setting *is_stereo* to `true` and providing rectangle for the left screen field. The first two numbers in the rect array are x and y pixels of the upper left rectangle vertex, the last two numbers are x and y pixels of the lower right vertex.
-The right field will be set symmetrically to the left one.
+![Adjust frames](tutorial/adjust_coords.png)
 
-We will also provide hex code for the background color - *#AEAEAE* grey here.
+Initialize the **screen** property by setting **is_stereo** to true and defining the size and location of the left rectangle by providing **initial_rect** with pixel coordinates of its upper left and lower right vertices, like this: [x0,y0, x1, y1]. The first two numbers in this array are x and y pixels of the upper left vertex, the last two numbers are x and y pixels of the lower right vertex. The right rectangle will be set symmetrically to the left one.
+
+We will also provide hex code for the **background color** - `#AEAEAE` gray here.
 
 ```matlab
 experiment.screen = CustomScreen( ...
@@ -292,30 +376,74 @@ That’s it! You can run the `main.m` script now!
 
 Right after executing the script you’ll see the dialogue for collecting the subject data:
 
-![Untitled](tutorial/subjinfo.png)
+```
+>> main
+Subject code
+> HZ4
+Date of birth
+> 01011900
+Dominant eye
+> Right
+Dominant hand
+> Both
+```
 
 Now you will proceed to the experiment itself.
 
 And that's it! Once you’ve adjusted the screens, you'll see the introduction screen. After that, the CFS will begin.
 
-[Example run of the experiment](https://drive.google.com/file/d/1GaprHYRkqoBciiAhCTZY-zux2j1I_oIb/view)
 
 ## The data
 
-The raw trial data will appear in the `!Raw` folder. Every `.mat` file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.
+The raw trial data will appear in the `Tnk_experiment_2/Raw Data/Behavioral/RawTrials/`. Every `.mat` file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.
+You can run `CFSVM.extract_from_raw_cfs(path_to_raw_trials)`
+(*../../../Raw Data/Behavioral/RawTrials* in this example) script to extract the data from the raw files. It will create two csv tables in `Behavioral/Extracted/<subject code>/` and `Behavioral/Processed/` folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
+The final folder structure will look like this:
+```
+TnK_experiment_2/
+├── Experiment/
+│   └── RUN_ME/
+|       ├── Code/
+|       |   ├── generate_trials.m
+|       |   └── main.m
+|	├── Stimuli/
+|       |   ├── Suppressed/
+|       |   |   ├── gabor_1.png
+|       |   |   └── gabor_2.png
+|	|   └── Masks/
+|       |       ├── mondrian_1.png
+|	|	|   ⋮    ⋮    ⋮    ⋮
+|       |       └── mondrian_<n>.png
+|	└── TrialMatrix/
+|	    └──experiment.mat
+└── Raw Data/
+    ├── Demographics/
+    |	└── HZ4.csv
+    └── Behavioral/
+        ├── Raw Trials/
+	|   └── HZ4/
+        |       ├── block1_trial1.mat
+ 	|       |   ⋮    ⋮    ⋮    ⋮
+        |       └── block<n>_trial<m>.mat
+        ├── Extracted/
+	|   └── HZ4/
+	|       ├── HZ4_extracted.csv
+	|	└── HZ4_ifis_histogram.png
+        └── Processed/
+	    └── HZ4_processed.csv
+```
 
-You can run `CFSVM.extract_from_raw_cfs(subject_code)` (subject_code will be 'HZ4' in this example) script to extract the data from the raw files. It will create two csv tables in `!Results` and `!Processed` folders, the first one containing raw timings and the second one processed ones (e.g., duration instead of onset and offset).
+| ![Raw](tutorial/rawfiles.png) | 
+|:--:| 
+| *Raw trials* |
 
-![Raw files](tutorial/rawfiles.png)
+| ![Raw](tutorial/results_unprocessed.png) | 
+|:--:| 
+| *Extracted, not processed csv* |
 
-Raw files
+| ![Raw](tutorial/results_processed.png) | 
+|:--:| 
+| *Processed csv* |
 
-![Extracted from raw, unprocessed CSV](tutorial/results_unprocessed.png)
-
-Extracted from raw, unprocessed CSV
-
-![Processed CSV](tutorial/results_processed.png)
-
-Processed CSV
 
 ## Thanks!

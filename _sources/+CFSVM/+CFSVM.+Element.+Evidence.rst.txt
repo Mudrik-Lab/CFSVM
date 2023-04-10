@@ -19,12 +19,6 @@
    :members:
    :undoc-members:
 
-+Element.+Evidence.@Response class
-----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence.@Response
-   :members:
-   :undoc-members:
-
 +Element.+Evidence.@ScaleEvidence class
 ---------------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@ScaleEvidence

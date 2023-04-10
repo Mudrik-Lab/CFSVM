@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>+Element.+Stimulus package &#8212; CFSVM v0.3.0 documentation</title>
+    <title>+Element.+Stimulus package &#8212; CFSVM v0.4.0 documentation</title>
   
   
   
@@ -339,12 +339,14 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.MondrianGenerator.html">@MondrianGenerator class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.html">+Element package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BData.html">+Element.+Data package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BEvidence.html">+Element.+Evidence package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BScreen.html">+Element.+Screen package</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">+Element.+Stimulus package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BExperiment.html">+Experiment package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.Extract.html">Data processing functions</a></li>
 </ul>
 </div>
 </nav></div>
@@ -575,8 +577,8 @@ soa &gt; 0 - backward masking</p>
 <li><p><strong>padding</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.padding" title="+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.padding"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.padding</span></code></a></p></li>
 <li><p><strong>rotation</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.rotation" title="+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.rotation"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.rotation</span></code></a></p></li>
 <li><p><strong>contrast</strong> – <a class="reference internal" href="%2BCFSVM.%2BElement.html#+CFSVM.+Element.&#64;SpatialElement.SpatialElement.contrast" title="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.contrast"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">+CFSVM.+Element.&#64;SpatialElement.SpatialElement.contrast</span></code></a></p></li>
-<li><p><strong>mondrians_shape</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.mondrians_shape" title="+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.mondrians_shape"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">mondrians_shape</span></code></a></p></li>
-<li><p><strong>mondrians_color</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.mondrians_color" title="+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.mondrians_color"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">mondrians_color</span></code></a></p></li>
+<li><p><strong>mondrians_shape</strong> – <code class="xref mat mat-attr docutils literal notranslate"><span class="pre">mondrians_shape</span></code></p></li>
+<li><p><strong>mondrians_color</strong> – <code class="xref mat mat-attr docutils literal notranslate"><span class="pre">mondrians_color</span></code></p></li>
 <li><p><strong>blank</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.blank" title="+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.blank"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.blank</span></code></a></p></li>
 </ul>
 </dd>
@@ -600,20 +602,6 @@ masks, stimuli, fixation and checkframe.</p>
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.indices">
 <span class="sig-name descname"><span class="pre">indices</span></span><a class="headerlink" href="#+CFSVM.+Element.+Stimulus.@Mondrians.Mondrians.indices" title="Permalink to this definition">#</a></dt>
 <dd><p>1D array representing masks index for every frame.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.mondrians_color">
-<span class="sig-name descname"><span class="pre">mondrians_color</span></span><a class="headerlink" href="#+CFSVM.+Element.+Stimulus.@Mondrians.Mondrians.mondrians_color" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - color: 1 - BRGBYCMW, 2 - grayscale, 3 - all colors,
-for 4…15 check
-<a class="reference internal" href="#+CFSVM.+Element.+Stimulus.&#64;Mondrians.make_mondrians" title="+CFSVM.+Element.+Stimulus.&#64;Mondrians.make_mondrians"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">make_mondrians()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;Mondrians.Mondrians.mondrians_shape">
-<span class="sig-name descname"><span class="pre">mondrians_shape</span></span><a class="headerlink" href="#+CFSVM.+Element.+Stimulus.@Mondrians.Mondrians.mondrians_shape" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - shape: 1 - squares, 2 - circles, 3 - diamonds.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -667,40 +655,6 @@ for 4…15 check
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>screen</strong> – <a class="reference internal" href="%2BCFSVM.%2BElement.%2BScreen.html#module-+CFSVM.+Element.+Screen.&#64;CustomScreen" title="+CFSVM.+Element.+Screen.&#64;CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">&#64;CustomScreen</span></code></a> object.</p></li>
 <li><p><strong>is_left_suppression</strong> – bool</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="mat function">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;Mondrians.make_mondrians">
-<span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.+Stimulus.&#64;Mondrians.</span></span><span class="sig-name descname"><span class="pre">make_mondrians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">x_pixels</span></em>, <em class="sig-param"><span class="pre">y_pixels</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.+Element.+Stimulus.@Mondrians.make_mondrians" title="Permalink to this definition">#</a></dt>
-<dd><p>Generates masks and writes them to the dirpath.</p>
-<p>This function creates Mondrian masks that can be used for continuous
-flash suppression. The shape of the elements of the masks is normally
-square, but can be predefined as being circular or elliptic or adjusted
-manually. Other variables are predefined, but can be changed within the
-code. If no output is provided, then the masks are drawn directly.
-My favorite settings for experiments are shape = 2 and colored = 1.
-Colors: Black(Bk), Gray(G), Red(R), Green(Gn), Blue(B), Yellow(Y),
-Orange(O), Cyan(C), Magenta(M), White(W), Purple(P), dark+color(dColor), light+color(lColor)
-1 - Bk/R/Gn/B/Y/C/M/W, 2 - grayscale,
-3 - R/dR/Gn/dGn/B/dB/lB/Y/dY/M/C/dC/W/Bk/G/dP/O
-4 - R/dR/B/dB/lB/M/dC/Bk/dP/O,
-5 - purples, 6 - reds, 7 - blues, 8 - professional 1, 9 - professional 2,
-10 - appetizing: tasty, 11 - electric, 12 - dependable 1,
-13 - dependable 2, 14 - earthy ecological natural, 15 - feminine</p>
-<p>I used for the basis of the method Martin’s code:
-(c) 2009 Martin Hebart
-When you use this code in a publication, please cite one of his articles
-using this method.
-This code or any parts of it may not be used for commercial purposes
-without the explicit agreement of the author.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x_pixels</strong> – Int - width of the generated Mondrians.</p></li>
-<li><p><strong>y_pixels</strong> – Int - height of the generated Mondrians.</p></li>
 </ul>
 </dd>
 </dl>
@@ -769,8 +723,7 @@ alignment to the center of the <a class="reference internal" href="#module-+CFSV
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.size">
 <span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size" title="Permalink to this definition">#</a></dt>
-<dd><p>Float between 0 and 1, when 0 is not shown and 1 fills whole <a class="reference internal" href="%2BCFSVM.%2BElement.%2BScreen.html#module-+CFSVM.+Element.+Screen.&#64;ScreenField" title="+CFSVM.+Element.+Screen.&#64;ScreenField"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">&#64;ScreenField</span></code></a> object.</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;Stimulus.Stimulus.textures">
@@ -824,13 +777,13 @@ column indicied will have the same X coordinates.</p>
 <li><p>y0: Float describing correction to the y0 coordinate.</p></li>
 <li><p>x1: Float describing correction to the x1 coordinate.</p></li>
 <li><p>y1: Float describing correction to the y1 coordinate.</p></li>
-<li><p>i: Int describing row position in a position matrix.</p></li>
-<li><p>j: Int describing column position in a position matrix.</p></li>
+<li><p>ir: Int describing row position in a position matrix.</p></li>
+<li><p>ic: Int describing column position in a position matrix.</p></li>
 </ul>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>[x0, y0, x1, y1, i, j]</p>
+<dd class="field-odd"><p>[x0, y0, x1, y1, ir, ic]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -925,7 +878,7 @@ column indicied will have the same X coordinates.</p>
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Stimulus.&#64;SuppressedStimulus.SuppressedStimulus.indices">
 <span class="sig-name descname"><span class="pre">indices</span></span><a class="headerlink" href="#+CFSVM.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.indices" title="Permalink to this definition">#</a></dt>
-<dd><p>1D array representing by 1 if stimulus is shown for current frame.</p>
+<dd><p>1D array representing shown for current frame stimulus when set to 1.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -1124,29 +1077,14 @@ column indicied will have the same X coordinates.</p>
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2023, Liad Mudrik lab.
       <br/>
     
   </p>
 </div>
       
-        <div class="footer-item">
-  <p class="sphinx-version">
-    Created using <a href="https://sphinx-doc.org/">Sphinx</a> 6.1.3.
-    <br/>
-  </p>
-</div>
-      
     </div>
   
-  
-    <div class="footer-items__end">
-      
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.1.
-</p></div>
-      
-    </div>
   
 </div>
 

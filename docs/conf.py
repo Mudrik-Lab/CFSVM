@@ -8,9 +8,9 @@ import os
 # -- Project information -----------------------------------------------------
 
 project = 'CFSVM'
-copyright = '2023'
+copyright = '2023, Liad Mudrik lab'
 author = 'Gennadiy Belonosov'
-release = 'v0.3.0'
+release = 'v0.4.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -52,20 +52,6 @@ html_css_files = [
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css",
 ]
 html_theme_options = {
-    # "external_links": [
-    #     {
-    #         "url": "https://people.socsci.tau.ac.il/mu/mudriklab/",
-    #         "name": "Liad Mudrik lab",
-    #     },
-
-    #     {
-    #         "url": "http://psychtoolbox.org/",
-    #         "name": "PTB-3",
-    #     },
-
-    # ],
-
-    # "header_links_before_dropdown": 4,
     "icon_links": [
         {
             "name": "GitHub",
@@ -85,16 +71,7 @@ html_theme_options = {
         "image": "_static/logo_round.bmp",
         "alt_text": "Continuous flash suppression & Visual masking",
     },
+    "footer_start": ['copyright'],
+    "footer_end": [],
 }
-
-# html_context = {
-#     "github_user": "Mudrik-Lab",
-#     "github_repo": "CFS",
-#     "github_version": "main",
-#     "doc_path": "docs",
-# }
-# html_theme_options = {
-#   "footer_items": []
-# }
-
 

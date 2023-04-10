@@ -4,7 +4,7 @@
 Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
 ```
 
-💡 Here we explain how to use the CFSVM package to create a CFS experiment. As a reference, we roughly implemented Experiment 2 from the original Tsuchiya and Koch  [study](https://doi.org/10.1038/nn1500).
+💡 Here we explain how to use the CFSVM package to create a CFS experiment. As a reference, we roughly implemented Experiment 2 from the original Tsuchiya and Koch [study](https://doi.org/10.1038/nn1500).
 
 ## Start from installing the package
 - [How to install](installation)
@@ -24,7 +24,7 @@ Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
 
 | ![Figure created using the package](tutorial/cfs_description.png) | 
 |:--:| 
-| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two grating at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen.* |
+| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen. Note that the frames here are wider than what we typically use, as they are presented here more for illustration purposes.* |
 
 We extracted the following parameters from the [Methods section](https://www.nature.com/articles/nn1500#Sec9) and [Supplementary Table 1](https://www.nature.com/articles/nn1500#Sec15) of the paper:
 
@@ -34,7 +34,7 @@ We extracted the following parameters from the [Methods section](https://www.nat
 - Adaptation continued for 5 seconds.
 - After the adaptation a gray background was shown.
 - In 20 experimental trials two Gabor patches were simultaneously shown on both the left and right sides of the display presented to the left eye (see figure above).
-- In 10 catch trials, a Gabor patch was presented only on the non-suppressed side of the display (e.g., if the Mondrians are presented on the right side, as in the figure above, only the left side Gabor will appear).
+- In 10 catch trials, a Gabor patch was presented only on the non-suppressed side of the display (e.g., if the Mondrians are presented on the right side, as in the figure above, only the left side Gabor will be presented).
 - The 10 catch trials were randomly interleaved with the 20 experimental trials.
 
 ## Preparing the experiment
@@ -55,7 +55,7 @@ TnK_experiment_2/
 
 ### Stimuli
 
-Create a new folder called `Suppressed` inside the `Stimuli` and put in it two Gabor images with transparent backgrounds and opposite phases, like these:
+Create a new folder called `Suppressed/` inside the `Stimuli/` and put in it two Gabor images with transparent backgrounds and opposite phases, like these:
 
 ![Gabor1](tutorial/gabor1.png) ![Gabor2](tutorial/gabor2.png)
 
@@ -71,7 +71,7 @@ RUN_ME/
 
 ### Trial matrix
 We will start by generating a list of trials specifying the experimental conditions. 
-1. Navigate to the `Code` folder in the MATLAB files panel (or using the `cd` command).
+1. Navigate to the `Code/` folder in the MATLAB files panel (or using the `cd` command).
 2. To generate trials:
     - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step before the run](#the-last-step-before-the-run) section in this tutorial. 
     - Or you can create your own *generate_trials.m* file based on your needs. If you follow this way, your `RUN_ME` folder structure will now look like this:
@@ -154,16 +154,15 @@ generator = MondrianGenerator( ...
 
 ```
 
-2. If we want to set the colormap to grayscale, we can use either the **set_cmap()** or **set_shades()** methods (don’t use both of them). For colorful Mondrians we can replace 'grayscale' with the 'original' in the code below, which will generate Mondrians with common RGB colors. For other color options, please, refer to the documentation. If you want to use your own colormap - you can directly set the [MATLAB-formatted](https://www.mathworks.com/help/matlab/ref/colormap.html) colormap directly to the **cmap** property of the generator.
+2. If we want to set the colormap to grayscale, we can use either the **set_cmap()** or **set_shades()** methods (don’t use both of them). For colorful Mondrians we can replace 'grayscale' with the 'original' in the code below, which will generate Mondrians with common RGB colors. For other color options, please, refer to the documentation. If you want to use your own colormap - you can set the [MATLAB-formatted](https://www.mathworks.com/help/matlab/ref/colormap.html) colormap directly to the **cmap** property of the generator.
 ```matlab
 generator.set_cmap('grayscale', n_tones=5)
 % generator.set_shades([0,0,0], 5);
 % generator.cmap = [0 0 0
-%             0.3 0.3 0.3 
+%             0.25 0.25 0.25 
 %             0.5 0.5 0.5 
-%             0.7 0.7 0.7 
+%             0.75 0.75 0.75 
 %             1 1 1]
-
 ```
 
 3. We will provide the generator object with the physical properties of the display, so it will be able to calculate the power spectral densities of the Mondrians (the output .png and .csv files will be saved inside the `provided_path/` folder). The arguments are: width in cm, width in pixels, height in cm, height in pixels, viewing distance in cm.
@@ -182,7 +181,7 @@ To adjust the Mondrians’ position, we will set **size** to 0.45 (1 will fill t
 Finally, we will set **blank** to 5 seconds, to present a blank screen with fixation crosses and frames after the CFS stimulation has ended.
 
 
-```
+```matlab
 experiment.masks = Mondrians( ...
     '../Stimuli/Masks', ...
     temporal_frequency=10, ...
@@ -200,7 +199,6 @@ experiment.masks = Mondrians( ...
 Now we will add two stimuli properties for the Gabor patches.
 
 Create the properties first:
-
 ```matlab
 experiment.addprop('stimulus_1');
 experiment.addprop('stimulus_2');
@@ -210,7 +208,7 @@ Then we will initialize them. As a first parameter we will provide a path to the
 
 We will set **show_duration** for both of the parameters to 5 seconds. We will set a different **position** for them: "Left" for the first and "Right" for the second.
 We will set **contrast** to 0.3 (30%), **size** to 0.5, **padding** to 0.5 and **xy_ratio** to 1.
-```
+```matlab
 experiment.stimulus_1 = SuppressedStimulus( ...
     '../Stimuli/Suppressed/', ...
     show_duration=5, ...
@@ -235,15 +233,7 @@ Here you can set the parameters for the **breakthrough** property, which basical
 experiment.breakthrough = BreakResponse();
 ```
 
-Our experiment object is ready now. But we want to create an array of experiment objects with slight differences between them (e.g, different orientation of the Gabor stimuli). As there is no easy way in MATLAB to create a deep copy of our object, we will use a workaround: save the experiment object to file and then load it every iteration in the for-loop described below.
-```matlab
-if ~exist('.temp', 'dir')
-    mkdir('.temp')
-end
-save('.temp\experiment.mat', 'experiment')
-```
-
-Now, let’s set the number of blocks and trials. The number of blocks should be a natural number and the number of trials is defined by a list of `length=n_blocks` containing the number of trials in every block. For example, if we want to have one block with 20 trials and another block with 30 trials we will set `n_blocks = 2`, `n_trials = [20, 30]`. But in the current experiment, there is only one block with 30 trials.
+Our **experiment** object is ready now. Let’s set the number of blocks and trials. The number of blocks should be a natural number and the number of trials is defined by a list of `length=n_blocks` containing the number of trials in every block. For example, if we want to have one block with 20 trials and another block with 30 trials we will set `n_blocks = 2`, `n_trials = [20, 30]`. But in the current experiment, there is only one block with 30 trials.
 The last line will initialize a cell array for the trial matrix.
 
 ```matlab
@@ -252,8 +242,10 @@ n_trials = [30];
 trial_matrix = cell(1, n_blocks);
 ```
 
-Now, for all 30 trials we will randomize the Gabor images and their orientations for both stimuli properties.
+Now, for all 30 trials we will create a copy of our experiment object, randomize the Gabor images and their orientations for both stimuli properties in this copied object and then add the object to the trial matrix for every trial (as the code that runs the experiment will expect trial matrix to be an array of arrays of objects).
+
 For 10 of these 30 trials we will set the **contrast** for the second stimulus to 0, so that the right Gabor doesn’t appear.
+
 After every block (here we have only one), we will shuffle the trials.
 
 
@@ -262,32 +254,26 @@ orientations = [0, 45, 90, 135];
 n_images = 2;
 for block = 1:n_blocks
     for trial = 1:n_trials(block)
-        load('.temp/experiment.mat');
-        experiment.stimulus_1.index = randi(n_images);
-        experiment.stimulus_1.rotation = orientations(randi(length(orientations), 1));
-        experiment.stimulus_2.index = randi(n_images);
-        experiment.stimulus_2.rotation = orientations(randi(length(orientations), 1));
+        exp_copy = copy(experiment);
+        exp_copy.stimulus_1.index = randi(n_images);
+        exp_copy.stimulus_1.rotation = orientations(randi(length(orientations), 1));
+        exp_copy.stimulus_2.index = randi(n_images);
+        exp_copy.stimulus_2.rotation = orientations(randi(length(orientations), 1));
         if trial >= 20
-            experiment.stimulus_2.contrast = 0;
+            exp_copy.stimulus_2.contrast = 0;
         end
-        trial_matrix{block}{trial} = experiment;
-    end 
-    trial_matrix{block} = trial_matrix{block}(randperm(numel(trial_matrix{block})));
-end 
+        trial_matrix{block}{trial} = exp_copy;
+    end
+    trial_matrix{1} = trial_matrix{1}(randperm(numel(trial_matrix{1})));
+end
 ```
 
 Save the trial matrix to the file:
-
 ```matlab
 if ~exist('../TrialMatrix', 'dir')
     mkdir('../TrialMatrix')
 end
 save('../TrialMatrix/experiment.mat', 'trial_matrix')
-```
-
-Clean .temp folder we’ve created earlier, we don’t need it anymore:
-```matlab
-rmdir('.temp', 's')
 ```
 
 Don’t forget to execute the code before running the experiment! After executing it you will find the file with the trial matrix in the `RUN_ME/TrialMatrix/` directory and generated Mondrians in the `RUN_ME/Stimuli/Masks/`.
@@ -314,7 +300,7 @@ Congrats! We are almost there!
 ## The last step before the run
 
 So far we’ve generated the trials. Now we want to run the experiment.
-Let’s start building our `main.m` script, which we will put inside the `Code` folder near the `generate_trials.m` script. 
+Let’s start building our `main.m` script, which we will put inside the `Code/` folder near the `generate_trials.m` script. 
 We will now go over a few parameters that can be adjusted to create specific settings you want.
 First, we will make sure that the workspace and the screen are cleared:
 ```matlab
@@ -336,7 +322,7 @@ experiment = BCFS(save_to_dir='../../../Raw Data/Behavioral');
 ```
 
 Initialize the **subject_info** property by providing a directory to save the info in.
-We will put it in `Tnk_experiment_2/Raw Data/Demographics`.
+We will put it in `Tnk_experiment_2/Raw Data/Demographics/`.
 ```matlab
 experiment.subject_info = SubjectData( ...
     dirpath='../../../Raw Data/Demographics');

@@ -12,22 +12,28 @@ experiment.frame = CheckFrame( ...
     checker_length=30, ...
     checker_width=15);
 
-% import CFSVM.MondrianGenerator
-% % Will generate Mondrians inside dirpath/Masks
-% generator = MondrianGenerator( ...
-%     '../Stimuli/', ...
-%     type='rectangle', ...
-%     x_pixels=512, ...
-%     y_pixels=512, ...
-%     min_fraction=1/20, ...
-%     max_fraction=1/8, ...
-%     n_figures=1000);
-% 
-% generator.set_physical_properties(60, 1920, 33.5, 1080, 45);
-% 
+import CFSVM.MondrianGenerator
+% Will generate Mondrians inside dirpath/Masks
+generator = MondrianGenerator( ...
+    '../Stimuli/', ...
+    type='rectangle', ...
+    x_pixels=512, ...
+    y_pixels=512, ...
+    min_fraction=1/20, ...
+    max_fraction=1/8, ...
+    n_figures=1000);
+
+generator.set_physical_properties(60, 1920, 33.5, 1080, 45);
+
+generator.set_cmap('grayscale', n_tones=5)
 % generator.set_shades([0,0,0], 5);
-% 
-% generator.generate(51);
+% generator.cmap = [0 0 0
+%             0.25 0.25 0.25 
+%             0.5 0.5 0.5 
+%             0.75 0.75 0.75 
+%             1 1 1]
+
+generator.generate(51);
 
 experiment.masks = Mondrians( ...
     dirpath='../Stimuli/Masks', ...
@@ -72,15 +78,15 @@ orientations = [0, 45, 90, 135];
 n_images = 2;
 for block = 1:n_blocks
     for trial = 1:n_trials(block)
-        exp = copy(experiment);
-        exp.stimulus_1.index = randi(n_images);
-        exp.stimulus_1.rotation = orientations(randi(length(orientations), 1));
-        exp.stimulus_2.index = randi(n_images);
-        exp.stimulus_2.rotation = orientations(randi(length(orientations), 1));
+        exp_copy = copy(experiment);
+        exp_copy.stimulus_1.index = randi(n_images);
+        exp_copy.stimulus_1.rotation = orientations(randi(length(orientations), 1));
+        exp_copy.stimulus_2.index = randi(n_images);
+        exp_copy.stimulus_2.rotation = orientations(randi(length(orientations), 1));
         if trial >= 20
-            exp.stimulus_2.contrast = 0;
+            exp_copy.stimulus_2.contrast = 0;
         end
-        trial_matrix{block}{trial} = exp;
+        trial_matrix{block}{trial} = exp_copy;
     end
     trial_matrix{1} = trial_matrix{1}(randperm(numel(trial_matrix{1})));
 end

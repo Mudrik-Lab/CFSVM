@@ -1,4 +1,4 @@
-classdef (Abstract) TemporalElement < handle
+classdef (Abstract) TemporalElement < matlab.mixin.Copyable
 % A base class describing elements with temporal properties.
 %
 

@@ -140,7 +140,7 @@ experiment.frame = CheckFrame( ...
 ##### Masks generation
 Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into `RUN_ME/Stimuli/Masks/` folder and skip to the [masks initialization](#masks-initialization). Otherwise, we will use the MondrianGenerator. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: [(Wang & Han, 2022)](https://doi.org/10.3758/s13428-022-01903-7), [GitHub](https://github.com/guandongwang/cfs_crafter).
 
-1. Import the MondrianGenerator class and construct the generator object. The generator will randomly locate a specific numbers of figures (defined as **n_figures**, 1000 by default) that are shaped in a specific manner (defined as **type**, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to **x(y)_pixels**×**min_fraction** and the maximum radius equal to **x(y)_pixels**×**max_fraction** inside the `provided_path/Masks/` folder (here `Stimuli/Masks/`).
+1. Import the MondrianGenerator class and construct the generator object, using the code below. The generator will randomly locate a specific numbers of figures (defined as **n_figures**, 1000 by default) that are shaped in a specific manner (defined as **type**, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to **x(y)_pixels**×**min_fraction** and the maximum radius equal to **x(y)_pixels**×**max_fraction** inside the `provided_path/Masks/` folder (here `Stimuli/Masks/`).
 ```matlab
 import CFSVM.MondrianGenerator
 generator = MondrianGenerator( ...

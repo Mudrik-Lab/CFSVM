@@ -1,4 +1,4 @@
-classdef (Abstract) ResponseElement < handle
+classdef (Abstract) ResponseElement < matlab.mixin.Copyable
 % A base class for describing subject response.
 %
 % Base for :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence`

@@ -1,4 +1,4 @@
-classdef SubjectData < handle
+classdef SubjectData < matlab.mixin.Copyable
 % Inquiry about and recording of the subject info.
 %
 

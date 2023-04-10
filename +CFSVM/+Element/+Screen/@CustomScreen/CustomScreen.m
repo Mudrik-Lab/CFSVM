@@ -1,4 +1,4 @@
-classdef CustomScreen < handle
+classdef CustomScreen < matlab.mixin.Copyable
 % Storing and manipulating left and right screen areas.
     
     properties

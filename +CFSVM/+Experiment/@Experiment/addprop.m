@@ -9,6 +9,7 @@ function addprop(obj, prop_name)
     obj.dynpropnames{end+1} = prop_name;
     % Then call the addprop method of the dynamicprops class, 
     % which actually adds the dynamic property to the object.
-    addprop@dynamicprops(obj, prop_name);
+    p = addprop@dynamicprops(obj, prop_name);
+    p.NonCopyable = false;
 
 end

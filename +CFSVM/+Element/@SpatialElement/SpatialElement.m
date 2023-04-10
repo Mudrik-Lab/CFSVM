@@ -1,4 +1,4 @@
-classdef (Abstract) SpatialElement < handle
+classdef (Abstract) SpatialElement < matlab.mixin.Copyable
 % A base class describing elements with spatial properties.
 %
     

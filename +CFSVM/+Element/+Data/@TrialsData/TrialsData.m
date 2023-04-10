@@ -1,4 +1,4 @@
-classdef TrialsData < handle
+classdef TrialsData < matlab.mixin.Copyable
 % Storing and manipulating trial parameters.
 %
 

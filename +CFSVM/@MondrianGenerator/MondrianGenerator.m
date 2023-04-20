@@ -176,7 +176,7 @@ classdef MondrianGenerator < handle
             y0 = check_coord(center_y-radius_y, obj.y_pixels);
             y1 = check_coord(center_y+radius_y, obj.y_pixels);
             img = zeros(obj.y_pixels, obj.x_pixels);
-            img(x0:x1, y0:y1) = 1;
+            img(y0:y1, x0:x1) = 1;
             rect_pixels = logical(img);
             
         end

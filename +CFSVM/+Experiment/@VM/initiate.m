@@ -20,7 +20,7 @@ function initiate(obj)
     obj.trials.import()
     
     % Initialize fixation property
-    obj.fixation = Fixation();
+    obj.fixation = obj.trials.matrix{1}{1}.fixation;
 
     % Write to disk provided subject data.
     obj.subject_info.write()
@@ -39,6 +39,9 @@ function initiate(obj)
 
     % Warm WaitSecs() function.
     % WaitSecs(0.00001);
+
+    % Import fixation target image.
+    obj.fixation.import_images(obj.screen.window);
     
     % Import images for every SuppressedStimulus property.
     prop_list = obj.trials.matrix{1}{1}.get_dyn_props;

@@ -37,7 +37,7 @@ function load_parameters(obj)
             obj.frame.initiate(obj.screen.fields{1})
             obj.frame.initiate(obj.screen.fields{2})
             
-            obj.fixation.load_args(obj.screen)
+            obj.fixation.preload_args(obj.screen)
         
         
             % Preload masks and stimuli args

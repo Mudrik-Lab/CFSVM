@@ -39,7 +39,7 @@ function load_parameters(obj)
             
             obj.target.load_rect_parameters(obj.screen);
             
-            obj.fixation.load_args(obj.screen)
+            obj.fixation.preload_args(obj.screen)
             
             obj.pas.load_parameters(obj.screen)
             if class(obj.mafc) == "CFSVM.Element.Evidence.ImgMAFC"

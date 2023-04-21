@@ -1,4 +1,4 @@
-classdef Fixation < CFSVM.Element.TemporalElement & CFSVM.Element.SpatialElement
+classdef Fixation < CFSVM.Element.Stimulus.Stimulus
 % Handling fixation cross.
 %
 % Derived from :class:`~+CFSVM.+Element.@TemporalElement` and 
@@ -15,10 +15,6 @@ classdef Fixation < CFSVM.Element.TemporalElement & CFSVM.Element.SpatialElement
 
     properties
         
-        % Int - size of the arms of the fixation cross in pixels.
-        arm_length {mustBeNonnegative, mustBeInteger}
-        % Int - line width of the fixation cross in pixels.
-        line_width {mustBeNonnegative, mustBeInteger}
         % Cell array storing arguments for PTB's Screen('DrawLines'). 
         args cell
 
@@ -27,32 +23,39 @@ classdef Fixation < CFSVM.Element.TemporalElement & CFSVM.Element.SpatialElement
 
     methods
 
-        function obj = Fixation(parameters)
+        function obj = Fixation(dirpath, parameters)
         %
         % Args:
+        %   dirpath: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
         %   duration: :attr:`.+CFSVM.+Element.@TemporalElement.TemporalElement.duration`
-        %   arm_length: :attr:`~.+CFSVM.+Element.+Stimulus.@Fixation.Fixation.arm_length`
-        %   line_width: :attr:`~.+CFSVM.+Element.+Stimulus.@Fixation.Fixation.line_width`
-        %   color: :attr:`.+CFSVM.+Element.@SpatialElement.SpatialElement.color`
-        %
+        %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`
+        %   padding: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.padding`
+        %   rotation: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`.+CFSVM.+Element.@SpatialElement.SpatialElement.contrast`
 
             arguments
-                parameters.duration = 1;
-                parameters.arm_length = 20;
-                parameters.line_width = 4;
-                parameters.color = '#525252';
+                dirpath {mustBeFolder}
+                parameters.duration = 0
+                parameters.position = "Center"
+                parameters.xy_ratio = 1
+                parameters.size = 0.05
+                parameters.padding = 0
+                parameters.rotation = 0
+                parameters.contrast = 1
             end
-
-            obj.duration = parameters.duration;
-            obj.arm_length = parameters.arm_length;
-            obj.line_width = parameters.line_width;
             
-            % Convert hex code to matlab RGB code.
-            obj.color = sscanf(parameters.color(2:end), '%2x%2x%2x', [1 3])/255;
+            obj.dirpath = dirpath;
+            parameters_names = fieldnames(parameters);
+            
+            for name = 1:length(parameters_names)
+                obj.(parameters_names{name}) = parameters.(parameters_names{name});
+            end
 
         end
         
-        load_args(obj, screen)
+        preload_args(obj, screen)
         vbl = show(obj, experiment)
 
     end

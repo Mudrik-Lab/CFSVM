@@ -6,6 +6,8 @@ Welcome to CFSVM's documentation!
 
     installation
     tutorial
+    fixation_generator
+    mondrian_generator
     +CFSVM
 
 

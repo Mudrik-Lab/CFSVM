@@ -1,27 +1,34 @@
 classdef FixationGenerator
-    %FIXATIONGENERATOR Summary of this class goes here
-    %   Detailed explanation goes here
-    
-    properties
+% Generates fixation targets.
+%
+% Supports 6 different shapes from Thaler et al., 2013.
+%
+
+    properties(Access=private)
         dirpath
         radius
         is_anti_aliasing
         n_cycles
-    end
-
-    properties(Access=private)
         color
     end
     
     methods
         function obj = FixationGenerator(dirpath, parameters)
-
+        %
+        % Args:
+        %   dirpath: Fixation targets will be generated inside
+        %       dirpath/Fixation/
+        %   radius: Radius in pixels of the largest shape in the fixaiton.
+        %   hex_color: Color of the fixation target
+        %   is_smooth_edges: Whether to smooth the jaggies.
+        %   smoothing_cycles: Number of smoothing cycles.
+        %
             arguments 
-                dirpath
-                parameters.radius = 256
-                parameters.hex_color = '#000000'
-                parameters.is_smooth_edges=false
-                parameters.smoothing_cycles=1
+                dirpath {mustBeTextScalar}
+                parameters.radius {mustBeInteger, mustBePositive} = 256
+                parameters.hex_color {mustBeHex} = '#000000'
+                parameters.is_smooth_edges {mustBeNumericOrLogical} =false
+                parameters.smoothing_cycles {mustBeInteger, mustBePositive} =1
             end
             
             obj.dirpath = dirpath;
@@ -38,31 +45,60 @@ classdef FixationGenerator
             obj.color = sscanf(parameters.hex_color(2:end),'%2x%2x%2x',[1 3])/255;
         end
 
-        function A(obj)
+        function A(obj, parameters)
+        % Generates the circular target shape.
+        %
+        % Args:
+        %   fname: Name of the image file, should end with .png.
+        %
+            arguments
+                obj
+                parameters.fname = 'fixation.png'
+            end
             im = zeros(obj.radius*2+1);
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
             smoothed_pixels = obj.smooth_edges(circle_pixels);
             im(circle_pixels)=1;
-            imwrite(ind2rgb(im, obj.color), fullfile(obj.dirpath, 'Fixation/fixation.png'), alpha=smoothed_pixels);
+            imwrite( ...
+                ind2rgb(im, obj.color), ...
+                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
+                alpha=smoothed_pixels);
             
         end
 
         function C(obj, parameters)
+        % Generates the cross target shape.
+        %
+        % Args:
+        %   fname: Name of the image file, should end with .png.
+        %   cross_width: Width of the cross arms.
+        %
             arguments 
                 obj
                 parameters.cross_width = fix(obj.radius/4)
+                parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
             cross_pixels = obj.cross(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1, parameters.cross_width);
             smoothed_pixels = obj.smooth_edges(cross_pixels);
             im(cross_pixels)=1;
-            imwrite(ind2rgb(im, obj.color), fullfile(obj.dirpath, 'Fixation/fixation.png'), alpha=smoothed_pixels);
+            imwrite( ...
+                ind2rgb(im, obj.color), ...
+                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
+                alpha=smoothed_pixels);
         end
         
         function AB(obj, parameters)
+        % Generates the circle-inside-circle target shape.
+        %
+        % Args:
+        %   fname: Name of the image file, should end with .png.
+        %   inner_circle_radius: Radius of the inner circle.
+        %
             arguments 
                 obj
                 parameters.inner_circle_radius = fix(obj.radius/4)
+                parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
@@ -72,15 +108,23 @@ classdef FixationGenerator
             smoothed_pixels = obj.smooth_edges(im);
             imwrite( ...
                 ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, 'Fixation/fixation.png'), ...
+                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
                 alpha=smoothed_pixels);
         end
 
         function AC(obj, parameters)
+        % Generates the circle-inside-cross target shape.
+        %
+        % Args:
+        %   fname: Name of the image file, should end with .png.
+        %   cross_width: Width of the cross arms.
+        %   circle_radius: Radius of the inner circle.
+        %
             arguments 
                 obj
                 parameters.cross_width = fix(obj.radius/4)
                 parameters.circle_radius = fix(obj.radius/4)
+                parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
             cross_pixels = obj.cross(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1, parameters.cross_width);
@@ -90,14 +134,21 @@ classdef FixationGenerator
             smoothed_pixels = obj.smooth_edges(im);
             imwrite( ...
                 ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, 'Fixation/fixation.png'), ...
+                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
                 alpha=smoothed_pixels);
         end
 
         function BC(obj, parameters)
+        % Generates the cross-inside-circle target shape.
+        %
+        % Args:
+        %   fname: Name of the image file, should end with .png.
+        %   cross_width: Width of the cross arms.
+        %
             arguments 
                 obj
                 parameters.cross_width = fix(obj.radius/4)
+                parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
@@ -107,15 +158,23 @@ classdef FixationGenerator
             smoothed_pixels = obj.smooth_edges(im);
             imwrite( ...
                 ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, 'Fixation/fixation.png'), ...
+                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
                 alpha=smoothed_pixels);
         end
 
         function ABC(obj, parameters)
+        % Generates the circle-inside-cross-inside-circle target shape.
+        %
+        % Args:
+        %   fname: Name of the image file, should end with .png.
+        %   cross_width: Width of the cross arms.
+        %   inner_circle_radius: Radius of the inner circle.
+        %
             arguments 
                 obj
                 parameters.cross_width = fix(obj.radius/4)
                 parameters.inner_circle_radius = fix(obj.radius/4)
+                parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
@@ -127,7 +186,7 @@ classdef FixationGenerator
             smoothed_pixels = obj.smooth_edges(im);
             imwrite( ...
                 ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, 'Fixation/fixation.png'), ...
+                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
                 alpha=smoothed_pixels);
         end
     end
@@ -180,5 +239,11 @@ classdef FixationGenerator
 
     end
 
+end
+
+function mustBeHex(a)
+    if ~regexp(a, "#[\d, A-F]{6}", 'ignorecase')
+        error("Provided hex color is wrong.")
+    end
 end
 

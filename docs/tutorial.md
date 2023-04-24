@@ -29,7 +29,7 @@ Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
 We extracted the following parameters from the [Methods section](https://www.nature.com/articles/nn1500#Sec9) and [Supplementary Table 1](https://www.nature.com/articles/nn1500#Sec15) of the paper:
 
 - The contrast of two Gabor patches was set to 30%.
-- The phase and orientation of the Gabors were choosen randomly.
+- The phase and orientation of the Gabors were chosen randomly.
 - The flashing frequency of the Mondrians was 10 Hz.
 - Adaptation continued for 5 seconds.
 - After the adaptation a gray background was shown.

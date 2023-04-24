@@ -1,4 +1,10 @@
 classdef MondrianGenerator < handle
+% Generates Mondrian masks for CFS experiments.
+%
+% Supports shapes, like rectangles, circles, rhombi and more.
+% Calculates PSDs for every mondrians if screen physical properties are
+% set.
+%
 
     properties
 
@@ -33,9 +39,11 @@ classdef MondrianGenerator < handle
         view_dist
         % Whether physical propreties were provided.
         is_phys_props
+
     end
     
     methods
+        
         function obj = MondrianGenerator(dirpath, parameters)
         %
         % Args:
@@ -56,7 +64,7 @@ classdef MondrianGenerator < handle
                 parameters.y_pixels = 512
                 parameters.min_fraction = 1/100
                 parameters.max_fraction = 1/8
-                parameters.n_figures = 1000
+                parameters.n_figures = 100
                 parameters.cmap = [1 1 1
                     0.75 0.75 0.75
                     0.5 0.5 0.5
@@ -72,6 +80,10 @@ classdef MondrianGenerator < handle
             
             for name = 1:length(parameters_names)
                 obj.(parameters_names{name}) = parameters.(parameters_names{name});
+            end
+
+            if isstring(obj.cmap) || ischar(obj.cmap)
+                obj.set_cmap(obj.cmap);
             end
 
         end
@@ -115,7 +127,7 @@ classdef MondrianGenerator < handle
         end
         
 
-        generate(obj, n_images)
+        generate(obj, n_images, parameters)
         set_cmap(obj, colormap, parameters)
         [freqs, psds] = get_psd(obj, img)
     end
@@ -234,7 +246,7 @@ classdef MondrianGenerator < handle
             pixel_size = s_cm/s_pix;
             % mask size in cm
             img_size_cm = pixel_size * img_size_pixels;
-            %mask size in degree of visual angle
+            % mask size in degree of visual angle
             img_size_degree = 2 * rad2deg(atan(img_size_cm/(2 * view_dist)));
             
         end

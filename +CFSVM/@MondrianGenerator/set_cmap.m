@@ -29,14 +29,14 @@ function set_cmap(obj, colormap, parameters)
                     0 1 0
                     0 0 1];
             case 'original'
-                obj.cmap = [0 0 0
+                obj.cmap = [1 1 1
                     1 0 0
                     0 1 0
                     0 0 1
                     1 1 0
                     1 0 1
                     0 1 1
-                    1 1 1];
+                    0 0 0];
         end
     end
 end

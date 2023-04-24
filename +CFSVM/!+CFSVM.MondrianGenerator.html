@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="+Element package" href="%2BCFSVM.%2BElement.html" />
-    <link rel="prev" title="API reference" href="../%2BCFSVM.html" />
+    <link rel="prev" title="@FixationGenerator class" href="%21%2BCFSVM.FixationGenerator.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -145,6 +145,20 @@
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../tutorial.html">
                         CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
                       </a>
                     </li>
                 
@@ -275,6 +289,20 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
@@ -339,6 +367,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.FixationGenerator.html">@FixationGenerator class</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">@MondrianGenerator class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.html">+Element package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BData.html">+Element.+Data package</a></li>
@@ -409,7 +438,98 @@ document.write(`
 <dl class="mat class">
 <dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.&#64;MondrianGenerator.</span></span><span class="sig-name descname"><span class="pre">MondrianGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator" title="Permalink to this definition">#</a></dt>
-<dd><dl class="mat method">
+<dd><p>Generates Mondrian masks for CFS experiments.</p>
+<p>Supports shapes, like rectangles, circles, rhombi and more.
+Calculates PSDs for every mondrians if screen physical properties are
+set.</p>
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.type" title="Permalink to this definition">#</a></dt>
+<dd><p>Shape of the figures, currently available shapes are rectangle,
+square, ellipse, circle, rhombus and 45_rotate_square.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.dirpath">
+<span class="sig-name descname"><span class="pre">dirpath</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.dirpath" title="Permalink to this definition">#</a></dt>
+<dd><p>Mondrians will be generated inside dirpath/Masks/</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.x_pixels">
+<span class="sig-name descname"><span class="pre">x_pixels</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.x_pixels" title="Permalink to this definition">#</a></dt>
+<dd><p>Width of the generated image in pixels</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.y_pixels">
+<span class="sig-name descname"><span class="pre">y_pixels</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.y_pixels" title="Permalink to this definition">#</a></dt>
+<dd><p>Height of the generated image in pixels</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.min_fraction">
+<span class="sig-name descname"><span class="pre">min_fraction</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.min_fraction" title="Permalink to this definition">#</a></dt>
+<dd><p>Minimal possible radius in pixels of the type-shaped figure. Will
+be calculated by radius=x(y)_pixels*min_fraction</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.max_fraction">
+<span class="sig-name descname"><span class="pre">max_fraction</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.max_fraction" title="Permalink to this definition">#</a></dt>
+<dd><p>Maximal possible radius in pixels of the type-shaped figure. Will
+be calculated by radius=x(y)_pixels*max_fraction</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.n_figures">
+<span class="sig-name descname"><span class="pre">n_figures</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.n_figures" title="Permalink to this definition">#</a></dt>
+<dd><p>Number of figures to generate per 1 Mondrian mask.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.cmap">
+<span class="sig-name descname"><span class="pre">cmap</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.cmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Colormap.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_w_cm">
+<span class="sig-name descname"><span class="pre">s_w_cm</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_w_cm" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen width in centimetres.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_w_pix">
+<span class="sig-name descname"><span class="pre">s_w_pix</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_w_pix" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen width in pixels.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_h_cm">
+<span class="sig-name descname"><span class="pre">s_h_cm</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_h_cm" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen height in centimetres.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_h_pix">
+<span class="sig-name descname"><span class="pre">s_h_pix</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_h_pix" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen height in pixels.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.view_dist">
+<span class="sig-name descname"><span class="pre">view_dist</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.view_dist" title="Permalink to this definition">#</a></dt>
+<dd><p>Viewing distance in centimetres.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.is_phys_props">
+<span class="sig-name descname"><span class="pre">is_phys_props</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.is_phys_props" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether physical propreties were provided.</p>
+</dd></dl>
+
+<dl class="mat method">
 <dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.MondrianGenerator">
 <span class="sig-name descname"><span class="pre">MondrianGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.MondrianGenerator" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
@@ -426,68 +546,6 @@ document.write(`
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.cmap">
-<span class="sig-name descname"><span class="pre">cmap</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.cmap" title="Permalink to this definition">#</a></dt>
-<dd><p>Colormap.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.dirpath">
-<span class="sig-name descname"><span class="pre">dirpath</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.dirpath" title="Permalink to this definition">#</a></dt>
-<dd><p>Mondrians will be generated inside dirpath/Masks/</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.is_phys_props">
-<span class="sig-name descname"><span class="pre">is_phys_props</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.is_phys_props" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether physical propreties were provided.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.max_fraction">
-<span class="sig-name descname"><span class="pre">max_fraction</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.max_fraction" title="Permalink to this definition">#</a></dt>
-<dd><p>Maximal possible radius in pixels of the type-shaped figure. Will
-be calculated by radius=x(y)_pixels*max_fraction</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.min_fraction">
-<span class="sig-name descname"><span class="pre">min_fraction</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.min_fraction" title="Permalink to this definition">#</a></dt>
-<dd><p>Minimal possible radius in pixels of the type-shaped figure. Will
-be calculated by radius=x(y)_pixels*min_fraction</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.n_figures">
-<span class="sig-name descname"><span class="pre">n_figures</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.n_figures" title="Permalink to this definition">#</a></dt>
-<dd><p>Number of figures to generate per 1 Mondrian mask.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_h_cm">
-<span class="sig-name descname"><span class="pre">s_h_cm</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_h_cm" title="Permalink to this definition">#</a></dt>
-<dd><p>Screen height in centimetres.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_h_pix">
-<span class="sig-name descname"><span class="pre">s_h_pix</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_h_pix" title="Permalink to this definition">#</a></dt>
-<dd><p>Screen height in pixels.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_w_cm">
-<span class="sig-name descname"><span class="pre">s_w_cm</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_w_cm" title="Permalink to this definition">#</a></dt>
-<dd><p>Screen width in centimetres.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.s_w_pix">
-<span class="sig-name descname"><span class="pre">s_w_pix</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.s_w_pix" title="Permalink to this definition">#</a></dt>
-<dd><p>Screen width in pixels.</p>
 </dd></dl>
 
 <dl class="mat method">
@@ -522,36 +580,11 @@ rgb_triplet color with n_tones between them.</p>
 </dl>
 </dd></dl>
 
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.type">
-<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.type" title="Permalink to this definition">#</a></dt>
-<dd><p>Shape of the figures, currently available shapes are rectangle,
-square, ellipse, circle, rhombus and 45_rotate_square.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.view_dist">
-<span class="sig-name descname"><span class="pre">view_dist</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.view_dist" title="Permalink to this definition">#</a></dt>
-<dd><p>Viewing distance in centimetres.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.x_pixels">
-<span class="sig-name descname"><span class="pre">x_pixels</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.x_pixels" title="Permalink to this definition">#</a></dt>
-<dd><p>Width of the generated image in pixels</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.MondrianGenerator.y_pixels">
-<span class="sig-name descname"><span class="pre">y_pixels</span></span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.MondrianGenerator.y_pixels" title="Permalink to this definition">#</a></dt>
-<dd><p>Height of the generated image in pixels</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="+CFSVM.&#64;MondrianGenerator.generate">
-<span class="sig-prename descclassname"><span class="pre">+CFSVM.&#64;MondrianGenerator.</span></span><span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">n_images</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.generate" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">+CFSVM.&#64;MondrianGenerator.</span></span><span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">n_images</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.@MondrianGenerator.generate" title="Permalink to this definition">#</a></dt>
 <dd><p>Generates and saves Mondrians.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -604,12 +637,12 @@ relevant only for shades colormaps</p></li>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../%2BCFSVM.html"
+       href="%21%2BCFSVM.FixationGenerator.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">API reference</p>
+        <p class="prev-next-title">&#64;FixationGenerator class</p>
       </div>
     </a>
     <a class="right-next"

@@ -149,6 +149,20 @@
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
@@ -275,6 +289,20 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
@@ -339,6 +367,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.FixationGenerator.html">@FixationGenerator class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.MondrianGenerator.html">@MondrianGenerator class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.html">+Element package</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">+Element.+Data package</a></li>
@@ -412,6 +441,36 @@ document.write(`
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.+Data.&#64;SubjectData.</span></span><span class="sig-name descname"><span class="pre">SubjectData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData" title="Permalink to this definition">#</a></dt>
 <dd><p>Inquiry about and recording of the subject info.</p>
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.dirpath">
+<span class="sig-name descname"><span class="pre">dirpath</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.dirpath" title="Permalink to this definition">#</a></dt>
+<dd><p>Char array for path to directory in which to save the data.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.table">
+<span class="sig-name descname"><span class="pre">table</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.table" title="Permalink to this definition">#</a></dt>
+<dd><p>Table for recording the data.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.code">
+<span class="sig-name descname"><span class="pre">code</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.code" title="Permalink to this definition">#</a></dt>
+<dd><p>Char array for subject code.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.is_left_suppression">
+<span class="sig-name descname"><span class="pre">is_left_suppression</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.is_left_suppression" title="Permalink to this definition">#</a></dt>
+<dd><p>Bool, true if dominant eye is left.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.file_extension">
+<span class="sig-name descname"><span class="pre">file_extension</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.file_extension" title="Permalink to this definition">#</a></dt>
+<dd><p>Char array, .csv is a default, must start with a dot.</p>
+</dd></dl>
+
 <dl class="mat method">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.SubjectData">
 <span class="sig-name descname"><span class="pre">SubjectData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.SubjectData" title="Permalink to this definition">#</a></dt>
@@ -424,36 +483,6 @@ document.write(`
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.code">
-<span class="sig-name descname"><span class="pre">code</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.code" title="Permalink to this definition">#</a></dt>
-<dd><p>Char array for subject code.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.dirpath">
-<span class="sig-name descname"><span class="pre">dirpath</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.dirpath" title="Permalink to this definition">#</a></dt>
-<dd><p>Char array for path to directory in which to save the data.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.file_extension">
-<span class="sig-name descname"><span class="pre">file_extension</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.file_extension" title="Permalink to this definition">#</a></dt>
-<dd><p>Char array, .csv is a default, must start with a dot.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.is_left_suppression">
-<span class="sig-name descname"><span class="pre">is_left_suppression</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.is_left_suppression" title="Permalink to this definition">#</a></dt>
-<dd><p>Bool, true if dominant eye is left.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;SubjectData.SubjectData.table">
-<span class="sig-name descname"><span class="pre">table</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@SubjectData.SubjectData.table" title="Permalink to this definition">#</a></dt>
-<dd><p>Table for recording the data.</p>
 </dd></dl>
 
 </dd></dl>
@@ -477,28 +506,6 @@ document.write(`
 <dd><p>Parameters to parse into the processed results table.</p>
 </dd></dl>
 
-<dl class="mat method">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.TrialsData">
-<span class="sig-name descname"><span class="pre">TrialsData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.TrialsData" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filepath</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.filepath" title="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.filepath"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">filepath</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.block_index">
-<span class="sig-name descname"><span class="pre">block_index</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.block_index" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - current block.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.end_time">
-<span class="sig-name descname"><span class="pre">end_time</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.end_time" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - trial offset</p>
-</dd></dl>
-
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.filepath">
 <span class="sig-name descname"><span class="pre">filepath</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.filepath" title="Permalink to this definition">#</a></dt>
@@ -518,15 +525,37 @@ document.write(`
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.start_time">
-<span class="sig-name descname"><span class="pre">start_time</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.start_time" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - trial onset.</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.block_index">
+<span class="sig-name descname"><span class="pre">block_index</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.block_index" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - current block.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.trial_index">
 <span class="sig-name descname"><span class="pre">trial_index</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.trial_index" title="Permalink to this definition">#</a></dt>
 <dd><p>Int - current trial.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.start_time" title="Permalink to this definition">#</a></dt>
+<dd><p>Float - trial onset.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.end_time">
+<span class="sig-name descname"><span class="pre">end_time</span></span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.end_time" title="Permalink to this definition">#</a></dt>
+<dd><p>Float - trial offset</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.TrialsData">
+<span class="sig-name descname"><span class="pre">TrialsData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#+CFSVM.+Element.+Data.@TrialsData.TrialsData.TrialsData" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> – <a class="reference internal" href="#+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.filepath" title="+CFSVM.+Element.+Data.&#64;TrialsData.TrialsData.filepath"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">filepath</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

@@ -149,6 +149,20 @@
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
@@ -275,6 +289,20 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
@@ -339,6 +367,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.FixationGenerator.html">@FixationGenerator class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.MondrianGenerator.html">@MondrianGenerator class</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">+Element package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BData.html">+Element.+Data package</a></li>
@@ -428,15 +457,15 @@ Read more <a class="reference external" href="http://psychtoolbox.org/docs/KbNam
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.response_kbname">
-<span class="sig-name descname"><span class="pre">response_kbname</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.response_kbname" title="Permalink to this definition">#</a></dt>
-<dd><p>PTB char array representing pressed key.</p>
-</dd></dl>
-
-<dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.response_time">
 <span class="sig-name descname"><span class="pre">response_time</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.response_time" title="Permalink to this definition">#</a></dt>
 <dd><p>Float</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.response_kbname">
+<span class="sig-name descname"><span class="pre">response_kbname</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.response_kbname" title="Permalink to this definition">#</a></dt>
+<dd><p>PTB char array representing pressed key.</p>
 </dd></dl>
 
 </dd></dl>
@@ -449,9 +478,10 @@ Read more <a class="reference external" href="http://psychtoolbox.org/docs/KbNam
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;SpatialElement.</span></span><span class="sig-name descname"><span class="pre">SpatialElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement" title="Permalink to this definition">#</a></dt>
 <dd><p>A base class describing elements with spatial properties.</p>
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.color">
-<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.color" title="Permalink to this definition">#</a></dt>
-<dd><p>[R, G, B] array for R, G, B ranging from 0 to 1.</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.rect" title="Permalink to this definition">#</a></dt>
+<dd><p>[x0, y0, x1, y1] array with pixel positions for the
+element’s rectangle.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -461,16 +491,9 @@ Read more <a class="reference external" href="http://psychtoolbox.org/docs/KbNam
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.rect">
-<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.rect" title="Permalink to this definition">#</a></dt>
-<dd><p>[x0, y0, x1, y1] array with pixel positions for the
-element’s rectangle.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.x_center">
-<span class="sig-name descname"><span class="pre">x_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.x_center" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - center pixel, for even width lesser value is chosed.</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.color">
+<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.color" title="Permalink to this definition">#</a></dt>
+<dd><p>[R, G, B] array for R, G, B ranging from 0 to 1.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -480,15 +503,21 @@ element’s rectangle.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_center">
-<span class="sig-name descname"><span class="pre">y_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_center" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - center pixel, for even height lesser value is chosed.</p>
-</dd></dl>
-
-<dl class="mat attribute">
 <dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_pixels">
 <span class="sig-name descname"><span class="pre">y_pixels</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_pixels" title="Permalink to this definition">#</a></dt>
 <dd><p>Int - height in pixels.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.x_center">
+<span class="sig-name descname"><span class="pre">x_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.x_center" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - center pixel, for even width lesser value is chosed.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_center">
+<span class="sig-name descname"><span class="pre">y_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_center" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - center pixel, for even height lesser value is chosed.</p>
 </dd></dl>
 
 </dd></dl>
@@ -501,9 +530,9 @@ element’s rectangle.</p>
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;TemporalElement.</span></span><span class="sig-name descname"><span class="pre">TemporalElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement" title="Permalink to this definition">#</a></dt>
 <dd><p>A base class describing elements with temporal properties.</p>
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.duration">
-<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.duration" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - duration time</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.onset">
+<span class="sig-name descname"><span class="pre">onset</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.onset" title="Permalink to this definition">#</a></dt>
+<dd><p>Float - onset time</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -513,9 +542,9 @@ element’s rectangle.</p>
 </dd></dl>
 
 <dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.onset">
-<span class="sig-name descname"><span class="pre">onset</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.onset" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - onset time</p>
+<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.duration" title="Permalink to this definition">#</a></dt>
+<dd><p>Float - duration time</p>
 </dd></dl>
 
 </dd></dl>

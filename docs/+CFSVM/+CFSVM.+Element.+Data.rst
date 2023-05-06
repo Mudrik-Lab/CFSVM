@@ -1,13 +1,13 @@
-+Element.+Data package
+Data package
 ======================
 
-+Element.+Data.@SubjectData class
+Element.Data.SubjectData class
 ---------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Data.@SubjectData
    :members:
    :undoc-members:
 
-+Element.+Data.@TrialsData class
+Element.Data.TrialsData class
 --------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Data.@TrialsData
    :members:

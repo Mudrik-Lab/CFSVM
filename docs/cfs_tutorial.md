@@ -24,7 +24,7 @@ Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
 
 | ![Figure created using the package](tutorial/cfs_description.png) | 
 |:--:| 
-| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen. Note that the frames here are wider than what we typically use, as they are presented here more for illustration purposes.* |
+| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen.* |
 
 We extracted the following parameters from the [Methods section](https://www.nature.com/articles/nn1500#Sec9) and [Supplementary Table 1](https://www.nature.com/articles/nn1500#Sec15) of the paper:
 
@@ -139,7 +139,7 @@ Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them
 
 1. Import the MondrianGenerator class and construct the generator object, using the code below. The generator will randomly locate a specific numbers of figures (defined as **n_figures**, 1000 by default) that are shaped in a specific manner (defined as **type**, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to **x(y)_pixels**×**min_fraction** and the maximum radius equal to **x(y)_pixels**×**max_fraction** inside the `provided_path/Masks/` folder (here `Stimuli/Masks/`).
 ```matlab
-import CFSVM.MondrianGenerator
+import CFSVM.Generators.MondrianGenerator
 generator = MondrianGenerator( ...
     '../Stimuli/', ... % Will generate Mondrians inside path/Masks/
     type='rectangle', ... % Available shapes are ‘rectangle’, ‘square’, ‘ellipse’, ‘circle’, ‘rhombus’ and ‘45_rotated_square’.
@@ -200,7 +200,7 @@ experiment.masks = Mondrians( ...
 Fixation target also has its own generator, you can find a tutorial on how to use it [here](./fixation_generator.md). There are multiple available shapes mainly based on [Thaler et al., 2013](https://doi.org/10.1016/j.visres.2012.10.012). Here we will generate the simplest cross:
 
 ```matlab
-import CFSVM.FixationGenerator
+import CFSVM.Generators.FixationGenerator
 
 generator = FixationGenerator( ...
     '../Stimuli/', ...
@@ -371,7 +371,7 @@ We will also provide hex code for the **background color** - `#AEAEAE` gray here
 ```matlab
 experiment.screen = CustomScreen( ...
     is_stereo=true, ...
-    initial_rect=[30, 270, 930, 810], ...
+    initial_rect=[30, 90, 930, 990], ...
     background_color='#AEAEAE');
 ```
 

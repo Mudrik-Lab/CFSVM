@@ -1,5 +1,5 @@
 
-+Element package
+Element package
 ================
 
 .. mat:automodule:: +CFSVM.+Element

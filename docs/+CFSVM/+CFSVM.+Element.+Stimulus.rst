@@ -1,5 +1,5 @@
 
-+Element.+Stimulus package
+Stimulus package
 ==================================
 
 +Element.+Stimulus.@Fixation class

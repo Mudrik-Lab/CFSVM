@@ -26,7 +26,10 @@ myst_heading_anchors = 5
 this_dir = os.path.dirname(os.path.abspath(__name__))
 matlab_src_dir = os.path.abspath(os.path.join(this_dir, '..'))
 primary_domain = 'mat'
-autodoc_member_order='bysource'
+autodoc_member_order='groupwise'
+# matlab_src_dir=r"C:\Users\Gennadiy\Documents\Gennadiy\Masking-CFS\CFSVM"
+matlab_short_links = True
+matlab_show_property_default_value = True
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
@@ -37,7 +40,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 matlab_keep_package_prefix = True
 
 myst_enable_extensions = [
-    "tasklist"
+    "tasklist",
+    "dollarmath"
 ]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

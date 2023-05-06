@@ -1,4 +1,4 @@
-+Element.+Screen package
+Screen package
 ==================================
 
 +Element.+Screen.@CheckFrame class

@@ -1,7 +1,7 @@
-+Element.+Evidence package
+Evidence package
 ==================================
 
-+Element.+Evidence.@BreakResponse class
+Element.Evidence.BreakResponse class
 ---------------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@BreakResponse
    :members:

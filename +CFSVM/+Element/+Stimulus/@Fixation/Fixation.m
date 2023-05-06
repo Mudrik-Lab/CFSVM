@@ -1,8 +1,8 @@
 classdef Fixation < CFSVM.Element.Stimulus.Stimulus
 % Handling fixation cross.
 %
-% Derived from :class:`~+CFSVM.+Element.@TemporalElement` and 
-% :class:`~+CFSVM.+Element.@SpatialElement` classes.
+% Derived from :class:`~CFSVM.Element.TemporalElement` and 
+% :class:`~CFSVM.Element.SpatialElement` classes.
 %
 
     properties (Constant)
@@ -26,14 +26,14 @@ classdef Fixation < CFSVM.Element.Stimulus.Stimulus
         function obj = Fixation(dirpath, parameters)
         %
         % Args:
-        %   dirpath: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
-        %   duration: :attr:`.+CFSVM.+Element.@TemporalElement.TemporalElement.duration`
-        %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
-        %   xy_ratio: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
-        %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`
-        %   padding: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.padding`
-        %   rotation: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
-        %   contrast: :attr:`.+CFSVM.+Element.@SpatialElement.SpatialElement.contrast`
+        %   dirpath: :attr:`CFSVM.Element.Stimulus.Stimulus.dirpath`
+        %   duration: :attr:`CFSVM.Element.TemporalElement.duration`
+        %   position: :attr:`CFSVM.Element.Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`CFSVM.Element.Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`CFSVM.Element.Stimulus.Stimulus.size`
+        %   padding: :attr:`CFSVM.Element.Stimulus.Stimulus.padding`
+        %   rotation: :attr:`CFSVM.Element.Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`CFSVM.Element.SpatialElement.contrast`
 
             arguments
                 dirpath {mustBeFolder}

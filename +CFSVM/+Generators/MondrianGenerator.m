@@ -25,7 +25,8 @@ classdef MondrianGenerator < handle
         max_fraction
         % Number of figures to generate per 1 Mondrian mask.
         n_figures
-        % Colormap.
+        % Colormap. Either one of the supported colormaps by 
+        % :meth:`~CFSVM.Generators.MondrianGenerator.set_cmap` or MATLAB-styled RGB array.
         cmap
         % Screen width in centimetres.
         s_w_cm
@@ -47,14 +48,14 @@ classdef MondrianGenerator < handle
         function obj = MondrianGenerator(dirpath, parameters)
         %
         % Args:
-        %   dirpath: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.dirpath`
-        %   type: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.type`
-        %   x_pixels: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.x_pixels`
-        %   y_pixels: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.y_pixels`
-        %   min_fraction: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.min_fraction`
-        %   max_fraction: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.max_fraction`
-        %   n_figures: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.n_figures`
-        %   cmap: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.cmap`
+        %   dirpath (char|string): :attr:`~CFSVM.Generators.MondrianGenerator.dirpath`
+        %   type (char|string): :attr:`~CFSVM.Generators.MondrianGenerator.type`
+        %   x_pixels (int): :attr:`~CFSVM.Generators.MondrianGenerator.x_pixels`
+        %   y_pixels (int): :attr:`~CFSVM.Generators.MondrianGenerator.y_pixels`
+        %   min_fraction (double): :attr:`~CFSVM.Generators.MondrianGenerator.min_fraction`
+        %   max_fraction (double): :attr:`~CFSVM.Generators.MondrianGenerator.max_fraction`
+        %   n_figures (int): :attr:`~CFSVM.Generators.MondrianGenerator.n_figures`
+        %   cmap (double array|char|string): :attr:`~CFSVM.Generators.MondrianGenerator.cmap`
         %
 
             arguments
@@ -98,11 +99,11 @@ classdef MondrianGenerator < handle
         % Sets display's physical properties for PSD calculation.
         % 
         % Args:
-        %   screen_width_cm: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.s_w_cm`
-        %   screen_width_pixel: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.s_w_pix`
-        %   screen_height_cm: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.s_h_cm`
-        %   screen_height_pixel: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.s_h_pix`
-        %   viewing_distance_cm: :attr:`~.+CFSVM.@MondrianGenerator.MondrianGenerator.view_dist`
+        %   screen_width_cm (double): :attr:`~CFSVM.Generators.MondrianGenerator.s_w_cm`
+        %   screen_width_pixel (int): :attr:`~CFSVM.Generators.MondrianGenerator.s_w_pix`
+        %   screen_height_cm (double): :attr:`~CFSVM.Generators.MondrianGenerator.s_h_cm`
+        %   screen_height_pixel (int): :attr:`~CFSVM.Generators.MondrianGenerator.s_h_pix`
+        %   viewing_distance_cm (double): :attr:`~CFSVM.Generators.MondrianGenerator.view_dist`
         %
 
             obj.s_w_cm = screen_width_cm;
@@ -118,18 +119,123 @@ classdef MondrianGenerator < handle
         % rgb_triplet color with n_tones between them.
         %
         % Args:
-        %   rgb_triplet: [R,G,B] array where R,G,B ranges from 0 to 1.
-        %   n_tones: Int describing number of color tones to create.
+        %   rgb_triplet (double array): [R,G,B] array where R,G,B ranges from 0 to 1.
+        %   n_tones (int): Number of color tones to create.
         %
 
             white = [1 1 1];
-            obj.cmap = interp1([0 1],[white; rgb_triplet],linspace(0,1,n_tones),'linear');
+            obj.cmap = interp1([0 1], [white; rgb_triplet], linspace(0,1,n_tones), 'linear');
         end
         
+        function set_cmap(obj, colormap, parameters)
+        % Will generate MATLAB colormap gradient from white to
+        % rgb_triplet color with n_tones.
+        %
+        % Args:
+        %   colormap: One of 'grayscale', 'reds', 'blues', 'greens', 'rgb',
+        %       'original'.
+        %   n_tones: (Optional) Int describing number of color tones to create,
+        %       relevant only for shades colormaps
+        %
+            
+            arguments
+                obj
+                colormap
+                parameters.n_tones = 8
+            end
+            if strcmpi('grayscale', colormap)
+                obj.set_shades([0,0,0], parameters.n_tones);
+            elseif strcmpi('reds', colormap)
+                obj.set_shades([1,0,0], parameters.n_tones);
+            elseif strcmpi('blues', colormap)
+                obj.set_shades([0,0,1], parameters.n_tones);
+            elseif strcmpi('greens', colormap)
+                obj.set_shades([0,1,0], parameters.n_tones);
+            else
+                switch lower(colormap)
+                    case 'rgb'
+                        obj.cmap = [1 0 0
+                            0 1 0
+                            0 0 1];
+                    case 'original'
+                        obj.cmap = [1 1 1
+                            1 0 0
+                            0 1 0
+                            0 0 1
+                            1 1 0
+                            1 0 1
+                            0 1 1
+                            0 0 0];
+                end
+            end
+        end
 
-        generate(obj, n_images, parameters)
-        set_cmap(obj, colormap, parameters)
-        [freqs, psds] = get_psd(obj, img)
+        function generate(obj, n_images, parameters)
+        % Generates and saves Mondrians.
+        %
+        % Args:
+        %   n_images: Int number of Mondrians to generate.
+        %
+            arguments
+                obj
+                n_images
+                parameters.fname = 'mondrian.png'
+            end
+            [~,name, ext] = fileparts(parameters.fname);
+            w = waitbar(0, 'Starting');
+            psds_matrix = [];
+            for m = 1:n_images
+                waitbar(m/n_images, w, sprintf('Generating Mondrians: %d %%', floor(m/n_images*100)));
+                mondrian = obj.generate_mondrian();
+                if obj.is_phys_props
+                    [freqs, psds] = obj.get_psd(mondrian);
+                    psds_matrix = [psds_matrix, psds];
+                end
+                imwrite(ind2rgb(mondrian, obj.cmap), fullfile(obj.dirpath, sprintf('Masks/%s_%d%s', name, m, ext)))
+            end
+            if obj.is_phys_props
+                T = array2table([freqs, psds_matrix]);
+                T.Properties.VariableNames(1:n_images+1) = ["freqs", arrayfun(@(s)(sprintf('%s_%d%s', name, s, ext)), 1:n_images, UniformOutput=false)];
+                writetable(T,fullfile(obj.dirpath, 'mondrians_psds.csv'))
+                f = figure('visible','off');
+                semilogy(freqs, mean(psds_matrix, 2))
+                title('Average PSD of generated Mondrians')
+                xlabel('Spatial frequency [CPD]')
+                ylabel('PSD')
+                exportgraphics(f,fullfile(obj.dirpath, 'average_mondrians_psd.png'))
+            end
+            close(w);
+        end
+        
+        function [freqs, psds] = get_psd(obj, img)
+        %
+        %
+        % Args:
+        %   img: [x_pixels, y_pixels, n_colors] array - img to calculate psd from.
+        %
+        % Returns:
+        %   [freqs, psds]: two arrays with length=n_freqs.
+        %
+        
+            [row,col] = size(img);
+            gray_img = im2gray(img);
+            max_dim = max(row, col);
+            imgfft = fftshift(fft2(gray_img, max_dim, max_dim));
+            power = abs(imgfft./((max_dim).^2)).^2 ;
+            [XX,YY] = meshgrid(-max_dim/2:max_dim/2-1,-max_dim/2:1:max_dim/2-1);
+            spatial_map = round(sqrt((XX).^2 + (YY).^2));
+            max_rad = max(max(spatial_map));
+            psds = zeros(max_rad,1);
+            for i = 1:max_rad
+                index = spatial_map == i;
+                psds(i) = sum(power(index),'all')./sum(index,'all');
+            end
+            width_degree = obj.pixels2degrees(width(img), obj.s_w_cm, obj.s_w_pix, obj.view_dist);
+            height_degree = obj.pixels2degrees(height(img),obj.s_h_cm,obj.s_h_pix, obj.view_dist);
+            freqs = (0:max_rad-1)';
+            freqs = freqs./ max(width_degree, height_degree);
+        end
+
     end
 
     methods (Access=private)

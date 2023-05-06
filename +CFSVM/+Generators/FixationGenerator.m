@@ -17,12 +17,13 @@ classdef FixationGenerator
         function obj = FixationGenerator(dirpath, parameters)
         %
         % Args:
-        %   dirpath: Fixation targets will be generated inside
-        %       dirpath/Fixation/
-        %   radius: Radius in pixels of the largest shape in the fixaiton.
-        %   hex_color: Color of the fixation target
-        %   is_smooth_edges: Whether to smooth the jaggies.
-        %   smoothing_cycles: Number of smoothing cycles.
+        %   dirpath (char|string): Fixation targets will be generated inside
+        %       `dirpath/Fixation/`
+        %   radius (int): Radius in pixels of the largest shape in the fixaiton.
+        %   hex_color (char|string): Color of the fixation target
+        %   is_smooth_edges (logical): Whether to smooth the jaggies.
+        %   smoothing_cycles (int): Number of smoothing cycles.
+        %   is_outline (logical): Whether to generate only an outline of the fixation.
         %
             arguments 
                 dirpath {mustBeTextScalar}
@@ -52,7 +53,7 @@ classdef FixationGenerator
         % Generates the circular target shape.
         %
         % Args:
-        %   fname: Name of the image file, should end with .png.
+        %   fname (char|string): Name of the image file, should end with ``.png``.
         %
             arguments
                 obj
@@ -68,8 +69,8 @@ classdef FixationGenerator
         % Generates the cross target shape.
         %
         % Args:
-        %   fname: Name of the image file, should end with .png.
-        %   cross_width: Width of the cross arms.
+        %   fname (char|string): Name of the image file, should end with ``.png``.
+        %   cross_width (int): Width of the cross arms in pixels.
         %
             arguments 
                 obj
@@ -85,8 +86,8 @@ classdef FixationGenerator
         % Generates the circle-inside-circle target shape.
         %
         % Args:
-        %   fname: Name of the image file, should end with .png.
-        %   inner_circle_radius: Radius of the inner circle.
+        %   fname (char|string): Name of the image file, should end with ``.png``.
+        %   inner_circle_radius (int): Radius of the inner circle.
         %
             arguments 
                 obj
@@ -104,9 +105,9 @@ classdef FixationGenerator
         % Generates the circle-inside-cross target shape.
         %
         % Args:
-        %   fname: Name of the image file, should end with .png.
-        %   cross_width: Width of the cross arms.
-        %   circle_radius: Radius of the inner circle.
+        %   fname (char|string): Name of the image file, should end with ``.png``.
+        %   cross_width (int): Width of the cross arms.
+        %   circle_radius (int): Radius of the inner circle.
         %
             arguments 
                 obj
@@ -125,8 +126,8 @@ classdef FixationGenerator
         % Generates the cross-inside-circle target shape.
         %
         % Args:
-        %   fname: Name of the image file, should end with .png.
-        %   cross_width: Width of the cross arms.
+        %   fname (char|string): Name of the image file, should end with ``.png``.
+        %   cross_width (int): Width of the cross arms.
         %
             arguments 
                 obj
@@ -144,9 +145,9 @@ classdef FixationGenerator
         % Generates the circle-inside-cross-inside-circle target shape.
         %
         % Args:
-        %   fname: Name of the image file, should end with .png.
-        %   cross_width: Width of the cross arms.
-        %   inner_circle_radius: Radius of the inner circle.
+        %   fname (char|string): Name of the image file, should end with ``.png``.
+        %   cross_width (int): Width of the cross arms.
+        %   inner_circle_radius (int): Radius of the inner circle.
         %
             arguments 
                 obj

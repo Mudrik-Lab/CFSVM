@@ -9,7 +9,7 @@ The generator currently supports shapes presented in [Thaler et al., 2013](https
 ## Usage
 ### Import the generator class
 ```matlab
-import CFSVM.FixationGenerator
+import CFSVM.Generators.FixationGenerator
 ```
 
 ### Initialize the generator object

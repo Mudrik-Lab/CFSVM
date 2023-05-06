@@ -2,7 +2,7 @@ function preload_args(obj, screen)
 % Loads args property with PTB Screen('DrawLines') arguments.
 %
 % Args:
-%   screen: :class:`~+CFSVM.+Element.+Screen.@CustomScreen` object.
+%   screen: :class:`~CFSVM.Element.Screen.CustomScreen` object.
     
     for n = 1:length(screen.fields)
 

@@ -1,11 +1,13 @@
-Welcome to CFSVM's documentation!
-=================================
+:html_theme.sidebar_secondary.remove:
+
+Continuous Flash Suppression & Visual Masking experiments in MATLAB
+========================================================================
 
 .. toctree::
     :maxdepth: 1
 
     installation
-    tutorial
+    cfs_tutorial
     fixation_generator
     mondrian_generator
     +CFSVM

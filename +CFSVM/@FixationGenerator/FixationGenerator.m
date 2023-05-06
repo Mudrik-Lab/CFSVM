@@ -10,6 +10,7 @@ classdef FixationGenerator
         is_anti_aliasing
         n_cycles
         color
+        is_outline
     end
     
     methods
@@ -29,6 +30,7 @@ classdef FixationGenerator
                 parameters.hex_color {mustBeHex} = '#000000'
                 parameters.is_smooth_edges {mustBeNumericOrLogical} =false
                 parameters.smoothing_cycles {mustBeInteger, mustBePositive} =1
+                parameters.is_outline = false
             end
             
             obj.dirpath = dirpath;
@@ -43,6 +45,7 @@ classdef FixationGenerator
                 obj.n_cycles = 0;
             end
             obj.color = sscanf(parameters.hex_color(2:end),'%2x%2x%2x',[1 3])/255;
+            obj.is_outline = parameters.is_outline;
         end
 
         function A(obj, parameters)
@@ -56,13 +59,8 @@ classdef FixationGenerator
                 parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
-            circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
-            smoothed_pixels = obj.smooth_edges(circle_pixels);
-            im(circle_pixels)=1;
-            imwrite( ...
-                ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
-                alpha=smoothed_pixels);
+            pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
+            obj.generate(im, pixels, parameters.fname)
             
         end
 
@@ -79,13 +77,8 @@ classdef FixationGenerator
                 parameters.fname = 'fixation.png'
             end
             im = zeros(obj.radius*2+1);
-            cross_pixels = obj.cross(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1, parameters.cross_width);
-            smoothed_pixels = obj.smooth_edges(cross_pixels);
-            im(cross_pixels)=1;
-            imwrite( ...
-                ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
-                alpha=smoothed_pixels);
+            pixels = obj.cross(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1, parameters.cross_width);
+            obj.generate(im, pixels, parameters.fname)
         end
         
         function AB(obj, parameters)
@@ -103,13 +96,8 @@ classdef FixationGenerator
             im = zeros(obj.radius*2+1);
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
             inner_circle_pixels = obj.circle(parameters.inner_circle_radius, obj.radius*2+1);
-            im(circle_pixels)=1;
-            im(inner_circle_pixels)=0;
-            smoothed_pixels = obj.smooth_edges(im);
-            imwrite( ...
-                ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
-                alpha=smoothed_pixels);
+            pixels = circle_pixels-inner_circle_pixels;
+            obj.generate(im, pixels, parameters.fname)
         end
 
         function AC(obj, parameters)
@@ -129,13 +117,8 @@ classdef FixationGenerator
             im = zeros(obj.radius*2+1);
             cross_pixels = obj.cross(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1, parameters.cross_width);
             circle_pixels = obj.circle(parameters.circle_radius, obj.radius*2+1);
-            im(cross_pixels)=1;
-            im(circle_pixels)=0;
-            smoothed_pixels = obj.smooth_edges(im);
-            imwrite( ...
-                ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
-                alpha=smoothed_pixels);
+            pixels = cross_pixels-circle_pixels;
+            obj.generate(im, pixels, parameters.fname)
         end
 
         function BC(obj, parameters)
@@ -153,13 +136,8 @@ classdef FixationGenerator
             im = zeros(obj.radius*2+1);
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
             cross_pixels = obj.cross(obj.radius, obj.radius*2+1, parameters.cross_width);
-            im(circle_pixels)=1;
-            im(cross_pixels)=0;
-            smoothed_pixels = obj.smooth_edges(im);
-            imwrite( ...
-                ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
-                alpha=smoothed_pixels);
+            pixels = circle_pixels-cross_pixels;
+            obj.generate(im, pixels, parameters.fname)
         end
 
         function ABC(obj, parameters)
@@ -180,19 +158,30 @@ classdef FixationGenerator
             circle_pixels = obj.circle(obj.radius-round(sqrt(obj.n_cycles)), obj.radius*2+1);
             cross_pixels = obj.cross(obj.radius, obj.radius*2+1, parameters.cross_width);
             inner_circle_pixels = obj.circle(parameters.inner_circle_radius, obj.radius*2+1);
-            im(circle_pixels)=1;
-            im(cross_pixels)=0;
-            im(inner_circle_pixels)=1;
-            smoothed_pixels = obj.smooth_edges(im);
-            imwrite( ...
-                ind2rgb(im, obj.color), ...
-                fullfile(obj.dirpath, strcat('Fixation/', parameters.fname)), ...
-                alpha=smoothed_pixels);
+            pixels = circle_pixels-cross_pixels+inner_circle_pixels;
+            
+            obj.generate(im, pixels, parameters.fname)
         end
     end
     
     
     methods(Access=private)
+
+        function generate(obj, im, pixels, fname)
+
+            pixels(pixels<0)=0;
+            pixels = logical(pixels);
+
+            if obj.is_outline
+                pixels = bwmorph(pixels, 'remove');
+            end
+            im(pixels)=1;
+            smoothed_pixels = obj.smooth_edges(im);
+            imwrite( ...
+                ind2rgb(im, obj.color), ...
+                fullfile(obj.dirpath, strcat('Fixation/', fname)), ...
+                alpha=smoothed_pixels);
+        end
 
         function smoothed_pixels = smooth_edges(obj, pixels)
             if obj.is_anti_aliasing
@@ -205,6 +194,7 @@ classdef FixationGenerator
             else
                 smoothed_pixels = double(pixels);
             end
+            smoothed_pixels = smoothed_pixels/max(smoothed_pixels,[],'all');
         end
 
     end
@@ -228,15 +218,16 @@ classdef FixationGenerator
             img(center_y-width:center_y+width, center_x-radius:center_x+radius) = 1;
             cross_pixels = logical(img);
         end
+
         function rgb = hex2rgb(hex)
         % Transforms hexadecimal color code to MATLAB RGB color code.
             rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
         end
 
-        function neighbours_mean=smooth(A)
+        function neighbours_mean = smooth(A)
             neighbours_mean = conv2(A,ones(3),'same')./conv2(ones(size(A)),ones(3),'same');
         end
-
+        
     end
 
 end

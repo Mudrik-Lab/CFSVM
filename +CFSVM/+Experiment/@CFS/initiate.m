@@ -78,22 +78,13 @@ function initiate(obj)
     % Initialize masks property with parameters from the first trial.
     obj.masks = obj.trials.matrix{1}{1}.masks;
     obj.masks.get_max(obj.trials.matrix)
-    
-    % If the folder provided for masks doesn't exist - generate masks into the folder.
-    if ~isfolder(obj.masks.dirpath)
-        % Get masks size according to the corresponding screen size.
-        if obj.subject_info.is_left_suppression == true
-            x = obj.screen.fields{1}.x_pixels;
-            y = obj.screen.fields{1}.y_pixels;
-        else
-            x = obj.screen.fields{2}.x_pixels;
-            y = obj.screen.fields{2}.y_pixels;
-        end
-        obj.masks.make_mondrians(x,y)
-    end
 
-    % Import images and create PTB textures of the masks.
-    obj.masks.import_images(obj.screen.window, images_number=obj.masks.n_max)
+    if obj.masks.crafter_masks
+        obj.masks.import_from_crafter(obj.screen.window)
+    else
+        % Import images and create PTB textures of the masks.
+        obj.masks.import_images(obj.screen.window, images_number=obj.masks.n_max)
+    end
 
     % Update every trial with initialized parameters.
     obj.trials.update(obj)

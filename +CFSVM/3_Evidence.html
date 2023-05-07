@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Evidence package &#8212; CFSVM v0.4.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/3_Evidence';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Screen package" href="4_Screen.html" />
+    <link rel="prev" title="Stimulus package" href="2_Stimulus.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_round.bmp" class="logo__image only-light" alt="Continuous flash suppression & Visual masking"/>
+    <script>document.write(`<img src="../_static/logo_round.bmp" class="logo__image only-dark" alt="Continuous flash suppression & Visual masking"/>`);</script>
+  
+  
+    <p class="title logo__title">CFSVM</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Experiment.html">Experiment package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Stimulus.html">Stimulus package</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Evidence package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Screen.html">Screen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Data.html">Data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_Element.html">Element package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_Generators.html">Generators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Extract.html">Data processing functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../%2BCFSVM.html" class="nav-link">API reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Evidence package</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="evidence-package">
+<h1>Evidence package<a class="headerlink" href="#evidence-package" title="Permalink to this heading">#</a></h1>
+<section id="module-+CFSVM.+Element.+Evidence.&#64;BreakResponse">
+<span id="breakresponse-class"></span><h2>BreakResponse class<a class="headerlink" href="#module-+CFSVM.+Element.+Evidence.@BreakResponse" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.BreakResponse">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">BreakResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.BreakResponse" title="Permalink to this definition">#</a></dt>
+<dd><p>Initiating and recording break data.</p>
+<p>Derived from <a class="reference internal" href="7_Element.html#CFSVM.Element.ResponseElement" title="CFSVM.Element.ResponseElement"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ResponseElement</span></code></a> class.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.BreakResponse.BreakResponse">
+<span class="sig-name descname"><span class="pre">BreakResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.BreakResponse.BreakResponse" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>keys</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.ResponseElement.keys" title="CFSVM.Element.ResponseElement.keys"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.ResponseElement.keys</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.BreakResponse.RESULTS">
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'response_time','response_choice','response_kbname'}</span></em><a class="headerlink" href="#CFSVM.Element.Evidence.BreakResponse.RESULTS" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameters to parse into the processed results table.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.create_kbqueue">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">create_kbqueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.create_kbqueue" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates PTB KbQueue.</p>
+<p>For more information, check <a class="reference external" href="http://psychtoolbox.org/docs/KbQueueCreate">PTB documentation</a>.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.get">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">pressed</span></em>, <em class="sig-param"><span class="pre">first_press</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.get" title="Permalink to this definition">#</a></dt>
+<dd><p>Processes response properties from the PTB KbQueue.</p>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Element.+Evidence.&#64;ImgMAFC">
+<span id="imgmafc-class"></span><h2>ImgMAFC class<a class="headerlink" href="#module-+CFSVM.+Element.+Evidence.@ImgMAFC" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ImgMAFC">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">ImgMAFC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC" title="Permalink to this definition">#</a></dt>
+<dd><p>Initiating and recording image mAFC data.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence" title="CFSVM.Element.Evidence.ScaleEvidence"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ScaleEvidence</span></code></a> and
+<a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Stimulus" title="CFSVM.Element.Stimulus.Stimulus"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Stimulus</span></code></a> classes.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ImgMAFC.ImgMAFC">
+<span class="sig-name descname"><span class="pre">ImgMAFC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC.ImgMAFC" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.ResponseElement.keys" title="CFSVM.Element.ResponseElement.keys"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.ResponseElement.keys</span></code></a></p></li>
+<li><p><strong>title</strong> – <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence.title" title="CFSVM.Element.Evidence.ScaleEvidence.title"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Evidence.ScaleEvidence.title</span></code></a></p></li>
+<li><p><strong>position</strong> – <a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Stimulus.position" title="CFSVM.Element.Stimulus.Stimulus.position"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.position</span></code></a></p></li>
+<li><p><strong>size</strong> – <a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Stimulus.size" title="CFSVM.Element.Stimulus.Stimulus.size"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.size</span></code></a></p></li>
+<li><p><strong>xy_ratio</strong> – <a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Stimulus.xy_ratio" title="CFSVM.Element.Stimulus.Stimulus.xy_ratio"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.xy_ratio</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ImgMAFC.RESULTS">
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'response_time','response_choice','response_kbname','onset','img_indices'}</span></em><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC.RESULTS" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameters to parse into the processed results table.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ImgMAFC.img_indices">
+<span class="sig-name descname"><span class="pre">img_indices</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC.img_indices" title="Permalink to this definition">#</a></dt>
+<dd><p>Char array with images indices separated by spaces.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ImgMAFC.rects">
+<span class="sig-name descname"><span class="pre">rects</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC.rects" title="Permalink to this definition">#</a></dt>
+<dd><p>A cell array of two arrays with size {[n_options,4]; [n_options,4]}</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.load_parameters">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">screen</span></em>, <em class="sig-param"><span class="pre">PTB_textures_indices</span></em>, <em class="sig-param"><span class="pre">shown_texture_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.load_parameters" title="Permalink to this definition">#</a></dt>
+<dd><p>Loads parameters for mAFC screen for the trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> – <a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p></li>
+<li><p><strong>PTB_textures_indices</strong> – Cell array of ints representing loaded PTB textures.</p></li>
+<li><p><strong>shown_texture_index</strong> – Int representing PTB texture shown as stimulus.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.show">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">experiment</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Draws and shows mAFC images, waits for the subject response and records it.</p>
+<p>See also <a class="reference internal" href="#CFSVM.Element.Evidence.record_response" title="CFSVM.Element.Evidence.record_response"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">record_response()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>experiment</strong> – An experiment object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Element.+Evidence.&#64;PAS">
+<span id="pas-class"></span><h2>PAS class<a class="headerlink" href="#module-+CFSVM.+Element.+Evidence.@PAS" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">PAS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.PAS" title="Permalink to this definition">#</a></dt>
+<dd><p>Initiating and recording PAS data.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence" title="CFSVM.Element.Evidence.ScaleEvidence"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ScaleEvidence</span></code></a>.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS.PAS">
+<span class="sig-name descname"><span class="pre">PAS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.PAS.PAS" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.ResponseElement.keys" title="CFSVM.Element.ResponseElement.keys"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.ResponseElement.keys</span></code></a></p></li>
+<li><p><strong>title</strong> – <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence.title" title="CFSVM.Element.Evidence.ScaleEvidence.title"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Evidence.ScaleEvidence.title</span></code></a></p></li>
+<li><p><strong>options</strong> – <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence.options" title="CFSVM.Element.Evidence.ScaleEvidence.options"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Evidence.ScaleEvidence.options</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS.RESULTS">
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'response_time','response_choice','response_kbname','onset'}</span></em><a class="headerlink" href="#CFSVM.Element.Evidence.PAS.RESULTS" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameters to parse into the processed results table.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS.left_text_start">
+<span class="sig-name descname"><span class="pre">left_text_start</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.PAS.left_text_start" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - for the left screen.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS.right_text_start">
+<span class="sig-name descname"><span class="pre">right_text_start</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.PAS.right_text_start" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - for the right screen.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS.spacing">
+<span class="sig-name descname"><span class="pre">spacing</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.PAS.spacing" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - round(obj.text_size/2).</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.PAS.text_size">
+<span class="sig-name descname"><span class="pre">text_size</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.PAS.text_size" title="Permalink to this definition">#</a></dt>
+<dd><p>Int.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">screen</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Loads PAS parameters for the trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>screen</strong> – <a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">experiment</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Shows PAS screen, waits for the subject response and records it.</p>
+<p>See also <a class="reference internal" href="#CFSVM.Element.Evidence.record_response" title="CFSVM.Element.Evidence.record_response"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">record_response()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>experiment</strong> – An experiment object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Element.+Evidence.&#64;ScaleEvidence">
+<span id="scaleevidence-class"></span><h2>ScaleEvidence class<a class="headerlink" href="#module-+CFSVM.+Element.+Evidence.@ScaleEvidence" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ScaleEvidence">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">ScaleEvidence</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.ScaleEvidence" title="Permalink to this definition">#</a></dt>
+<dd><p>A base class for description of scale-based evidence classes like
+<a class="reference internal" href="#CFSVM.Element.Evidence.PAS" title="CFSVM.Element.Evidence.PAS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PAS</span></code></a> and
+<a class="reference internal" href="#CFSVM.Element.Evidence.ImgMAFC" title="CFSVM.Element.Evidence.ImgMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ImgMAFC</span></code></a>.</p>
+<p>Derived from <a class="reference internal" href="7_Element.html#CFSVM.Element.ResponseElement" title="CFSVM.Element.ResponseElement"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ResponseElement</span></code></a>
+and <a class="reference internal" href="7_Element.html#CFSVM.Element.TemporalElement" title="CFSVM.Element.TemporalElement"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TemporalElement</span></code></a> classes.</p>
+<div class="members docutils container">
+<dl>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ScaleEvidence.n_options">
+<span class="sig-name descname"><span class="pre">n_options</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.ScaleEvidence.n_options" title="Permalink to this definition">#</a></dt>
+<dd><p>Int - length(obj.keys)</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ScaleEvidence.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.ScaleEvidence.options" title="Permalink to this definition">#</a></dt>
+<dd><p>Cell array</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ScaleEvidence.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"> <span class="pre">=</span> <span class="pre">''</span></em><a class="headerlink" href="#CFSVM.Element.Evidence.ScaleEvidence.title" title="Permalink to this definition">#</a></dt>
+<dd><p>Char array representing title or question shown on screen.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ScaleEvidence.title_size">
+<span class="sig-name descname"><span class="pre">title_size</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.ScaleEvidence.title_size" title="Permalink to this definition">#</a></dt>
+<dd><p>Int</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.record_response">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">record_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.record_response" title="Permalink to this definition">#</a></dt>
+<dd><p>Waits for a keypress specified in obj.keys and records response properties.</p>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Element.+Evidence.&#64;TextMAFC">
+<span id="textmafc-class"></span><h2>TextMAFC class<a class="headerlink" href="#module-+CFSVM.+Element.+Evidence.@TextMAFC" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.TextMAFC">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">TextMAFC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.TextMAFC" title="Permalink to this definition">#</a></dt>
+<dd><p>Initiating and recording text mAFC data.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence" title="CFSVM.Element.Evidence.ScaleEvidence"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ScaleEvidence</span></code></a> class.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.TextMAFC.TextMAFC">
+<span class="sig-name descname"><span class="pre">TextMAFC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.TextMAFC.TextMAFC" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>keys</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.ResponseElement.keys" title="CFSVM.Element.ResponseElement.keys"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.ResponseElement.keys</span></code></a></p></li>
+<li><p><strong>title</strong> – <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence.title" title="CFSVM.Element.Evidence.ScaleEvidence.title"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Evidence.ScaleEvidence.title</span></code></a></p></li>
+<li><p><strong>options</strong> – <a class="reference internal" href="#CFSVM.Element.Evidence.ScaleEvidence.options" title="CFSVM.Element.Evidence.ScaleEvidence.options"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Evidence.ScaleEvidence.options</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.TextMAFC.RESULTS">
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'response_time','response_choice','response_kbname','onset'}</span></em><a class="headerlink" href="#CFSVM.Element.Evidence.TextMAFC.RESULTS" title="Permalink to this definition">#</a></dt>
+<dd><p>Parameters to parse into the processed results table.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Evidence.TextMAFC.text_size">
+<span class="sig-name descname"><span class="pre">text_size</span></span><a class="headerlink" href="#CFSVM.Element.Evidence.TextMAFC.text_size" title="Permalink to this definition">#</a></dt>
+<dd><p>Int.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Evidence.</span></span><span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">experiment</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Shows text version of mAFC, waits for the subject response and records it.</p>
+<p>See also <a class="reference internal" href="#CFSVM.Element.Evidence.record_response" title="CFSVM.Element.Evidence.record_response"><code class="xref mat mat-func docutils literal notranslate"><span class="pre">record_response()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>experiment</strong> – An experiment object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2_Stimulus.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Stimulus package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4_Screen.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Screen package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Evidence.@BreakResponse">BreakResponse class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Evidence.@ImgMAFC">ImgMAFC class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Evidence.@PAS">PAS class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Evidence.@ScaleEvidence">ScaleEvidence class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.+Evidence.@TextMAFC">TextMAFC class</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/+CFSVM/3_Evidence.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Liad Mudrik lab.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

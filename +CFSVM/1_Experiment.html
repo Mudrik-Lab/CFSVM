@@ -1,0 +1,1080 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Experiment package &#8212; CFSVM v0.4.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/1_Experiment';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stimulus package" href="2_Stimulus.html" />
+    <link rel="prev" title="API reference" href="../%2BCFSVM.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_round.bmp" class="logo__image only-light" alt="Continuous flash suppression & Visual masking"/>
+    <script>document.write(`<img src="../_static/logo_round.bmp" class="logo__image only-dark" alt="Continuous flash suppression & Visual masking"/>`);</script>
+  
+  
+    <p class="title logo__title">CFSVM</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Experiment package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Stimulus.html">Stimulus package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Evidence.html">Evidence package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Screen.html">Screen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Data.html">Data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_Element.html">Element package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_Generators.html">Generators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Extract.html">Data processing functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../%2BCFSVM.html" class="nav-link">API reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Experiment package</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="experiment-package">
+<h1>Experiment package<a class="headerlink" href="#experiment-package" title="Permalink to this heading">#</a></h1>
+<section id="module-+CFSVM.+Experiment.&#64;Experiment">
+<span id="experiment-class"></span><h2>Experiment class<a class="headerlink" href="#module-+CFSVM.+Experiment.@Experiment" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.Experiment">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.Experiment" title="Permalink to this definition">#</a></dt>
+<dd><p>Base for <a class="reference internal" href="#CFSVM.Experiment.CFS" title="CFSVM.Experiment.CFS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CFS</span></code></a> and <a class="reference internal" href="#CFSVM.Experiment.VM" title="CFSVM.Experiment.VM"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">VM</span></code></a> classes.</p>
+<p>Describes very basic methods fomr initiation of PTB-3 window to
+comments containing screens shown to the subject.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.Experiment.Experiment">
+<span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.Experiment.Experiment" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.addprop">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">addprop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">prop_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.addprop" title="Permalink to this definition">#</a></dt>
+<dd><p>Adds new dynamic property and records its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prop_name</strong> – Name of new property.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.get_dyn_props">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">get_dyn_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.get_dyn_props" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a list of dynamic properties.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.hex2rgb">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">hex2rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">hex</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.hex2rgb" title="Permalink to this definition">#</a></dt>
+<dd><p>Transforms hexadecimal color code to MATLAB RGB color code.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.initiate_window">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">initiate_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.initiate_window" title="Permalink to this definition">#</a></dt>
+<dd><p>Calls basic Psychtoolbox settings.</p>
+<p>Adopted and modified from <a class="reference external" href="https://peterscarfe.com/ptbtutorials.html">Peter Scarfe’s Psychtoolbox tutorial</a>.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.show_farewell_screen">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">show_farewell_screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.show_farewell_screen" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips screen to the farewell.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.show_introduction_screen">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">show_introduction_screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.show_introduction_screen" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips screen to the introduction.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.show_preparing_screen">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">show_preparing_screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.show_preparing_screen" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips screen to inform that the experiment is being prepared.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.show_rest_screen">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">show_rest_screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.show_rest_screen" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips screen to the rest message.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.wait_for_keypress">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">wait_for_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.wait_for_keypress" title="Permalink to this definition">#</a></dt>
+<dd><p>Waits until the provided key is pressed, then continue.</p>
+<p>Interrupts the experiment if shift-esc was presses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> – A char array with the PTB key, check KbDemo for more info.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Experiment.&#64;CFS">
+<span id="cfs-class"></span><h2>CFS class<a class="headerlink" href="#module-+CFSVM.+Experiment.@CFS" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.CFS">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">CFS</span></span><a class="headerlink" href="#CFSVM.Experiment.CFS" title="Permalink to this definition">#</a></dt>
+<dd><p>Base for <a class="reference internal" href="#CFSVM.Experiment.BCFS" title="CFSVM.Experiment.BCFS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BCFS</span></code></a> and <a class="reference internal" href="#CFSVM.Experiment.VPCFS" title="CFSVM.Experiment.VPCFS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">VPCFS</span></code></a> classes.</p>
+<p>Describes common methods for CFS experiments, e.g. initiate() for initiating CFS
+properties.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Experiment.Experiment" title="CFSVM.Experiment.Experiment"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>.</p>
+<div class="members docutils container">
+<dl>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.CFS.vbl_recs">
+<span class="sig-name descname"><span class="pre">vbl_recs</span></span><a class="headerlink" href="#CFSVM.Experiment.CFS.vbl_recs" title="Permalink to this definition">#</a></dt>
+<dd><p>An array for recording flip timestamps while flashing.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.initiate">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">initiate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.initiate" title="Permalink to this definition">#</a></dt>
+<dd><p>Makes all the preparations for the CFS experiment to run.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.preload_stim_and_masks_args">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">preload_stim_and_masks_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">stim_props</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.preload_stim_and_masks_args" title="Permalink to this definition">#</a></dt>
+<dd><p>Precalculates DrawTexture args for stimuli and masks for a trial.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stim_props</strong> – A cell array of chars with names for stimuli properties.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Experiment.&#64;BCFS">
+<span id="bcfs-class"></span><h2>BCFS class<a class="headerlink" href="#module-+CFSVM.+Experiment.@BCFS" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">BCFS</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS" title="Permalink to this definition">#</a></dt>
+<dd><p>Breaking continuous flash suppression.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Experiment.CFS" title="CFSVM.Experiment.CFS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CFS</span></code></a>.</p>
+<div class="members docutils container">
+<dl>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.breakthrough">
+<span class="sig-name descname"><span class="pre">breakthrough</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.breakthrough" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.BreakResponse" title="CFSVM.Element.Evidence.BreakResponse"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">BreakResponse</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.fixation">
+<span class="sig-name descname"><span class="pre">fixation</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.fixation" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Fixation" title="CFSVM.Element.Stimulus.Fixation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Fixation</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.frame">
+<span class="sig-name descname"><span class="pre">frame</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.frame" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CheckFrame" title="CFSVM.Element.Screen.CheckFrame"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CheckFrame</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.masks">
+<span class="sig-name descname"><span class="pre">masks</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.masks" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Mondrians" title="CFSVM.Element.Stimulus.Mondrians"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Mondrians</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.screen">
+<span class="sig-name descname"><span class="pre">screen</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.screen" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.subject_info">
+<span class="sig-name descname"><span class="pre">subject_info</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.subject_info" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.SubjectData" title="CFSVM.Element.Data.SubjectData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SubjectData</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.trials">
+<span class="sig-name descname"><span class="pre">trials</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.trials" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.TrialsData" title="CFSVM.Element.Data.TrialsData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TrialsData</span></code></a> object.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.flash">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">vbl</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.flash" title="Permalink to this definition">#</a></dt>
+<dd><p>Flashes stimuli, masks, fixations and checkframe.</p>
+<p>This is the main method for flashing CFS and recording its timings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vbl</strong> – An integer for vertical retrace timing from the fixation.show().</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>bool and array:</p>
+<ul class="simple">
+<li><p>pressed: a boolean indicating whether a key has been pressed</p></li>
+<li><p>first_press: an array indicating the time that each key was first pressed.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[pressed, first_press]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.load_parameters">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.load_parameters" title="Permalink to this definition">#</a></dt>
+<dd><p>Precalculates and updates parameters for every oncoming trial.</p>
+<p>Loads parameters from trial matrix and then precalculates other
+parameters that depend on initialised window, i.e. masks, stimulus, fixation parameters.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.run">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.run" title="Permalink to this definition">#</a></dt>
+<dd><p>Executes the breaking CFS experiment.</p>
+<p>First initiates the experiment, then for every trial update parameters,
+shows fixation crosses, flashes masks and stimuli, records
+responses, writes results and shows rest screen.</p>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Experiment.&#64;VPCFS">
+<span id="vpcfs-class"></span><h2>VPCFS class<a class="headerlink" href="#module-+CFSVM.+Experiment.@VPCFS" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">VPCFS</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS" title="Permalink to this definition">#</a></dt>
+<dd><p>Visual priming continuous flash suppression.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Experiment.CFS" title="CFSVM.Experiment.CFS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CFS</span></code></a>.</p>
+<div class="members docutils container">
+<dl>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.fixation">
+<span class="sig-name descname"><span class="pre">fixation</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.fixation" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Fixation" title="CFSVM.Element.Stimulus.Fixation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Fixation</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.frame">
+<span class="sig-name descname"><span class="pre">frame</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.frame" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CheckFrame" title="CFSVM.Element.Screen.CheckFrame"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CheckFrame</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.mafc">
+<span class="sig-name descname"><span class="pre">mafc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">CFSVM.Element.Evidence.ImgMAFC()</span></em><a class="headerlink" href="#CFSVM.Experiment.VPCFS.mafc" title="Permalink to this definition">#</a></dt>
+<dd><p>Either <a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.ImgMAFC" title="CFSVM.Element.Evidence.ImgMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ImgMAFC</span></code></a> or
+<a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.TextMAFC" title="CFSVM.Element.Evidence.TextMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TextMAFC</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.masks">
+<span class="sig-name descname"><span class="pre">masks</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.masks" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Mondrians" title="CFSVM.Element.Stimulus.Mondrians"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Mondrians</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.pas">
+<span class="sig-name descname"><span class="pre">pas</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.pas" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.PAS" title="CFSVM.Element.Evidence.PAS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PAS</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.screen">
+<span class="sig-name descname"><span class="pre">screen</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.screen" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.subject_info">
+<span class="sig-name descname"><span class="pre">subject_info</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.subject_info" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.SubjectData" title="CFSVM.Element.Data.SubjectData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SubjectData</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.target">
+<span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.target" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.TargetStimulus" title="CFSVM.Element.Stimulus.TargetStimulus"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TargetStimulus</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.trials">
+<span class="sig-name descname"><span class="pre">trials</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.trials" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.TrialsData" title="CFSVM.Element.Data.TrialsData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TrialsData</span></code></a> object.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">vbl</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Flashes stimuli, masks, fixations and checkframe.</p>
+<p>This is the main method for flashing CFS and recording its timings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vbl</strong> – An integer for vertical retrace timing from the fixation.show().</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Precalculates and updates parameters for every oncoming trial.</p>
+<p>Loads parameters from trial matrix and then precalculates other
+parameters that depend on initialised window, i.e. masks, stimuli,
+fixation, pas and mafc parameters.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Executes the visual priming CFS experiment.</p>
+<p>First initiates the experiment, then for every trial loads parameters,
+fixation cross, flashes masks and stimuli,
+shows PAS and mAFC questions, records responses, writes results and shows
+rest screen.</p>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Experiment.&#64;VM">
+<span id="vm-class"></span><h2>VM class<a class="headerlink" href="#module-+CFSVM.+Experiment.@VM" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VM">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">VM</span></span><a class="headerlink" href="#CFSVM.Experiment.VM" title="Permalink to this definition">#</a></dt>
+<dd><p>Base for <a class="reference internal" href="#CFSVM.Experiment.VTM" title="CFSVM.Experiment.VTM"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">VTM</span></code></a> and <a class="reference internal" href="#CFSVM.Experiment.VSM" title="CFSVM.Experiment.VSM"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">VSM</span></code></a> classes.</p>
+<p>Describes common methods for visual masking experiments,
+e.g. initiate() for initiating VM properties or run()
+for running the experiment.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Experiment.Experiment" title="CFSVM.Experiment.Experiment"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Experiment</span></code></a>.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.draw">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.draw" title="Permalink to this definition">#</a></dt>
+<dd><p>Optionally draws fixation, stimulus and mask.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fixation</strong> – bool</p></li>
+<li><p><strong>stim</strong> – bool</p></li>
+<li><p><strong>mask</strong> – <a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Mask" title="CFSVM.Element.Stimulus.Mask"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Mask</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">initiate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Makes all the preparations for the VM experiment to run.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Precalculates and updates parameters for every oncoming trial.</p>
+<p>Loads parameters from trial matrix and then precalculates other
+parameters that depend on initialised window, i.e. masks, stimulus, fixation parameters.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Executes the visual masking experiment.</p>
+<p>First initiates the experiment, then for every trial update parameters,
+shows fixation crosses, flashes masks and stimuli, records
+responses, writes results and shows rest screen.</p>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Experiment.&#64;VSM">
+<span id="vsm-class"></span><h2>VSM class<a class="headerlink" href="#module-+CFSVM.+Experiment.@VSM" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">VSM</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM" title="Permalink to this definition">#</a></dt>
+<dd><p>Visual sandwich masking.</p>
+<p>Contains forward and backward masks - f_mask and b_mask, respectively.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Experiment.VM" title="CFSVM.Experiment.VM"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">VM</span></code></a>.</p>
+<div class="members docutils container">
+<dl>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.b_mask">
+<span class="sig-name descname"><span class="pre">b_mask</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.b_mask" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Mask" title="CFSVM.Element.Stimulus.Mask"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Mask</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.f_mask">
+<span class="sig-name descname"><span class="pre">f_mask</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.f_mask" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Mask" title="CFSVM.Element.Stimulus.Mask"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Mask</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.fixation">
+<span class="sig-name descname"><span class="pre">fixation</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.fixation" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Fixation" title="CFSVM.Element.Stimulus.Fixation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Fixation</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.mafc">
+<span class="sig-name descname"><span class="pre">mafc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">CFSVM.Element.Evidence.ImgMAFC()</span></em><a class="headerlink" href="#CFSVM.Experiment.VSM.mafc" title="Permalink to this definition">#</a></dt>
+<dd><p>Either <a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.ImgMAFC" title="CFSVM.Element.Evidence.ImgMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ImgMAFC</span></code></a> or
+<a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.TextMAFC" title="CFSVM.Element.Evidence.TextMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TextMAFC</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.pas">
+<span class="sig-name descname"><span class="pre">pas</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.pas" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.PAS" title="CFSVM.Element.Evidence.PAS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PAS</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.screen">
+<span class="sig-name descname"><span class="pre">screen</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.screen" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.subject_info">
+<span class="sig-name descname"><span class="pre">subject_info</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.subject_info" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.SubjectData" title="CFSVM.Element.Data.SubjectData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SubjectData</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.trials">
+<span class="sig-name descname"><span class="pre">trials</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.trials" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.TrialsData" title="CFSVM.Element.Data.TrialsData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TrialsData</span></code></a> object.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span></dt>
+<dd><p>Flashes stimuli, masks, fixations and checkframe.</p>
+<p>This is the main method for flashing CFS and recording its timings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vbl</strong> – An integer for vertical retrace timing from the fixation.show().</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-+CFSVM.+Experiment.&#64;VTM">
+<span id="vtm-class"></span><h2>VTM class<a class="headerlink" href="#module-+CFSVM.+Experiment.@VTM" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">VTM</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM" title="Permalink to this definition">#</a></dt>
+<dd><p>Visual temporal masking.</p>
+<p>Depending on soa either forward, simultaneous or backward masking.</p>
+<p>Derived from <a class="reference internal" href="#CFSVM.Experiment.VM" title="CFSVM.Experiment.VM"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">VM</span></code></a>.</p>
+<div class="members docutils container">
+<dl>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.fixation">
+<span class="sig-name descname"><span class="pre">fixation</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.fixation" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Fixation" title="CFSVM.Element.Stimulus.Fixation"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Fixation</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.flash">
+<span class="sig-name descname"><span class="pre">flash</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.flash" title="Permalink to this definition">#</a></dt>
+<dd><p>Handler for either forward, sim or backward masking flashing.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.mafc">
+<span class="sig-name descname"><span class="pre">mafc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">CFSVM.Element.Evidence.ImgMAFC()</span></em><a class="headerlink" href="#CFSVM.Experiment.VTM.mafc" title="Permalink to this definition">#</a></dt>
+<dd><p>Either <a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.ImgMAFC" title="CFSVM.Element.Evidence.ImgMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ImgMAFC</span></code></a> or
+<a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.TextMAFC" title="CFSVM.Element.Evidence.TextMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TextMAFC</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.mask" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="2_Stimulus.html#CFSVM.Element.Stimulus.Mask" title="CFSVM.Element.Stimulus.Mask"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Mask</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.pas">
+<span class="sig-name descname"><span class="pre">pas</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.pas" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.PAS" title="CFSVM.Element.Evidence.PAS"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">PAS</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.screen">
+<span class="sig-name descname"><span class="pre">screen</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.screen" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.subject_info">
+<span class="sig-name descname"><span class="pre">subject_info</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.subject_info" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.SubjectData" title="CFSVM.Element.Data.SubjectData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">SubjectData</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.trials">
+<span class="sig-name descname"><span class="pre">trials</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.trials" title="Permalink to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="5_Data.html#CFSVM.Element.Data.TrialsData" title="CFSVM.Element.Data.TrialsData"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">TrialsData</span></code></a> object.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.b_flash">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">b_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.b_flash" title="Permalink to this definition">#</a></dt>
+<dd><p>Flashes stimuli, masks, fixations.</p>
+<p>This is the main method for flashing backward VM and recording its timings.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.f_flash">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">f_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.f_flash" title="Permalink to this definition">#</a></dt>
+<dd><p>Flashes stimuli, masks, fixations.</p>
+<p>This is the main method for flashing forward VM and recording its timings.</p>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.s_flash">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">s_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.s_flash" title="Permalink to this definition">#</a></dt>
+<dd><p>Flashes stimuli, masks, fixations.</p>
+<p>This is the main method for flashing simulatenous VM and recording its timings.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../%2BCFSVM.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">API reference</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_Stimulus.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stimulus package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@Experiment">Experiment class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@CFS">CFS class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@BCFS">BCFS class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@VPCFS">VPCFS class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@VM">VM class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@VSM">VSM class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Experiment.@VTM">VTM class</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/+CFSVM/1_Experiment.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Liad Mudrik lab.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

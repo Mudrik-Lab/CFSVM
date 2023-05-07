@@ -5,7 +5,7 @@ The capabilities of the generator are presented below. In general, given Mondria
 ## Usage
 ### Import the generator class
 ```matlab
-import CFSVM.MondrianGenerator
+import CFSVM.Generators.MondrianGenerator
 ```
 
 ### Initialize the generator object
@@ -40,11 +40,11 @@ These two arguments will define image resolution.
 #### min_fraction & max_fraction
 Define the range of pixels a single figure can occupy. For example, if x_pixels and y_pixels are 512, **min_fraction**  is 1/32 and **max_fraction** is 1/8, then the minimal and the maximal height and width of figures in the Mondrian will be 512/32=16 pixels and 512/8=64 pixels, respectively.
 
-min_frac=1/10|min_frac=1/20|min_frac=1/100
+min_frac=$\frac{1}{10}$,<br/>max_frac=$\frac{1}{8}$|min_frac=$\frac{1}{20}$,<br/>max_frac=$\frac{1}{8}$|min_frac=$\frac{1}{100}$,<br/>max_frac=$\frac{1}{8}$
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](mondrian_generator/min_frac/1_10.png) | ![](mondrian_generator/min_frac/1_20.png) | ![](mondrian_generator/min_frac/1_100.png)
 
-max_frac=1/2|max_frac=1/4|max_frac=1/8
+min_frac=$\frac{1}{20}$,<br/>max_frac=$\frac{1}{2}$|min_frac=$\frac{1}{20}$,<br/>max_frac=$\frac{1}{4}$|min_frac=$\frac{1}{20}$,<br/>max_frac=$\frac{1}{8}$
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](mondrian_generator/max_frac/1_2.png) | ![](mondrian_generator/max_frac/1_4.png) | ![](mondrian_generator/max_frac/1_8.png)
 

@@ -1,19 +1,19 @@
-+Element.+Screen package
+Screen package
 ==================================
 
-+Element.+Screen.@CheckFrame class
+CheckFrame class
 ----------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Screen.@CheckFrame
    :members:
    :undoc-members:
 
-+Element.+Screen.@CustomScreen class
+CustomScreen class
 ------------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Screen.@CustomScreen
    :members:
    :undoc-members:
 
-+Element.+Screen.@ScreenField class
+ScreenField class
 -----------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Screen.@ScreenField
    :members:

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>+Element package &#8212; CFSVM v0.4.0 documentation</title>
+    <title>Data processing functions &#8212; CFSVM v0.4.0 documentation</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,17 +35,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/+CFSVM.+Element';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/9_Extract';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="+Element.+Data package" href="%2BCFSVM.%2BElement.%2BData.html" />
-    <link rel="prev" title="@MondrianGenerator class" href="%21%2BCFSVM.MondrianGenerator.html" />
+    <link rel="prev" title="Generators package" href="8_Generators.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -143,7 +142,7 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../tutorial.html">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
                         CFS tutorial
                       </a>
                     </li>
@@ -283,7 +282,7 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../tutorial.html">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
                         CFS tutorial
                       </a>
                     </li>
@@ -367,15 +366,14 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.FixationGenerator.html">@FixationGenerator class</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%21%2BCFSVM.MondrianGenerator.html">@MondrianGenerator class</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">+Element package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BData.html">+Element.+Data package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BEvidence.html">+Element.+Evidence package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BScreen.html">+Element.+Screen package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BElement.%2BStimulus.html">+Element.+Stimulus package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.%2BExperiment.html">+Experiment package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM.Extract.html">Data processing functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Experiment.html">Experiment package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Stimulus.html">Stimulus package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Evidence.html">Evidence package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Screen.html">Screen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Data.html">Data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_Element.html">Element package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_Generators.html">Generators package</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data processing functions</a></li>
 </ul>
 </div>
 </nav></div>
@@ -416,7 +414,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../%2BCFSVM.html" class="nav-link">API reference</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">+Element package</li>
+    <li class="breadcrumb-item active" aria-current="page">Data processing functions</li>
   </ul>
 </nav>
 </div>
@@ -433,120 +431,39 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-+CFSVM.+Element">
-<span id="element-package"></span><h1>+Element package<a class="headerlink" href="#module-+CFSVM.+Element" title="Permalink to this heading">#</a></h1>
-<section id="module-+CFSVM.+Element.&#64;ResponseElement">
-<span id="element-responseelement-class"></span><h2>+Element.&#64;ResponseElement class<a class="headerlink" href="#module-+CFSVM.+Element.@ResponseElement" title="Permalink to this heading">#</a></h2>
-<dl class="mat class">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;ResponseElement.</span></span><span class="sig-name descname"><span class="pre">ResponseElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement" title="Permalink to this definition">#</a></dt>
-<dd><p>A base class for describing subject response.</p>
-<p>Base for <a class="reference internal" href="%2BCFSVM.%2BElement.%2BEvidence.html#module-+CFSVM.+Element.+Evidence.&#64;ScaleEvidence" title="+CFSVM.+Element.+Evidence.&#64;ScaleEvidence"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">&#64;ScaleEvidence</span></code></a>
-and <a class="reference internal" href="%2BCFSVM.%2BElement.%2BEvidence.html#module-+CFSVM.+Element.+Evidence.&#64;BreakResponse" title="+CFSVM.+Element.+Evidence.&#64;BreakResponse"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">&#64;BreakResponse</span></code></a>.</p>
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.keys">
-<span class="sig-name descname"><span class="pre">keys</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.keys" title="Permalink to this definition">#</a></dt>
-<dd><p>Cell array of chars with PTB keys.
-Read more <a class="reference external" href="http://psychtoolbox.org/docs/KbName">here</a>.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.response_choice">
-<span class="sig-name descname"><span class="pre">response_choice</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.response_choice" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - index of response choice in keys.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.response_time">
-<span class="sig-name descname"><span class="pre">response_time</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.response_time" title="Permalink to this definition">#</a></dt>
-<dd><p>Float</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;ResponseElement.ResponseElement.response_kbname">
-<span class="sig-name descname"><span class="pre">response_kbname</span></span><a class="headerlink" href="#+CFSVM.+Element.@ResponseElement.ResponseElement.response_kbname" title="Permalink to this definition">#</a></dt>
-<dd><p>PTB char array representing pressed key.</p>
-</dd></dl>
-
+  <section id="data-processing-functions">
+<h1>Data processing functions<a class="headerlink" href="#data-processing-functions" title="Permalink to this heading">#</a></h1>
+<section id="extract-from-cfs">
+<h2>Extract from CFS<a class="headerlink" href="#extract-from-cfs" title="Permalink to this heading">#</a></h2>
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.extract_from_raw_cfs">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.</span></span><span class="sig-name descname"><span class="pre">extract_from_raw_cfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_raw_trials</span></em>, <em class="sig-param"><span class="pre">subject_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.extract_from_raw_cfs" title="Permalink to this definition">#</a></dt>
+<dd><p>Extracts timings and durations from the raw trial bCFS/VPCFS records.</p>
+<p>Saves timings and a histogram of interframe intervals
+in !Results folder and durations in !Processed folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_raw_trials</strong> – str - path to the Raw Trials folder.</p></li>
+<li><p><strong>subject_code</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
-<section id="module-+CFSVM.+Element.&#64;SpatialElement">
-<span id="element-spatialelement-class"></span><h2>+Element.&#64;SpatialElement class<a class="headerlink" href="#module-+CFSVM.+Element.@SpatialElement" title="Permalink to this heading">#</a></h2>
-<dl class="mat class">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;SpatialElement.</span></span><span class="sig-name descname"><span class="pre">SpatialElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement" title="Permalink to this definition">#</a></dt>
-<dd><p>A base class describing elements with spatial properties.</p>
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.rect">
-<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.rect" title="Permalink to this definition">#</a></dt>
-<dd><p>[x0, y0, x1, y1] array with pixel positions for the
-element’s rectangle.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.contrast">
-<span class="sig-name descname"><span class="pre">contrast</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.contrast" title="Permalink to this definition">#</a></dt>
-<dd><p>Float from 0 to 1</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.color">
-<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.color" title="Permalink to this definition">#</a></dt>
-<dd><p>[R, G, B] array for R, G, B ranging from 0 to 1.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.x_pixels">
-<span class="sig-name descname"><span class="pre">x_pixels</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.x_pixels" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - width in pixels.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_pixels">
-<span class="sig-name descname"><span class="pre">y_pixels</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_pixels" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - height in pixels.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.x_center">
-<span class="sig-name descname"><span class="pre">x_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.x_center" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - center pixel, for even width lesser value is chosed.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;SpatialElement.SpatialElement.y_center">
-<span class="sig-name descname"><span class="pre">y_center</span></span><a class="headerlink" href="#+CFSVM.+Element.@SpatialElement.SpatialElement.y_center" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - center pixel, for even height lesser value is chosed.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-+CFSVM.+Element.&#64;TemporalElement">
-<span id="element-temporalelement-class"></span><h2>+Element.&#64;TemporalElement class<a class="headerlink" href="#module-+CFSVM.+Element.@TemporalElement" title="Permalink to this heading">#</a></h2>
-<dl class="mat class">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">+CFSVM.+Element.&#64;TemporalElement.</span></span><span class="sig-name descname"><span class="pre">TemporalElement</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement" title="Permalink to this definition">#</a></dt>
-<dd><p>A base class describing elements with temporal properties.</p>
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.onset">
-<span class="sig-name descname"><span class="pre">onset</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.onset" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - onset time</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.offset">
-<span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.offset" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - offset time</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="+CFSVM.+Element.&#64;TemporalElement.TemporalElement.duration">
-<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#+CFSVM.+Element.@TemporalElement.TemporalElement.duration" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - duration time</p>
-</dd></dl>
-
+<section id="extract-from-vm">
+<h2>Extract from VM<a class="headerlink" href="#extract-from-vm" title="Permalink to this heading">#</a></h2>
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.extract_from_raw_vm">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.</span></span><span class="sig-name descname"><span class="pre">extract_from_raw_vm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_raw_trials</span></em>, <em class="sig-param"><span class="pre">subject_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.extract_from_raw_vm" title="Permalink to this definition">#</a></dt>
+<dd><p>Extracts timings and durations from the raw trial VSM/VTM records.</p>
+<p>Saves timings in !Results folder and durations in !Processed folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subject_code</strong> – str</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -558,27 +475,24 @@ element’s rectangle.</p>
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="%21%2BCFSVM.MondrianGenerator.html"
+       href="8_Generators.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&#64;MondrianGenerator class</p>
+        <p class="prev-next-title">Generators package</p>
       </div>
     </a>
-    <a class="right-next"
-       href="%2BCFSVM.%2BElement.%2BData.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">+Element.+Data package</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -593,15 +507,14 @@ element’s rectangle.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.@ResponseElement">+Element.@ResponseElement class</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.@SpatialElement">+Element.@SpatialElement class</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Element.@TemporalElement">+Element.@TemporalElement class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-from-cfs">Extract from CFS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-from-vm">Extract from VM</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="../_sources/+CFSVM/+CFSVM.+Element.rst.txt">
+    <a href="../_sources/+CFSVM/9_Extract.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
@@ -612,7 +525,7 @@ element’s rectangle.</p>
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner"></div>
+            
           </footer>
         
       </main>
@@ -620,8 +533,8 @@ element’s rectangle.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,8 +35,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Mondrian generator" href="mondrian_generator.html" />
-    <link rel="prev" title="CFS tutorial" href="tutorial.html" />
+    <link rel="prev" title="CFS tutorial" href="cfs_tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -143,7 +143,7 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="tutorial.html">
+                      <a class="nav-link nav-internal" href="cfs_tutorial.html">
                         CFS tutorial
                       </a>
                     </li>
@@ -283,7 +283,7 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="tutorial.html">
+                      <a class="nav-link nav-internal" href="cfs_tutorial.html">
                         CFS tutorial
                       </a>
                     </li>
@@ -411,7 +411,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="fixation-generator">
+  <section class="tex2jax_ignore mathjax_ignore" id="fixation-generator">
 <h1>Fixation generator<a class="headerlink" href="#fixation-generator" title="Permalink to this heading">#</a></h1>
 <p>The capabilities of the generator are presented below. In general, given fixation target parameters the generator will create and save an image of the fixation target.</p>
 <p>The generator currently supports shapes presented in <a class="reference external" href="https://doi.org/10.1016/j.visres.2012.10.012">Thaler et al., 2013</a>.</p>
@@ -420,25 +420,27 @@ document.write(`
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
 <section id="import-the-generator-class">
 <h3>Import the generator class<a class="headerlink" href="#import-the-generator-class" title="Permalink to this heading">#</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">FixationGenerator</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">FixationGenerator</span>
 </pre></div>
 </div>
 </section>
 <section id="initialize-the-generator-object">
 <h3>Initialize the generator object<a class="headerlink" href="#initialize-the-generator-object" title="Permalink to this heading">#</a></h3>
-<p>The arguments of the object constructor are as follows: first, path to the parent directory in which will be created the <code class="docutils literal notranslate"><span class="pre">Fixation/</span></code> folder. The generated fixation target will be saved inside this folder. Next, the <strong>radius</strong> argument describes the radius in pixels of the largest shape in the fixation, e.g., radius of the big circle in the “AB” shape or half-width of the cross in “AC” shape, the final image resolution will be (radius*2+1, radius*2+1). I suggest using a minimum 128 pixels and resizing it later in the experiment run, instead of generating an image with low resolution.</p>
-<p>After that, the <strong>hex_color</strong> sets the color of the fixation target. If you’d like to smooth the edges of the image, set <strong>is_smooth_edges</strong> to <code class="docutils literal notranslate"><span class="pre">true</span></code> and <strong>smoothing_cycles</strong> to some positive integer (the greater the number, the smoother edges will be).</p>
+<p>The arguments of the object constructor are as follows: first, path to the parent directory in which will be created the <code class="docutils literal notranslate"><span class="pre">Fixation/</span></code> folder. The generated fixation target will be saved inside this folder. Next, the <strong>radius</strong> argument describes the radius in pixels of the largest shape in the fixation, e.g., radius of the big circle in the “AB” shape or half-width of the cross in “AC” shape, the final image resolution will be (radius*2+1, radius*2+1). I suggest using minimum 128 pixels and resizing it later in the experiment run, instead of generating an image with low resolution.</p>
+<p>After that, the <strong>hex_color</strong> sets the color of the fixation target. If you’d like to smooth the edges of the image, set <strong>is_smooth_edges</strong> to <code class="docutils literal notranslate"><span class="pre">true</span></code> and <strong>smoothing_cycles</strong> to some positive integer (the greater the number, the smoother edges will be). You can also set <strong>is_outline</strong> to <code class="docutils literal notranslate"><span class="pre">true</span></code> to leave only outlines of the fixation (you will need <a class="reference external" href="https://uk.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab#answer_111232">installed</a> Image Processing Toolbox for outlining).</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>No smoothing, radius 64 pixels</p></th>
 <th class="head text-center"><p>No smoothing, radius 256 pixels</p></th>
 <th class="head text-center"><p>With 5 smoothing cycles, radius 256 pixels</p></th>
+<th class="head text-center"><p>With 5 smoothing cycles, radius 256 pixels, outlined</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-center"><p><img alt="" src="_images/abc_radius_64.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/abc.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/abc_smooth_5.jpg" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/abc_smooth_5_outlined.jpg" /></p></td>
 </tr>
 </tbody>
 </table>
@@ -447,7 +449,8 @@ document.write(`
 <span class="w">    </span><span class="n">radius</span><span class="p">=</span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">hex_color</span><span class="p">=</span><span class="s">&#39;#000000&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">is_smooth_edges</span><span class="p">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">smoothing_cycles</span><span class="p">=</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">smoothing_cycles</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">is_outline</span><span class="p">=</span><span class="nb">false</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -514,10 +517,13 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tutorial.html"
+       href="cfs_tutorial.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -534,7 +540,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -572,7 +581,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner"></div>
+            
           </footer>
         
       </main>
@@ -580,8 +589,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

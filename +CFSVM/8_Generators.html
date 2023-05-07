@@ -1,0 +1,855 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Generators package &#8212; CFSVM v0.4.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/8_Generators';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data processing functions" href="9_Extract.html" />
+    <link rel="prev" title="Element package" href="7_Element.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_round.bmp" class="logo__image only-light" alt="Continuous flash suppression & Visual masking"/>
+    <script>document.write(`<img src="../_static/logo_round.bmp" class="logo__image only-dark" alt="Continuous flash suppression & Visual masking"/>`);</script>
+  
+  
+    <p class="title logo__title">CFSVM</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Experiment.html">Experiment package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_Stimulus.html">Stimulus package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_Evidence.html">Evidence package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_Screen.html">Screen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_Data.html">Data package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_Element.html">Element package</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Generators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Extract.html">Data processing functions</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../%2BCFSVM.html" class="nav-link">API reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Generators package</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="generators-package">
+<h1>Generators package<a class="headerlink" href="#generators-package" title="Permalink to this heading">#</a></h1>
+<section id="fixationgenerator-class">
+<h2>FixationGenerator class<a class="headerlink" href="#fixationgenerator-class" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">FixationGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates fixation targets.</p>
+<p>Supports 6 different shapes from Thaler et al., 2013.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.FixationGenerator">
+<span class="sig-name descname"><span class="pre">FixationGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.FixationGenerator" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirpath</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Fixation targets will be generated inside
+<cite>dirpath/Fixation/</cite></p></li>
+<li><p><strong>radius</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Radius in pixels of the largest shape in the fixaiton.</p></li>
+<li><p><strong>hex_color</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Color of the fixation target</p></li>
+<li><p><strong>is_smooth_edges</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">logical</span></code></span>) – Whether to smooth the jaggies.</p></li>
+<li><p><strong>smoothing_cycles</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of smoothing cycles.</p></li>
+<li><p><strong>is_outline</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">logical</span></code></span>) – Whether to generate only an outline of the fixation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Method Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.A">
+<span class="sig-name descname"><span class="pre">A</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.A" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the circular target shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Name of the image file, should end with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.AB">
+<span class="sig-name descname"><span class="pre">AB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.AB" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the circle-inside-circle target shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Name of the image file, should end with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p></li>
+<li><p><strong>inner_circle_radius</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Radius of the inner circle.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.ABC">
+<span class="sig-name descname"><span class="pre">ABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.ABC" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the circle-inside-cross-inside-circle target shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Name of the image file, should end with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p></li>
+<li><p><strong>cross_width</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Width of the cross arms.</p></li>
+<li><p><strong>inner_circle_radius</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Radius of the inner circle.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.AC">
+<span class="sig-name descname"><span class="pre">AC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.AC" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the circle-inside-cross target shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Name of the image file, should end with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p></li>
+<li><p><strong>cross_width</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Width of the cross arms.</p></li>
+<li><p><strong>circle_radius</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Radius of the inner circle.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.BC">
+<span class="sig-name descname"><span class="pre">BC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.BC" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the cross-inside-circle target shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Name of the image file, should end with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p></li>
+<li><p><strong>cross_width</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Width of the cross arms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.FixationGenerator.C">
+<span class="sig-name descname"><span class="pre">C</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.FixationGenerator.C" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the cross target shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – Name of the image file, should end with <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</p></li>
+<li><p><strong>cross_width</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Width of the cross arms in pixels.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+</section>
+<section id="mondriangenerator-class">
+<h2>MondrianGenerator class<a class="headerlink" href="#mondriangenerator-class" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">MondrianGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates Mondrian masks for CFS experiments.</p>
+<p>Supports shapes, like rectangles, circles, rhombi and more.
+Calculates PSDs for every mondrians if screen physical properties are
+set.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.MondrianGenerator">
+<span class="sig-name descname"><span class="pre">MondrianGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.MondrianGenerator" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirpath</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.dirpath" title="CFSVM.Generators.MondrianGenerator.dirpath"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">dirpath</span></code></a></p></li>
+<li><p><strong>type</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">char|string</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.type" title="CFSVM.Generators.MondrianGenerator.type"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">type</span></code></a></p></li>
+<li><p><strong>x_pixels</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.x_pixels" title="CFSVM.Generators.MondrianGenerator.x_pixels"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">x_pixels</span></code></a></p></li>
+<li><p><strong>y_pixels</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.y_pixels" title="CFSVM.Generators.MondrianGenerator.y_pixels"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">y_pixels</span></code></a></p></li>
+<li><p><strong>min_fraction</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.min_fraction" title="CFSVM.Generators.MondrianGenerator.min_fraction"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">min_fraction</span></code></a></p></li>
+<li><p><strong>max_fraction</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.max_fraction" title="CFSVM.Generators.MondrianGenerator.max_fraction"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">max_fraction</span></code></a></p></li>
+<li><p><strong>n_figures</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.n_figures" title="CFSVM.Generators.MondrianGenerator.n_figures"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">n_figures</span></code></a></p></li>
+<li><p><strong>cmap</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span> <span class="pre">array|char|string</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.cmap" title="CFSVM.Generators.MondrianGenerator.cmap"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">cmap</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.cmap">
+<span class="sig-name descname"><span class="pre">cmap</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.cmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Colormap. Either one of the supported colormaps by
+<a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.set_cmap" title="CFSVM.Generators.MondrianGenerator.set_cmap"><code class="xref mat mat-meth docutils literal notranslate"><span class="pre">set_cmap()</span></code></a> or MATLAB-styled RGB array.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.dirpath">
+<span class="sig-name descname"><span class="pre">dirpath</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.dirpath" title="Permalink to this definition">#</a></dt>
+<dd><p>Mondrians will be generated inside dirpath/Masks/</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.is_phys_props">
+<span class="sig-name descname"><span class="pre">is_phys_props</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.is_phys_props" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether physical propreties were provided.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.max_fraction">
+<span class="sig-name descname"><span class="pre">max_fraction</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.max_fraction" title="Permalink to this definition">#</a></dt>
+<dd><p>Maximal possible radius in pixels of the type-shaped figure. Will
+be calculated by radius=x(y)_pixels*max_fraction</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.min_fraction">
+<span class="sig-name descname"><span class="pre">min_fraction</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.min_fraction" title="Permalink to this definition">#</a></dt>
+<dd><p>Minimal possible radius in pixels of the type-shaped figure. Will
+be calculated by radius=x(y)_pixels*min_fraction</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.n_figures">
+<span class="sig-name descname"><span class="pre">n_figures</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.n_figures" title="Permalink to this definition">#</a></dt>
+<dd><p>Number of figures to generate per 1 Mondrian mask.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.s_h_cm">
+<span class="sig-name descname"><span class="pre">s_h_cm</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.s_h_cm" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen height in centimetres.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.s_h_pix">
+<span class="sig-name descname"><span class="pre">s_h_pix</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.s_h_pix" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen height in pixels.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.s_w_cm">
+<span class="sig-name descname"><span class="pre">s_w_cm</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.s_w_cm" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen width in centimetres.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.s_w_pix">
+<span class="sig-name descname"><span class="pre">s_w_pix</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.s_w_pix" title="Permalink to this definition">#</a></dt>
+<dd><p>Screen width in pixels.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.type" title="Permalink to this definition">#</a></dt>
+<dd><p>Shape of the figures, currently available shapes are rectangle,
+square, ellipse, circle, rhombus and 45_rotate_square.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.view_dist">
+<span class="sig-name descname"><span class="pre">view_dist</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.view_dist" title="Permalink to this definition">#</a></dt>
+<dd><p>Viewing distance in centimetres.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.x_pixels">
+<span class="sig-name descname"><span class="pre">x_pixels</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.x_pixels" title="Permalink to this definition">#</a></dt>
+<dd><p>Width of the generated image in pixels</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.y_pixels">
+<span class="sig-name descname"><span class="pre">y_pixels</span></span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.y_pixels" title="Permalink to this definition">#</a></dt>
+<dd><p>Height of the generated image in pixels</p>
+</dd></dl>
+
+</dd>
+<dt>Method Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_images</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.generate" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates and saves Mondrians.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_images</strong> – Int number of Mondrians to generate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.get_psd">
+<span class="sig-name descname"><span class="pre">get_psd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">img</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.get_psd" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>img</strong> – [x_pixels, y_pixels, n_colors] array - img to calculate psd from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>two arrays with length=n_freqs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[freqs, psds]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.set_cmap">
+<span class="sig-name descname"><span class="pre">set_cmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">colormap</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.set_cmap" title="Permalink to this definition">#</a></dt>
+<dd><p>Will generate MATLAB colormap gradient from white to
+rgb_triplet color with n_tones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colormap</strong> – One of ‘grayscale’, ‘reds’, ‘blues’, ‘greens’, ‘rgb’,
+‘original’.</p></li>
+<li><p><strong>n_tones</strong> – (Optional) Int describing number of color tones to create,
+relevant only for shades colormaps</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.set_physical_properties">
+<span class="sig-name descname"><span class="pre">set_physical_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">screen_width_cm</span></em>, <em class="sig-param"><span class="pre">screen_width_pixel</span></em>, <em class="sig-param"><span class="pre">screen_height_cm</span></em>, <em class="sig-param"><span class="pre">screen_height_pixel</span></em>, <em class="sig-param"><span class="pre">viewing_distance_cm</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.set_physical_properties" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets display’s physical properties for PSD calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen_width_cm</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.s_w_cm" title="CFSVM.Generators.MondrianGenerator.s_w_cm"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">s_w_cm</span></code></a></p></li>
+<li><p><strong>screen_width_pixel</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.s_w_pix" title="CFSVM.Generators.MondrianGenerator.s_w_pix"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">s_w_pix</span></code></a></p></li>
+<li><p><strong>screen_height_cm</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.s_h_cm" title="CFSVM.Generators.MondrianGenerator.s_h_cm"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">s_h_cm</span></code></a></p></li>
+<li><p><strong>screen_height_pixel</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.s_h_pix" title="CFSVM.Generators.MondrianGenerator.s_h_pix"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">s_h_pix</span></code></a></p></li>
+<li><p><strong>viewing_distance_cm</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span></code></span>) – <a class="reference internal" href="#CFSVM.Generators.MondrianGenerator.view_dist" title="CFSVM.Generators.MondrianGenerator.view_dist"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">view_dist</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.MondrianGenerator.set_shades">
+<span class="sig-name descname"><span class="pre">set_shades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">rgb_triplet</span></em>, <em class="sig-param"><span class="pre">n_tones</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.MondrianGenerator.set_shades" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates MATLAB colormap gradient from white to
+rgb_triplet color with n_tones between them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rgb_triplet</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">double</span> <span class="pre">array</span></code></span>) – [R,G,B] array where R,G,B ranges from 0 to 1.</p></li>
+<li><p><strong>n_tones</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Number of color tones to create.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="7_Element.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Element package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="9_Extract.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data processing functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixationgenerator-class">FixationGenerator class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mondriangenerator-class">MondrianGenerator class</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/+CFSVM/8_Generators.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Liad Mudrik lab.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

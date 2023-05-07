@@ -24,7 +24,7 @@ Author: Gennadiy Belonosov <gennadiyb@mail.tau.ac.il>
 
 | ![Figure created using the package](tutorial/cfs_description.png) | 
 |:--:| 
-| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen. Note that the frames here are wider than what we typically use, as they are presented here more for illustration purposes.* |
+| *Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen.* |
 
 We extracted the following parameters from the [Methods section](https://www.nature.com/articles/nn1500#Sec9) and [Supplementary Table 1](https://www.nature.com/articles/nn1500#Sec15) of the paper:
 
@@ -124,11 +124,7 @@ The **BCFS** template has multiple required properties:
 
 We will initialize only a few of them here: **fixation**, **frame**, **masks**, **breakthrough**. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.
 
-##### Fixation and Frame
-Let’s start with **fixation** and **frame**, though the order doesn’t really matter. The Fixation class has some parameters that can be changed, but we won’t set them here, as they are not critical for our needs. You can read more about the parameters in the [API](./+CFSVM.rst).
-```matlab
-experiment.fixation = Fixation();
-```
+##### Checkframe
 
 As for the CheckFrame: although the frames don’t appear in the original experiment, we will use them here as it is a common practice in the HLC lab. We will set **hex_colors** to black and white (`#000000` and `#FFFFFF`), **checker_length** to 30 pixels and **checker_width** to 15 pixels (checker is the small rectangle; the frame consists of multiple checkers).
 ```matlab
@@ -137,12 +133,13 @@ experiment.frame = CheckFrame( ...
     checker_length=30, ...
     checker_width=15);
 ```
+
 ##### Masks generation
-Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into `RUN_ME/Stimuli/Masks/` folder and skip to the [masks initialization](#masks-initialization). Otherwise, we will use the MondrianGenerator. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: [(Wang & Han, 2022)](https://doi.org/10.3758/s13428-022-01903-7), [GitHub](https://github.com/guandongwang/cfs_crafter).
+Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into `RUN_ME/Stimuli/Masks/` folder and skip to the [masks initialization](#masks-initialization). Otherwise, we will use the [MondrianGenerator](./mondrian_generator.md). Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: [(Wang & Han, 2022)](https://doi.org/10.3758/s13428-022-01903-7), [GitHub](https://github.com/guandongwang/cfs_crafter).
 
 1. Import the MondrianGenerator class and construct the generator object, using the code below. The generator will randomly locate a specific numbers of figures (defined as **n_figures**, 1000 by default) that are shaped in a specific manner (defined as **type**, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to **x(y)_pixels**×**min_fraction** and the maximum radius equal to **x(y)_pixels**×**max_fraction** inside the `provided_path/Masks/` folder (here `Stimuli/Masks/`).
 ```matlab
-import CFSVM.MondrianGenerator
+import CFSVM.Generators.MondrianGenerator
 generator = MondrianGenerator( ...
     '../Stimuli/', ... % Will generate Mondrians inside path/Masks/
     type='rectangle', ... % Available shapes are ‘rectangle’, ‘square’, ‘ellipse’, ‘circle’, ‘rhombus’ and ‘45_rotated_square’.
@@ -150,40 +147,44 @@ generator = MondrianGenerator( ...
     y_pixels=512, ... % Height of generated images in pixels
     min_fraction=1/20, ... % Minimal possible radius of a figure.
     max_fraction=1/8, ... % Maximal possible radius of a figure.
-    n_figures=1000);
-
+    n_figures=1000,
+    cmap='grayscale' % Can be either string or MATLAB-styled RGB array.
+    );
 ```
 
-2. If we want to set the colormap to grayscale, we can use either the **set_cmap()** or **set_shades()** methods (don’t use both of them). For colorful Mondrians we can replace 'grayscale' with the 'original' in the code below, which will generate Mondrians with common RGB colors. For other color options, please, refer to the documentation. If you want to use your own colormap - you can set the [MATLAB-formatted](https://www.mathworks.com/help/matlab/ref/colormap.html) colormap directly to the **cmap** property of the generator.
+2. For the colormap use the **cmap** argument from the code above. It can be either a string for the supported colormaps ('grayscale', 'rgb', 'original' etc., for other options refer to the documentation) or you can provide the argument with the  [MATLAB-formatted](https://www.mathworks.com/help/matlab/ref/colormap.html) RGB array. For the grayscale with 5 tones it will look something like this:
 ```matlab
-generator.set_cmap('grayscale', n_tones=5)
-% generator.set_shades([0,0,0], 5);
-% generator.cmap = [0 0 0
-%             0.25 0.25 0.25 
-%             0.5 0.5 0.5 
-%             0.75 0.75 0.75 
-%             1 1 1]
+cmap = [0 0 0;
+      0.25 0.25 0.25 ;
+      0.5 0.5 0.5;
+      0.75 0.75 0.75;
+      1 1 1]
+```
+In addition, you can use the **set_shades()** method if you want to use grayscale with different number of tones. **set_shades()** will take RGB array as a first argument and create a gradient from this color to white with number of tones provided as a second argument. In the code below it creates gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.
+```matlab
+generator.set_shades([0,0,0], 8);
 ```
 
 3. We will provide the generator object with the physical properties of the display, so it will be able to calculate the power spectral densities of the Mondrians (the output .png and .csv files will be saved inside the `provided_path/` folder). The arguments are: width in cm, width in pixels, height in cm, height in pixels, viewing distance in cm.
 ```matlab
 generator.set_physical_properties(60, 1920, 33.5, 1080, 45)
 ```
-Now we will run the generator using the **generate()** method, which takes **n_mondrians** as an argument. In general, **n_mondrians**=temporal_frequency×duration+1 will generate enough masks, so that they are not repeated in a single trial. Here we will generate 10Hz*5sec+1=51 Mondrians.
+Now we will run the generator using the **generate()** method, which takes **n_mondrians** as an argument. In general, **n_mondrians**=temporal_frequency×duration will generate enough masks, so that they are not repeated in a single trial. Here we will generate 10Hz*5sec=50 Mondrians.
 ```matlab
-generator.generate(51)
+generator.generate(50)
 ```
 
 ##### Masks initialization
 Now, with generated Mondrians, we will set the **masks** property.
-The first parameter we will define is the relative path to the folder containing the Mondrian images. We will set **temporal_frequency** to 10 Hz, **duration** to 5 seconds, and **position** to "Right" (so that the masks suppress only the right Gabor patch).
+The first parameter we will define is the relative path to the folder containing the Mondrian images. If you'd like to work with CFS-crafter generated masks, you can set a path to the `.mat` file using **crafter_masks** argument (**crafter_masks** will override the **dirpath** if both have been provided).
+We will set **temporal_frequency** to 10 Hz, **duration** to 5 seconds, and **position** to "Right" (so that the masks suppress only the right Gabor patch).
 To adjust the Mondrians’ position, we will set **size** to 0.45 (1 will fill the whole right eye field, 0.5 will fill half of the right eye field depending on position), **padding** to 0.3 (0 will align to the frame, 1 will align to the center of the fixation cross), and xy_ratio to 1 (square). You can also change the **contrast** and **rotation** if desired.
 Finally, we will set **blank** to 5 seconds, to present a blank screen with fixation crosses and frames after the CFS stimulation has ended.
 
 
 ```matlab
 experiment.masks = Mondrians( ...
-    '../Stimuli/Masks', ...
+    dirpath='../Stimuli/Masks', ...
     temporal_frequency=10, ...
     duration=5, ...
     position="Right", ...
@@ -194,6 +195,32 @@ experiment.masks = Mondrians( ...
     rotation=0,
     blank=5);
 ```
+
+##### Fixation generator
+Fixation target also has its own generator, you can find a tutorial on how to use it [here](./fixation_generator.md). There are multiple available shapes mainly based on [Thaler et al., 2013](https://doi.org/10.1016/j.visres.2012.10.012). Here we will generate the simplest cross:
+
+```matlab
+import CFSVM.Generators.FixationGenerator
+
+generator = FixationGenerator( ...
+    '../Stimuli/', ...
+    radius=256, ...
+    hex_color='#000000', ...
+    is_smooth_edges=true, ...
+    smoothing_cycles=5);
+
+generator.C(cross_width=64)
+```
+
+##### Fixation
+To initialize the fixation property we will first provide a directory which contains our generated fixation target, second, we will set **duration** to 1 second and **size** to 0.05 (5%) of the frame. It also has additional parameters, like **rotation**, **contrast** etc. (for more, please, check the documentation), which we won't set here.
+```matlab
+experiment.fixation = Fixation( ...
+    '../Stimuli/Fixation', ...
+    duration=1, ...
+    size=0.05);
+```
+
 
 ##### Stimuli
 Now we will add two stimuli properties for the Gabor patches.
@@ -344,7 +371,7 @@ We will also provide hex code for the **background color** - `#AEAEAE` gray here
 ```matlab
 experiment.screen = CustomScreen( ...
     is_stereo=true, ...
-    initial_rect=[30, 270, 930, 810], ...
+    initial_rect=[30, 90, 930, 990], ...
     background_color='#AEAEAE');
 ```
 

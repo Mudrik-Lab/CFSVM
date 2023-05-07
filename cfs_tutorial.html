@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,13 +35,13 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cfs_tutorial';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Fixation generator" href="fixation_generator.html" />
@@ -411,7 +411,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="cfs-tutorial">
+  <section class="tex2jax_ignore mathjax_ignore" id="cfs-tutorial">
 <h1>CFS tutorial<a class="headerlink" href="#cfs-tutorial" title="Permalink to this heading">#</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Author</span><span class="p">:</span> <span class="n">Gennadiy</span> <span class="n">Belonosov</span> <span class="o">&lt;</span><span class="n">gennadiyb</span><span class="nd">@mail</span><span class="o">.</span><span class="n">tau</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">il</span><span class="o">&gt;</span>
 </pre></div>
@@ -450,7 +450,7 @@ document.write(`
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><em>Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen. Note that the frames here are wider than what we typically use, as they are presented here more for illustration purposes.</em></p></td>
+<tr class="row-even"><td class="text-center"><p><em>Implementation using the package: an example of the stimuli and the display. The left eye is presented with two gratings at different orientations. The right eye is presented with the CFS Mondrian display and a blank screen.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -576,12 +576,8 @@ The two types have many common properties, as they are both Continuous Flash Sup
 </tbody>
 </table>
 <p>We will initialize only a few of them here: <strong>fixation</strong>, <strong>frame</strong>, <strong>masks</strong>, <strong>breakthrough</strong>. The remaining properties will be initialized at the start of the experiment. We will also add two dynamic properties for stimuli, representing two Gabor patches.</p>
-<section id="fixation-and-frame">
-<h5>Fixation and Frame<a class="headerlink" href="#fixation-and-frame" title="Permalink to this heading">#</a></h5>
-<p>Let’s start with <strong>fixation</strong> and <strong>frame</strong>, though the order doesn’t really matter. The Fixation class has some parameters that can be changed, but we won’t set them here, as they are not critical for our needs. You can read more about the parameters in the <a class="reference internal" href="%2BCFSVM.html"><span class="std std-doc">API</span></a>.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">fixation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Fixation</span><span class="p">();</span>
-</pre></div>
-</div>
+<section id="checkframe">
+<h5>Checkframe<a class="headerlink" href="#checkframe" title="Permalink to this heading">#</a></h5>
 <p>As for the CheckFrame: although the frames don’t appear in the original experiment, we will use them here as it is a common practice in the HLC lab. We will set <strong>hex_colors</strong> to black and white (<code class="docutils literal notranslate"><span class="pre">#000000</span></code> and <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code>), <strong>checker_length</strong> to 30 pixels and <strong>checker_width</strong> to 15 pixels (checker is the small rectangle; the frame consists of multiple checkers).</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">frame</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CheckFrame</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">hex_colors</span><span class="p">={</span><span class="s">&#39;#000000&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;#FFFFFF&#39;</span><span class="p">},</span><span class="w"> </span><span class="k">...</span>
@@ -592,11 +588,11 @@ The two types have many common properties, as they are both Continuous Flash Sup
 </section>
 <section id="masks-generation">
 <h5>Masks generation<a class="headerlink" href="#masks-generation" title="Permalink to this heading">#</a></h5>
-<p>Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into <code class="docutils literal notranslate"><span class="pre">RUN_ME/Stimuli/Masks/</span></code> folder and skip to the <a class="reference internal" href="#masks-initialization">masks initialization</a>. Otherwise, we will use the MondrianGenerator. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: <a class="reference external" href="https://doi.org/10.3758/s13428-022-01903-7">(Wang &amp; Han, 2022)</a>, <a class="reference external" href="https://github.com/guandongwang/cfs_crafter">GitHub</a>.</p>
+<p>Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into <code class="docutils literal notranslate"><span class="pre">RUN_ME/Stimuli/Masks/</span></code> folder and skip to the <a class="reference internal" href="#masks-initialization">masks initialization</a>. Otherwise, we will use the <a class="reference internal" href="mondrian_generator.html"><span class="std std-doc">MondrianGenerator</span></a>. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: <a class="reference external" href="https://doi.org/10.3758/s13428-022-01903-7">(Wang &amp; Han, 2022)</a>, <a class="reference external" href="https://github.com/guandongwang/cfs_crafter">GitHub</a>.</p>
 <ol class="arabic simple">
 <li><p>Import the MondrianGenerator class and construct the generator object, using the code below. The generator will randomly locate a specific numbers of figures (defined as <strong>n_figures</strong>, 1000 by default) that are shaped in a specific manner (defined as <strong>type</strong>, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to <strong>x(y)_pixels</strong>×<strong>min_fraction</strong> and the maximum radius equal to <strong>x(y)_pixels</strong>×<strong>max_fraction</strong> inside the <code class="docutils literal notranslate"><span class="pre">provided_path/Masks/</span></code> folder (here <code class="docutils literal notranslate"><span class="pre">Stimuli/Masks/</span></code>).</p></li>
 </ol>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">MondrianGenerator</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">MondrianGenerator</span>
 <span class="n">generator</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MondrianGenerator</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="s">&#39;../Stimuli/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c"> % Will generate Mondrians inside path/Masks/</span>
 <span class="w">    </span><span class="nb">type</span><span class="p">=</span><span class="s">&#39;rectangle&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c"> % Available shapes are ‘rectangle’, ‘square’, ‘ellipse’, ‘circle’, ‘rhombus’ and ‘45_rotated_square’.</span>
@@ -604,19 +600,23 @@ The two types have many common properties, as they are both Continuous Flash Sup
 <span class="w">    </span><span class="n">y_pixels</span><span class="p">=</span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c"> % Height of generated images in pixels</span>
 <span class="w">    </span><span class="n">min_fraction</span><span class="p">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c"> % Minimal possible radius of a figure.</span>
 <span class="w">    </span><span class="n">max_fraction</span><span class="p">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c"> % Maximal possible radius of a figure.</span>
-<span class="w">    </span><span class="n">n_figures</span><span class="p">=</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="n">n_figures</span><span class="p">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cmap</span><span class="p">=</span><span class="s">&#39;grayscale&#39;</span><span class="w"> </span><span class="c">% Can be either string or MATLAB-styled RGB array.</span>
+<span class="w">    </span><span class="p">);</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>If we want to set the colormap to grayscale, we can use either the <strong>set_cmap()</strong> or <strong>set_shades()</strong> methods (don’t use both of them). For colorful Mondrians we can replace ‘grayscale’ with the ‘original’ in the code below, which will generate Mondrians with common RGB colors. For other color options, please, refer to the documentation. If you want to use your own colormap - you can set the <a class="reference external" href="https://www.mathworks.com/help/matlab/ref/colormap.html">MATLAB-formatted</a> colormap directly to the <strong>cmap</strong> property of the generator.</p></li>
+<li><p>For the colormap use the <strong>cmap</strong> argument from the code above. It can be either a string for the supported colormaps (‘grayscale’, ‘rgb’, ‘original’ etc., for other options refer to the documentation) or you can provide the argument with the  <a class="reference external" href="https://www.mathworks.com/help/matlab/ref/colormap.html">MATLAB-formatted</a> RGB array. For the grayscale with 5 tones it will look something like this:</p></li>
 </ol>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s">&#39;grayscale&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">n_tones</span><span class="p">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="c">% generator.set_shades([0,0,0], 5);</span>
-<span class="c">% generator.cmap = [0 0 0</span>
-<span class="c">%             0.25 0.25 0.25 </span>
-<span class="c">%             0.5 0.5 0.5 </span>
-<span class="c">%             0.75 0.75 0.75 </span>
-<span class="c">%             1 1 1]</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="mf">0.25</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="mf">0.25</span><span class="w"> </span><span class="p">;</span>
+<span class="w">      </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+<span class="w">      </span><span class="mf">0.75</span><span class="w"> </span><span class="mf">0.75</span><span class="w"> </span><span class="mf">0.75</span><span class="p">;</span>
+<span class="w">      </span><span class="n">1</span><span class="w"> </span><span class="s">1</span><span class="w"> </span><span class="s">1]</span>
+</pre></div>
+</div>
+<p>In addition, you can use the <strong>set_shades()</strong> method if you want to use grayscale with different number of tones. <strong>set_shades()</strong> will take RGB array as a first argument and create a gradient from this color to white with number of tones provided as a second argument. In the code below it creates gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">.</span><span class="n">set_shades</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
@@ -625,19 +625,20 @@ The two types have many common properties, as they are both Continuous Flash Sup
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">.</span><span class="n">set_physical_properties</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">1920</span><span class="p">,</span><span class="w"> </span><span class="mf">33.5</span><span class="p">,</span><span class="w"> </span><span class="mi">1080</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we will run the generator using the <strong>generate()</strong> method, which takes <strong>n_mondrians</strong> as an argument. In general, <strong>n_mondrians</strong>=temporal_frequency×duration+1 will generate enough masks, so that they are not repeated in a single trial. Here we will generate 10Hz*5sec+1=51 Mondrians.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">51</span><span class="p">)</span>
+<p>Now we will run the generator using the <strong>generate()</strong> method, which takes <strong>n_mondrians</strong> as an argument. In general, <strong>n_mondrians</strong>=temporal_frequency×duration will generate enough masks, so that they are not repeated in a single trial. Here we will generate 10Hz*5sec=50 Mondrians.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="masks-initialization">
 <h5>Masks initialization<a class="headerlink" href="#masks-initialization" title="Permalink to this heading">#</a></h5>
 <p>Now, with generated Mondrians, we will set the <strong>masks</strong> property.
-The first parameter we will define is the relative path to the folder containing the Mondrian images. We will set <strong>temporal_frequency</strong> to 10 Hz, <strong>duration</strong> to 5 seconds, and <strong>position</strong> to “Right” (so that the masks suppress only the right Gabor patch).
+The first parameter we will define is the relative path to the folder containing the Mondrian images. If you’d like to work with CFS-crafter generated masks, you can set a path to the <code class="docutils literal notranslate"><span class="pre">.mat</span></code> file using <strong>crafter_masks</strong> argument (<strong>crafter_masks</strong> will override the <strong>dirpath</strong> if both have been provided).
+We will set <strong>temporal_frequency</strong> to 10 Hz, <strong>duration</strong> to 5 seconds, and <strong>position</strong> to “Right” (so that the masks suppress only the right Gabor patch).
 To adjust the Mondrians’ position, we will set <strong>size</strong> to 0.45 (1 will fill the whole right eye field, 0.5 will fill half of the right eye field depending on position), <strong>padding</strong> to 0.3 (0 will align to the frame, 1 will align to the center of the fixation cross), and xy_ratio to 1 (square). You can also change the <strong>contrast</strong> and <strong>rotation</strong> if desired.
 Finally, we will set <strong>blank</strong> to 5 seconds, to present a blank screen with fixation crosses and frames after the CFS stimulation has ended.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">masks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Mondrians</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="s">&#39;../Stimuli/Masks&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">dirpath</span><span class="p">=</span><span class="s">&#39;../Stimuli/Masks&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">temporal_frequency</span><span class="p">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Right&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
@@ -647,6 +648,32 @@ Finally, we will set <strong>blank</strong> to 5 seconds, to present a blank scr
 <span class="w">    </span><span class="nb">contrast</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">rotation</span><span class="p">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="w">    </span><span class="n">blank</span><span class="p">=</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="fixation-generator">
+<h5>Fixation generator<a class="headerlink" href="#fixation-generator" title="Permalink to this heading">#</a></h5>
+<p>Fixation target also has its own generator, you can find a tutorial on how to use it <a class="reference internal" href="fixation_generator.html"><span class="std std-doc">here</span></a>. There are multiple available shapes mainly based on <a class="reference external" href="https://doi.org/10.1016/j.visres.2012.10.012">Thaler et al., 2013</a>. Here we will generate the simplest cross:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">FixationGenerator</span>
+
+<span class="n">generator</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">FixationGenerator</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;../Stimuli/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">radius</span><span class="p">=</span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">hex_color</span><span class="p">=</span><span class="s">&#39;#000000&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">is_smooth_edges</span><span class="p">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">smoothing_cycles</span><span class="p">=</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="n">generator</span><span class="p">.</span><span class="n">C</span><span class="p">(</span><span class="n">cross_width</span><span class="p">=</span><span class="mi">64</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fixation">
+<h5>Fixation<a class="headerlink" href="#fixation" title="Permalink to this heading">#</a></h5>
+<p>To initialize the fixation property we will first provide a directory which contains our generated fixation target, second, we will set <strong>duration</strong> to 1 second and <strong>size</strong> to 0.05 (5%) of the frame. It also has additional parameters, like <strong>rotation</strong>, <strong>contrast</strong> etc. (for more, please, check the documentation), which we won’t set here.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">fixation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Fixation</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;../Stimuli/Fixation&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.05</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -781,7 +808,7 @@ We will put it in <code class="docutils literal notranslate"><span class="pre">T
 <p>We will also provide hex code for the <strong>background color</strong> - <code class="docutils literal notranslate"><span class="pre">#AEAEAE</span></code> gray here.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">screen</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CustomScreen</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">is_stereo</span><span class="p">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">initial_rect</span><span class="p">=[</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w"> </span><span class="mi">930</span><span class="p">,</span><span class="w"> </span><span class="mi">810</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">initial_rect</span><span class="p">=[</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">930</span><span class="p">,</span><span class="w"> </span><span class="mi">990</span><span class="p">],</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">background_color</span><span class="p">=</span><span class="s">&#39;#AEAEAE&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -891,7 +918,10 @@ The final folder structure will look like this:</p>
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="installation.html"
@@ -911,7 +941,10 @@ The final folder structure will look like this:</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -936,9 +969,11 @@ The final folder structure will look like this:</p>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-package">Import the package</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-the-experiment-type">Choose the experiment type</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-the-objects-properties">Initialize the object’s properties</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#fixation-and-frame">Fixation and Frame</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#checkframe">Checkframe</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-generation">Masks generation</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-initialization">Masks initialization</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#fixation-generator">Fixation generator</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#fixation">Fixation</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Stimuli</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#breakthrough">Breakthrough</a></li>
 </ul>
@@ -956,7 +991,7 @@ The final folder structure will look like this:</p>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="_sources/tutorial.md.txt">
+    <a href="_sources/cfs_tutorial.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
@@ -967,7 +1002,7 @@ The final folder structure will look like this:</p>
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner"></div>
+            
           </footer>
         
       </main>
@@ -975,8 +1010,8 @@ The final folder structure will look like this:</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

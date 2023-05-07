@@ -1,9 +1,9 @@
 classdef ScreenField < CFSVM.Element.SpatialElement
 % A concrete class from the abstract
-% :class:`~+CFSVM.+Element.@SpatialElement`.
+% :class:`~CFSVM.Element.SpatialElement`.
 %
 % Describes fields of the screen as properties of 
-% :class:`~+CFSVM.+Element.+Screen.@CustomScreen`.
+% :class:`~CFSVM.Element.Screen.CustomScreen`.
 %
         
     methods
@@ -11,7 +11,7 @@ classdef ScreenField < CFSVM.Element.SpatialElement
         function obj = ScreenField(rect)
         %
         % Args:
-        %   rect: :attr:`~+CFSVM.+Element.@SpatialElement.SpatialElement.rect`
+        %   rect: :attr:`~CFSVM.Element.SpatialElement.rect`
         %
             arguments
                 rect

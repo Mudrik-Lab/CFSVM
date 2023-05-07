@@ -1,7 +1,7 @@
 classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
 % Manipulating stimulus suppressed by mondrians.
 %
-% Derived from :class:`~+CFSVM.+Element.+Stimulus.@Stimulus`.
+% Derived from :class:`~CFSVM.Element.Stimulus.Stimulus`.
 %
 
     properties (Constant)
@@ -42,18 +42,18 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
         function obj = SuppressedStimulus(dirpath, parameters)
         %
         % Args:
-        %   dirpath: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
-        %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
-        %   xy_ratio: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
-        %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`
-        %   padding: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.padding`
-        %   rotation: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
-        %   contrast: :attr:`.+CFSVM.+Element.@SpatialElement.SpatialElement.contrast`
-        %   appearance_delay: :attr:`~.+CFSVM.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.appearance_delay`
-        %   fade_in_duration: :attr:`~.+CFSVM.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_in_duration`
-        %   duration: :attr:`.+CFSVM.+Element.@TemporalElement.TemporalElement.duration`
-        %   fade_out_duration: :attr:`~.+CFSVM.+Element.+Stimulus.@SuppressedStimulus.SuppressedStimulus.fade_out_duration`
-        %   blank: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.blank`
+        %   dirpath: :attr:`CFSVM.Element.Stimulus.Stimulus.dirpath`
+        %   position: :attr:`CFSVM.Element.Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`CFSVM.Element.Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`CFSVM.Element.Stimulus.Stimulus.size`
+        %   padding: :attr:`CFSVM.Element.Stimulus.Stimulus.padding`
+        %   rotation: :attr:`CFSVM.Element.Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`CFSVM.Element.SpatialElement.contrast`
+        %   appearance_delay: :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.appearance_delay`
+        %   fade_in_duration: :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.fade_in_duration`
+        %   duration: :attr:`CFSVM.Element.TemporalElement.duration`
+        %   fade_out_duration: :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration`
+        %   blank: :attr:`CFSVM.Element.Stimulus.Stimulus.blank`
         %
 
             arguments

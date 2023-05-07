@@ -2,7 +2,7 @@ function load_parameters(obj, screen, PTB_textures_indices, shown_texture_index)
 % Loads parameters for mAFC screen for the trial.
 %
 % Args:
-%   screen: :class:`~+CFSVM.+Element.+Screen.@CustomScreen` object.
+%   screen: :class:`~CFSVM.Element.Screen.CustomScreen` object.
 %   PTB_textures_indices: Cell array of ints representing loaded PTB textures.
 %   shown_texture_index: Int representing PTB texture shown as stimulus.
 %

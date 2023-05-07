@@ -1,7 +1,7 @@
 function show(obj, experiment)
 % Draws and shows mAFC images, waits for the subject response and records it.
 % 
-% See also :func:`~+CFSVM.+Element.+Evidence.@ScaleEvidence.record_response`.
+% See also :func:`~CFSVM.Element.Evidence.record_response`.
 %
 % Args:
 %   experiment: An experiment object.

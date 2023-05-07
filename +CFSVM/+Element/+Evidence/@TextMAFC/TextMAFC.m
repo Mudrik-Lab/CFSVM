@@ -1,7 +1,7 @@
 classdef TextMAFC < CFSVM.Element.Evidence.ScaleEvidence
 % Initiating and recording text mAFC data.
 %
-% Derived from :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence` class.
+% Derived from :class:`~CFSVM.Element.Evidence.ScaleEvidence` class.
 %   
 
     properties (Constant)
@@ -24,9 +24,9 @@ classdef TextMAFC < CFSVM.Element.Evidence.ScaleEvidence
         function obj = TextMAFC(parameters)
         %
         % Args:
-        %   keys: :attr:`.+CFSVM.+Element.@ResponseElement.ResponseElement.keys`
-        %   title: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
-        %   options: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.options`
+        %   keys: :attr:`CFSVM.Element.ResponseElement.keys`
+        %   title: :attr:`CFSVM.Element.Evidence.ScaleEvidence.title`
+        %   options: :attr:`CFSVM.Element.Evidence.ScaleEvidence.options`
         %
         
             arguments

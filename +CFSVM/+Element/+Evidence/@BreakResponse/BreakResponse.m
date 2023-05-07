@@ -1,7 +1,7 @@
 classdef BreakResponse < CFSVM.Element.ResponseElement
 % Initiating and recording break data.
 %
-% Derived from :class:`~+CFSVM.+Element.@ResponseElement` class.
+% Derived from :class:`~CFSVM.Element.ResponseElement` class.
 %
     
     properties (Constant)
@@ -17,7 +17,7 @@ classdef BreakResponse < CFSVM.Element.ResponseElement
         function obj = BreakResponse(parameters)
         %
         % Args:
-        %   keys: :attr:`.+CFSVM.+Element.@ResponseElement.ResponseElement.keys`
+        %   keys: :attr:`CFSVM.Element.ResponseElement.keys`
         %
         
             arguments

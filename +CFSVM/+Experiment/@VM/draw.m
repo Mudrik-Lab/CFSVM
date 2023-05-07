@@ -4,7 +4,7 @@ function draw(obj, parameters)
 % Args:
 %   fixation: bool
 %   stim: bool
-%   mask: :class:`.+CFSVM.+Element.+Stimulus.@Mask`
+%   mask: :class:`CFSVM.Element.Stimulus.Mask`
 %
 
     arguments

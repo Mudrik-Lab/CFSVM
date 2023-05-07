@@ -1,8 +1,8 @@
 classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.SpatialElement
 % A base class for different types of stimuli.
 %
-% Derived from :class:`~+CFSVM.+Element.@TemporalElement` and 
-% :class:`~+CFSVM.+Element.@SpatialElement` classes.
+% Derived from :class:`~CFSVM.Element.TemporalElement` and 
+% :class:`~CFSVM.Element.SpatialElement` classes.
 %
     
     properties
@@ -16,10 +16,10 @@ classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.Spa
         % Nonnegative float describing x/y of the stimulus image.
         xy_ratio {mustBeNonnegative}
         % Float between 0 and 1, when 0 is not shown and 1 fills whole 
-        % :class:`~+CFSVM.+Element.+Screen.@ScreenField` object.
+        % :class:`~CFSVM.Element.Screen.ScreenField` object.
         size  {mustBeInRange(size, 0, 1)}
         % Float between 0 and 1, when 0 alignment to the frame and 1 is
-        % alignment to the center of the :class:`~+CFSVM.+Element.+Stimulus.@Fixation`.
+        % alignment to the center of the :class:`~CFSVM.Element.Stimulus.Fixation`.
         padding {mustBeInRange(padding, 0, 1)}
         % Float describing degrees of rotation.
         rotation {mustBeReal}

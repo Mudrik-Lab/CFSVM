@@ -1,7 +1,7 @@
 classdef PAS < CFSVM.Element.Evidence.ScaleEvidence
 % Initiating and recording PAS data.
 %
-% Derived from :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence`.
+% Derived from :class:`~CFSVM.Element.Evidence.ScaleEvidence`.
 %
 
     properties (Constant)
@@ -27,9 +27,9 @@ classdef PAS < CFSVM.Element.Evidence.ScaleEvidence
         function obj = PAS(parameters)
         %
         % Args:
-        %   keys: :attr:`.+CFSVM.+Element.@ResponseElement.ResponseElement.keys`
-        %   title: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
-        %   options: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.options`
+        %   keys: :attr:`CFSVM.Element.ResponseElement.keys`
+        %   title: :attr:`CFSVM.Element.Evidence.ScaleEvidence.title`
+        %   options: :attr:`CFSVM.Element.Evidence.ScaleEvidence.options`
         %
         
             arguments

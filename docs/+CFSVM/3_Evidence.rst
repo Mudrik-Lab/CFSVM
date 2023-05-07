@@ -1,31 +1,31 @@
 Evidence package
 ==================================
 
-Element.Evidence.BreakResponse class
+BreakResponse class
 ---------------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@BreakResponse
    :members:
    :undoc-members:
 
-+Element.+Evidence.@ImgMAFC class
+ImgMAFC class
 ---------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@ImgMAFC
    :members:
    :undoc-members:
 
-+Element.+Evidence.@PAS class
+PAS class
 -----------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@PAS
    :members:
    :undoc-members:
 
-+Element.+Evidence.@ScaleEvidence class
+ScaleEvidence class
 ---------------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@ScaleEvidence
    :members:
    :undoc-members:
 
-+Element.+Evidence.@TextMAFC class
+TextMAFC class
 ----------------------------------
 .. mat:automodule:: +CFSVM.+Element.+Evidence.@TextMAFC
    :members:

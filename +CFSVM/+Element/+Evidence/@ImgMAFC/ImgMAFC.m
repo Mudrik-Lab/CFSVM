@@ -1,8 +1,8 @@
 classdef ImgMAFC < CFSVM.Element.Evidence.ScaleEvidence & CFSVM.Element.Stimulus.Stimulus
 % Initiating and recording image mAFC data.
 %
-% Derived from :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence` and
-% :class:`~+CFSVM.+Element.+Stimulus.@Stimulus` classes.
+% Derived from :class:`~CFSVM.Element.Evidence.ScaleEvidence` and
+% :class:`~CFSVM.Element.Stimulus.Stimulus` classes.
 %
  
 
@@ -30,11 +30,11 @@ classdef ImgMAFC < CFSVM.Element.Evidence.ScaleEvidence & CFSVM.Element.Stimulus
         function obj = ImgMAFC(parameters)
         %
         % Args:
-        %   keys: :attr:`.+CFSVM.+Element.@ResponseElement.ResponseElement.keys`
-        %   title: :attr:`.+CFSVM.+Element.+Evidence.@ScaleEvidence.ScaleEvidence.title`
-        %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
-        %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`
-        %   xy_ratio: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
+        %   keys: :attr:`CFSVM.Element.ResponseElement.keys`
+        %   title: :attr:`CFSVM.Element.Evidence.ScaleEvidence.title`
+        %   position: :attr:`CFSVM.Element.Stimulus.Stimulus.position`
+        %   size: :attr:`CFSVM.Element.Stimulus.Stimulus.size`
+        %   xy_ratio: :attr:`CFSVM.Element.Stimulus.Stimulus.xy_ratio`
         %
 
             arguments

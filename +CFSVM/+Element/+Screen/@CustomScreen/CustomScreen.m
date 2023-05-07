@@ -3,7 +3,7 @@ classdef CustomScreen < matlab.mixin.Copyable
     
     properties
 
-        % Cell array of :class:`~+CFSVM.+Element.+Screen.@ScreenField` objects.
+        % Cell array of :class:`~CFSVM.Element.Screen.ScreenField` objects.
         fields cell
         % Int for number of pixels shifted on keypress while adjusting screens.
         shift {mustBePositive, mustBeInteger}
@@ -24,10 +24,10 @@ classdef CustomScreen < matlab.mixin.Copyable
         function obj = CustomScreen(parameters)
         %
         % Args:
-        %   background_color: :attr:`~.+CFSVM.+Element.+Screen.@CustomScreen.CustomScreen.background_color`
+        %   background_color: :attr:`~CFSVM.Element.Screen.CustomScreen.background_color`
         %   is_stereo: bool for setting two screenfields.
         %   initial_rect: [x0, y0, x1, y1] array with pixel positions, if is_stereo, position of the left field.
-        %   shift: :attr:`~.+CFSVM.+Element.+Screen.@CustomScreen.CustomScreen.shift`
+        %   shift: :attr:`~CFSVM.Element.Screen.CustomScreen.shift`
         %
         
             arguments

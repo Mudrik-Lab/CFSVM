@@ -2,44 +2,43 @@
 Experiment package
 ===================
 
-
-+Experiment.@BCFS class
------------------------
-.. mat:automodule:: +CFSVM.+Experiment.@BCFS
-   :members:
-   :undoc-members:
-
-+Experiment.@CFS class
-----------------------
-.. mat:automodule:: +CFSVM.+Experiment.@CFS
-   :members:
-   :undoc-members:
-
-+Experiment.@Experiment class
+Experiment class
 -----------------------------
 .. mat:automodule:: +CFSVM.+Experiment.@Experiment
    :members:
    :undoc-members:
 
-+Experiment.@VM class
----------------------
-.. mat:automodule:: +CFSVM.+Experiment.@VM
+CFS class
+----------------------
+.. mat:automodule:: +CFSVM.+Experiment.@CFS
    :members:
    :undoc-members:
 
-+Experiment.@VPCFS class
+BCFS class
+-----------------------
+.. mat:automodule:: +CFSVM.+Experiment.@BCFS
+   :members:
+   :undoc-members:
+
+VPCFS class
 ------------------------
 .. mat:automodule:: +CFSVM.+Experiment.@VPCFS
    :members:
    :undoc-members:
 
-+Experiment.@VSM class
+VM class
+---------------------
+.. mat:automodule:: +CFSVM.+Experiment.@VM
+   :members:
+   :undoc-members:
+
+VSM class
 ----------------------
 .. mat:automodule:: +CFSVM.+Experiment.@VSM
    :members:
    :undoc-members:
 
-+Experiment.@VTM class
+VTM class
 ----------------------
 .. mat:automodule:: +CFSVM.+Experiment.@VTM
    :members:

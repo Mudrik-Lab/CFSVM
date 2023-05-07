@@ -1,8 +1,8 @@
 classdef (Abstract) ResponseElement < matlab.mixin.Copyable
-% A base class for describing subject response.
+% A base class describing subject response.
 %
-% Base for :class:`~+CFSVM.+Element.+Evidence.@ScaleEvidence`
-% and :class:`~+CFSVM.+Element.+Evidence.@BreakResponse`.
+% Base for :class:`~CFSVM.Element.Evidence.ScaleEvidence`
+% and :class:`~CFSVM.Element.Evidence.BreakResponse`.
 %
 
     properties
@@ -11,10 +11,10 @@ classdef (Abstract) ResponseElement < matlab.mixin.Copyable
         % Read more `here <http://psychtoolbox.org/docs/KbName>`_.
         keys cell {mustBeText}
 
-        % Int - index of response choice in keys.
+        % Int, index of response choice in keys.
         response_choice {mustBeInteger}
 
-        % Float
+        % Double, time to response
         response_time {mustBeNonnegative}
 
         % PTB char array representing pressed key.

@@ -18,10 +18,10 @@ classdef (Abstract) SpatialElement < matlab.mixin.Copyable
 
     properties (Dependent)
 
-        x_pixels  % Int - width in pixels.
-        y_pixels  % Int - height in pixels.
-        x_center  % Int - center pixel, for even width lesser value is chosed.
-        y_center  % Int - center pixel, for even height lesser value is chosed.
+        x_pixels  % (Dependent) Width in pixels.
+        y_pixels  % (Dependent) Height in pixels.
+        x_center  % (Dependent) Center pixel, the lesser value is chosed when the width is even.
+        y_center  % (Dependent) Center pixel, the lesser value is chosed when the height is even.
 
     end
     

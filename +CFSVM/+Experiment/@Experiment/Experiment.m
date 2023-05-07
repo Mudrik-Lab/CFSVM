@@ -1,5 +1,5 @@
 classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
-% Base for :class:`~+CFSVM.+Experiment.@CFS` and :class:`~+CFSVM.+Experiment.@VM` classes.
+% Base for :class:`~CFSVM.Experiment.CFS` and :class:`~CFSVM.Experiment.VM` classes.
 % 
 % Describes very basic methods fomr initiation of PTB-3 window to
 % comments containing screens shown to the subject.

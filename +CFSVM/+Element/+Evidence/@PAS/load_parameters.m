@@ -2,7 +2,7 @@ function load_parameters(obj, screen)
 % Loads PAS parameters for the trial.
 %
 % Args:
-%   screen: :class:`~+CFSVM.+Element.+Screen.@CustomScreen` object.
+%   screen: :class:`~CFSVM.Element.Screen.CustomScreen` object.
 %
 
     obj.title_size = round(screen.fields{1}.x_pixels/15);

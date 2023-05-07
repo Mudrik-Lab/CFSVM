@@ -1,7 +1,7 @@
 classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
 % Manipulating Mondrian masks.
 %
-% Derived from :class:`~+CFSVM.+Element.+Stimulus.@Stimulus`.
+% Derived from :class:`~CFSVM.Element.Stimulus.Stimulus`.
 %
 
 
@@ -37,17 +37,17 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
         function obj = Mondrians(parameters)
         %
         % Args:
-        %   dirpath: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
-        %   temporal_frequency: :attr:`~.+CFSVM.+Element.+Stimulus.@Mondrians.Mondrians.temporal_frequency`
-        %   duration: :attr:`.+CFSVM.+Element.@TemporalElement.TemporalElement.duration`
-        %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
-        %   xy_ratio: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
-        %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`
-        %   padding: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.padding`
-        %   rotation: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
-        %   contrast: :attr:`.+CFSVM.+Element.@SpatialElement.SpatialElement.contrast`
-        %   blank: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.blank`
-        %   crafter_masks: :attr:`~.+CFSVM.+Element.+Stimulus.@Mondrians.Mondrians.crafter_masks`
+        %   dirpath: :attr:`CFSVM.Element.Stimulus.Stimulus.dirpath`
+        %   temporal_frequency: :attr:`~CFSVM.Element.Stimulus.Mondrians.temporal_frequency`
+        %   duration: :attr:`CFSVM.Element.TemporalElement.duration`
+        %   position: :attr:`CFSVM.Element.Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`CFSVM.Element.Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`CFSVM.Element.Stimulus.Stimulus.size`
+        %   padding: :attr:`CFSVM.Element.Stimulus.Stimulus.padding`
+        %   rotation: :attr:`CFSVM.Element.Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`CFSVM.Element.SpatialElement.contrast`
+        %   blank: :attr:`CFSVM.Element.Stimulus.Stimulus.blank`
+        %   crafter_masks: :attr:`~CFSVM.Element.Stimulus.Mondrians.crafter_masks`
 
             arguments
                 parameters.dirpath = ''

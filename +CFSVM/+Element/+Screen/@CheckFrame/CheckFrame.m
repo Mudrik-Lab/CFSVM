@@ -1,7 +1,7 @@
 classdef CheckFrame < CFSVM.Element.SpatialElement
 % Handling checkframes on the screen.
 %
-% Derived from :class:`~+CFSVM.+Element.@SpatialElement`.
+% Derived from :class:`~CFSVM.Element.SpatialElement`.
 %
     
     properties
@@ -27,9 +27,9 @@ classdef CheckFrame < CFSVM.Element.SpatialElement
         function obj = CheckFrame(parameters)
         %
         % Args:
-        %   checker_length: :attr:`~.+CFSVM.+Element.+Screen.@CheckFrame.CheckFrame.checker_length`
-        %   checker_width: :attr:`~.+CFSVM.+Element.+Screen.@CheckFrame.CheckFrame.checker_width`
-        %   hex_colors: :attr:`~.+CFSVM.+Element.+Screen.@CheckFrame.CheckFrame.color_codes`
+        %   checker_length: :attr:`~CFSVM.Element.Screen.CheckFrame.checker_length`
+        %   checker_width: :attr:`~CFSVM.Element.Screen.CheckFrame.checker_width`
+        %   hex_colors: :attr:`~CFSVM.Element.Screen.CheckFrame.color_codes`
         %
             arguments
                 parameters.checker_length = 30

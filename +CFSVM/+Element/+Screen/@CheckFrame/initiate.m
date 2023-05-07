@@ -3,7 +3,7 @@ function initiate(obj, screenfield)
 % rects and colors matrices.
 %
 % Args:
-%   screen: :class:`~+CFSVM.+Element.+Screen.@ScreenField` object.
+%   screen: :class:`~CFSVM.Element.Screen.ScreenField` object.
 %
     
     screen_rect = screenfield.rect;

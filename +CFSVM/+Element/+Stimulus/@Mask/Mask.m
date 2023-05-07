@@ -1,7 +1,7 @@
 classdef Mask < CFSVM.Element.Stimulus.Stimulus
 % Manipulating Mask stimulus.
 %
-% Derived from :class:`~+CFSVM.+Element.+Stimulus.@Stimulus`.
+% Derived from :class:`~CFSVM.Element.Stimulus.Stimulus`.
 %
 
     properties (Constant)
@@ -28,16 +28,16 @@ classdef Mask < CFSVM.Element.Stimulus.Stimulus
         function obj = Mask(parameters)
         %
         % Args:
-        %   dirpath: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.dirpath`
-        %   duration: :attr:`.+CFSVM.+Element.@TemporalElement.TemporalElement.duration`
-        %   soa: :attr:`~.+CFSVM.+Element.+Stimulus.@Mask.Mask.soa`
-        %   blank: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.blank`
-        %   position: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.position`
-        %   xy_ratio: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.xy_ratio`
-        %   size: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.size`
-        %   padding: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.padding`
-        %   rotation: :attr:`.+CFSVM.+Element.+Stimulus.@Stimulus.Stimulus.rotation`
-        %   contrast: :attr:`.+CFSVM.+Element.@SpatialElement.SpatialElement.contrast`
+        %   dirpath: :attr:`CFSVM.Element.Stimulus.Stimulus.dirpath`
+        %   duration: :attr:`CFSVM.Element.TemporalElement.duration`
+        %   soa: :attr:`~CFSVM.Element.Stimulus.Mask.soa`
+        %   blank: :attr:`CFSVM.Element.Stimulus.Stimulus.blank`
+        %   position: :attr:`CFSVM.Element.Stimulus.Stimulus.position`
+        %   xy_ratio: :attr:`CFSVM.Element.Stimulus.Stimulus.xy_ratio`
+        %   size: :attr:`CFSVM.Element.Stimulus.Stimulus.size`
+        %   padding: :attr:`CFSVM.Element.Stimulus.Stimulus.padding`
+        %   rotation: :attr:`CFSVM.Element.Stimulus.Stimulus.rotation`
+        %   contrast: :attr:`CFSVM.Element.SpatialElement.contrast`
         %
 
             arguments

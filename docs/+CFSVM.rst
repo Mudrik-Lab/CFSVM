@@ -1,13 +1,12 @@
 
 API reference
 ##############
-This is a Matlab toolbox which provides the following packages/namespaces:
 
-+CFSVM package
+CFSVM package
 ==================
 
    .. toctree::
-      :maxdepth: 1
+      :maxdepth: 2
       :glob:
 
       +CFSVM/*

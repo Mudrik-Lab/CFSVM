@@ -28,10 +28,9 @@ classdef SubjectData < matlab.mixin.Copyable
         % Inquires subject info and puts it into table.
         %
         % Args:
-        %   dirpath: :attr:`~.+CFSVM.+Element.+Data.@SubjectData.SubjectData.dirpath`
-        %   file_extenstion: :attr:`~.+CFSVM.+Element.+Data.@SubjectData.SubjectData.file_extension`
+        %   dirpath: :attr:`~CFSVM.Element.Data.SubjectData.dirpath`
+        %   file_extenstion: :attr:`~CFSVM.Element.Data.SubjectData.file_extension`
         %
-        
             arguments
                 parameters.dirpath {mustBeTextScalar} = './!SubjectInfo'
                 parameters.file_extension {mustBeTextScalar, mustStartWithDot} = '.csv'
@@ -68,8 +67,17 @@ classdef SubjectData < matlab.mixin.Copyable
         end
       
 
-        write(obj)
-
+        function write(obj)
+        % Writes table to the dirpath.
+        %
+        
+            % Write the table to the folder with provided filename and extension. 
+            writetable(obj.table, ...
+                fullfile(obj.dirpath, ...
+                    strcat(num2str(obj.code), obj.file_extension)))
+        
+        end
+        
     end
 
 end

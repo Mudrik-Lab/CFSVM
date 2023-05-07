@@ -2,7 +2,7 @@ function load_rect_parameters(obj, screen, is_left_suppression)
 % Calculates rects depending on suppression side for the trial.
 %
 % Args:
-%   screen: :class:`~+CFSVM.+Element.+Screen.@CustomScreen` object.
+%   screen: :class:`~CFSVM.Element.Screen.CustomScreen` object.
 %   is_left_suppression: bool
 %
 

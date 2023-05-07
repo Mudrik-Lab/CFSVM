@@ -2,8 +2,8 @@ function load_flashing_parameters(obj, screen, masks)
 % Calculates contrasts arrays for flashing.
 %
 % Args:
-%   screen: :class:`~+CFSVM.+Element.+Screen.@CustomScreen` object.
-%   masks: :class:`~+CFSVM.+Element.+Stimulus.@Masks` object.
+%   screen: :class:`~CFSVM.Element.Screen.CustomScreen` object.
+%   masks: :class:`~CFSVM.Element.Stimulus.Mondrians` object.
 %
     
     obj.image_name = obj.textures.images_names(obj.index);

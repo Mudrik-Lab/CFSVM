@@ -1,10 +1,10 @@
 classdef (Abstract) CFS < CFSVM.Experiment.Experiment
-% Base for :class:`~+CFSVM.+Experiment.@BCFS` and :class:`~+CFSVM.+Experiment.@VPCFS` classes.
+% Base for :class:`~CFSVM.Experiment.BCFS` and :class:`~CFSVM.Experiment.VPCFS` classes.
 % 
 % Describes common methods for CFS experiments, e.g. initiate() for initiating CFS
 % properties.
 %
-% Derived from :class:`~+CFSVM.+Experiment.@Experiment`.
+% Derived from :class:`~CFSVM.Experiment.Experiment`.
 %
     
     properties

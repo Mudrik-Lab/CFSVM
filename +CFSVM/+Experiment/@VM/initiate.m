@@ -87,6 +87,6 @@ function initiate(obj)
 
     obj.load_parameters();
     
-    obj.show_introduction_screen()
+    obj.show_info('introduction')
 
 end

@@ -24,7 +24,7 @@ function run(obj)
             obj.pas.show(obj)
             obj.mafc.show(obj)
             obj.trials.end_time = GetSecs();
-            obj.show_rest_screen()
+            obj.show_info('rest')
             save(sprintf( ...
                 "%s/RawTrials/%s/block%d_trial%d.mat", ...
                 obj.save_to_dir, ...
@@ -35,5 +35,6 @@ function run(obj)
         end
 
     end 
+    obj.show_info('farewell')
 
 end 

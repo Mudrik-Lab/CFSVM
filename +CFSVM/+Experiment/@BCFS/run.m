@@ -24,7 +24,7 @@ function run(obj)
 
             obj.trials.end_time = GetSecs();
             obj.breakthrough.get(pressed, first_press)
-            obj.show_rest_screen()
+            obj.show_info('rest')
             save(sprintf( ...
                 "%s/RawTrials/%s/block%d_trial%d.mat", ...
                 obj.save_to_dir, ...
@@ -35,7 +35,7 @@ function run(obj)
         end
 
     end
-    obj.show_farewell_screen();
+    obj.show_info('farewell')
 
 end 
 

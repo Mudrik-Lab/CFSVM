@@ -10,6 +10,7 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
 
         dynpropnames  % Variable for saving names of dynamic properties.
         save_to_dir
+        path_to_functions
     end
     
 
@@ -18,8 +19,10 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
         function obj = Experiment(parameters)
             arguments
                 parameters.save_to_dir {mustBeTextScalar} = "./Raw"
+                parameters.path_to_functions = "./Examples/Greetings"
             end
             obj.save_to_dir = parameters.save_to_dir;
+            obj.path_to_functions = parameters.path_to_functions;
         end
 
         

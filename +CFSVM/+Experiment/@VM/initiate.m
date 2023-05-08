@@ -6,7 +6,8 @@ function initiate(obj)
         CFSVM.Element.Data.* ...
         CFSVM.Element.Evidence.* ...
         CFSVM.Element.Stimulus.*
-
+    import CFSVM.Utils.hex2rgb
+    
     % Create folder for the raw trial results
     if ~exist(obj.save_to_dir, 'dir')
         mkdir(obj.save_to_dir)
@@ -29,7 +30,7 @@ function initiate(obj)
     KbName('UnifyKeyNames');
     
     % Convert hex to MATLAB rgb color code.
-    obj.screen.background_color = obj.hex2rgb(obj.screen.background_color);
+    obj.screen.background_color = hex2rgb(obj.screen.background_color);
 
     obj.initiate_window()
 

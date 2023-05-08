@@ -160,7 +160,7 @@ cmap = [0 0 0;
       0.75 0.75 0.75;
       1 1 1]
 ```
-In addition, you can use the **set_shades()** method if you want to use grayscale with different number of tones. **set_shades()** will take RGB array as a first argument and create a gradient from this color to white with number of tones provided as a second argument. In the code below it creates gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.
+In addition, you can use the **set_shades()** method if you want to use grayscale with different numbers of tones. **set_shades()** will take the RGB array as a first argument and create a gradient from this color to white with a number of tones provided as a second argument. In the code below it creates a gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.
 ```matlab
 generator.set_shades([0,0,0], 8);
 ```

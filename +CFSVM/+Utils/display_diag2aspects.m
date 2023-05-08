@@ -1,0 +1,13 @@
+function [display_width_cm, display_height_cm] = display_inch2aspects( ...
+    display_diagonal_inches, ...
+    display_ratio_width, ...
+    display_ratio_height ...
+    )
+
+    cm2inch = @(x) x*2.54;
+    display_factor = sqrt(display_diagonal_inches^2/(display_ratio_width^2+display_ratio_height^2));
+    
+    display_width_cm = cm2inch(display_ratio_width*display_factor);
+    display_height_cm = cm2inch(display_ratio_height*display_factor);
+end
+

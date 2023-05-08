@@ -52,7 +52,6 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
 
     methods(Static)
 
-        rgb = hex2rgb(hex)
         wait_for_keypress(key)
 
     end

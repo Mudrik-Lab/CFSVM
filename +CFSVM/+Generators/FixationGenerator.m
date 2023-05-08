@@ -45,7 +45,7 @@ classdef FixationGenerator
             else
                 obj.n_cycles = 0;
             end
-            obj.color = sscanf(parameters.hex_color(2:end),'%2x%2x%2x',[1 3])/255;
+            obj.color = CFSVM.Utils.hex2rgb(parameters.hex_color);
             obj.is_outline = parameters.is_outline;
         end
 
@@ -220,11 +220,6 @@ classdef FixationGenerator
             cross_pixels = logical(img);
         end
 
-        function rgb = hex2rgb(hex)
-        % Transforms hexadecimal color code to MATLAB RGB color code.
-            rgb = sscanf(hex(2:end),'%2x%2x%2x',[1 3])/255;
-        end
-
         function neighbours_mean = smooth(A)
             neighbours_mean = conv2(A,ones(3),'same')./conv2(ones(size(A)),ones(3),'same');
         end
@@ -233,8 +228,15 @@ classdef FixationGenerator
 
 end
 
-function mustBeHex(a)
-    if ~regexp(a, "#[\d, A-F]{6}", 'ignorecase')
+function mustBeHex(hex)
+    a = char(hex);
+    if length(a) ~= 7
+        error("Length is wrong, Hex code should be a '#' followed by exactly 6 hexadecimal numbers")
+    end
+    if a(1) ~= '#'
+        error("Hex code should start with a '#'")
+    end
+    if isempty(regexp(a, "#[\d, A-F]{6}", 'ignorecase'))
         error("Provided hex color is wrong.")
     end
 end

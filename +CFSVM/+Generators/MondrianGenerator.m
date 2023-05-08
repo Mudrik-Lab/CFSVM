@@ -230,8 +230,8 @@ classdef MondrianGenerator < handle
                 index = spatial_map == i;
                 psds(i) = sum(power(index),'all')./sum(index,'all');
             end
-            width_degree = obj.pixels2degrees(width(img), obj.s_w_cm, obj.s_w_pix, obj.view_dist);
-            height_degree = obj.pixels2degrees(height(img),obj.s_h_cm,obj.s_h_pix, obj.view_dist);
+            width_degree = CFSVM.Utils.pix2deg(width(img), obj.s_w_cm, obj.s_w_pix, obj.view_dist);
+            height_degree = CFSVM.Utils.pix2deg(height(img),obj.s_h_cm,obj.s_h_pix, obj.view_dist);
             freqs = (0:max_rad-1)';
             freqs = freqs./ max(width_degree, height_degree);
         end
@@ -344,20 +344,6 @@ classdef MondrianGenerator < handle
 
     end
 
-    methods(Static, Access=private)
-
-        function img_size_degree = pixels2degrees(img_size_pixels, s_cm, s_pix, view_dist)
-
-            % cm/pix
-            pixel_size = s_cm/s_pix;
-            % mask size in cm
-            img_size_cm = pixel_size * img_size_pixels;
-            % mask size in degree of visual angle
-            img_size_degree = 2 * rad2deg(atan(img_size_cm/(2 * view_dist)));
-            
-        end
-
-    end
 
 end
 

@@ -7,7 +7,12 @@ function preload_args(obj, screen)
     for n = 1:length(screen.fields)
 
         texture = obj.textures.PTB_indices{1};
-        rect = obj.get_rect(screen.fields{n}.rect);
+        if ~isempty(obj.manual_rect)
+            rect = obj.get_manual_rect(screen.fields{n}.rect);
+        else
+            rect = obj.get_rect(screen.fields{n}.rect);
+        end
+        
         % Add args to the cell array
         obj.args{n} = ...
             {

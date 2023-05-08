@@ -48,7 +48,8 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
         %   contrast: :attr:`CFSVM.Element.SpatialElement.contrast`
         %   blank: :attr:`CFSVM.Element.Stimulus.Stimulus.blank`
         %   crafter_masks: :attr:`~CFSVM.Element.Stimulus.Mondrians.crafter_masks`
-
+        %   manual_rect: :attr:`CFSVM.Element.Stimulus.Stimulus.manual_rect`
+        %
             arguments
                 parameters.dirpath = ''
                 parameters.temporal_frequency = 10
@@ -61,6 +62,7 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
                 parameters.contrast = 1
                 parameters.blank = 0
                 parameters.crafter_masks = ''
+                parameters.manual_rect
             end
 
             parameters_names = fieldnames(parameters);

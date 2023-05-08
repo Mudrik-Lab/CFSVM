@@ -33,7 +33,10 @@ classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.Spa
         % Float in seconds for showing blank screen after the stimulus presentation,
         % has the effect in only very specific cases.
         blank {mustBeNonnegative}
-        
+        % [x0, y0, x1, y1] array - manually entered stimulus position
+        % inside the screen fields. Will override position, size, padding
+        % and xy_ratio.
+        manual_rect {mustBeInteger}
     end
 
    

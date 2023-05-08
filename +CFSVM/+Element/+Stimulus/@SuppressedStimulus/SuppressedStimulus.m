@@ -33,7 +33,6 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
         % Onset time of stimulus dissapearance
         fade_out_onset {mustBeNonnegative}
 
-        
     end
 
 
@@ -54,7 +53,7 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
         %   duration: :attr:`CFSVM.Element.TemporalElement.duration`
         %   fade_out_duration: :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration`
         %   blank: :attr:`CFSVM.Element.Stimulus.Stimulus.blank`
-        %
+        %   manual_rect: :attr:`~CFSVM.Element.Stimulus.Stimulus.manual_rect`
 
             arguments
                 dirpath {mustBeFolder}
@@ -69,6 +68,7 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
                 parameters.duration = 1
                 parameters.fade_out_duration = 0
                 parameters.blank = 0
+                parameters.manual_rect
             end
             
             obj.dirpath = dirpath;

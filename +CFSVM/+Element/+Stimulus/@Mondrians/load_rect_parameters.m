@@ -7,11 +7,17 @@ function load_rect_parameters(obj, screen, is_left_suppression)
 %
 
     if is_left_suppression
-        %obj.xy_ratio = screen.left.x_pixels/screen.left.y_pixels;
-        obj.rect = obj.get_rect(screen.fields{1}.rect);
+        if ~isempty(obj.manual_rect)
+            obj.rect = obj.get_manual_rect(screen.fields{1}.rect);
+        else
+            obj.rect = obj.get_rect(screen.fields{1}.rect);
+        end
     else
-        %obj.xy_ratio = screen.right.x_pixels/screen.right.y_pixels;
-        obj.rect = obj.get_rect(screen.fields{2}.rect);
+        if ~isempty(obj.manual_rect)
+            obj.rect = obj.get_manual_rect(screen.fields{2}.rect);
+        else
+            obj.rect = obj.get_rect(screen.fields{2}.rect);
+        end
     end
     
 end

@@ -11,6 +11,7 @@ function run(obj)
 
     for block = 1:obj.trials.n_blocks
         obj.trials.block_index = block;
+        obj.show_info(sprintf('block_introduction_%d', block))
         
         for trial = 1:width(obj.trials.matrix{block})
             obj.trials.start_time = GetSecs();
@@ -31,7 +32,6 @@ function run(obj)
                 obj.subject_info.code, ...
                 obj.trials.block_index, ...
                 obj.trials.trial_index), 'obj')
-            obj.wait_for_keypress('return')
         end
 
     end 

@@ -19,7 +19,7 @@ function show_info(obj, type)
     Screen('Flip', obj.screen.window);
     
     % Wait until the right key is pressed, then continue.
-    obj.wait_for_keypress(key)
+    obj.wait_for_keypress(key);
     
 end
 

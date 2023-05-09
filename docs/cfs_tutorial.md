@@ -324,8 +324,23 @@ RUN_ME/
 
 Congrats! We are almost there!
 
-## The last step before the run
+## The last step (or two) before the run
 
+### Customizing the instructions
+The CFSVM package comes with generic functions for instruction screens, like introduction, farewell etc., allowing you to test your experiment without paying too much attention to these screens. But when the time comes and you want to modify them, you can do it fairly easily by creating your own functions and giving a path to them to the code. If you want to use the generic function as a template, you can find them on [GitHub](https://github.com/Mudrik-Lab/CFSVM/tree/main/Examples/InfoFunctions) or you can write the functions completely from scratch.
+
+There are some restrictions allowing for the seamless injection of these functions to the main code:
+1. They should be put inside one folder. Here we will create a `Code/instructions/` folder and put all the functions there.
+2. Every type of instruction should be in its own `.m` file and have one of the following names:
+    - `introduction.m` for the introduction screen shown once before the beginning of the experiment.
+    - `block_introduction_1.m` to `block_introduction_n.m` where `n` is the number of blocks in your experiment.
+    - `rest.m` for the screen shown after each trial.
+    - `farewell.m` for the screen at the end of the experiment.
+3. The functions can't use their own `Screen('Flip')`, meaning that they can show only one screen.
+4. The function should take exactly two arguments: one for the PsychToolBox window pointer and one for the [x0,y0,x1,y1] array describing the pixels of a screen field you should put your text into (if you are using two screen fields like we do in this tutorial, every function will run two times: one time for each screen field). The function should return only one variable for the key the subject should press to proceed. The key should be a char array; you can use [KbName](http://psychtoolbox.org/docs/KbName) or [KbDemo](http://psychtoolbox.org/docs/KbDemo) to find the exact name of the key.
+
+
+### Writing main.m
 So far we’ve generated the trials. Now we want to run the experiment.
 Let’s start building our `main.m` script, which we will put inside the `Code/` folder near the `generate_trials.m` script. 
 We will now go over a few parameters that can be adjusted to create specific settings you want.
@@ -343,7 +358,7 @@ import CFSVM.Experiment.* ...
     CFSVM.Element.Data.*
 ```
 
-Initialize the BCFS object and provide it with the **save_to_dir** - path to the folder you want the results to be saved. According to the lab handbook this will be `Raw Data/Behavioral/`.
+Initialize the BCFS object and provide it with the **save_to_dir** - path to the folder you want the results to be saved. According to the lab handbook this will be `Raw Data/Behavioral/`. If you created your own instruction functions you can pass the folder containing these functions to the **path_to_functions** argument .
 ```matlab
 experiment = BCFS(save_to_dir='../../../Raw Data/Behavioral');
 ```

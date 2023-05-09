@@ -8,7 +8,7 @@ function wait_for_keypress(key)
 %
     while 1
 
-        [~, keyCode, ~] = KbWait;
+        [~, keyCode, ~] = KbStrokeWait;
 
         if keyCode(KbName(key)) == 1
             break;

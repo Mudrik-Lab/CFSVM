@@ -14,7 +14,7 @@ import CFSVM.Experiment.* ...
 % Initiate an object, for visual priming CFS use experiment = VPCFS(),
 % for breaking CFS use experiment = BCFS().
 
-experiment = BCFS(save_to_dir="../../../Raw Data/Behavioral", path_to_functions="./Examples/Greetings/");
+experiment = BCFS(save_to_dir="../../../Raw Data/Behavioral");
 
 experiment.subject_info = SubjectData( ...
     dirpath='../../../Raw Data/Demographics');

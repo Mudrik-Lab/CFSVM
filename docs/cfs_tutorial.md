@@ -73,7 +73,7 @@ RUN_ME/
 We will start by generating a list of trials specifying the experimental conditions. 
 1. Navigate to the `Code/` folder in the MATLAB files panel (or using the `cd` command).
 2. To generate trials:
-    - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step before the run](#the-last-step-before-the-run) section in this tutorial. 
+    - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step (or two) before the run](#the-last-step-or-two-before-the-run) section in this tutorial. 
     - Or you can create your own *generate_trials.m* file based on your needs. If you follow this way, your `RUN_ME` folder structure will now look like this:
 ```
 RUN_ME/

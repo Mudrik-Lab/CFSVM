@@ -19,7 +19,9 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
         function obj = Experiment(parameters)
             arguments
                 parameters.save_to_dir {mustBeTextScalar} = "./Raw"
-                parameters.path_to_functions = "./Examples/InfoFunctions"
+                parameters.path_to_functions = fullfile( ...
+                    matlab.internal.addons.util.retrieveAddOnsInstallationFolder, ...
+                    'Toolboxes', 'CFSVM', 'Examples', 'InfoFunctions')
             end
             obj.save_to_dir = parameters.save_to_dir;
             obj.path_to_functions = parameters.path_to_functions;

@@ -73,7 +73,7 @@ RUN_ME/
 We will start by generating a list of trials specifying the experimental conditions. 
 1. Navigate to the `Code/` folder in the MATLAB files panel (or using the `cd` command).
 2. To generate trials:
-    - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step before the run](#the-last-step-before-the-run) section in this tutorial. 
+    - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step (or two) before the run](#the-last-step-or-two-before-the-run) section in this tutorial. 
     - Or you can create your own *generate_trials.m* file based on your needs. If you follow this way, your `RUN_ME` folder structure will now look like this:
 ```
 RUN_ME/
@@ -160,7 +160,7 @@ cmap = [0 0 0;
       0.75 0.75 0.75;
       1 1 1]
 ```
-In addition, you can use the **set_shades()** method if you want to use grayscale with different number of tones. **set_shades()** will take RGB array as a first argument and create a gradient from this color to white with number of tones provided as a second argument. In the code below it creates gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.
+In addition, you can use the **set_shades()** method if you want to use grayscale with different numbers of tones. **set_shades()** will take the RGB array as a first argument and create a gradient from this color to white with a number of tones provided as a second argument. In the code below it creates a gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.
 ```matlab
 generator.set_shades([0,0,0], 8);
 ```
@@ -324,8 +324,23 @@ RUN_ME/
 
 Congrats! We are almost there!
 
-## The last step before the run
+## The last step (or two) before the run
 
+### Customizing the instructions
+The CFSVM package comes with generic functions for instruction screens, like introduction, farewell etc., allowing you to test your experiment without paying too much attention to these screens. But when the time comes and you want to modify them, you can do it fairly easily by creating your own functions and giving a path to them to the code. If you want to use the generic function as a template, you can find them on [GitHub](https://github.com/Mudrik-Lab/CFSVM/tree/main/Examples/InfoFunctions) or you can write the functions completely from scratch.
+
+There are some restrictions allowing for the seamless injection of these functions to the main code:
+1. They should be put inside one folder. Here we will create a `Code/instructions/` folder and put all the functions there.
+2. Every type of instruction should be in its own `.m` file and have one of the following names:
+    - `introduction.m` for the introduction screen shown once before the beginning of the experiment.
+    - `block_introduction_1.m` to `block_introduction_n.m` where `n` is the number of blocks in your experiment.
+    - `rest.m` for the screen shown after each trial.
+    - `farewell.m` for the screen at the end of the experiment.
+3. The functions can't use their own `Screen('Flip')`, meaning that they can show only one screen.
+4. The function should take exactly two arguments: one for the PsychToolBox window pointer and one for the [x0,y0,x1,y1] array describing the pixels of a screen field you should put your text into (if you are using two screen fields like we do in this tutorial, every function will run two times: one time for each screen field). The function should return only one variable for the key the subject should press to proceed. The key should be a char array; you can use [KbName](http://psychtoolbox.org/docs/KbName) or [KbDemo](http://psychtoolbox.org/docs/KbDemo) to find the exact name of the key.
+
+
+### Writing main.m
 So far we’ve generated the trials. Now we want to run the experiment.
 Let’s start building our `main.m` script, which we will put inside the `Code/` folder near the `generate_trials.m` script. 
 We will now go over a few parameters that can be adjusted to create specific settings you want.
@@ -343,7 +358,7 @@ import CFSVM.Experiment.* ...
     CFSVM.Element.Data.*
 ```
 
-Initialize the BCFS object and provide it with the **save_to_dir** - path to the folder you want the results to be saved. According to the lab handbook this will be `Raw Data/Behavioral/`.
+Initialize the BCFS object and provide it with the **save_to_dir** - path to the folder you want the results to be saved. According to the lab handbook this will be `Raw Data/Behavioral/`. If you created your own instruction functions you can pass the folder containing these functions to the **path_to_functions** argument .
 ```matlab
 experiment = BCFS(save_to_dir='../../../Raw Data/Behavioral');
 ```

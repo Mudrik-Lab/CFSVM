@@ -504,7 +504,7 @@ The initial folder structure will look like this (only relevant for this tutoria
 <li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">Code/</span></code> folder in the MATLAB files panel (or using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command).</p></li>
 <li><p>To generate trials:</p>
 <ul class="simple">
-<li><p>You can either use the example script <em>TnK_generate_trials</em> (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to <a class="reference internal" href="#the-last-step-before-the-run">the last step before the run</a> section in this tutorial.</p></li>
+<li><p>You can either use the example script <em>TnK_generate_trials</em> (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to <a class="reference internal" href="#the-last-step-or-two-before-the-run">the last step (or two) before the run</a> section in this tutorial.</p></li>
 <li><p>Or you can create your own <em>generate_trials.m</em> file based on your needs. If you follow this way, your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> folder structure will now look like this:</p></li>
 </ul>
 </li>
@@ -615,7 +615,7 @@ The two types have many common properties, as they are both Continuous Flash Sup
 <span class="w">      </span><span class="n">1</span><span class="w"> </span><span class="s">1</span><span class="w"> </span><span class="s">1]</span>
 </pre></div>
 </div>
-<p>In addition, you can use the <strong>set_shades()</strong> method if you want to use grayscale with different number of tones. <strong>set_shades()</strong> will take RGB array as a first argument and create a gradient from this color to white with number of tones provided as a second argument. In the code below it creates gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.</p>
+<p>In addition, you can use the <strong>set_shades()</strong> method if you want to use grayscale with different numbers of tones. <strong>set_shades()</strong> will take the RGB array as a first argument and create a gradient from this color to white with a number of tones provided as a second argument. In the code below it creates a gradient from black to white with 8 tones, i.e., black, white and 6 tones in between.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span><span class="p">.</span><span class="n">set_shades</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -771,8 +771,28 @@ Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span><
 </section>
 </section>
 </section>
-<section id="the-last-step-before-the-run">
-<h2>The last step before the run<a class="headerlink" href="#the-last-step-before-the-run" title="Permalink to this heading">#</a></h2>
+<section id="the-last-step-or-two-before-the-run">
+<h2>The last step (or two) before the run<a class="headerlink" href="#the-last-step-or-two-before-the-run" title="Permalink to this heading">#</a></h2>
+<section id="customizing-the-instructions">
+<h3>Customizing the instructions<a class="headerlink" href="#customizing-the-instructions" title="Permalink to this heading">#</a></h3>
+<p>The CFSVM package comes with generic functions for instruction screens, like introduction, farewell etc., allowing you to test your experiment without paying too much attention to these screens. But when the time comes and you want to modify them, you can do it fairly easily by creating your own functions and giving a path to them to the code. If you want to use the generic function as a template, you can find them on <a class="reference external" href="https://github.com/Mudrik-Lab/CFSVM/tree/main/Examples/InfoFunctions">GitHub</a> or you can write the functions completely from scratch.</p>
+<p>There are some restrictions allowing for the seamless injection of these functions to the main code:</p>
+<ol class="arabic simple">
+<li><p>They should be put inside one folder. Here we will create a <code class="docutils literal notranslate"><span class="pre">Code/instructions/</span></code> folder and put all the functions there.</p></li>
+<li><p>Every type of instruction should be in its own <code class="docutils literal notranslate"><span class="pre">.m</span></code> file and have one of the following names:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">introduction.m</span></code> for the introduction screen shown once before the beginning of the experiment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">block_introduction_1.m</span></code> to <code class="docutils literal notranslate"><span class="pre">block_introduction_n.m</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of blocks in your experiment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rest.m</span></code> for the screen shown after each trial.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">farewell.m</span></code> for the screen at the end of the experiment.</p></li>
+</ul>
+</li>
+<li><p>The functions can’t use their own <code class="docutils literal notranslate"><span class="pre">Screen('Flip')</span></code>, meaning that they can show only one screen.</p></li>
+<li><p>The function should take exactly two arguments: one for the PsychToolBox window pointer and one for the [x0,y0,x1,y1] array describing the pixels of a screen field you should put your text into (if you are using two screen fields like we do in this tutorial, every function will run two times: one time for each screen field). The function should return only one variable for the key the subject should press to proceed. The key should be a char array; you can use <a class="reference external" href="http://psychtoolbox.org/docs/KbName">KbName</a> or <a class="reference external" href="http://psychtoolbox.org/docs/KbDemo">KbDemo</a> to find the exact name of the key.</p></li>
+</ol>
+</section>
+<section id="writing-main-m">
+<h3>Writing main.m<a class="headerlink" href="#writing-main-m" title="Permalink to this heading">#</a></h3>
 <p>So far we’ve generated the trials. Now we want to run the experiment.
 Let’s start building our <code class="docutils literal notranslate"><span class="pre">main.m</span></code> script, which we will put inside the <code class="docutils literal notranslate"><span class="pre">Code/</span></code> folder near the <code class="docutils literal notranslate"><span class="pre">generate_trials.m</span></code> script.
 We will now go over a few parameters that can be adjusted to create specific settings you want.
@@ -788,7 +808,7 @@ First, we will make sure that the workspace and the screen are cleared:</p>
 <span class="w">    </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Element</span><span class="p">.</span><span class="n">Data</span><span class="o">.*</span>
 </pre></div>
 </div>
-<p>Initialize the BCFS object and provide it with the <strong>save_to_dir</strong> - path to the folder you want the results to be saved. According to the lab handbook this will be <code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">Data/Behavioral/</span></code>.</p>
+<p>Initialize the BCFS object and provide it with the <strong>save_to_dir</strong> - path to the folder you want the results to be saved. According to the lab handbook this will be <code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">Data/Behavioral/</span></code>. If you created your own instruction functions you can pass the folder containing these functions to the <strong>path_to_functions</strong> argument .</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BCFS</span><span class="p">(</span><span class="n">save_to_dir</span><span class="p">=</span><span class="s">&#39;../../../Raw Data/Behavioral&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -819,6 +839,7 @@ We will put it in <code class="docutils literal notranslate"><span class="pre">T
 </pre></div>
 </div>
 <p>That’s it! You can run the <code class="docutils literal notranslate"><span class="pre">main.m</span></code> script now!</p>
+</section>
 </section>
 <section id="running-the-experiment">
 <h2>Running the experiment<a class="headerlink" href="#running-the-experiment" title="Permalink to this heading">#</a></h2>
@@ -982,7 +1003,11 @@ The final folder structure will look like this:</p>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-last-step-before-the-run">The last step before the run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-last-step-or-two-before-the-run">The last step (or two) before the run</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-the-instructions">Customizing the instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-main-m">Writing main.m</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-experiment">Running the experiment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data">The data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thanks">Thanks!</a></li>

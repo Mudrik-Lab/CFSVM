@@ -613,6 +613,7 @@ soa &gt; 0 - backward masking</p>
 <li><p><strong>contrast</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.SpatialElement.contrast" title="CFSVM.Element.SpatialElement.contrast"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.SpatialElement.contrast</span></code></a></p></li>
 <li><p><strong>blank</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.blank" title="CFSVM.Element.Stimulus.Stimulus.blank"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.blank</span></code></a></p></li>
 <li><p><strong>crafter_masks</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Mondrians.crafter_masks" title="CFSVM.Element.Stimulus.Mondrians.crafter_masks"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">crafter_masks</span></code></a></p></li>
+<li><p><strong>manual_rect</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.manual_rect" title="CFSVM.Element.Stimulus.Stimulus.manual_rect"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.manual_rect</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -746,6 +747,14 @@ has the effect in only very specific cases.</p>
 </dd></dl>
 
 <dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.Stimulus.manual_rect">
+<span class="sig-name descname"><span class="pre">manual_rect</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.Stimulus.manual_rect" title="Permalink to this definition">#</a></dt>
+<dd><p>[x0, y0, x1, y1] array - manually entered stimulus position
+inside the screen fields. Will override position, size, padding
+and xy_ratio.</p>
+</dd></dl>
+
+<dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.Stimulus.padding">
 <span class="sig-name descname"><span class="pre">padding</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.Stimulus.padding" title="Permalink to this definition">#</a></dt>
 <dd><p>Float between 0 and 1, when 0 alignment to the frame and 1 is
@@ -787,6 +796,11 @@ images_names - cell array of chars, len - number of textures.</p>
 </dl>
 </div>
 </dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.get_manual_rect">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Stimulus.</span></span><span class="sig-name descname"><span class="pre">get_manual_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">screen_rectangle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Stimulus.get_manual_rect" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="mat function">
 <dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.get_rect">
@@ -878,6 +892,7 @@ column indicied will have the same X coordinates.</p>
 <li><p><strong>duration</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.TemporalElement.duration" title="CFSVM.Element.TemporalElement.duration"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.TemporalElement.duration</span></code></a></p></li>
 <li><p><strong>fade_out_duration</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration" title="CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">fade_out_duration</span></code></a></p></li>
 <li><p><strong>blank</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.blank" title="CFSVM.Element.Stimulus.Stimulus.blank"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.blank</span></code></a></p></li>
+<li><p><strong>manual_rect</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.manual_rect" title="CFSVM.Element.Stimulus.Stimulus.manual_rect"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">manual_rect</span></code></a></p></li>
 </ul>
 </dd>
 </dl>

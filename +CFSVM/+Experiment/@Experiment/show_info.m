@@ -1,7 +1,10 @@
 function show_info(obj, type)
 % Flips screen to the info, e.g., introduction, farewell etc.
 %
-    p = fullfile(obj.path_to_functions, sprintf(type,'%s.m'));
+    p = fullfile(obj.path_to_functions, sprintf('%s.m', type));
+    if ~isfile(p)
+        error('Info function with the name %s.m was not found in the provided path', type)
+    end
     [directory, func_name, ~] = fileparts(p);
     old_dir = pwd;
     cd(directory);
@@ -19,7 +22,7 @@ function show_info(obj, type)
     Screen('Flip', obj.screen.window);
     
     % Wait until the right key is pressed, then continue.
-    obj.wait_for_keypress(key);
+    obj.wait_for_keypress(key, func_name);
     
 end
 

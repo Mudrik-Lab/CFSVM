@@ -57,7 +57,7 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
 
     methods(Static)
 
-        wait_for_keypress(key)
+        wait_for_keypress(key, func_name)
 
     end
 

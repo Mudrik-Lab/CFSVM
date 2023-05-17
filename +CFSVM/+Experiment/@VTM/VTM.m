@@ -24,7 +24,7 @@ classdef VTM < CFSVM.Experiment.VM
         % :class:`~CFSVM.Element.Evidence.TextMAFC` object.
         mafc {mustBeMAFC} = CFSVM.Element.Evidence.ImgMAFC()
         % Handler for either forward, sim or backward masking flashing.
-        flash 
+        flash function_handle
 
     end
 

@@ -34,5 +34,5 @@ function new_rectangle = get_rect(obj, screen_rectangle)
     y_center = mean([y0+n0*dy-(1-i)*(1-n0)*rem/2, y0+n1*dy-(3-i)*n1*rem/2]);
     
     % Get the new rectangle
-    new_rectangle = CenterRectOnPoint(unmoved_rect, x_center, y_center);
+    new_rectangle = round(CenterRectOnPoint(unmoved_rect, x_center, y_center));
 end

@@ -13,10 +13,8 @@ function import_images(obj, window, parameters)
 
     end
     
-    % Load filenames
-    images = dir(obj.dirpath);
-    % Remove '.' and '..' from the list of filenames
-    images=images(~ismember({images.name},{'.','..'}));
+    % Load filenames, remove dots and sort naturally.
+    images = CFSVM.Utils.natsortfiles(dir(obj.dirpath), [], 'rmdot');
     
     % If the 'images_number' argument was provided, 
     % then create textures only for the first 'images_number' images.
@@ -43,11 +41,10 @@ function import_images(obj, window, parameters)
             else
                 image = imread(fullp);
             end
+            obj.textures.PTB_indices{img_index} = Screen('MakeTexture', window, image);
+            obj.textures.images_names{img_index} = images(img_index).name;
         catch
         end
-        obj.textures.PTB_indices{img_index} = Screen('MakeTexture', window, image);
-        obj.textures.images_names{img_index} = images(img_index).name;
-
     end
 
     % Get number of textures created. 

@@ -53,6 +53,7 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
                 end
             end
         end
+        check_info_functions(obj)
     end
 
     methods(Static)

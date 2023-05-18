@@ -56,18 +56,20 @@ function adjust(obj, frame)
 
     % Start queuing keys.
     KbQueueStart;
-
+    
+    key = 0;
     % Run loop until 'done' or 'stop' keys are pressed. 
     while 1
-
-        [~, firstPress] = KbQueueCheck();
         
-        % Check if something was pressed.
+        [~, firstPress, firstRelease] = KbQueueCheck();
+        % Check if any key was pressed.
+
         if find(firstPress)
             key = find(firstPress);
-        else
+        elseif find(firstRelease)
             key = 0;
         end
+        
         
         % Change screen rectangles according to the pressed key.
         try
@@ -113,6 +115,7 @@ function adjust(obj, frame)
             Screen('FillRect', obj.window, frame.colors, frame.rects);
             draw_text(obj, frame, TEXT)
             Screen('Flip', obj.window);
+            WaitSecs(0.1);
         
         catch ME
         
@@ -129,9 +132,9 @@ function adjust(obj, frame)
                     '\nDo not press enter with this warning on screen.'], 'center', 'center');
                 Screen('Flip', obj.window);
             end
-        
+    
         end
-        
+
     end
 
     KbQueueStop;

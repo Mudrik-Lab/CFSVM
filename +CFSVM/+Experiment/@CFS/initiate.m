@@ -7,7 +7,8 @@ function initiate(obj)
         CFSVM.Element.Evidence.* ...
         CFSVM.Element.Stimulus.*
     import CFSVM.Utils.hex2rgb
-
+    
+    obj.check_info_functions()
     % Create folder for the raw trial results
     if ~exist(obj.save_to_dir, 'dir')
         mkdir(obj.save_to_dir)

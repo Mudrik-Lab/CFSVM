@@ -48,7 +48,7 @@ generator.set_physical_properties(60, 1920, 33.5, 1080, 45);
 %             0.75 0.75 0.75 
 %             1 1 1]
 
-generator.generate(51);
+generator.generate(50);
 
 experiment.masks = Mondrians( ...
     dirpath='../Stimuli/Masks', ...

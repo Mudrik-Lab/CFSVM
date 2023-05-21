@@ -8,7 +8,6 @@ function initiate(obj)
         CFSVM.Element.Stimulus.*
     import CFSVM.Utils.hex2rgb
     
-    obj.check_info_functions()
     % Create folder for the raw trial results
     if ~exist(obj.save_to_dir, 'dir')
         mkdir(obj.save_to_dir)
@@ -26,7 +25,7 @@ function initiate(obj)
 
     % Initialize frame property with parameters from the first trial.
     obj.frame = obj.trials.matrix{1}{1}.frame;
-
+    
     % Write to disk provided subject data.
     obj.subject_info.write()
     
@@ -90,10 +89,10 @@ function initiate(obj)
 
     % Update every trial with initialized parameters.
     obj.trials.update(obj)
+    
+    obj.instructions.import_images(obj.screen.window, obj.trials.n_blocks)
 
     obj.load_parameters();
-    
-    obj.show_info('introduction')
 
 end
 

@@ -10,7 +10,7 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
 
         dynpropnames  % Variable for saving names of dynamic properties.
         save_to_dir
-        path_to_functions
+
     end
     
 
@@ -19,24 +19,15 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
         function obj = Experiment(parameters)
             arguments
                 parameters.save_to_dir {mustBeTextScalar} = "./Raw"
-                parameters.path_to_functions = fullfile( ...
-                    matlab.internal.addons.util.retrieveAddOnsInstallationFolder, ...
-                    'Toolboxes', 'CFSVM', 'Examples', 'InfoFunctions')
             end
             obj.save_to_dir = parameters.save_to_dir;
-            obj.path_to_functions = parameters.path_to_functions;
         end
 
         
 
         addprop(obj, prop_name)
         dynpropnames = get_dyn_props(obj)
-        
         initiate_window(obj)
-        show_preparing_screen(obj)
-        show_introduction_screen(obj)
-        show_rest_screen(obj)
-        show_farewell_screen(obj)
         
     end
     
@@ -53,14 +44,8 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
                 end
             end
         end
-        check_info_functions(obj)
     end
 
-    methods(Static)
-
-        wait_for_keypress(key, func_name)
-
-    end
 
 end
 

@@ -12,6 +12,8 @@ classdef VSM < CFSVM.Experiment.VM
         screen CFSVM.Element.Screen.CustomScreen
         % :class:`~CFSVM.Element.Data.SubjectData` object.
         subject_info CFSVM.Element.Data.SubjectData
+        % :class:`~CFSVM.Element.Data.Instructions` object.
+        instructions CFSVM.Element.Data.Instructions
         % :class:`~CFSVM.Element.Data.TrialsData` object.
         trials CFSVM.Element.Data.TrialsData
         % :class:`~CFSVM.Element.Stimulus.Fixation` object.

@@ -6,7 +6,6 @@ classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.Spa
 %
     
     properties
-
         % Char array for path to directory in which stimuli are stored.
         dirpath {mustBeTextScalar} = '.'
         % Char array. One of 'UpperLeft', 'Top', 'UpperRight', 'Left',
@@ -40,12 +39,10 @@ classdef (Abstract) Stimulus < CFSVM.Element.TemporalElement & CFSVM.Element.Spa
     end
 
    
-    methods 
-
-        import_images(obj, window, parameters);
+    methods
 
         new_rectangle = get_rect(obj, screen_rectangle);
-
+        import_images(obj, window, parameters);
     end
 
     methods (Access=protected)

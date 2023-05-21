@@ -67,7 +67,7 @@ classdef TrialsData < matlab.mixin.Copyable
         % Args:
         %   experiment: An experiment object to update properties in.
             
-            dont_load = {'screen', 'subject_info', 'trials'};
+            dont_load = {'screen', 'subject_info', 'trials', 'instructions'};
             
             for property = setdiff(properties(experiment)', dont_load)
                 experiment.(property{:}) = obj.matrix{obj.block_index}{obj.trial_index}.(property{:});

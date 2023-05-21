@@ -244,9 +244,9 @@ ndx = 1:numel(fnm);
 %
 for k = nmr:-1:1
 	if nargout<3 % faster:
-		[~,idx] = natsort(mat(k,ndx),txt{:},xtx{:});
+		[~,idx] = CFSVM.Utils.natsort(mat(k,ndx),txt{:},xtx{:});
 	else % for debugging:
-		[~,idx,gbd] = natsort(mat(k,ndx),txt{:},xtx{:});
+		[~,idx,gbd] = CFSVM.Utils.natsort(mat(k,ndx),txt{:},xtx{:});
 		[~,idb] = sort(ndx);
 		dbg{k} = gbd(idb,:);
 	end

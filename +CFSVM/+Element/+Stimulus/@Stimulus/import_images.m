@@ -37,7 +37,9 @@ function import_images(obj, window, parameters)
             [~, ~, ext] = fileparts(fullp);
             if ext == ".png"
                 [image, ~, alpha] = imread(fullp);
-                image(:, :, 4) = alpha;
+                if ~isempty(alpha)
+                    image(:, :, 4) = alpha;
+                end
             else
                 image = imread(fullp);
             end

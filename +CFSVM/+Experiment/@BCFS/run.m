@@ -7,10 +7,11 @@ function run(obj)
 %
 
     obj.initiate()
+    obj.instructions.show(obj, 'introduction')
     
     for block = 1:obj.trials.n_blocks
         obj.trials.block_index = block;
-        obj.show_info(sprintf('block_introduction_%d', block))
+        obj.instructions.show(obj, sprintf('block_introduction_%d', block))
 
         for trial = 1:width(obj.trials.matrix{block})
             obj.trials.start_time = GetSecs();
@@ -25,7 +26,7 @@ function run(obj)
 
             obj.trials.end_time = GetSecs();
             obj.breakthrough.get(pressed, first_press)
-            obj.show_info('rest')
+            obj.instructions.show(obj, 'rest')
             save(sprintf( ...
                 "%s/RawTrials/%s/block%d_trial%d.mat", ...
                 obj.save_to_dir, ...
@@ -35,7 +36,7 @@ function run(obj)
         end
 
     end
-    obj.show_info('farewell')
+    obj.instructions.show(obj, 'farewell')
 
 end 
 

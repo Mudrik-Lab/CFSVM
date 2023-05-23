@@ -208,7 +208,8 @@ classdef MondrianGenerator < handle
         end
         
         function [freqs, psds] = get_psd(obj, img)
-        %
+        % Adopted and modified from CFS-crafter
+        % https://github.com/guandongwang/cfs_crafter
         %
         % Args:
         %   img: [x_pixels, y_pixels, n_colors] array - img to calculate psd from.

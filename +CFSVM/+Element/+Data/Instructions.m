@@ -4,8 +4,9 @@ classdef Instructions < matlab.mixin.Copyable
     
     properties
         dirpath
-        backward_key
-        forward_key
+        backward_key {mustBePTBKey} = 'LeftArrow' 
+        forward_key {mustBePTBKey} = 'RightArrow' 
+        proceed_key {mustBePTBKey} = 'Return' 
         textures
     end
     
@@ -16,11 +17,16 @@ classdef Instructions < matlab.mixin.Copyable
                 dirpath
                 parameters.backward_key
                 parameters.forward_key
+                parameters.proceed_key = ''
             end
             obj.dirpath = dirpath;
             obj.backward_key = convertStringsToChars(parameters.backward_key);
             obj.forward_key = convertStringsToChars(parameters.forward_key);
-
+            if isempty(parameters.proceed_key)
+                obj.proceed_key = obj.forward_key;
+            else
+                obj.proceed_key = convertStringsToChars(parameters.proceed_key);
+            end
         end
 
         function import_images(obj, window, n_blocks)
@@ -59,7 +65,7 @@ classdef Instructions < matlab.mixin.Copyable
         %
             n_screens = length(obj.textures.(type).PTB_indices);
             curr_screen = 1;
-            while curr_screen <= n_screens
+            while 1
 
                 if curr_screen < 1
                     curr_screen = 1;
@@ -94,10 +100,13 @@ classdef Instructions < matlab.mixin.Copyable
                 
                 % Wait until the right key is pressed, then continue.
                 key_code = obj.wait_for_keypress();
-                if strcmp(KbName(key_code), obj.backward_key)
+                key_name = KbName(key_code);
+                if any(strcmp(key_name, obj.backward_key)) && curr_screen > 1
                     curr_screen = curr_screen - 1;
-                elseif strcmp(KbName(key_code), obj.forward_key)
+                elseif any(strcmp(key_name, obj.forward_key)) && curr_screen < n_screens
                     curr_screen = curr_screen + 1;
+                elseif any(strcmp(key_name, obj.proceed_key)) && curr_screen == n_screens
+                    break;
                 end
             end
         end
@@ -141,7 +150,7 @@ classdef Instructions < matlab.mixin.Copyable
         
                 [~, key_code, ~] = KbStrokeWait;
         
-                if any(key_code(KbName({obj.backward_key, obj.forward_key})))
+                if any(key_code(KbName({obj.backward_key, obj.forward_key, obj.proceed_key})))
                     break;
         
                 elseif all(key_code(KbName({'ESCAPE'})))
@@ -156,25 +165,22 @@ classdef Instructions < matlab.mixin.Copyable
         end
     end
 
-    methods(Static)
+end
 
-        function mustBePTBKey(key)
+function mustBePTBKey(key)
 
-            if ~(isstring(key)||ischar(key)||iscellstr(key))
-                if key
-                    error('The %s should be char, string or cell array of chars', inputname(1))
-                end
-            end
-            keys = KbName('KeyNames');
-            keys = keys(~cellfun('isempty', keys));
-            if ~any(ismember(lower(key), lower(keys)))
-                error("The %s is not a valid PTB key. " + ...
-                    "Use KbName('UnifyKeyNames') and KbName('KeyNames') " + ...
-                    "to find the valid keyname.", inputname(1))
-            end
-
+    if ~(isstring(key)||ischar(key)||iscellstr(key))
+        if key
+            error('The %s should be char, string or cell array of chars', inputname(1))
         end
-
+    end
+    KbName('UnifyKeyNames');
+    keys = KbName('KeyNames');
+    keys = keys(~cellfun('isempty', keys));
+    if ~any(ismember(key, keys))
+        error("The %s is not a valid PTB key. " + ...
+            "Use KbName('UnifyKeyNames') and KbName('KeyNames') " + ...
+            "to find the valid keyname.", inputname(1))
     end
 
 end

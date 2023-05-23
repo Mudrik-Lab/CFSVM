@@ -304,7 +304,7 @@ save('../TrialMatrix/experiment.mat', 'trial_matrix')
 ```
 
 Don’t forget to execute the code before running the experiment! After executing it you will find the file with the trial matrix in the `RUN_ME/TrialMatrix/` directory and generated Mondrians in the `RUN_ME/Stimuli/Masks/`.
-Your `RUN_ME` folder structure now should look like this :
+Your `RUN_ME` folder structure now should look like this:
 ```
 RUN_ME/
 ├── Code/
@@ -316,7 +316,7 @@ RUN_ME/
 |   |   └── gabor_2.png
 |   └── Masks/
 |       ├── mondrian_1.png
-|	|   ⋮    ⋮    ⋮    ⋮
+|       |   ⋮    ⋮    ⋮    ⋮
 |       └── mondrian_<n>.png
 └── TrialMatrix/
     └──experiment.mat
@@ -327,18 +327,29 @@ Congrats! We are almost there!
 ## The last step (or two) before the run
 
 ### Customizing the instructions
-The CFSVM package comes with generic functions for instruction screens, like introduction, farewell etc., allowing you to test your experiment without paying too much attention to these screens. But when the time comes and you want to modify them, you can do it fairly easily by creating your own functions and giving a path to them to the code. If you want to use the generic function as a template, you can find them on [GitHub](https://github.com/Mudrik-Lab/CFSVM/tree/main/Examples/InfoFunctions) or you can write the functions completely from scratch.
+There are multiple types of instructions:
+- Introduction - a general description of the experiment.
+- Block introduction - a description of the forthcoming block (different for every block).
+- Rest - an instruction appearing after each trial (same for every trial).
+- Farewell
 
-There are some restrictions allowing for the seamless injection of these functions to the main code:
-1. They should be put inside one folder. Here we will create a `Code/instructions/` folder and put all the functions there.
-2. Every type of instruction should be in its own `.m` file and have one of the following names:
-    - `introduction.m` for the introduction screen shown once before the beginning of the experiment.
-    - `block_introduction_1.m` to `block_introduction_n.m` where `n` is the number of blocks in your experiment.
-    - `rest.m` for the screen shown after each trial.
-    - `farewell.m` for the screen at the end of the experiment.
-3. The functions can't use their own `Screen('Flip')`, meaning that they can show only one screen.
-4. The function should take exactly two arguments: one for the PsychToolBox window pointer and one for the [x0,y0,x1,y1] array describing the pixels of a screen field you should put your text into (if you are using two screen fields like we do in this tutorial, every function will run two times: one time for each screen field). The function should return only one variable for the key the subject should press to proceed. The key should be a char array; you can use [KbName](http://psychtoolbox.org/docs/KbName) or [KbDemo](http://psychtoolbox.org/docs/KbDemo) to find the exact name of the key.
-
+We will create an `Instructions` folder in the `RUN_ME` directory. Next, each type of the instruction will have its own subfolder; the introduction for each block will have its own folder. In each subfolder we will put corresponding images. When the experiment is running the code will show the images by their [natural order](https://en.wikipedia.org/wiki/Natural_sort_order). You can set the background of the images as transparent in an image editor and save them as .png files if you want the background color the same as in the experiment.
+The **exact** names of the subfolders should be: introduction, introduction, block_introduction_1, …, block_introduction_n (where n is the number of blocks), rest, farewell. For the experiment we are building here the folder structure will look like this:
+```
+RUN_ME/
+└── Instructions/
+    ├── introduction/
+    |   ├── 1.png
+    |   └── 2.png
+    ├── block_introduction_1/
+    |   ├── 1.png
+    |   ├── 2.png
+    |   └── 3.png
+    ├── rest/
+    |   └── 1.png
+    └── farewell/
+        └── 1.png
+```
 
 ### Writing main.m
 So far we’ve generated the trials. Now we want to run the experiment.
@@ -377,9 +388,19 @@ experiment.trials = TrialsData( ...
     filepath='../TrialMatrix/experiment.mat');
 ```
 
+Initialize the **instructions** property by providing a path to the folder containing instructions subfolders which were created in the [previous step](#customizing-the-instructions). **backward_key**, **forward_key** are the key names for moving between screens and **proceed_key** for proceeding to the experiment. If `proceed_key=''` (empty char), it will be the same as the **forward_key**. You can also provide multiple keys for every argument, e.g., `backward_key={'LeftArrow', 'a'}`. The key names should correspond to the unified PTB style. To find the correct spelling of keys, run in the matlab console two commands: `KbName('UnifyKeyNames')` and `KbName('KeyNames')`.
+
+```matlab
+experiment.instructions = Instructions( ...
+    "../Instructions/", ...
+    backward_key='LeftArrow', ...
+    forward_key='RightArrow',
+    proceed_key='Return');
+```
+
 ![Adjust frames](tutorial/adjust_coords.png)
 
-Initialize the **screen** property by setting **is_stereo** to true and defining the size and location of the left rectangle by providing **initial_rect** with pixel coordinates of its upper left and lower right vertices, like this: [x0,y0, x1, y1]. The first two numbers in this array are x and y pixels of the upper left vertex, the last two numbers are x and y pixels of the lower right vertex. The right rectangle will be set symmetrically to the left one.
+Initialize the **screen** property by setting **is_stereo** to true and defining the size and location of the left rectangle by providing **initial_rect** with pixel coordinates of its upper left and lower right vertices, like this: [x0, y0, x1, y1]. The first two numbers in this array are x and y pixels of the upper left vertex, the last two numbers are x and y pixels of the lower right vertex. The right rectangle will be set symmetrically to the left one.
 
 We will also provide hex code for the **background color** - `#AEAEAE` gray here.
 
@@ -424,8 +445,8 @@ And that's it! Once you’ve adjusted the screens, you'll see the introduction s
 ## The data
 
 The raw trial data will appear in the `Tnk_experiment_2/Raw Data/Behavioral/RawTrials/`. Every `.mat` file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.
-You can run `CFSVM.extract_from_raw_cfs(path_to_raw_trials)`
-(*../../../Raw Data/Behavioral/RawTrials* in this example) script to extract the data from the raw files. It will create two csv tables in `Behavioral/Extracted/<subject code>/` and `Behavioral/Processed/` folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
+You can run `CFSVM.Utils.extract_from_raw_cfs(path_to_raw_trials, subject_code)`
+(*'../../../Raw Data/Behavioral/RawTrials'* and *'HZ4'* in this example) script to extract the data from the raw files. It will create two csv tables in `Behavioral/Extracted/<subject code>/` and `Behavioral/Processed/` folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
 The final folder structure will look like this:
 ```
 TnK_experiment_2/
@@ -434,31 +455,43 @@ TnK_experiment_2/
 |       ├── Code/
 |       |   ├── generate_trials.m
 |       |   └── main.m
-|	├── Stimuli/
+|       ├── Stimuli/
 |       |   ├── Suppressed/
 |       |   |   ├── gabor_1.png
 |       |   |   └── gabor_2.png
-|	|   └── Masks/
+|       |   └── Masks/
 |       |       ├── mondrian_1.png
-|	|	|   ⋮    ⋮    ⋮    ⋮
+|       |       |   ⋮    ⋮    ⋮    ⋮
 |       |       └── mondrian_<n>.png
-|	└── TrialMatrix/
-|	    └──experiment.mat
+|       ├── TrialMatrix/
+|       |   └──experiment.mat
+|       └── Instructions/
+|           ├── introduction/
+|           |   ├── 1.png
+|           |   └── 2.png
+|           ├── block_introduction_1/
+|           |   ├── 1.png
+|           |   ├── 2.png
+|           |   └── 3.png
+|           ├── rest/
+|           |   └── 1.png
+|           └── farewell/
+|               └── 1.png
 └── Raw Data/
     ├── Demographics/
     |	└── HZ4.csv
     └── Behavioral/
         ├── Raw Trials/
-	|   └── HZ4/
+        |   └── HZ4/
         |       ├── block1_trial1.mat
- 	|       |   ⋮    ⋮    ⋮    ⋮
+        |       |   ⋮    ⋮    ⋮    ⋮
         |       └── block<n>_trial<m>.mat
         ├── Extracted/
-	|   └── HZ4/
-	|       ├── HZ4_extracted.csv
-	|	└── HZ4_ifis_histogram.png
+        |   └── HZ4/
+        |       ├── HZ4_extracted.csv
+        |       └── HZ4_ifis_histogram.png
         └── Processed/
-	    └── HZ4_processed.csv
+            └── HZ4_processed.csv
 ```
 
 | ![Raw](tutorial/rawfiles.png) | 

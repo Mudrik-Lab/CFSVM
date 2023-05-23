@@ -1,0 +1,29 @@
+function spatial_filter(obj, screen_width_cm, screen_width_pixel, viewing_distance, filter_parameters)
+    arguments
+        obj
+        screen_width_cm
+        screen_width_pixel
+        viewing_distance
+        filter_parameters.l_freq = []
+        filter_parameters.h_freq = []
+        filter_parameters.method = 'Gaussian'
+        filter_parameters.order = []
+    end
+    deg = CFSVM.Utils.pix2deg( ...
+        obj.padded_stimuli_dim(1), ...
+        screen_width_cm, ...
+        screen_width_pixel, ...
+        viewing_distance);
+    l_freq = filter_parameters.l_freq * deg;
+    h_freq = filter_parameters.h_freq * deg;
+
+    spatial_filter = obj.band_pass_filter( ...
+        filter_parameters.method, ...
+        obj.spatial_map, ...
+        l_freq=l_freq, ...
+        h_freq=h_freq, ...
+        order=filter_parameters.order);
+
+    obj.fft_stimuli = obj.fft_stimuli .* spatial_filter;
+
+end

@@ -19,6 +19,8 @@ classdef CFSCrafter < handle
 % The code was adopted and modified from CFS-crafter:
 % https://github.com/guandongwang/cfs_crafter
 %
+% If you rely on this code, please consider citing the original
+% CFS-Crafter publication:
 % Wang, G., Alais, D., Blake, R. et al. CFS-crafter: 
 % An open-source tool for creating and analyzing images for continuous flash suppression experiments. 
 % Behav Res (2022). https://doi.org/10.3758/s13428-022-01903-7
@@ -32,6 +34,8 @@ classdef CFSCrafter < handle
         fft_stimuli
         rms_contrast
         mean_luminance
+        screen_info
+        stimuli_property
 
     end
     
@@ -49,35 +53,52 @@ classdef CFSCrafter < handle
         function obj = CFSCrafter(parameters)
             arguments
                 parameters.path_to_masks
-                parameters.refresh_rate
-                parameters.update_rate
+                parameters.display_refresh_rate
+                parameters.masks_update_rate
+                parameters.screen_width_pixel
+                parameters.screen_width_cm
+                parameters.screen_height_pixel
+                parameters.screen_height_cm
+                parameters.viewing_distance
                 parameters.rms_contrast = 0.37
                 parameters.mean_luminance = 0.48
             end
 
-            parameters_names = fieldnames(parameters);
-            for name = 1:length(parameters_names)
-                obj.(parameters_names{name}) = parameters.(parameters_names{name});
-            end
+            obj.refresh_rate = parameters.display_refresh_rate;
+            obj.update_rate = parameters.masks_update_rate;
+            obj.rms_contrast = parameters.rms_contrast;
+            obj.mean_luminance = parameters.mean_luminance;
+            obj.screen_info.width_pixel = parameters.screen_width_pixel;
+            obj.screen_info.width_cm = parameters.screen_width_cm;
+            obj.screen_info.height_pixel = parameters.screen_height_pixel;
+            obj.screen_info.height_cm = parameters.screen_height_cm;
+            obj.screen_info.viewing_distance = parameters.viewing_distance;
             
             if isfield(parameters, 'path_to_masks')
                 if isfile(parameters.path_to_masks)
-                    obj.stimuli_array = load(parameters.path_to_masks);
+                    obj.stimuli_array = load(parameters.path_to_masks).stimuli.stimuli_array;
                 elseif isfolder(parameters.path_to_masks)
                     files = dir(parameters.path_to_masks);
                     files = CFSVM.Utils.natsortfiles(files, [], "rmdot");
                     for i = 1:length(files)
-                        images(i).image_array = im2double(imread(fullfile(parameters.path_to_masks,files(i).name)));
+                        images(i).image_array = im2double( ...
+                            imread( ...
+                                fullfile( ...
+                                    parameters.path_to_masks, ...
+                                    files(i).name)));
                     end
                 
                     individual_masks = cat(4,images(:).image_array);
                     % individual_masks = set_RMS_and_luminance(individual_masks,rms_contrast,mean_luminance);
                     
-                    obj.stimuli_array = repelem(individual_masks, 1, 1, 1, obj.refresh_rate / obj.update_rate);
+                    obj.stimuli_array = repelem( ...
+                        individual_masks, ...
+                        1, 1, 1, ...
+                        obj.refresh_rate / obj.update_rate);
                 end
             end
 
-            if obj.stimuli_array
+            if ~isempty(obj.stimuli_array)
                 obj.fft_stimuli = fftn(obj.stimuli_array, obj.padded_stimuli_dim);
             end
         end
@@ -104,7 +125,29 @@ classdef CFSCrafter < handle
 
         function modified_stimuli = get.modified_stimuli(obj)
             modified_stimuli = real(ifftn(obj.fft_stimuli));
-            modified_stimuli = modified_stimuli(1:size(obj.stimuli_array, 1),1:size(obj.stimuli_array, 2),:,:);
+            modified_stimuli = modified_stimuli( ...
+                1:size(obj.stimuli_array, 1), ...
+                1:size(obj.stimuli_array, 2),:,:);
+        end
+
+        function [freqs, psds] = spatial_spectrum(obj)
+            
+            [freqs, psds] = obj.get_spatial_amp( ...
+                obj.modified_stimuli, ...
+                obj.screen_info.width_cm, ...
+                obj.screen_info.width_pixel, ...
+                obj.screen_info.height_cm, ...
+                obj.screen_info.height_pixel, ...
+                obj.screen_info.viewing_distance);
+
+        end
+
+        function [freqs, psds] = temporal_spectrum(obj)
+            
+            [freqs, psds] = obj.get_temporal_amp( ...
+                obj.modified_stimuli, ...
+                obj.total_frames/obj.refresh_rate);
+
         end
         
         function play(obj)
@@ -112,12 +155,14 @@ classdef CFSCrafter < handle
             implay(stimuli)
         end
 
-        function save(obj, save_to_file)
+        function save(obj, filepath)
             stimuli.stimuli_array = obj.set_rms_and_luminance(obj.modified_stimuli);
-            save(sprintf('%s', save_to_file), 'stimuli', '-v7.3');
+            obj.convert_mask_info()
+            stimuli.stimuli_property = obj.stimuli_property;
+            save(sprintf('%s', filepath), 'stimuli', '-v7.3');
         end
 
-        spatial_filter(obj, screen_width_cm, screen_width_pixel, viewing_distance, filter_parameters)
+        spatial_filter(obj, filter_parameters)
 
         temporal_filter(obj, filter_parameters)
 
@@ -127,7 +172,7 @@ classdef CFSCrafter < handle
         
         stimuli_array = set_rms_and_luminance(obj, stimuli_array)
 
-        generate_noise(obj, mask_resolution, sequence_duration_sec, is_pink)
+        generate_noise(obj, mask_resolution, sequence_duration_sec, parameters)
 
         generate_mondrians( ...
             obj, ...
@@ -137,6 +182,8 @@ classdef CFSCrafter < handle
             is_colored, ...
             pattern_shape, ...
             is_pink)
+
+        convert_mask_info(obj, edge_parameters)
 
     end
 
@@ -174,6 +221,8 @@ classdef CFSCrafter < handle
             viewing_distance)
 
         [temporal_frequency, temporal_psd] = get_temporal_amp(stimuli_array, sequence_duration)
+
+        [edge_array, edge_density, thresh_out] = find_edge(stimuli_array, detection_method, detection_threshold)
         
     end
 end

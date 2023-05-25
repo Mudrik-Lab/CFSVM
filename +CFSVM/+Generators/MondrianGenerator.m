@@ -200,8 +200,8 @@ classdef MondrianGenerator < handle
                 f = figure('visible','off');
                 semilogy(freqs, mean(psds_matrix, 2))
                 title('Average PSD of generated Mondrians')
-                xlabel('Spatial frequency [CPD]')
-                ylabel('PSD')
+                xlabel('Spatial frequency [cpd]')
+                ylabel('PSD [W/cpd]')
                 exportgraphics(f,fullfile(obj.dirpath, 'average_mondrians_psd.png'))
             end
             close(w);

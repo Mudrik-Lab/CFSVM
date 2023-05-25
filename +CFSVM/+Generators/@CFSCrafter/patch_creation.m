@@ -61,20 +61,20 @@ function [patch,paste_index] = patch_creation( ...
            
     [xx, yy] = meshgrid(-origin_patch_half_size:origin_patch_half_size,-origin_patch_half_size:origin_patch_half_size);
 
-    switch pattern_shape
-        case "Circle"
+    switch lower(pattern_shape)
+        case "circle"
             for i = 1:patch_size_lvl
                 shape_mask{i} = xx.^2 + yy.^2 < patch_radius(i)^2;
                 larger_mask = xx.^2 + yy.^2 < (patch_radius(i)+2)^2;
                 edge{i} = larger_mask - shape_mask{i};
             end
-        case "Square"
+        case "square"
             for i = 1:patch_size_lvl
                 shape_mask{i} = abs(xx) < half_patch_side(i) & abs(yy) < half_patch_side(i);
                 larger_mask = abs(xx) < (half_patch_side(i)+2) & abs(yy) < (half_patch_side(i)+2);
                 edge{i} = larger_mask - shape_mask{i};
             end
-        case "Diamond"
+        case "diamond"
             for i = 1:patch_size_lvl
                 diamond = strel('diamond',patch_radius_diamond(i));
                 pad_size = origin_patch_half_size-patch_radius_diamond(i);

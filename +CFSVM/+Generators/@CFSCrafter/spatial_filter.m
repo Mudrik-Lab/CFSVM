@@ -1,19 +1,20 @@
-function spatial_filter(obj, screen_width_cm, screen_width_pixel, viewing_distance, filter_parameters)
+function spatial_filter(obj, filter_parameters)
     arguments
         obj
-        screen_width_cm
-        screen_width_pixel
-        viewing_distance
         filter_parameters.l_freq = []
         filter_parameters.h_freq = []
         filter_parameters.method = 'Gaussian'
         filter_parameters.order = []
     end
+    if isempty(filter_parameters.l_freq)&&isempty(filter_parameters.h_freq)
+        error('Provide at least one cuttoff frequency')
+    end
+
     deg = CFSVM.Utils.pix2deg( ...
         obj.padded_stimuli_dim(1), ...
-        screen_width_cm, ...
-        screen_width_pixel, ...
-        viewing_distance);
+        obj.screen_info.width_cm, ...
+        obj.screen_info.width_pixel, ...
+        obj.screen_info.viewing_distance);
     l_freq = filter_parameters.l_freq * deg;
     h_freq = filter_parameters.h_freq * deg;
 

@@ -1,25 +1,38 @@
 function phase_scramble(obj, parameters)
     arguments
         obj
+        parameters.scrambling_index = 1
         parameters.l_freq = []
         parameters.h_freq = []
-        parameters.scrambling_index = 1
+
     end
     l_freq = parameters.l_freq;
     h_freq = parameters.h_freq;
-    if ~isempty(l_freq)
+    if isempty(l_freq)&&isempty(h_freq)
+        % all frequencies
         PS_low = 0;
-        PS_high = PS.cutoff_cpd * CFSVM.Utils.pix2deg(obj.padded_stimuli_dim(1),screen_width_cm,screen_width_pixel,viewing_distance);
-        if ~isempty(h_freq)
-            PS_low = PS.cutoff_cpd(1) * CFSVM.Utils.pix2deg(obj.padded_stimuli_dim(1),screen_width_cm,screen_width_pixel,viewing_distance);
-            PS_high = PS.cutoff_cpd(2) * CFSVM.Utils.pix2deg(obj.padded_stimuli_dim(1),screen_width_cm,screen_width_pixel,viewing_distance);
-        end
-    elseif ~isempty(h_freq)
-        PS_low = PS.cutoff_cpd * CFSVM.Utils.pix2deg(obj.padded_stimuli_dim(1),screen_width_cm,screen_width_pixel,viewing_distance);
         PS_high = ceil(max(max(obj.spatial_map)));
     else
-        PS_low = 0;
-        PS_high = ceil(max(max(obj.spatial_map)));
+        pix = CFSVM.Utils.pix2deg( ...
+            obj.padded_stimuli_dim(1), ...
+            obj.screen_info.width_cm, ...
+            obj.screen_info.width_pixel, ...
+            obj.screen_info.viewing_distance);
+        if ~isempty(h_freq)
+            if ~isempty(l_freq)
+                % band-pass
+                PS_low = l_freq * pix;
+                PS_high = h_freq * pix;
+            else
+                % low-pass
+                PS_low = 0;
+                PS_high = h_freq * pix;
+            end
+        else
+            % high-pass
+            PS_low = l_freq * pix;
+            PS_high = ceil(max(max(obj.spatial_map)));
+        end
     end
 
     freq_range = obj.spatial_map >= PS_low & obj.spatial_map <= PS_high;

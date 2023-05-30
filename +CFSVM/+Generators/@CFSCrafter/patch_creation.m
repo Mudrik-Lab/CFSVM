@@ -1,4 +1,5 @@
 function [patch,paste_index] = patch_creation( ...
+    obj, ...
     stimuli_height_pixel, ...
     stimuli_width_pixel, ...
     is_noise_fill, ...
@@ -29,9 +30,15 @@ function [patch,paste_index] = patch_creation( ...
     if is_noise_fill
 
         if is_pink
+            old_rms = obj.rms_contrast;
+            old_lum = obj.mean_luminance;
+            obj.rms_contrast = 0.15;
             for i = 1:12
-                origin_patch{i} = set_rms_and_luminance(create_pink_noise(origin_patch_size),.15,(mod(i,4))/5);
+                obj.mean_luminance = (mod(i,4))/5;
+                origin_patch{i} = obj.set_rms_and_luminance(create_pink_noise(origin_patch_size));
             end
+            obj.rms_contrast = old_rms;
+            obj.mean_luminance = old_lum;
         else
             for i = 1:12
                 origin_patch{i}  = (rand(origin_patch_size,origin_patch_size)-.5) + (mod(i,4))/5; %gray level before standardizing

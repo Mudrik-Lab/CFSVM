@@ -59,7 +59,7 @@ classdef CFSCrafter < handle
                 parameters.screen_width_cm
                 parameters.screen_height_pixel
                 parameters.screen_height_cm
-                parameters.viewing_distance
+                parameters.viewing_distance_cm
                 parameters.rms_contrast = 0.37
                 parameters.mean_luminance = 0.48
             end
@@ -72,7 +72,7 @@ classdef CFSCrafter < handle
             obj.screen_info.width_cm = parameters.screen_width_cm;
             obj.screen_info.height_pixel = parameters.screen_height_pixel;
             obj.screen_info.height_cm = parameters.screen_height_cm;
-            obj.screen_info.viewing_distance = parameters.viewing_distance;
+            obj.screen_info.viewing_distance = parameters.viewing_distance_cm;
             
             if isfield(parameters, 'path_to_masks')
                 if isfile(parameters.path_to_masks)
@@ -128,6 +128,7 @@ classdef CFSCrafter < handle
             modified_stimuli = modified_stimuli( ...
                 1:size(obj.stimuli_array, 1), ...
                 1:size(obj.stimuli_array, 2),:,:);
+            modified_stimuli = obj.set_rms_and_luminance(modified_stimuli);
         end
 
         function [freqs, psds] = spatial_spectrum(obj)
@@ -151,12 +152,11 @@ classdef CFSCrafter < handle
         end
         
         function play(obj)
-            stimuli = obj.set_rms_and_luminance(obj.modified_stimuli);
-            implay(stimuli)
+            implay(obj.modified_stimuli, obj.refresh_rate)
         end
 
         function save(obj, filepath)
-            stimuli.stimuli_array = obj.set_rms_and_luminance(obj.modified_stimuli);
+            stimuli.stimuli_array = obj.modified_stimuli;
             obj.convert_mask_info()
             stimuli.stimuli_property = obj.stimuli_property;
             save(sprintf('%s', filepath), 'stimuli', '-v7.3');
@@ -166,7 +166,7 @@ classdef CFSCrafter < handle
 
         temporal_filter(obj, filter_parameters)
 
-        orientation_filter(obj, orientation, sigma)
+        orientation_filter(obj, parameters)
     
         phase_scramble(obj, parameters)
         
@@ -178,6 +178,15 @@ classdef CFSCrafter < handle
             obj, ...
             mask_resolution, ...
             sequence_duration_sec, ...
+            is_noise_fill, ...
+            is_colored, ...
+            pattern_shape, ...
+            is_pink)
+
+        [patch,paste_index] = patch_creation( ...
+            obj, ...
+            stimuli_height_pixel, ...
+            stimuli_width_pixel, ...
             is_noise_fill, ...
             is_colored, ...
             pattern_shape, ...
@@ -199,14 +208,6 @@ classdef CFSCrafter < handle
             stimuli_width_pixel, ...
             patch, ...
             paste_index)
-        
-        [patch,paste_index] = patch_creation( ...
-            stimuli_height_pixel, ...
-            stimuli_width_pixel, ...
-            is_noise_fill, ...
-            is_colored, ...
-            pattern_shape, ...
-            is_pink)
 
         filter = band_pass_filter(type, dist_map, parameters)
 

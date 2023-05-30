@@ -1,7 +1,7 @@
 function phase_scramble(obj, parameters)
     arguments
         obj
-        parameters.scrambling_index = 1
+        parameters.phase_scramble_index = 1
         parameters.l_freq = []
         parameters.h_freq = []
 
@@ -43,7 +43,7 @@ function phase_scramble(obj, parameters)
 
     n_unique_phase = obj.padded_stimuli_dim(4)/mask_stay_frame;
 
-    random_phase = parameters.scrambling_index .* freq_range .* angle(fftn(rand(obj.padded_stimuli_dim(1), obj.padded_stimuli_dim(2), 1, n_unique_phase)));
+    random_phase = parameters.phase_scramble_index .* freq_range .* angle(fftn(rand(obj.padded_stimuli_dim(1), obj.padded_stimuli_dim(2), 1, n_unique_phase)));
     random_phase = repmat(random_phase,1,1,1,mask_stay_frame);
 
     magnitude = abs(obj.fft_stimuli);

@@ -16,7 +16,7 @@ release = 'v0.6.0'
 
 extensions = [
     'sphinx.ext.autodoc', 
-    'sphinxcontrib.matlab', 
+    'sphinxcontrib.matlab',
     'sphinx.ext.napoleon',
     'myst_parser']
 
@@ -55,6 +55,7 @@ html_css_files = [
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css",
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css",
 ]
+
 html_theme_options = {
     "icon_links": [
         {

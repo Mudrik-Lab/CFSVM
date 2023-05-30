@@ -2,7 +2,7 @@
 
 The capabilities of the generator are presented below. In general, given Mondrian mask parameters the generator will create and save Mondrian images.
 
-## Usage
+## How to use
 ### Import the generator class
 ```matlab
 import CFSVM.Generators.MondrianGenerator
@@ -23,7 +23,7 @@ gen = MondrianGenerator( ...
 
 The arguments of the object constructor are as follows: 
 #### dirpath
-First, path to the parent directory in which will be created the `Masks/` folder. The generated Mondrians will be saved inside this folder. 
+First, the path to the parent directory in which the `Masks/` folder will be created. The generated Mondrians will be saved inside this folder. 
 
 #### type
 Next, the **type** argument describes the shape of the figures, which are overlaid in the Mondrian. Currently available shapes are rectangle, square, ellipse, circle, rhombus, 45 degrees rotated square.

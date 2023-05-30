@@ -1,8 +1,11 @@
 function orientation_filter(obj, parameters)
     arguments
-    parameters.orientation
-    parameters.sigma
+        obj
+        parameters.orientation
+        parameters.sigma
     end
+    orientation = parameters.orientation;
+    sigma = parameters.sigma;
 
     [XX, YY] = meshgrid( ...
         -obj.padded_stimuli_dim(1)/2:obj.padded_stimuli_dim(1)/2-1, ...

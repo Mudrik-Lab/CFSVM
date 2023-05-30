@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Fixation generator &#8212; CFSVM v0.4.0 documentation</title>
+    <title>Fixation generator &#8212; CFSVM v0.6.0 documentation</title>
   
   
   
@@ -164,11 +164,26 @@
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -304,11 +319,26 @@ document.write(`
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -416,8 +446,8 @@ document.write(`
 <p>The capabilities of the generator are presented below. In general, given fixation target parameters the generator will create and save an image of the fixation target.</p>
 <p>The generator currently supports shapes presented in <a class="reference external" href="https://doi.org/10.1016/j.visres.2012.10.012">Thaler et al., 2013</a>.</p>
 <p><img alt="Fixation shapes from Thaler et al., 2013" src="_images/shapes.jpg" /></p>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading">#</a></h2>
 <section id="import-the-generator-class">
 <h3>Import the generator class<a class="headerlink" href="#import-the-generator-class" title="Permalink to this heading">#</a></h3>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">FixationGenerator</span>
@@ -426,7 +456,7 @@ document.write(`
 </section>
 <section id="initialize-the-generator-object">
 <h3>Initialize the generator object<a class="headerlink" href="#initialize-the-generator-object" title="Permalink to this heading">#</a></h3>
-<p>The arguments of the object constructor are as follows: first, path to the parent directory in which will be created the <code class="docutils literal notranslate"><span class="pre">Fixation/</span></code> folder. The generated fixation target will be saved inside this folder. Next, the <strong>radius</strong> argument describes the radius in pixels of the largest shape in the fixation, e.g., radius of the big circle in the “AB” shape or half-width of the cross in “AC” shape, the final image resolution will be (radius*2+1, radius*2+1). I suggest using a minimum 128 pixels and resizing it later in the experiment run, instead of generating an image with low resolution.</p>
+<p>The arguments of the object constructor are as follows: first, the path to the parent directory in which the <code class="docutils literal notranslate"><span class="pre">Fixation/</span></code> folder will be created. The generated fixation target will be saved inside this folder. Next, the <strong>radius</strong> argument describes the radius in pixels of the largest shape in the fixation, e.g., radius of the big circle in the “AB” shape or half-width of the cross in “AC” shape, the final image resolution will be (radius*2+1, radius*2+1).We suggest using a minimum of 128 pixels and resizing it later in the experiment code, instead of generating an image with low resolution.</p>
 <p>After that, the <strong>hex_color</strong> sets the color of the fixation target. If you’d like to smooth the edges of the image, set <strong>is_smooth_edges</strong> to <code class="docutils literal notranslate"><span class="pre">true</span></code> and <strong>smoothing_cycles</strong> to some positive integer (the greater the number, the smoother edges will be). You can also set <strong>is_outline</strong> to <code class="docutils literal notranslate"><span class="pre">true</span></code> to leave only outlines of the fixation (you will need an <a class="reference external" href="https://uk.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab#answer_111232">installed</a> Image Processing Toolbox for outlining).</p>
 <table class="table">
 <thead>
@@ -473,33 +503,33 @@ document.write(`
 <td class="text-center"><p><img alt="" src="_images/c_64.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/c_96.jpg" /></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.AB(inner_circle_radius=32)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.AB(inner_circle_radius=64)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.AB(inner_circle_radius=96)</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.AB(inner_circle_radius=32)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.AB(inner_circle_radius=64)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.AB(inner_circle_radius=96)</span></code></strong></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><img alt="" src="_images/ab_32.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/ab_64.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/ab_96.jpg" /></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.AC(cross_width=32,</span> <span class="pre">circle_radius=32)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.AC(cross_width=64,</span> <span class="pre">circle_radius=64)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.AC(cross_width=96,</span> <span class="pre">circle_radius=96)</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.AC(cross_width=32,</span> <span class="pre">circle_radius=32)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.AC(cross_width=64,</span> <span class="pre">circle_radius=64)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.AC(cross_width=96,</span> <span class="pre">circle_radius=96)</span></code></strong></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><img alt="" src="_images/ac_32_32.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/ac_64_64.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/ac_96_96.jpg" /></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.BC(cross_width=32)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.BC(cross_width=64)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.BC(cross_width=96)</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.BC(cross_width=32)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.BC(cross_width=64)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.BC(cross_width=96)</span></code></strong></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><img alt="" src="_images/bc_32.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/bc_64.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/bc_96.jpg" /></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.ABC(cross_width=32,</span> <span class="pre">inner_circle_radius=32)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.ABC(cross_width=64,</span> <span class="pre">inner_circle_radius=64)</span></code></p></td>
-<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">gen.ABC(cross_width=96,</span> <span class="pre">inner_circle_radius=96)</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.ABC(cross_width=32,</span> <span class="pre">inner_circle_radius=32)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.ABC(cross_width=64,</span> <span class="pre">inner_circle_radius=64)</span></code></strong></p></td>
+<td class="text-center"><p><strong><code class="docutils literal notranslate"><span class="pre">gen.ABC(cross_width=96,</span> <span class="pre">inner_circle_radius=96)</span></code></strong></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><img alt="" src="_images/abc_32_32.jpg" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/abc_64_64.jpg" /></p></td>
@@ -558,7 +588,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">How to use</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-generator-class">Import the generator class</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-the-generator-object">Initialize the generator object</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-fixation-target">Generate fixation target</a></li>

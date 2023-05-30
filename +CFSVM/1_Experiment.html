@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Experiment package &#8212; CFSVM v0.4.0 documentation</title>
+    <title>Experiment package &#8212; CFSVM v0.6.0 documentation</title>
   
   
   
@@ -163,12 +163,27 @@
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -303,12 +318,27 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -479,27 +509,9 @@ comments containing screens shown to the subject.</p>
 </dd></dl>
 
 <dl class="mat function">
-<dt class="sig sig-object mat" id="CFSVM.Experiment.show_info">
-<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">show_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.show_info" title="Permalink to this definition">#</a></dt>
-<dd><p>Flips screen to the info, e.g., introduction, farewell etc.</p>
-</dd></dl>
-
-<dl class="mat function">
 <dt class="sig sig-object mat" id="CFSVM.Experiment.show_preparing_screen">
 <span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">show_preparing_screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.show_preparing_screen" title="Permalink to this definition">#</a></dt>
 <dd><p>Flips screen to inform that the experiment is being prepared.</p>
-</dd></dl>
-
-<dl class="mat function">
-<dt class="sig sig-object mat" id="CFSVM.Experiment.wait_for_keypress">
-<span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">wait_for_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.wait_for_keypress" title="Permalink to this definition">#</a></dt>
-<dd><p>Waits until the provided key is pressed, then continue.</p>
-<p>Interrupts the experiment if shift-esc was presses.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>key</strong> – A char array with the PTB key, check KbDemo for more info.</p>
-</dd>
-</dl>
 </dd></dl>
 
 </section>
@@ -568,6 +580,12 @@ properties.</p>
 <dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.frame">
 <span class="sig-name descname"><span class="pre">frame</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.frame" title="Permalink to this definition">#</a></dt>
 <dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CheckFrame" title="CFSVM.Element.Screen.CheckFrame"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CheckFrame</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.BCFS.instructions">
+<span class="sig-name descname"><span class="pre">instructions</span></span><a class="headerlink" href="#CFSVM.Experiment.BCFS.instructions" title="Permalink to this definition">#</a></dt>
+<dd><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Instructions</span></code> object.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -659,6 +677,12 @@ responses, writes results and shows rest screen.</p>
 <dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.frame">
 <span class="sig-name descname"><span class="pre">frame</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.frame" title="Permalink to this definition">#</a></dt>
 <dd><p><a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CheckFrame" title="CFSVM.Element.Screen.CheckFrame"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CheckFrame</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VPCFS.instructions">
+<span class="sig-name descname"><span class="pre">instructions</span></span><a class="headerlink" href="#CFSVM.Experiment.VPCFS.instructions" title="Permalink to this definition">#</a></dt>
+<dd><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Instructions</span></code> object.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -821,6 +845,12 @@ responses, writes results and shows rest screen.</p>
 </dd></dl>
 
 <dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.instructions">
+<span class="sig-name descname"><span class="pre">instructions</span></span><a class="headerlink" href="#CFSVM.Experiment.VSM.instructions" title="Permalink to this definition">#</a></dt>
+<dd><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Instructions</span></code> object.</p>
+</dd></dl>
+
+<dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Experiment.VSM.mafc">
 <span class="sig-name descname"><span class="pre">mafc</span></span><em class="property"> <span class="pre">=</span> <span class="pre">CFSVM.Element.Evidence.ImgMAFC()</span></em><a class="headerlink" href="#CFSVM.Experiment.VSM.mafc" title="Permalink to this definition">#</a></dt>
 <dd><p>Either <a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.ImgMAFC" title="CFSVM.Element.Evidence.ImgMAFC"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">ImgMAFC</span></code></a> or
@@ -889,6 +919,12 @@ responses, writes results and shows rest screen.</p>
 <dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.flash">
 <span class="sig-name descname"><span class="pre">flash</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.flash" title="Permalink to this definition">#</a></dt>
 <dd><p>Handler for either forward, sim or backward masking flashing.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Experiment.VTM.instructions">
+<span class="sig-name descname"><span class="pre">instructions</span></span><a class="headerlink" href="#CFSVM.Experiment.VTM.instructions" title="Permalink to this definition">#</a></dt>
+<dd><p><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Instructions</span></code> object.</p>
 </dd></dl>
 
 <dl class="mat attribute">

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Mondrian generator &#8212; CFSVM v0.4.0 documentation</title>
+    <title>Mondrian generator &#8212; CFSVM v0.6.0 documentation</title>
   
   
   
@@ -46,7 +46,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'mondrian_generator';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API reference" href="%2BCFSVM.html" />
+    <link rel="next" title="CFSCrafter" href="cfs_crafter.html" />
     <link rel="prev" title="Fixation generator" href="fixation_generator.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -166,11 +166,26 @@
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -306,11 +321,26 @@ document.write(`
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -416,8 +446,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="mondrian-generator">
 <h1>Mondrian generator<a class="headerlink" href="#mondrian-generator" title="Permalink to this heading">#</a></h1>
 <p>The capabilities of the generator are presented below. In general, given Mondrian mask parameters the generator will create and save Mondrian images.</p>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading">#</a></h2>
 <section id="import-the-generator-class">
 <h3>Import the generator class<a class="headerlink" href="#import-the-generator-class" title="Permalink to this heading">#</a></h3>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">MondrianGenerator</span>
@@ -440,7 +470,7 @@ document.write(`
 <p>The arguments of the object constructor are as follows:</p>
 <section id="dirpath">
 <h4>dirpath<a class="headerlink" href="#dirpath" title="Permalink to this heading">#</a></h4>
-<p>First, path to the parent directory in which will be created the <code class="docutils literal notranslate"><span class="pre">Masks/</span></code> folder. The generated Mondrians will be saved inside this folder.</p>
+<p>First, the path to the parent directory in which the <code class="docutils literal notranslate"><span class="pre">Masks/</span></code> folder will be created. The generated Mondrians will be saved inside this folder.</p>
 </section>
 <section id="type">
 <h4>type<a class="headerlink" href="#type" title="Permalink to this heading">#</a></h4>
@@ -634,11 +664,11 @@ The arguments of the <code class="docutils literal notranslate"><span class="pre
       </div>
     </a>
     <a class="right-next"
-       href="%2BCFSVM.html"
+       href="cfs_crafter.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">API reference</p>
+        <p class="prev-next-title">CFSCrafter</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -660,7 +690,7 @@ The arguments of the <code class="docutils literal notranslate"><span class="pre
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">How to use</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-generator-class">Import the generator class</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-the-generator-object">Initialize the generator object</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dirpath">dirpath</a></li>

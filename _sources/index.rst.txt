@@ -10,6 +10,7 @@ Continuous Flash Suppression & Visual Masking experiments in MATLAB
     cfs_tutorial
     fixation_generator
     mondrian_generator
+    cfs_crafter
     +CFSVM
 
 

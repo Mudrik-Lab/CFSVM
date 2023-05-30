@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>CFSCrafter &#8212; CFSVM v0.6.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cfs_crafter';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API reference" href="%2BCFSVM.html" />
+    <link rel="prev" title="Mondrian generator" href="mondrian_generator.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_round.bmp" class="logo__image only-light" alt="Continuous flash suppression & Visual masking"/>
+    <script>document.write(`<img src="_static/logo_round.bmp" class="logo__image only-dark" alt="Continuous flash suppression & Visual masking"/>`);</script>
+  
+  
+    <p class="title logo__title">CFSVM</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_tutorial.html">
+                        CFS tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="fixation_generator.html">
+                        Fixation generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="mondrian_generator.html">
+                        Mondrian generator
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="%2BCFSVM.html">
+                        API reference
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/Mudrik-Lab/CFS" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://people.socsci.tau.ac.il/mu/mudriklab/" title="MudrikLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="_static/mudriklab_logo.png" class="icon-link-image" alt="MudrikLab"/></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">CFSCrafter</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cfscrafter">
+<h1>CFSCrafter<a class="headerlink" href="#cfscrafter" title="Permalink to this heading">#</a></h1>
+<p>CFSCrafter provides partial functionality described in <a class="reference external" href="https://doi.org/10.3758/s13428-022-01903-7">Wang et al. (2022)</a>.</p>
+<p>Please consider citing the original paper if you use this code.</p>
+<p>Currently available functionality is:</p>
+<ul class="simple">
+<li><p>Generation of mondrian or noise masks.</p></li>
+<li><p>Spatial and temporal spectral analyses.</p></li>
+<li><p>Spatial, temporal and orientational filters as well as phase scrambling.</p></li>
+</ul>
+<p>You need MATLAB’s Image Processing Toolbox for the CFSCrafter to work.</p>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading">#</a></h2>
+<section id="initialize-cfscrafter-object">
+<h3>Initialize CFSCrafter object<a class="headerlink" href="#initialize-cfscrafter-object" title="Permalink to this heading">#</a></h3>
+<p>Provide here your experimental setup. If you have already generated masks you can provide a path to them using <strong>path_to_masks</strong> argument. If you have a CFS-crafter .mat file you can provide a path to it as well.
+You can find out your screen’s width and height in centimeters by using <code class="docutils literal notranslate"><span class="pre">CFSVM.Utils.display_diag2aspects()</span></code> function, which takes display diagonal in inches and aspect ratio (you can found these by searching your display’s model in Google). E.g., for 27” 16:9 display, <code class="docutils literal notranslate"><span class="pre">[w,</span> <span class="pre">h]</span> <span class="pre">=</span> <span class="pre">CFSVM.Utils.display_diag2aspects(27,</span> <span class="pre">16,</span> <span class="pre">9)</span></code> will return <code class="docutils literal notranslate"><span class="pre">w=59.7727</span></code> and <code class="docutils literal notranslate"><span class="pre">h=33.6221</span></code>.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">CFSCrafter</span><span class="p">(</span><span class="w"> </span><span class="k">...</span><span class="c"> % path_to_masks=&#39;./masks/&#39;, ...</span>
+<span class="w">    </span><span class="n">display_refresh_rate</span><span class="p">=</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">masks_update_rate</span><span class="p">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">screen_width_cm</span><span class="p">=</span><span class="mf">59.77</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">screen_width_pixel</span><span class="p">=</span><span class="mi">1920</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">screen_height_cm</span><span class="p">=</span><span class="mf">33.62</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">screen_height_pixel</span><span class="p">=</span><span class="mi">1080</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">viewing_distance_cm</span><span class="p">=</span><span class="mi">45</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-new-masks-mondrians-or-noise">
+<h3>Generate new masks (mondrians or noise)<a class="headerlink" href="#generate-new-masks-mondrians-or-noise" title="Permalink to this heading">#</a></h3>
+<section id="mondrians">
+<h4>Mondrians<a class="headerlink" href="#mondrians" title="Permalink to this heading">#</a></h4>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">generate_mondrians</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="p">[</span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">],</span><span class="w">  </span><span class="k">...</span><span class="c">  % Resolution in pixels.</span>
+<span class="w">    </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">  % Duration in seconds.</span>
+<span class="w">    </span><span class="n">pattern_shape</span><span class="p">=</span><span class="s">&#39;circle&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">  % &#39;square&#39;, &#39;circle&#39; or &#39;diamond&#39;</span>
+<span class="w">    </span><span class="n">is_colored</span><span class="p">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">  % Whether rgb or gray.</span>
+<span class="w">    </span><span class="n">is_noise_fill</span><span class="p">=</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">  % Whether to fill with noise. If true is_colored is ignored.</span>
+<span class="w">    </span><span class="n">is_pink</span><span class="p">=</span><span class="nb">false</span><span class="p">)</span><span class="w">  </span><span class="c">% Whether pink or white noise if is_noise_fill is true.</span>
+</pre></div>
+</div>
+</section>
+<section id="noise">
+<h4>Noise<a class="headerlink" href="#noise" title="Permalink to this heading">#</a></h4>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">generate_noise</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="p">[</span><span class="mi">512</span><span class="p">,</span><span class="w"> </span><span class="mi">512</span><span class="p">],</span><span class="w">  </span><span class="k">...</span><span class="c">  % Resolution in pixels.</span>
+<span class="w">    </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">  % Duration in seconds.</span>
+<span class="w">    </span><span class="n">is_pink</span><span class="p">=</span><span class="nb">false</span><span class="p">)</span><span class="w">  </span><span class="c">% Whether pink or white noise.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="play-masks">
+<h3>Play masks<a class="headerlink" href="#play-masks" title="Permalink to this heading">#</a></h3>
+<p>You can check how your masks look by running the code below.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="analyse-masks">
+<h3>Analyse masks<a class="headerlink" href="#analyse-masks" title="Permalink to this heading">#</a></h3>
+<section id="spatial-spectrum">
+<h4>Spatial spectrum<a class="headerlink" href="#spatial-spectrum" title="Permalink to this heading">#</a></h4>
+<p>Radially averaged power spectral density of pixel intensities per cycles per degree of visual angle.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">freqs</span><span class="p">,</span><span class="w"> </span><span class="n">psds</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">crafter</span><span class="p">.</span><span class="n">spatial_spectrum</span><span class="p">();</span>
+<span class="nb">semilogy</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span><span class="w"> </span><span class="n">psds</span><span class="p">)</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Spatial frequency (cycles per degree)&#39;</span><span class="p">)</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Power spectral density (arb. unit)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/spatial.png" /></p>
+</section>
+<section id="temporal-spectrum">
+<h4>Temporal spectrum<a class="headerlink" href="#temporal-spectrum" title="Permalink to this heading">#</a></h4>
+<p>Power spectral density of pixel intensities per Hz.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">freqs</span><span class="p">,</span><span class="w"> </span><span class="n">psds</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">crafter</span><span class="p">.</span><span class="n">temporal_spectrum</span><span class="p">();</span>
+<span class="nb">semilogy</span><span class="p">(</span><span class="n">freqs</span><span class="p">,</span><span class="w"> </span><span class="n">psds</span><span class="p">)</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Temporal frequency (Hz)&#39;</span><span class="p">)</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Power spectral density (arb. unit)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/temporal.png" /></p>
+</section>
+</section>
+<section id="filter-masks">
+<h3>Filter masks<a class="headerlink" href="#filter-masks" title="Permalink to this heading">#</a></h3>
+<section id="spatial">
+<h4>Spatial<a class="headerlink" href="#spatial" title="Permalink to this heading">#</a></h4>
+<p>For low-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">l_freq=[]</span></code> or remove <strong>l_freq</strong> argument.</p>
+<p>For high-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">h_freq=[]</span></code> or remove <strong>h_freq</strong> argument.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">spatial_filter</span><span class="p">(</span><span class="n">l_freq</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">h_freq</span><span class="p">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="temporal">
+<h4>Temporal<a class="headerlink" href="#temporal" title="Permalink to this heading">#</a></h4>
+<p>For low-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">l_freq=[]</span></code> or remove <strong>l_freq</strong>** argument.</p>
+<p>For high-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">h_freq=[]</span></code> or remove <strong>h_freq</strong> argument.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">temporal_filter</span><span class="p">(</span><span class="n">l_freq</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">h_freq</span><span class="p">=</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="orientation">
+<h4>Orientation<a class="headerlink" href="#orientation" title="Permalink to this heading">#</a></h4>
+<p>Direction of Gaussian filter defined by <strong>orientation</strong> in degrees. The width of the filter defined by <strong>sigma</strong> in degrees.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">orientation_filter</span><span class="p">(</span><span class="n">orientation</span><span class="p">=</span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="phase-scrambling">
+<h4>Phase scrambling<a class="headerlink" href="#phase-scrambling" title="Permalink to this heading">#</a></h4>
+<p>Proportion of phase scrambling is defined by <strong>phase_scramble_index</strong>. <strong>l_freq</strong> and <strong>h_freq</strong> define the frequency band to phase-scramble. If left or set to <code class="docutils literal notranslate"><span class="pre">l_freq=[],</span> <span class="pre">h_freq=[]</span></code> all frequencies will be phase-scrambled.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">phase_scramble</span><span class="p">(</span><span class="n">phase_scramble_index</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l_freq</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">h_freq</span><span class="p">=</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="save-masks">
+<h3>Save masks<a class="headerlink" href="#save-masks" title="Permalink to this heading">#</a></h3>
+<p>Save as CFS-crafter file.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;./masks.mat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="masks-patterns-gallery">
+<h2>Masks patterns gallery<a class="headerlink" href="#masks-patterns-gallery" title="Permalink to this heading">#</a></h2>
+<center> <h3>Mondrians</h3> </center>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Square grayscale</p></th>
+<th class="head text-center"><p> Pink-noise-filled circle </p></th>
+<th class="head text-center"><p>Colored diamond</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/square_gray.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/circle_pink_noise.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/diamond_rgb.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+<center> <h3>Noise</h3> </center>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>White noise</p></th>
+<th class="head text-center"><p>Pink noise</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/white_noise.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/pink_noise.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="filters-gallery">
+<h2>Filters gallery<a class="headerlink" href="#filters-gallery" title="Permalink to this heading">#</a></h2>
+<section id="spatial-filter">
+<h3>Spatial filter<a class="headerlink" href="#spatial-filter" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=0.1,</span> <span class="pre">h_freq=0.5</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=[],</span> <span class="pre">h_freq=0.5</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=1,</span> <span class="pre">h_freq=[]</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/band1.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/low.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/high.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="temporal-filter">
+<h3>Temporal filter<a class="headerlink" href="#temporal-filter" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=0.5,</span> <span class="pre">h_freq=2</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=[],</span> <span class="pre">h_freq=2</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=10,</span> <span class="pre">h_freq=[]</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/band2.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/low1.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/high1.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="orientation-filter">
+<h3>Orientation filter<a class="headerlink" href="#orientation-filter" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">orinentation=20,</span> <span class="pre">sigma=20</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">orinentation=45,</span> <span class="pre">sigma=10</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">orinentation=65,</span> <span class="pre">sigma=5</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/20_20.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/45_10.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/65_5.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phase-scramble">
+<h3>Phase scramble<a class="headerlink" href="#phase-scramble" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=[],</span> <span class="pre">h_freq=[]</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=[],</span> <span class="pre">h_freq=0.5</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">l_freq=1,</span> <span class="pre">h_freq=[]</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/all.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/h05.gif" /></p></td>
+<td class="text-center"><p><img alt="" src="_images/l1.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mondrian_generator.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mondrian generator</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="%2BCFSVM.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">How to use</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-cfscrafter-object">Initialize CFSCrafter object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-new-masks-mondrians-or-noise">Generate new masks (mondrians or noise)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mondrians">Mondrians</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#noise">Noise</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-masks">Play masks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-masks">Analyse masks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-spectrum">Spatial spectrum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-spectrum">Temporal spectrum</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-masks">Filter masks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial">Spatial</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal">Temporal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation">Orientation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-scrambling">Phase scrambling</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-masks">Save masks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masks-patterns-gallery">Masks patterns gallery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters-gallery">Filters gallery</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-filter">Spatial filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-filter">Temporal filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-filter">Orientation filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-scramble">Phase scramble</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="_sources/cfs_crafter.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Liad Mudrik lab.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>CFS tutorial &#8212; CFSVM v0.4.0 documentation</title>
+    <title>CFS tutorial &#8212; CFSVM v0.6.0 documentation</title>
   
   
   
@@ -164,11 +164,26 @@
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -304,11 +319,26 @@ document.write(`
                 
 
                     <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -588,7 +618,7 @@ The two types have many common properties, as they are both Continuous Flash Sup
 </section>
 <section id="masks-generation">
 <h5>Masks generation<a class="headerlink" href="#masks-generation" title="Permalink to this heading">#</a></h5>
-<p>Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into <code class="docutils literal notranslate"><span class="pre">RUN_ME/Stimuli/Masks/</span></code> folder and skip to the <a class="reference internal" href="#masks-initialization">masks initialization</a>. Otherwise, we will use the <a class="reference internal" href="mondrian_generator.html"><span class="std std-doc">MondrianGenerator</span></a>. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer to the CFS crafter: <a class="reference external" href="https://doi.org/10.3758/s13428-022-01903-7">(Wang &amp; Han, 2022)</a>, <a class="reference external" href="https://github.com/guandongwang/cfs_crafter">GitHub</a>.</p>
+<p>Next, we move on to the Mondrians. If you have pre-generated Mondrians, put them into <code class="docutils literal notranslate"><span class="pre">RUN_ME/Stimuli/Masks/</span></code> folder and skip to the <a class="reference internal" href="#masks-initialization">masks initialization</a>. Otherwise, we will use the <a class="reference internal" href="mondrian_generator.html"><span class="std std-doc">MondrianGenerator</span></a>. Note that it provides only basic functionality. If you want to create spatially, temporally or orientationally filtered or phase scrambled masks, refer either to the <a class="reference internal" href="cfs_crafter.html"><span class="std std-doc">CFSCrafter class</span></a> or to the original CFS-crafter GUI: <a class="reference external" href="https://doi.org/10.3758/s13428-022-01903-7">(Wang et al., 2022)</a>, <a class="reference external" href="https://github.com/guandongwang/cfs_crafter">GitHub</a>.</p>
 <ol class="arabic simple">
 <li><p>Import the MondrianGenerator class and construct the generator object, using the code below. The generator will randomly locate a specific numbers of figures (defined as <strong>n_figures</strong>, 1000 by default) that are shaped in a specific manner (defined as <strong>type</strong>, which can be, for example, a rectangle, a circle or a rhombus; for more shapes check the documentation) with the minimum radius equal to <strong>x(y)_pixels</strong>×<strong>min_fraction</strong> and the maximum radius equal to <strong>x(y)_pixels</strong>×<strong>max_fraction</strong> inside the <code class="docutils literal notranslate"><span class="pre">provided_path/Masks/</span></code> folder (here <code class="docutils literal notranslate"><span class="pre">Stimuli/Masks/</span></code>).</p></li>
 </ol>
@@ -653,7 +683,7 @@ Finally, we will set <strong>blank</strong> to 5 seconds, to present a blank scr
 </section>
 <section id="fixation-generator">
 <h5>Fixation generator<a class="headerlink" href="#fixation-generator" title="Permalink to this heading">#</a></h5>
-<p>Fixation target also has its own generator, you can find a tutorial on how to use it <a class="reference internal" href="fixation_generator.html"><span class="std std-doc">here</span></a>. There are multiple available shapes mainly based on <a class="reference external" href="https://doi.org/10.1016/j.visres.2012.10.012">Thaler et al., 2013</a>. Here we will generate the simplest cross:</p>
+<p>Fixation target also has its own generator, you can find a tutorial on how to use it <a class="reference internal" href="fixation_generator.html"><span class="std std-doc">here</span></a>. There are multiple available shapes, mainly based on <a class="reference external" href="https://doi.org/10.1016/j.visres.2012.10.012">Thaler et al., 2013</a>. Here we will generate the simplest cross:</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">import</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">FixationGenerator</span>
 
 <span class="n">generator</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">FixationGenerator</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
@@ -669,7 +699,7 @@ Finally, we will set <strong>blank</strong> to 5 seconds, to present a blank scr
 </section>
 <section id="fixation">
 <h5>Fixation<a class="headerlink" href="#fixation" title="Permalink to this heading">#</a></h5>
-<p>To initialize the fixation property we will first provide a directory which contains our generated fixation target, second, we will set <strong>duration</strong> to 1 second and <strong>size</strong> to 0.05 (5%) of the frame. It also has additional parameters, like <strong>rotation</strong>, <strong>contrast</strong> etc. (for more, please, check the documentation), which we won’t set here.</p>
+<p>To initialize the fixation property, we will first provide a directory that contains our generated fixation target. Second, we will set <strong>duration</strong> to 1 second and <strong>size</strong> to 0.05 (5%) of the frame. It also has additional parameters, like <strong>rotation</strong>, <strong>contrast</strong> etc. (for more, please, check the documentation), which we won’t set here.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">fixation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Fixation</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="s">&#39;../Stimuli/Fixation&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
@@ -749,7 +779,7 @@ The last line will initialize a cell array for the trial matrix.</p>
 </pre></div>
 </div>
 <p>Don’t forget to execute the code before running the experiment! After executing it you will find the file with the trial matrix in the <code class="docutils literal notranslate"><span class="pre">RUN_ME/TrialMatrix/</span></code> directory and generated Mondrians in the <code class="docutils literal notranslate"><span class="pre">RUN_ME/Stimuli/Masks/</span></code>.
-Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> folder structure now should look like this :</p>
+Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> folder structure now should look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RUN_ME/
 ├── Code/
 |   ├── generate_trials.m
@@ -760,7 +790,7 @@ Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span><
 |   |   └── gabor_2.png
 |   └── Masks/
 |       ├── mondrian_1.png
-|	|   ⋮    ⋮    ⋮    ⋮
+|       |   ⋮    ⋮    ⋮    ⋮
 |       └── mondrian_&lt;n&gt;.png
 └── TrialMatrix/
     └──experiment.mat
@@ -775,21 +805,30 @@ Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span><
 <h2>The last step (or two) before the run<a class="headerlink" href="#the-last-step-or-two-before-the-run" title="Permalink to this heading">#</a></h2>
 <section id="customizing-the-instructions">
 <h3>Customizing the instructions<a class="headerlink" href="#customizing-the-instructions" title="Permalink to this heading">#</a></h3>
-<p>The CFSVM package comes with generic functions for instruction screens, like introduction, farewell etc., allowing you to test your experiment without paying too much attention to these screens. But when the time comes and you want to modify them, you can do it fairly easily by creating your own functions and giving a path to them to the code. If you want to use the generic function as a template, you can find them on <a class="reference external" href="https://github.com/Mudrik-Lab/CFSVM/tree/main/Examples/InfoFunctions">GitHub</a> or you can write the functions completely from scratch.</p>
-<p>There are some restrictions allowing for the seamless injection of these functions to the main code:</p>
-<ol class="arabic simple">
-<li><p>They should be put inside one folder. Here we will create a <code class="docutils literal notranslate"><span class="pre">Code/instructions/</span></code> folder and put all the functions there.</p></li>
-<li><p>Every type of instruction should be in its own <code class="docutils literal notranslate"><span class="pre">.m</span></code> file and have one of the following names:</p>
+<p>There are multiple types of instructions:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">introduction.m</span></code> for the introduction screen shown once before the beginning of the experiment.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">block_introduction_1.m</span></code> to <code class="docutils literal notranslate"><span class="pre">block_introduction_n.m</span></code> where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of blocks in your experiment.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rest.m</span></code> for the screen shown after each trial.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">farewell.m</span></code> for the screen at the end of the experiment.</p></li>
+<li><p>Introduction - a general description of the experiment.</p></li>
+<li><p>Block introduction - a description of the forthcoming block (different for every block).</p></li>
+<li><p>Rest - an instruction appearing after each trial (same for every trial).</p></li>
+<li><p>Farewell</p></li>
 </ul>
-</li>
-<li><p>The functions can’t use their own <code class="docutils literal notranslate"><span class="pre">Screen('Flip')</span></code>, meaning that they can show only one screen.</p></li>
-<li><p>The function should take exactly two arguments: one for the PsychToolBox window pointer and one for the [x0,y0,x1,y1] array describing the pixels of a screen field you should put your text into (if you are using two screen fields like we do in this tutorial, every function will run two times: one time for each screen field). The function should return only one variable for the key the subject should press to proceed. The key should be a char array; you can use <a class="reference external" href="http://psychtoolbox.org/docs/KbName">KbName</a> or <a class="reference external" href="http://psychtoolbox.org/docs/KbDemo">KbDemo</a> to find the exact name of the key.</p></li>
-</ol>
+<p>We will create an <code class="docutils literal notranslate"><span class="pre">Instructions</span></code> folder in the <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> directory. Next, each type of the instruction will have its own subfolder; the introduction for each block will have its own folder. In each subfolder we will put corresponding images. When the experiment is running the code will show the images by their <a class="reference external" href="https://en.wikipedia.org/wiki/Natural_sort_order">natural order</a>. You can set the background of the images as transparent in an image editor and save them as .png files if you want the background color the same as in the experiment.
+The <strong>exact</strong> names of the subfolders should be: introduction, introduction, block_introduction_1, …, block_introduction_n (where n is the number of blocks), rest, farewell. For the experiment we are building here the folder structure will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RUN_ME/
+└── Instructions/
+    ├── introduction/
+    |   ├── 1.png
+    |   └── 2.png
+    ├── block_introduction_1/
+    |   ├── 1.png
+    |   ├── 2.png
+    |   └── 3.png
+    ├── rest/
+    |   └── 1.png
+    └── farewell/
+        └── 1.png
+</pre></div>
+</div>
 </section>
 <section id="writing-main-m">
 <h3>Writing main.m<a class="headerlink" href="#writing-main-m" title="Permalink to this heading">#</a></h3>
@@ -823,8 +862,16 @@ We will put it in <code class="docutils literal notranslate"><span class="pre">T
 <span class="w">    </span><span class="n">filepath</span><span class="p">=</span><span class="s">&#39;../TrialMatrix/experiment.mat&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Initialize the <strong>instructions</strong> property by providing a path to the folder containing instructions subfolders which were created in the <a class="reference internal" href="#customizing-the-instructions">previous step</a>. <strong>backward_key</strong>, <strong>forward_key</strong> are the key names for moving between screens and <strong>proceed_key</strong> for proceeding to the experiment. If <code class="docutils literal notranslate"><span class="pre">proceed_key=''</span></code> (empty char), it will be the same as the <strong>forward_key</strong>. You can also provide multiple keys for every argument, e.g., <code class="docutils literal notranslate"><span class="pre">backward_key={'LeftArrow',</span> <span class="pre">'a'}</span></code>. The key names should correspond to the unified PTB style. To find the correct spelling of keys, run in the matlab console two commands: <code class="docutils literal notranslate"><span class="pre">KbName('UnifyKeyNames')</span></code> and <code class="docutils literal notranslate"><span class="pre">KbName('KeyNames')</span></code>.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">instructions</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Instructions</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&quot;../Instructions/&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">backward_key</span><span class="p">=</span><span class="s">&#39;LeftArrow&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="n">forward_key</span><span class="p">=</span><span class="s">&#39;RightArrow&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">proceed_key</span><span class="p">=</span><span class="s">&#39;Return&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
 <p><img alt="Adjust frames" src="_images/adjust_coords.png" /></p>
-<p>Initialize the <strong>screen</strong> property by setting <strong>is_stereo</strong> to true and defining the size and location of the left rectangle by providing <strong>initial_rect</strong> with pixel coordinates of its upper left and lower right vertices, like this: [x0,y0, x1, y1]. The first two numbers in this array are x and y pixels of the upper left vertex, the last two numbers are x and y pixels of the lower right vertex. The right rectangle will be set symmetrically to the left one.</p>
+<p>Initialize the <strong>screen</strong> property by setting <strong>is_stereo</strong> to true and defining the size and location of the left rectangle by providing <strong>initial_rect</strong> with pixel coordinates of its upper left and lower right vertices, like this: [x0, y0, x1, y1]. The first two numbers in this array are x and y pixels of the upper left vertex, the last two numbers are x and y pixels of the lower right vertex. The right rectangle will be set symmetrically to the left one.</p>
 <p>We will also provide hex code for the <strong>background color</strong> - <code class="docutils literal notranslate"><span class="pre">#AEAEAE</span></code> gray here.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">screen</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CustomScreen</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">is_stereo</span><span class="p">=</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
@@ -861,8 +908,8 @@ We will put it in <code class="docutils literal notranslate"><span class="pre">T
 <section id="the-data">
 <h2>The data<a class="headerlink" href="#the-data" title="Permalink to this heading">#</a></h2>
 <p>The raw trial data will appear in the <code class="docutils literal notranslate"><span class="pre">Tnk_experiment_2/Raw</span> <span class="pre">Data/Behavioral/RawTrials/</span></code>. Every <code class="docutils literal notranslate"><span class="pre">.mat</span></code> file will contain an experiment object similar to the ones we have generated while creating the trial matrix, but containing timings and subject responses.
-You can run <code class="docutils literal notranslate"><span class="pre">CFSVM.extract_from_raw_cfs(path_to_raw_trials)</span></code>
-(<em>../../../Raw Data/Behavioral/RawTrials</em> in this example) script to extract the data from the raw files. It will create two csv tables in <code class="docutils literal notranslate"><span class="pre">Behavioral/Extracted/&lt;subject</span> <span class="pre">code&gt;/</span></code> and <code class="docutils literal notranslate"><span class="pre">Behavioral/Processed/</span></code> folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
+You can run <code class="docutils literal notranslate"><span class="pre">CFSVM.Utils.extract_from_raw_cfs(path_to_raw_trials,</span> <span class="pre">subject_code)</span></code>
+(<em>‘../../../Raw Data/Behavioral/RawTrials’</em> and <em>‘HZ4’</em> in this example) script to extract the data from the raw files. It will create two csv tables in <code class="docutils literal notranslate"><span class="pre">Behavioral/Extracted/&lt;subject</span> <span class="pre">code&gt;/</span></code> and <code class="docutils literal notranslate"><span class="pre">Behavioral/Processed/</span></code> folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
 The final folder structure will look like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TnK_experiment_2/
 ├── Experiment/
@@ -870,31 +917,43 @@ The final folder structure will look like this:</p>
 |       ├── Code/
 |       |   ├── generate_trials.m
 |       |   └── main.m
-|	├── Stimuli/
+|       ├── Stimuli/
 |       |   ├── Suppressed/
 |       |   |   ├── gabor_1.png
 |       |   |   └── gabor_2.png
-|	|   └── Masks/
+|       |   └── Masks/
 |       |       ├── mondrian_1.png
-|	|	|   ⋮    ⋮    ⋮    ⋮
+|       |       |   ⋮    ⋮    ⋮    ⋮
 |       |       └── mondrian_&lt;n&gt;.png
-|	└── TrialMatrix/
-|	    └──experiment.mat
+|       ├── TrialMatrix/
+|       |   └──experiment.mat
+|       └── Instructions/
+|           ├── introduction/
+|           |   ├── 1.png
+|           |   └── 2.png
+|           ├── block_introduction_1/
+|           |   ├── 1.png
+|           |   ├── 2.png
+|           |   └── 3.png
+|           ├── rest/
+|           |   └── 1.png
+|           └── farewell/
+|               └── 1.png
 └── Raw Data/
     ├── Demographics/
     |	└── HZ4.csv
     └── Behavioral/
         ├── Raw Trials/
-	|   └── HZ4/
+        |   └── HZ4/
         |       ├── block1_trial1.mat
- 	|       |   ⋮    ⋮    ⋮    ⋮
+        |       |   ⋮    ⋮    ⋮    ⋮
         |       └── block&lt;n&gt;_trial&lt;m&gt;.mat
         ├── Extracted/
-	|   └── HZ4/
-	|       ├── HZ4_extracted.csv
-	|	└── HZ4_ifis_histogram.png
+        |   └── HZ4/
+        |       ├── HZ4_extracted.csv
+        |       └── HZ4_ifis_histogram.png
         └── Processed/
-	    └── HZ4_processed.csv
+            └── HZ4_processed.csv
 </pre></div>
 </div>
 <table class="table">

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Data processing functions &#8212; CFSVM v0.4.0 documentation</title>
+    <title>Data processing functions &#8212; CFSVM v0.6.0 documentation</title>
   
   
   
@@ -162,12 +162,27 @@
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
       
@@ -302,12 +317,27 @@ document.write(`
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
+                        CFSCrafter
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
+                </div>
+            </div>
+            
   </ul>
 </nav></div>
         
@@ -436,8 +466,8 @@ document.write(`
 <section id="extract-from-cfs">
 <h2>Extract from CFS<a class="headerlink" href="#extract-from-cfs" title="Permalink to this heading">#</a></h2>
 <dl class="mat function">
-<dt class="sig sig-object mat" id="CFSVM.extract_from_raw_cfs">
-<span class="sig-prename descclassname"><span class="pre">CFSVM.</span></span><span class="sig-name descname"><span class="pre">extract_from_raw_cfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_raw_trials</span></em>, <em class="sig-param"><span class="pre">subject_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.extract_from_raw_cfs" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="CFSVM.Utils.extract_from_raw_cfs">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Utils.</span></span><span class="sig-name descname"><span class="pre">extract_from_raw_cfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_raw_trials</span></em>, <em class="sig-param"><span class="pre">subject_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Utils.extract_from_raw_cfs" title="Permalink to this definition">#</a></dt>
 <dd><p>Extracts timings and durations from the raw trial bCFS/VPCFS records.</p>
 <p>Saves timings and a histogram of interframe intervals
 in !Results folder and durations in !Processed folder.</p>
@@ -455,8 +485,8 @@ in !Results folder and durations in !Processed folder.</p>
 <section id="extract-from-vm">
 <h2>Extract from VM<a class="headerlink" href="#extract-from-vm" title="Permalink to this heading">#</a></h2>
 <dl class="mat function">
-<dt class="sig sig-object mat" id="CFSVM.extract_from_raw_vm">
-<span class="sig-prename descclassname"><span class="pre">CFSVM.</span></span><span class="sig-name descname"><span class="pre">extract_from_raw_vm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_raw_trials</span></em>, <em class="sig-param"><span class="pre">subject_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.extract_from_raw_vm" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object mat" id="CFSVM.Utils.extract_from_raw_vm">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Utils.</span></span><span class="sig-name descname"><span class="pre">extract_from_raw_vm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_to_raw_trials</span></em>, <em class="sig-param"><span class="pre">subject_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Utils.extract_from_raw_vm" title="Permalink to this definition">#</a></dt>
 <dd><p>Extracts timings and durations from the raw trial VSM/VTM records.</p>
 <p>Saves timings in !Results folder and durations in !Processed folder.</p>
 <dl class="field-list simple">

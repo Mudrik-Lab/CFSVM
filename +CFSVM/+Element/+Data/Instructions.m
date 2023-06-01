@@ -1,37 +1,65 @@
 classdef Instructions < matlab.mixin.Copyable
-    %INSTRUCTIONS Summary of this class goes here
-    %   Detailed explanation goes here
-    
-    properties
+% Presenting the instruction screens.
+%
+
+    properties (SetAccess=private)
+
+        % Path to the folder containing specific subfolders 
+        % with images: introduction, block_introduction_1, ..., 
+        % block_introduction_n, rest, farewell.
         dirpath
-        backward_key {mustBePTBKey} = 'LeftArrow' 
-        forward_key {mustBePTBKey} = 'RightArrow' 
-        proceed_key {mustBePTBKey} = 'Return' 
+        % Key to press to move to the previous image of the instruction. 
+        backward_key  
+        % Key to press to move to the next image of the instruction.
+        forward_key
+        % Key to press to proceed from instruction to the next stage.
+        proceed_key
+        % Struct containing PTB textures for different instruction types.
         textures
+
     end
     
+
     methods
 
-        function obj = Instructions(dirpath, parameters)
+
+        function obj = Instructions(dirpath, kwargs)
+        %
+        % Args:
+        %   dirpath: Path to the folder containing specific subfolders 
+        %       with images: introduction, block_introduction_1, ..., 
+        %       block_introduction_n, rest, farewell.
+        %   backward_key: Key to press to move to the previous 
+        %       image of the instruction. Defaults to 'LeftArrow'.
+        %   forward_key: Key to press to move to the next image 
+        %       of the instruction. Defaults to 'RightArrow'.
+        %   proceed_key: Key to press to proceed from instruction 
+        %       to the next stage. Defaults to 'Return'.
+        %
             arguments
-                dirpath
-                parameters.backward_key
-                parameters.forward_key
-                parameters.proceed_key = ''
+                dirpath {mustBeFolder}
+                kwargs.backward_key {mustBePTBKey} = 'LeftArrow'
+                kwargs.forward_key {mustBePTBKey} = 'RightArrow'
+                kwargs.proceed_key {mustBePTBKey} = 'Return'
             end
-            obj.dirpath = dirpath;
-            obj.backward_key = convertStringsToChars(parameters.backward_key);
-            obj.forward_key = convertStringsToChars(parameters.forward_key);
-            if isempty(parameters.proceed_key)
+            obj.dirpath = CFSVM.Utils.rel2abs(dirpath);
+            obj.backward_key = convertStringsToChars(kwargs.backward_key);
+            obj.forward_key = convertStringsToChars(kwargs.forward_key);
+            if isempty(kwargs.proceed_key)
                 obj.proceed_key = obj.forward_key;
             else
-                obj.proceed_key = convertStringsToChars(parameters.proceed_key);
+                obj.proceed_key = convertStringsToChars(kwargs.proceed_key);
             end
         end
 
         function import_images(obj, window, n_blocks)
-
-            obj.check_instructions(n_blocks)
+        % Imports instruction images from the dirpath subfolders.
+        % 
+        % Args:
+        %   window: PTB window pointer.
+        %   n_blocks: Number of subfolders with block introductions.
+        %
+            obj.validate_instructions(n_blocks)
             instructs = [{'introduction', 'rest', 'farewell'}, compose('block_introduction_%d', 1:n_blocks)];
 
             for n = 1:length(instructs)
@@ -61,7 +89,13 @@ classdef Instructions < matlab.mixin.Copyable
         end
 
         function show(obj, experiment, type)
-        % Flips screen to the instructions, e.g., introduction, farewell etc.
+        % Shows the instruction by type.
+        % If type=='rest', saves the trial data.
+        %
+        % Args:
+        %   experiment: An object derived from the :class:`~CFSVM.Experiment.Experiment` subclass.
+        %   type: Type of the instruction. One of introduction, block_introduction_1,
+        %       ..., block_introduction_n, rest, farewell.
         %
             n_screens = length(obj.textures.(type).PTB_indices);
             curr_screen = 1;
@@ -98,6 +132,16 @@ classdef Instructions < matlab.mixin.Copyable
                 end
                 Screen('Flip', experiment.screen.window);
                 
+                % If rest, save the trial
+                if strcmp(type, 'rest')
+                    save(sprintf( ...
+                        "%s/RawTrials/%s/block%d_trial%d.mat", ...
+                        experiment.save_to_dir, ...
+                        experiment.subject_info.code, ...
+                        experiment.trials.block_index, ...
+                        experiment.trials.trial_index), 'experiment')
+                end
+
                 % Wait until the right key is pressed, then continue.
                 key_code = obj.wait_for_keypress();
                 key_name = KbName(key_code);
@@ -111,7 +155,7 @@ classdef Instructions < matlab.mixin.Copyable
             end
         end
 
-        function check_instructions(obj, n_blocks)
+        function validate_instructions(obj, n_blocks)
 
             files = {dir(obj.dirpath).name};
             instructs = {'introduction', 'rest', 'farewell'};
@@ -141,10 +185,7 @@ classdef Instructions < matlab.mixin.Copyable
         function key_code = wait_for_keypress(obj)
         % Waits until the provided key is pressed, then continue.
         %
-        % Interrupts the experiment if esc was pressed. 
-        % 
-        % Args:
-        %   key: A char array with the PTB key, check KbDemo for more info.
+        % Interrupts the experiment if esc was pressed.
         %
             while 1
         

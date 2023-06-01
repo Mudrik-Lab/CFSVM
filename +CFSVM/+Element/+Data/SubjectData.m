@@ -2,21 +2,17 @@ classdef SubjectData < matlab.mixin.Copyable
 % Inquiry about and recording of the subject info.
 %
 
-    properties
-        
+    properties (SetAccess=private)
+
         % Char array for path to directory in which to save the data.
         dirpath
-
-        % Table for recording the data.
-        table table
-
+        % A table storing subject info.
+        table
         % Char array for subject code.
-        code {mustBeTextScalar} = '1'
-
-        % Bool, true if dominant eye is left.
-        is_left_suppression {mustBeNumericOrLogical}
-
-        % Char array, .csv is a default, must start with a dot.
+        code
+        % Bool, whether to suppress the left eye in CFS.
+        is_left_suppression
+        % Info table extension.
         file_extension
 
     end
@@ -24,26 +20,27 @@ classdef SubjectData < matlab.mixin.Copyable
 
     methods
 
-        function obj = SubjectData(parameters)
+        function obj = SubjectData(kwargs)
         % Inquires subject info and puts it into table.
         %
         % Args:
-        %   dirpath: :attr:`~CFSVM.Element.Data.SubjectData.dirpath`
-        %   file_extenstion: :attr:`~CFSVM.Element.Data.SubjectData.file_extension`
+        %   dirpath: Char array for path to directory in which to save the data.
+        %       Defaults to './SubjectInfo'.
+        %   file_extenstion: Char array. Defaults to '.csv'.
         %
             arguments
-                parameters.dirpath {mustBeTextScalar} = './!SubjectInfo'
-                parameters.file_extension {mustBeTextScalar, mustStartWithDot} = '.csv'
+                kwargs.dirpath {mustBeTextScalar} = './SubjectInfo'
+                kwargs.file_extension {mustBeTextScalar} = '.csv'
             end
             
-            obj.dirpath = parameters.dirpath;
+            obj.dirpath = CFSVM.Utils.rel2abs(kwargs.dirpath);
             
             % If the provided folder doesn't exist - create.
             if ~exist(obj.dirpath, 'dir')
                 mkdir(obj.dirpath)
             end
             
-            obj.file_extension = parameters.file_extension;
+            obj.file_extension = char(kwargs.file_extension);
             if obj.file_extension(1) ~= '.'
                 obj.file_extension = ['.', obj.file_extension];
             end
@@ -80,10 +77,4 @@ classdef SubjectData < matlab.mixin.Copyable
         
     end
 
-end
-
-function mustStartWithDot(a)
-    if ~startsWith(a, '.')
-        error("File extension must start with a dot")
-    end
 end

@@ -4,9 +4,9 @@ classdef (Abstract) TemporalElement < matlab.mixin.Copyable
 
     properties
 
-        onset (1,1) {mustBeNonnegative} % Float, onset time
-        offset (1,1) {mustBeNonnegative} % Float, offset time
-        duration (1,1) {mustBeNonnegative} % Float, duration time
+        onset (1,1) {mustBeNonnegative} % ``Float`` onset time
+        offset (1,1) {mustBeNonnegative} % ``Float`` offset time
+        duration (1,1) {mustBeNonnegative} % ``Float`` duration time
         
     end
 

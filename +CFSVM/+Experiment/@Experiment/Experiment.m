@@ -6,7 +6,7 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
 %
     
 
-    properties(Access = protected)
+    properties(Hidden=true)
 
         dynpropnames  % Variable for saving names of dynamic properties.
         save_to_dir
@@ -20,10 +20,8 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
             arguments
                 parameters.save_to_dir {mustBeTextScalar} = "./Raw"
             end
-            obj.save_to_dir = parameters.save_to_dir;
-        end
-
-        
+            obj.save_to_dir = CFSVM.Utils.rel2abs(parameters.save_to_dir);
+        end        
 
         addprop(obj, prop_name)
         dynpropnames = get_dyn_props(obj)
@@ -44,6 +42,7 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
                 end
             end
         end
+
     end
 
 

@@ -333,7 +333,7 @@ There are multiple types of instructions:
 - Rest - an instruction appearing after each trial (same for every trial).
 - Farewell
 
-We will create an `Instructions` folder in the `RUN_ME` directory. Next, each type of the instruction will have its own subfolder; the introduction for each block will have its own folder. In each subfolder we will put corresponding images. When the experiment is running the code will show the images by their [natural order](https://en.wikipedia.org/wiki/Natural_sort_order). You can set the background of the images as transparent in an image editor and save them as .png files if you want the background color the same as in the experiment.
+We will create an `Instructions` folder in the `RUN_ME` directory. Next, each type of the instruction will have its own subfolder. In each subfolder we will put corresponding images. When the experiment is running, the code will present the images by their [natural order](https://en.wikipedia.org/wiki/Natural_sort_order). You can set the background of the images as transparent in an image editor and save them as .png files if you want the background color the same as in the experiment.
 The **exact** names of the subfolders should be: introduction, introduction, block_introduction_1, …, block_introduction_n (where n is the number of blocks), rest, farewell. For the experiment we are building here the folder structure will look like this:
 ```
 RUN_ME/

@@ -10,25 +10,20 @@ classdef TrialsData < matlab.mixin.Copyable
     end
 
     properties
-        % Char array - path to the .mat file
+
+        % Char array, path to the .mat file.
         filepath
-        
         % Nested cell array for trial matrix.
         matrix cell 
-        
-        % Int - number of blocks in trial matrix.
+        % Int, number of blocks in trial matrix.
         n_blocks {mustBeInteger} 
-        
-        % Int - current block.
+        % Int, current block.
         block_index {mustBeInteger} 
-        
-        % Int - current trial.
+        % Int, current trial.
         trial_index {mustBeInteger} 
-        
-        % Float - trial onset.
+        % Float, trial onset.
         start_time {mustBeNonnegative} 
-        
-        % Float - trial offset
+        % Float, trial offset.
         end_time {mustBeNonnegative} 
 
     end
@@ -37,24 +32,24 @@ classdef TrialsData < matlab.mixin.Copyable
 
     methods
 
-        function obj = TrialsData(parameters)
+        function obj = TrialsData(kwargs)
         %
         % Args:
-        %   filepath: :attr:`~CFSVM.Element.Data.TrialsData.filepath`
+        %   filepath: Char array, path to the .mat file.
         %
         
             arguments
-                parameters.filepath {mustBeFile}
+                kwargs.filepath {mustBeFile}
             end
             
-            obj.filepath = parameters.filepath;
+            obj.filepath = CFSVM.Utils.rel2abs(kwargs.filepath);
 
         end
         
 
         function import(obj)
         % Loads .mat file.
-        
+        %
             obj.matrix = load(obj.filepath).trial_matrix;
             [~, obj.n_blocks] = size(obj.matrix);
             
@@ -62,11 +57,11 @@ classdef TrialsData < matlab.mixin.Copyable
 
 
         function load_trial_parameters(obj, experiment)
-        % Updates parameters for current trial.
+        % Updates parameters for the current trial.
         %
         % Args:
-        %   experiment: An experiment object to update properties in.
-            
+        %   experiment: An object derived from the :class:`~CFSVM.Experiment.Experiment` subclass.
+        %
             dont_load = {'screen', 'subject_info', 'trials', 'instructions'};
             
             for property = setdiff(properties(experiment)', dont_load)
@@ -79,11 +74,9 @@ classdef TrialsData < matlab.mixin.Copyable
         function update(obj, experiment)
         % Updates every trial with initialized experiment parameters.
         %
-        % Used in :meth:`~CFSVM.Experiment.initiate` function.
-        %
         % Args:
-        %   experiment: An experiment object to update properties in.
-        
+        %   experiment: An object derived from the :class:`~CFSVM.Experiment.Experiment` subclass.
+        %
             for block = 1:obj.n_blocks
                 for trial = 1:size(obj.matrix{block}, 2)
                     exp = obj.matrix{block}{trial};

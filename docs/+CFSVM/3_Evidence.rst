@@ -3,30 +3,30 @@ Evidence package
 
 BreakResponse class
 ---------------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence.@BreakResponse
+.. mat:autoclass:: +CFSVM.+Element.+Evidence.BreakResponse
    :members:
-   :undoc-members:
+   :show-inheritance:
 
 ImgMAFC class
 ---------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence.@ImgMAFC
+.. mat:autoclass:: +CFSVM.+Element.+Evidence.ImgMAFC
    :members:
-   :undoc-members:
+   :show-inheritance:
 
 PAS class
 -----------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence.@PAS
+.. mat:autoclass:: +CFSVM.+Element.+Evidence.PAS
    :members:
-   :undoc-members:
+   :show-inheritance:
 
 ScaleEvidence class
 ---------------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence.@ScaleEvidence
+.. mat:autoclass:: +CFSVM.+Element.+Evidence.ScaleEvidence
    :members:
-   :undoc-members:
+   :show-inheritance:
 
 TextMAFC class
 ----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Evidence.@TextMAFC
+.. mat:autoclass:: +CFSVM.+Element.+Evidence.TextMAFC
    :members:
-   :undoc-members:
+   :show-inheritance:

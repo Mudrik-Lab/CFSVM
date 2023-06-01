@@ -8,16 +8,22 @@ classdef (Abstract) ResponseElement < matlab.mixin.Copyable
     properties
         
         % Cell array of chars with PTB keys.
-        % Read more `here <http://psychtoolbox.org/docs/KbName>`_.
+        % Use::
+        %
+        %   KbName('UnifyKeyNames')
+        %   KbName('KeyNames') 
+        %
+        % to get correct keys. 
+        % Read more on `PTB <http://psychtoolbox.org/docs/KbName>`_.
         keys cell {mustBeText}
 
-        % Int, index of response choice in keys.
+        % ``Int`` index of response choice in keys.
         response_choice {mustBeInteger}
 
-        % Double, time to response
+        % ``Double`` time to response
         response_time {mustBeNonnegative}
 
-        % PTB char array representing pressed key.
+        % ``PTB char array`` representing pressed key.
         response_kbname {mustBeText} = ''
 
     end

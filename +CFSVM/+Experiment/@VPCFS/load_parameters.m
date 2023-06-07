@@ -26,7 +26,9 @@ function load_parameters(obj)
             
             obj.masks.load_flashing_parameters(obj.screen)
             obj.masks.load_rect_parameters(obj.screen, obj.subject_info.is_left_suppression)
-            obj.masks.shuffle()
+            if isempty(obj.masks.crafter_masks)
+                obj.masks.shuffle()
+            end
         
             for prop_idx = 1:length(stim_props)
                 obj.(stim_props{prop_idx}).load_flashing_parameters(obj.screen, obj.masks)

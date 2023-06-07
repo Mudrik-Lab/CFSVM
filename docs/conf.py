@@ -29,7 +29,8 @@ primary_domain = 'mat'
 autodoc_member_order='groupwise'
 # matlab_src_dir=r"C:\Users\Gennadiy\Documents\Gennadiy\Masking-CFS\CFSVM"
 matlab_short_links = True
-# matlab_auto_link = 'all'
+matlab_auto_link = False
+matlab_keep_package_prefix = True
 matlab_show_property_default_value = True
 source_suffix = {
     '.rst': 'restructuredtext',
@@ -38,7 +39,7 @@ source_suffix = {
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-matlab_keep_package_prefix = True
+
 
 myst_enable_extensions = [
     "dollarmath"

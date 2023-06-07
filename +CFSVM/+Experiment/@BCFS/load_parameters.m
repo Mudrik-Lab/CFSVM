@@ -25,7 +25,7 @@ function load_parameters(obj)
             
             obj.masks.load_flashing_parameters(obj.screen)
             obj.masks.load_rect_parameters(obj.screen, obj.subject_info.is_left_suppression)
-            if ~obj.masks.crafter_masks
+            if isempty(obj.masks.crafter_masks)
                 obj.masks.shuffle()
             end
             

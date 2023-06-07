@@ -4,36 +4,42 @@ Stimulus package
 
 Fixation class
 ----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus.@Fixation
+.. mat:autoclass:: +CFSVM.+Element.+Stimulus.Fixation
    :members:
    :undoc-members:
+   :show-inheritance:
 
 Mask class
 ------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus.@Mask
+.. mat:autoclass:: +CFSVM.+Element.+Stimulus.Mask
    :members:
    :undoc-members:
+   :show-inheritance:
 
 Mondrians class
 -----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus.@Mondrians
+.. mat:autoclass:: +CFSVM.+Element.+Stimulus.Mondrians
    :members:
    :undoc-members:
+   :show-inheritance:
 
 Stimulus class
 ----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus.@Stimulus
+.. mat:autoclass:: +CFSVM.+Element.+Stimulus.Stimulus
    :members:
    :undoc-members:
+   :show-inheritance:
 
 SuppressedStimulus class
 --------------------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus.@SuppressedStimulus
+.. mat:autoclass:: +CFSVM.+Element.+Stimulus.SuppressedStimulus
    :members:
    :undoc-members:
+   :show-inheritance:
 
 TargetStimulus class
 ----------------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Stimulus.@TargetStimulus
+.. mat:autoclass:: +CFSVM.+Element.+Stimulus.TargetStimulus
    :members:
    :undoc-members:
+   :show-inheritance:

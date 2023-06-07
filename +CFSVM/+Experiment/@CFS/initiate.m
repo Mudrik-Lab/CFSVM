@@ -80,7 +80,7 @@ function initiate(obj)
     obj.masks = obj.trials.matrix{1}{1}.masks;
     obj.masks.get_max(obj.trials.matrix)
 
-    if obj.masks.crafter_masks
+    if ~isempty(obj.masks.crafter_masks)
         obj.masks.import_from_crafter(obj.screen.window)
     else
         % Import images and create PTB textures of the masks.

@@ -16,11 +16,11 @@ classdef (Abstract) Experiment < dynamicprops & matlab.mixin.Copyable
 
     methods
 
-        function obj = Experiment(parameters)
+        function obj = Experiment(kwargs)
             arguments
-                parameters.save_to_dir {mustBeTextScalar} = "./Raw"
+                kwargs.save_to_dir {mustBeTextScalar} = "./Raw"
             end
-            obj.save_to_dir = CFSVM.Utils.rel2abs(parameters.save_to_dir);
+            obj.save_to_dir = CFSVM.Utils.rel2abs(kwargs.save_to_dir);
         end        
 
         addprop(obj, prop_name)

@@ -11,8 +11,9 @@ classdef TextMAFC < CFSVM.Element.Evidence.ScaleEvidence
 
 
     properties
-
-        text_size {mustBeNonnegative, mustBeInteger} % ``Nonnegative int``
+        
+        % ``Nonnegative int``
+        text_size {mustBeNonnegative, mustBeInteger} 
 
     end
 

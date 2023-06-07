@@ -149,41 +149,19 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="fixation_generator.html">
-                        Fixation generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        CFSCrafter
+                      <a class="nav-link nav-internal" href="generators.html">
+                        Generators
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
       
@@ -272,7 +250,7 @@ document.write(`
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -304,41 +282,19 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="fixation_generator.html">
-                        Fixation generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        CFSCrafter
+                      <a class="nav-link nav-internal" href="generators.html">
+                        Generators
                       </a>
                     </li>
                 
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
         
@@ -392,6 +348,19 @@ document.write(`
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="fixation_generator.html">Fixation generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mondrian_generator.html">Mondrian generator</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CFSCrafter</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -424,6 +393,9 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+    
+    <li class="breadcrumb-item"><a href="generators.html" class="nav-link">Generators</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page">CFSCrafter</li>
   </ul>
 </nav>
@@ -456,8 +428,8 @@ document.write(`
 <h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading">#</a></h2>
 <section id="initialize-cfscrafter-object">
 <h3>Initialize CFSCrafter object<a class="headerlink" href="#initialize-cfscrafter-object" title="Permalink to this heading">#</a></h3>
-<p>Provide here your experimental setup. If you have already generated masks you can provide a path to them using <strong>path_to_masks</strong> argument. If you have a CFS-crafter .mat file you can provide a path to it as well.
-You can find out your screen’s width and height in centimeters by using <code class="docutils literal notranslate"><span class="pre">CFSVM.Utils.display_diag2aspects()</span></code> function, which takes display diagonal in inches and aspect ratio (you can found these by searching your display’s model in Google). E.g., for 27” 16:9 display, <code class="docutils literal notranslate"><span class="pre">[w,</span> <span class="pre">h]</span> <span class="pre">=</span> <span class="pre">CFSVM.Utils.display_diag2aspects(27,</span> <span class="pre">16,</span> <span class="pre">9)</span></code> will return <code class="docutils literal notranslate"><span class="pre">w=59.7727</span></code> and <code class="docutils literal notranslate"><span class="pre">h=33.6221</span></code>.</p>
+<p>Provide here your experimental setup. If you have already generated masks you can provide a path to them using the <strong>path_to_masks</strong> argument. If you have a CFS-crafter .mat file you can provide a path to it as well.
+You can find out your screen’s width and height in centimeters by using <code class="docutils literal notranslate"><span class="pre">CFSVM.Utils.display_diag2aspects()</span></code> function, which takes display diagonal in inches and aspect ratio (you can find these by searching your display’s model in Google). E.g., for 27” 16:9 display, <code class="docutils literal notranslate"><span class="pre">[w,</span> <span class="pre">h]</span> <span class="pre">=</span> <span class="pre">CFSVM.Utils.display_diag2aspects(27,</span> <span class="pre">16,</span> <span class="pre">9)</span></code> will return <code class="docutils literal notranslate"><span class="pre">w=59.7727</span></code> and <code class="docutils literal notranslate"><span class="pre">h=33.6221</span></code>.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">CFSVM</span><span class="p">.</span><span class="n">Generators</span><span class="p">.</span><span class="n">CFSCrafter</span><span class="p">(</span><span class="w"> </span><span class="k">...</span><span class="c"> % path_to_masks=&#39;./masks/&#39;, ...</span>
 <span class="w">    </span><span class="n">display_refresh_rate</span><span class="p">=</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">masks_update_rate</span><span class="p">=</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
@@ -500,8 +472,8 @@ You can find out your screen’s width and height in centimeters by using <code 
 </pre></div>
 </div>
 </section>
-<section id="analyse-masks">
-<h3>Analyse masks<a class="headerlink" href="#analyse-masks" title="Permalink to this heading">#</a></h3>
+<section id="analyze-masks">
+<h3>Analyze masks<a class="headerlink" href="#analyze-masks" title="Permalink to this heading">#</a></h3>
 <section id="spatial-spectrum">
 <h4>Spatial spectrum<a class="headerlink" href="#spatial-spectrum" title="Permalink to this heading">#</a></h4>
 <p>Radially averaged power spectral density of pixel intensities per cycles per degree of visual angle.</p>
@@ -529,23 +501,23 @@ You can find out your screen’s width and height in centimeters by using <code 
 <h3>Filter masks<a class="headerlink" href="#filter-masks" title="Permalink to this heading">#</a></h3>
 <section id="spatial">
 <h4>Spatial<a class="headerlink" href="#spatial" title="Permalink to this heading">#</a></h4>
-<p>For low-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">l_freq=[]</span></code> or remove <strong>l_freq</strong> argument.</p>
-<p>For high-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">h_freq=[]</span></code> or remove <strong>h_freq</strong> argument.</p>
+<p>For the low-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">l_freq=[]</span></code> or remove <strong>l_freq</strong> argument.</p>
+<p>For the high-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">h_freq=[]</span></code> or remove <strong>h_freq</strong> argument.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">spatial_filter</span><span class="p">(</span><span class="n">l_freq</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">h_freq</span><span class="p">=</span><span class="mi">10</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="temporal">
 <h4>Temporal<a class="headerlink" href="#temporal" title="Permalink to this heading">#</a></h4>
-<p>For low-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">l_freq=[]</span></code> or remove <strong>l_freq</strong>** argument.</p>
-<p>For high-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">h_freq=[]</span></code> or remove <strong>h_freq</strong> argument.</p>
+<p>For the low-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">l_freq=[]</span></code> or remove <strong>l_freq</strong>** argument.</p>
+<p>For the high-pass filter, you can either set <code class="docutils literal notranslate"><span class="pre">h_freq=[]</span></code> or remove <strong>h_freq</strong> argument.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">temporal_filter</span><span class="p">(</span><span class="n">l_freq</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">h_freq</span><span class="p">=</span><span class="mi">2</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="orientation">
 <h4>Orientation<a class="headerlink" href="#orientation" title="Permalink to this heading">#</a></h4>
-<p>Direction of Gaussian filter defined by <strong>orientation</strong> in degrees. The width of the filter defined by <strong>sigma</strong> in degrees.</p>
+<p>Direction of Gaussian filter defined by <strong>orientation</strong> in degrees. The width of the filter is defined by <strong>sigma</strong> in degrees.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">crafter</span><span class="p">.</span><span class="n">orientation_filter</span><span class="p">(</span><span class="n">orientation</span><span class="p">=</span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">=</span><span class="mi">10</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -609,7 +581,7 @@ You can find out your screen’s width and height in centimeters by using <code 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/band1.gif" /></p></td>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/band.gif" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/low.gif" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/high.gif" /></p></td>
 </tr>
@@ -626,7 +598,7 @@ You can find out your screen’s width and height in centimeters by using <code 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/band2.gif" /></p></td>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="_images/band1.gif" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/low1.gif" /></p></td>
 <td class="text-center"><p><img alt="" src="_images/high1.gif" /></p></td>
 </tr>
@@ -725,7 +697,7 @@ You can find out your screen’s width and height in centimeters by using <code 
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-masks">Play masks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-masks">Analyse masks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-masks">Analyze masks</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-spectrum">Spatial spectrum</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-spectrum">Temporal spectrum</a></li>
 </ul>

@@ -150,40 +150,18 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../fixation_generator.html">
-                        Fixation generator
+                      <a class="nav-link nav-internal" href="../generators.html">
+                        Generators
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
-                        CFSCrafter
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
       
@@ -305,40 +283,18 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../fixation_generator.html">
-                        Fixation generator
+                      <a class="nav-link nav-internal" href="../generators.html">
+                        Generators
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
-                        CFSCrafter
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
         
@@ -478,25 +434,31 @@ and <a class="reference internal" href="3_Evidence.html#CFSVM.Element.Evidence.B
 <dt class="sig sig-object mat" id="CFSVM.Element.ResponseElement.keys">
 <span class="sig-name descname"><span class="pre">keys</span></span><a class="headerlink" href="#CFSVM.Element.ResponseElement.keys" title="Permalink to this definition">#</a></dt>
 <dd><p>Cell array of chars with PTB keys.
-Read more <a class="reference external" href="http://psychtoolbox.org/docs/KbName">here</a>.</p>
+Use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KbName</span><span class="p">(</span><span class="s1">&#39;UnifyKeyNames&#39;</span><span class="p">)</span>
+<span class="n">KbName</span><span class="p">(</span><span class="s1">&#39;KeyNames&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to get correct keys.
+Read more on <a class="reference external" href="http://psychtoolbox.org/docs/KbName">PTB</a>.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.ResponseElement.response_choice">
 <span class="sig-name descname"><span class="pre">response_choice</span></span><a class="headerlink" href="#CFSVM.Element.ResponseElement.response_choice" title="Permalink to this definition">#</a></dt>
-<dd><p>Int, index of response choice in keys.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Int</span></code> index of response choice in keys.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.ResponseElement.response_kbname">
 <span class="sig-name descname"><span class="pre">response_kbname</span></span><em class="property"> <span class="pre">=</span> <span class="pre">''</span></em><a class="headerlink" href="#CFSVM.Element.ResponseElement.response_kbname" title="Permalink to this definition">#</a></dt>
-<dd><p>PTB char array representing pressed key.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">PTB</span> <span class="pre">char</span> <span class="pre">array</span></code> representing pressed key.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.ResponseElement.response_time">
 <span class="sig-name descname"><span class="pre">response_time</span></span><a class="headerlink" href="#CFSVM.Element.ResponseElement.response_time" title="Permalink to this definition">#</a></dt>
-<dd><p>Double, time to response</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Double</span></code> time to response</p>
 </dd></dl>
 
 </dd>
@@ -516,19 +478,19 @@ Read more <a class="reference external" href="http://psychtoolbox.org/docs/KbNam
 <dt>Property Summary</dt><dd><dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.SpatialElement.color">
 <span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#CFSVM.Element.SpatialElement.color" title="Permalink to this definition">#</a></dt>
-<dd><p>[R, G, B] array for R, G, B ranging from 0 to 1.</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">[R,</span> <span class="pre">G,</span> <span class="pre">B]</span> <span class="pre">array</span></code> for Red, Green, Blue ranging from 0 to 1.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.SpatialElement.contrast">
 <span class="sig-name descname"><span class="pre">contrast</span></span><a class="headerlink" href="#CFSVM.Element.SpatialElement.contrast" title="Permalink to this definition">#</a></dt>
-<dd><p>Float from 0 to 1</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Float</span></code> from 0 to 1, where 1 is full contrast.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.SpatialElement.rect">
 <span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#CFSVM.Element.SpatialElement.rect" title="Permalink to this definition">#</a></dt>
-<dd><p>[x0, y0, x1, y1] array with pixel positions for the
+<dd><p><code class="docutils literal notranslate"><span class="pre">[x0,</span> <span class="pre">y0,</span> <span class="pre">x1,</span> <span class="pre">y1]</span> <span class="pre">array</span></code> with pixel positions for the
 element’s rectangle.</p>
 </dd></dl>
 
@@ -573,19 +535,19 @@ element’s rectangle.</p>
 <dt>Property Summary</dt><dd><dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.TemporalElement.duration">
 <span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#CFSVM.Element.TemporalElement.duration" title="Permalink to this definition">#</a></dt>
-<dd><p>Float, duration time</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Float</span></code> duration time</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.TemporalElement.offset">
 <span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#CFSVM.Element.TemporalElement.offset" title="Permalink to this definition">#</a></dt>
-<dd><p>Float, offset time</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Float</span></code> offset time</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.TemporalElement.onset">
 <span class="sig-name descname"><span class="pre">onset</span></span><a class="headerlink" href="#CFSVM.Element.TemporalElement.onset" title="Permalink to this definition">#</a></dt>
-<dd><p>Float, onset time</p>
+<dd><p><code class="docutils literal notranslate"><span class="pre">Float</span></code> onset time</p>
 </dd></dl>
 
 </dd>

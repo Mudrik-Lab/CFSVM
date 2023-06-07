@@ -150,40 +150,18 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../fixation_generator.html">
-                        Fixation generator
+                      <a class="nav-link nav-internal" href="../generators.html">
+                        Generators
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
-                        CFSCrafter
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
       
@@ -305,40 +283,18 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../fixation_generator.html">
-                        Fixation generator
+                      <a class="nav-link nav-internal" href="../generators.html">
+                        Generators
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
-                        CFSCrafter
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
         
@@ -464,23 +420,129 @@ document.write(`
                   
   <section id="data-package">
 <h1>Data package<a class="headerlink" href="#data-package" title="Permalink to this heading">#</a></h1>
+<section id="instructions-class">
+<h2>Instructions class<a class="headerlink" href="#instructions-class" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Data.</span></span><span class="sig-name descname"><span class="pre">Instructions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.Instructions" title="Permalink to this definition">#</a></dt>
+<dd><p>Presenting the instruction screens.</p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.Instructions">
+<span class="sig-name descname"><span class="pre">Instructions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dirpath</span></em>, <em class="sig-param"><span class="pre">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.Instructions" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dirpath</strong> – Path to the folder containing specific subfolders
+with images: introduction, block_introduction_1, …,
+block_introduction_n, rest, farewell.</p></li>
+<li><p><strong>backward_key</strong> – Key to press to move to the previous
+image of the instruction. Defaults to ‘LeftArrow’.</p></li>
+<li><p><strong>forward_key</strong> – Key to press to move to the next image
+of the instruction. Defaults to ‘RightArrow’.</p></li>
+<li><p><strong>proceed_key</strong> – Key to press to proceed from instruction
+to the next stage. Defaults to ‘Return’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.backward_key">
+<span class="sig-name descname"><span class="pre">backward_key</span></span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.backward_key" title="Permalink to this definition">#</a></dt>
+<dd><p>Key to press to move to the previous image of the instruction.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.dirpath">
+<span class="sig-name descname"><span class="pre">dirpath</span></span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.dirpath" title="Permalink to this definition">#</a></dt>
+<dd><p>Path to the folder containing specific subfolders
+with images: introduction, block_introduction_1, …,
+block_introduction_n, rest, farewell.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.forward_key">
+<span class="sig-name descname"><span class="pre">forward_key</span></span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.forward_key" title="Permalink to this definition">#</a></dt>
+<dd><p>Key to press to move to the next image of the instruction.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.proceed_key">
+<span class="sig-name descname"><span class="pre">proceed_key</span></span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.proceed_key" title="Permalink to this definition">#</a></dt>
+<dd><p>Key to press to proceed from instruction to the next stage.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.textures">
+<span class="sig-name descname"><span class="pre">textures</span></span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.textures" title="Permalink to this definition">#</a></dt>
+<dd><p>Struct containing PTB textures for different instruction types.</p>
+</dd></dl>
+
+</dd>
+<dt>Method Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.import_images">
+<span class="sig-name descname"><span class="pre">import_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">window</span></em>, <em class="sig-param"><span class="pre">n_blocks</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.import_images" title="Permalink to this definition">#</a></dt>
+<dd><p>Imports instruction images from the dirpath subfolders.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window</strong> – PTB window pointer.</p></li>
+<li><p><strong>n_blocks</strong> – Number of subfolders with block introductions.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">experiment</span></em>, <em class="sig-param"><span class="pre">type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Shows the instruction by type.
+If type==’rest’, saves the trial data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>experiment</strong> – An object derived from the <a class="reference internal" href="1_Experiment.html#CFSVM.Experiment.Experiment" title="CFSVM.Experiment.Experiment"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Experiment</span></code></a> subclass.</p></li>
+<li><p><strong>type</strong> – Type of the instruction. One of introduction, block_introduction_1,
+…, block_introduction_n, rest, farewell.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Element.Data.Instructions.wait_for_keypress">
+<span class="sig-name descname"><span class="pre">wait_for_keypress</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.Instructions.wait_for_keypress" title="Permalink to this definition">#</a></dt>
+<dd><p>Waits until the provided key is pressed, then continue.</p>
+<p>Interrupts the experiment if esc was pressed.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+</section>
 <section id="subjectdata-class">
 <h2>SubjectData class<a class="headerlink" href="#subjectdata-class" title="Permalink to this heading">#</a></h2>
 <dl class="mat class">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.SubjectData">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Data.</span></span><span class="sig-name descname"><span class="pre">SubjectData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Data.</span></span><span class="sig-name descname"><span class="pre">SubjectData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData" title="Permalink to this definition">#</a></dt>
 <dd><p>Inquiry about and recording of the subject info.</p>
 <div class="members docutils container">
 <dl>
 <dt>Constructor Summary</dt><dd><dl class="mat method">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.SubjectData.SubjectData">
-<span class="sig-name descname"><span class="pre">SubjectData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.SubjectData" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">SubjectData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.SubjectData" title="Permalink to this definition">#</a></dt>
 <dd><p>Inquires subject info and puts it into table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dirpath</strong> – <a class="reference internal" href="#CFSVM.Element.Data.SubjectData.dirpath" title="CFSVM.Element.Data.SubjectData.dirpath"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">dirpath</span></code></a></p></li>
-<li><p><strong>file_extenstion</strong> – <a class="reference internal" href="#CFSVM.Element.Data.SubjectData.file_extension" title="CFSVM.Element.Data.SubjectData.file_extension"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">file_extension</span></code></a></p></li>
+<li><p><strong>dirpath</strong> – Char array for path to directory in which to save the data.
+Defaults to ‘./SubjectInfo’.</p></li>
+<li><p><strong>file_extenstion</strong> – Char array. Defaults to ‘.csv’.</p></li>
 </ul>
 </dd>
 </dl>
@@ -489,7 +551,7 @@ document.write(`
 </dd>
 <dt>Property Summary</dt><dd><dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.SubjectData.code">
-<span class="sig-name descname"><span class="pre">code</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'1'</span></em><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.code" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">code</span></span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.code" title="Permalink to this definition">#</a></dt>
 <dd><p>Char array for subject code.</p>
 </dd></dl>
 
@@ -502,19 +564,19 @@ document.write(`
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.SubjectData.file_extension">
 <span class="sig-name descname"><span class="pre">file_extension</span></span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.file_extension" title="Permalink to this definition">#</a></dt>
-<dd><p>Char array, .csv is a default, must start with a dot.</p>
+<dd><p>Info table extension.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.SubjectData.is_left_suppression">
 <span class="sig-name descname"><span class="pre">is_left_suppression</span></span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.is_left_suppression" title="Permalink to this definition">#</a></dt>
-<dd><p>Bool, true if dominant eye is left.</p>
+<dd><p>Bool, whether to suppress the left eye in CFS.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.SubjectData.table">
 <span class="sig-name descname"><span class="pre">table</span></span><a class="headerlink" href="#CFSVM.Element.Data.SubjectData.table" title="Permalink to this definition">#</a></dt>
-<dd><p>Table for recording the data.</p>
+<dd><p>A table storing subject info.</p>
 </dd></dl>
 
 </dd>
@@ -534,16 +596,16 @@ document.write(`
 <h2>TrialsData class<a class="headerlink" href="#trialsdata-class" title="Permalink to this heading">#</a></h2>
 <dl class="mat class">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Data.</span></span><span class="sig-name descname"><span class="pre">TrialsData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Element.Data.</span></span><span class="sig-name descname"><span class="pre">TrialsData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData" title="Permalink to this definition">#</a></dt>
 <dd><p>Storing and manipulating trial parameters.</p>
 <div class="members docutils container">
 <dl>
 <dt>Constructor Summary</dt><dd><dl class="mat method">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.TrialsData">
-<span class="sig-name descname"><span class="pre">TrialsData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.TrialsData" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">TrialsData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.TrialsData" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filepath</strong> – <a class="reference internal" href="#CFSVM.Element.Data.TrialsData.filepath" title="CFSVM.Element.Data.TrialsData.filepath"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">filepath</span></code></a></p>
+<dd class="field-odd"><p><strong>filepath</strong> – Char array, path to the .mat file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -558,19 +620,19 @@ document.write(`
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.block_index">
 <span class="sig-name descname"><span class="pre">block_index</span></span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.block_index" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - current block.</p>
+<dd><p>Int, current block.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.end_time">
 <span class="sig-name descname"><span class="pre">end_time</span></span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.end_time" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - trial offset</p>
+<dd><p>Float, trial offset.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.filepath">
 <span class="sig-name descname"><span class="pre">filepath</span></span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.filepath" title="Permalink to this definition">#</a></dt>
-<dd><p>Char array - path to the .mat file</p>
+<dd><p>Char array, path to the .mat file.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -582,19 +644,19 @@ document.write(`
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.n_blocks">
 <span class="sig-name descname"><span class="pre">n_blocks</span></span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.n_blocks" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - number of blocks in trial matrix.</p>
+<dd><p>Int, number of blocks in trial matrix.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.start_time">
 <span class="sig-name descname"><span class="pre">start_time</span></span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.start_time" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - trial onset.</p>
+<dd><p>Float, trial onset.</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.trial_index">
 <span class="sig-name descname"><span class="pre">trial_index</span></span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.trial_index" title="Permalink to this definition">#</a></dt>
-<dd><p>Int - current trial.</p>
+<dd><p>Int, current trial.</p>
 </dd></dl>
 
 </dd>
@@ -607,10 +669,10 @@ document.write(`
 <dl class="mat method">
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.load_trial_parameters">
 <span class="sig-name descname"><span class="pre">load_trial_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">experiment</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.load_trial_parameters" title="Permalink to this definition">#</a></dt>
-<dd><p>Updates parameters for current trial.</p>
+<dd><p>Updates parameters for the current trial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>experiment</strong> – An experiment object to update properties in.</p>
+<dd class="field-odd"><p><strong>experiment</strong> – An object derived from the <a class="reference internal" href="1_Experiment.html#CFSVM.Experiment.Experiment" title="CFSVM.Experiment.Experiment"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Experiment</span></code></a> subclass.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -619,10 +681,9 @@ document.write(`
 <dt class="sig sig-object mat" id="CFSVM.Element.Data.TrialsData.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">experiment</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Data.TrialsData.update" title="Permalink to this definition">#</a></dt>
 <dd><p>Updates every trial with initialized experiment parameters.</p>
-<p>Used in <a class="reference internal" href="1_Experiment.html#CFSVM.Experiment.initiate" title="CFSVM.Experiment.initiate"><code class="xref mat mat-meth docutils literal notranslate"><span class="pre">initiate()</span></code></a> function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>experiment</strong> – An experiment object to update properties in.</p>
+<dd class="field-odd"><p><strong>experiment</strong> – An object derived from the <a class="reference internal" href="1_Experiment.html#CFSVM.Experiment.Experiment" title="CFSVM.Experiment.Experiment"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">Experiment</span></code></a> subclass.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -682,6 +743,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-class">Instructions class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subjectdata-class">SubjectData class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trialsdata-class">TrialsData class</a></li>
 </ul>

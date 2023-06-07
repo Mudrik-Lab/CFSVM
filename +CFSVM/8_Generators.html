@@ -150,40 +150,18 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../fixation_generator.html">
-                        Fixation generator
+                      <a class="nav-link nav-internal" href="../generators.html">
+                        Generators
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
-                        CFSCrafter
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
       
@@ -305,40 +283,18 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../fixation_generator.html">
-                        Fixation generator
+                      <a class="nav-link nav-internal" href="../generators.html">
+                        Generators
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../mondrian_generator.html">
-                        Mondrian generator
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../cfs_crafter.html">
-                        CFSCrafter
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
                     <li class="nav-item current active">
                       <a class="nav-link nav-internal" href="../%2BCFSVM.html">
                         API reference
                       </a>
                     </li>
                 
-                </div>
-            </div>
-            
   </ul>
 </nav></div>
         
@@ -785,6 +741,211 @@ rgb_triplet color with n_tones between them.</p>
 </dd></dl>
 
 </section>
+<section id="module-+CFSVM.+Generators.&#64;CFSCrafter">
+<span id="cfscrafter-class"></span><h2>CFSCrafter class<a class="headerlink" href="#module-+CFSVM.+Generators.@CFSCrafter" title="Permalink to this heading">#</a></h2>
+<dl class="mat class">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">CFSCrafter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter" title="Permalink to this definition">#</a></dt>
+<dd><p>Generating and modifying CFS masks.</p>
+<p>Supported types of masks are:
+1. Either solid or noise-filled circle-, square- or diamond-shaped Mondrians.
+2. White or pink noise masks.</p>
+<p>Types of modifications supported:
+1. Spatial low-, high-, band-pass filters
+2. Temporal low-, high-, band-pass filters
+3. Orientation filter
+4. Phase scrambling
+5. Setting RMS contrast and mean luminance.</p>
+<p>Types of analyses supported:
+1. Radially averaged spatial power spectrum (1D)
+2. Radially averaged temporal power spectrum (1D)</p>
+<p>The code was adopted and modified from CFS-crafter:
+<a class="github reference external" href="https://github.com/guandongwang/cfs_crafter">guandongwang/cfs_crafter</a></p>
+<p>If you rely on this code, please consider citing the original
+CFS-Crafter publication:
+Wang, G., Alais, D., Blake, R. et al. CFS-crafter:
+An open-source tool for creating and analyzing images for continuous flash suppression experiments.
+Behav Res (2022). <a class="reference external" href="https://doi.org/10.3758/s13428-022-01903-7">https://doi.org/10.3758/s13428-022-01903-7</a></p>
+<div class="members docutils container">
+<dl>
+<dt>Constructor Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.CFSCrafter">
+<span class="sig-name descname"><span class="pre">CFSCrafter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.CFSCrafter" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd>
+<dt>Property Summary</dt><dd><dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.fft_stimuli">
+<span class="sig-name descname"><span class="pre">fft_stimuli</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.fft_stimuli" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.mean_luminance">
+<span class="sig-name descname"><span class="pre">mean_luminance</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.mean_luminance" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.modified_stimuli">
+<span class="sig-name descname"><span class="pre">modified_stimuli</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.modified_stimuli" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.padded_stimuli_dim">
+<span class="sig-name descname"><span class="pre">padded_stimuli_dim</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.padded_stimuli_dim" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.refresh_rate">
+<span class="sig-name descname"><span class="pre">refresh_rate</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.refresh_rate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.rms_contrast">
+<span class="sig-name descname"><span class="pre">rms_contrast</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.rms_contrast" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.screen_info">
+<span class="sig-name descname"><span class="pre">screen_info</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.screen_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.spatial_map">
+<span class="sig-name descname"><span class="pre">spatial_map</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.spatial_map" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.stay_frame">
+<span class="sig-name descname"><span class="pre">stay_frame</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.stay_frame" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.stimuli_array">
+<span class="sig-name descname"><span class="pre">stimuli_array</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.stimuli_array" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.stimuli_property">
+<span class="sig-name descname"><span class="pre">stimuli_property</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.stimuli_property" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.total_frames">
+<span class="sig-name descname"><span class="pre">total_frames</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.total_frames" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.update_rate">
+<span class="sig-name descname"><span class="pre">update_rate</span></span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.update_rate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd>
+<dt>Method Summary</dt><dd><dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.play">
+<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.play" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filepath</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.save" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.spatial_spectrum">
+<span class="sig-name descname"><span class="pre">spatial_spectrum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.spatial_spectrum" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat method">
+<dt class="sig sig-object mat" id="CFSVM.Generators.CFSCrafter.temporal_spectrum">
+<span class="sig-name descname"><span class="pre">temporal_spectrum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.CFSCrafter.temporal_spectrum" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.band_pass_filter">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">band_pass_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">type</span></em>, <em class="sig-param"><span class="pre">dist_map</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.band_pass_filter" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.convert_mask_info">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">convert_mask_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">edge_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.convert_mask_info" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.convert_to_grayscale">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">convert_to_grayscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stimuli_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.convert_to_grayscale" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.create_single_noise_mask">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">create_single_noise_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stimuli_height_pixel</span></em>, <em class="sig-param"><span class="pre">stimuli_width_pixel</span></em>, <em class="sig-param"><span class="pre">is_pink</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.create_single_noise_mask" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.create_single_patterned_mask">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">create_single_patterned_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stimuli_height_pixel</span></em>, <em class="sig-param"><span class="pre">stimuli_width_pixel</span></em>, <em class="sig-param"><span class="pre">patch</span></em>, <em class="sig-param"><span class="pre">paste_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.create_single_patterned_mask" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.find_edge">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">find_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stimuli_array</span></em>, <em class="sig-param"><span class="pre">detection_method</span></em>, <em class="sig-param"><span class="pre">detection_threshold</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.find_edge" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.generate_mondrians">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">generate_mondrians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">mask_resolution</span></em>, <em class="sig-param"><span class="pre">sequence_duration_sec</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.generate_mondrians" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.generate_noise">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">generate_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">mask_resolution</span></em>, <em class="sig-param"><span class="pre">sequence_duration_sec</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.generate_noise" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.get_spatial_amp">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">get_spatial_amp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stimuli_array</span></em>, <em class="sig-param"><span class="pre">screen_width_cm</span></em>, <em class="sig-param"><span class="pre">screen_width_pixel</span></em>, <em class="sig-param"><span class="pre">screen_height_cm</span></em>, <em class="sig-param"><span class="pre">screen_height_pixel</span></em>, <em class="sig-param"><span class="pre">viewing_distance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.get_spatial_amp" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.get_temporal_amp">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">get_temporal_amp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stimuli_array</span></em>, <em class="sig-param"><span class="pre">sequence_duration</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.get_temporal_amp" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.orientation_filter">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">orientation_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.orientation_filter" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.patch_creation">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">patch_creation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">stimuli_height_pixel</span></em>, <em class="sig-param"><span class="pre">stimuli_width_pixel</span></em>, <em class="sig-param"><span class="pre">is_noise_fill</span></em>, <em class="sig-param"><span class="pre">is_colored</span></em>, <em class="sig-param"><span class="pre">pattern_shape</span></em>, <em class="sig-param"><span class="pre">is_pink</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.patch_creation" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.phase_scramble">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">phase_scramble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.phase_scramble" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.set_rms_and_luminance">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">set_rms_and_luminance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">stimuli_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.set_rms_and_luminance" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.spatial_filter">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">spatial_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">filter_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.spatial_filter" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="mat function">
+<dt class="sig sig-object mat" id="CFSVM.Generators.temporal_filter">
+<span class="sig-prename descclassname"><span class="pre">CFSVM.Generators.</span></span><span class="sig-name descname"><span class="pre">temporal_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em>, <em class="sig-param"><span class="pre">filter_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Generators.temporal_filter" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
 </section>
 
 
@@ -836,6 +997,7 @@ rgb_triplet color with n_tones between them.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixationgenerator-class">FixationGenerator class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mondriangenerator-class">MondrianGenerator class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-+CFSVM.+Generators.@CFSCrafter">CFSCrafter class</a></li>
 </ul>
   </nav></div>
 

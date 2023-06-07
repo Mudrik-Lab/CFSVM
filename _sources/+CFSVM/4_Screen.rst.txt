@@ -3,18 +3,17 @@ Screen package
 
 CheckFrame class
 ----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Screen.@CheckFrame
+.. mat:autoclass:: +CFSVM.+Element.+Screen.CheckFrame
    :members:
-   :undoc-members:
+   :show-inheritance:
 
 CustomScreen class
 ------------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Screen.@CustomScreen
+.. mat:autoclass:: +CFSVM.+Element.+Screen.CustomScreen
    :members:
-   :undoc-members:
 
 ScreenField class
 -----------------------------------
-.. mat:automodule:: +CFSVM.+Element.+Screen.@ScreenField
+.. mat:autoclass:: +CFSVM.+Element.+Screen.ScreenField
    :members:
-   :undoc-members:
+   :show-inheritance:

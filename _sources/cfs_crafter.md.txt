@@ -13,8 +13,8 @@ You need MATLAB's Image Processing Toolbox for the CFSCrafter to work.
 ## How to use
 
 ### Initialize CFSCrafter object
-Provide here your experimental setup. If you have already generated masks you can provide a path to them using **path_to_masks** argument. If you have a CFS-crafter .mat file you can provide a path to it as well.
-You can find out your screen's width and height in centimeters by using `CFSVM.Utils.display_diag2aspects()` function, which takes display diagonal in inches and aspect ratio (you can found these by searching your display's model in Google). E.g., for 27" 16:9 display, `[w, h] = CFSVM.Utils.display_diag2aspects(27, 16, 9)` will return `w=59.7727` and `h=33.6221`.
+Provide here your experimental setup. If you have already generated masks you can provide a path to them using the **path_to_masks** argument. If you have a CFS-crafter .mat file you can provide a path to it as well.
+You can find out your screen's width and height in centimeters by using `CFSVM.Utils.display_diag2aspects()` function, which takes display diagonal in inches and aspect ratio (you can find these by searching your display's model in Google). E.g., for 27" 16:9 display, `[w, h] = CFSVM.Utils.display_diag2aspects(27, 16, 9)` will return `w=59.7727` and `h=33.6221`.
 ```matlab
 crafter = CFSVM.Generators.CFSCrafter( ... % path_to_masks='./masks/', ...
     display_refresh_rate=60, ...
@@ -50,7 +50,7 @@ You can check how your masks look by running the code below.
 crafter.play()
 ```
 
-### Analyse masks
+### Analyze masks
 
 #### Spatial spectrum
 Radially averaged power spectral density of pixel intensities per cycles per degree of visual angle.
@@ -75,23 +75,23 @@ ylabel('Power spectral density (arb. unit)')
 ### Filter masks
 
 #### Spatial
-For low-pass filter, you can either set `l_freq=[]` or remove **l_freq** argument.
+For the low-pass filter, you can either set `l_freq=[]` or remove **l_freq** argument.
 
-For high-pass filter, you can either set `h_freq=[]` or remove **h_freq** argument.
+For the high-pass filter, you can either set `h_freq=[]` or remove **h_freq** argument.
 ```matlab
 crafter.spatial_filter(l_freq=1, h_freq=10);
 ```
 
 #### Temporal
-For low-pass filter, you can either set `l_freq=[]` or remove **l_freq**** argument.
+For the low-pass filter, you can either set `l_freq=[]` or remove **l_freq**** argument.
 
-For high-pass filter, you can either set `h_freq=[]` or remove **h_freq** argument.
+For the high-pass filter, you can either set `h_freq=[]` or remove **h_freq** argument.
 ```matlab
 crafter.temporal_filter(l_freq=0.5, h_freq=2);
 ```
 
 #### Orientation
-Direction of Gaussian filter defined by **orientation** in degrees. The width of the filter defined by **sigma** in degrees.
+Direction of Gaussian filter defined by **orientation** in degrees. The width of the filter is defined by **sigma** in degrees.
 ```matlab
 crafter.orientation_filter(orientation=45, sigma=10);
 ```

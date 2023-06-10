@@ -3,7 +3,8 @@ function initiate_window(obj)
 %
 % Adopted and modified from `Peter Scarfe's Psychtoolbox tutorial <https://peterscarfe.com/ptbtutorials.html>`_.
 %
-
+    % Whether to skip the tests (Use only for debugging)
+    Screen('Preference', 'SkipSyncTests', 1);
     % Here we call some default settings for setting up Psychtoolbox
     PsychDefaultSetup(2);
     
@@ -24,7 +25,7 @@ function initiate_window(obj)
     HideCursor(obj.screen.window);
     
     % Get the size of the on-screen window
-    Screen('WindowSize', obj.screen.window);
+    [obj.screen.size(1), obj.screen.size(2)] = Screen('WindowSize', obj.screen.window);
     
     % Retreive the maximum priority number and set the priority to the maximum
     % (concerning OS resources distribution)

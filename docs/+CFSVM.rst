@@ -2,6 +2,8 @@
 API reference
 ##############
 
+   
+
 CFSVM package
 ==================
 
@@ -10,3 +12,13 @@ CFSVM package
       :glob:
 
       +CFSVM/*
+
+
+Experiments Class Diagram
+-------------------------
+.. thumbnail:: class_diagram/experiment.svg
+
+Elements Class Diagram
+----------------------
+.. thumbnail:: class_diagram/element.svg
+

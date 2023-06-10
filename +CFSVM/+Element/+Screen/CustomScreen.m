@@ -15,6 +15,8 @@ classdef CustomScreen < matlab.mixin.Copyable
         inter_frame_interval {mustBeNumeric}
         % Float for display refresh rate.
         frame_rate {mustBeNumeric}
+        % Screen resolution tuple
+        size
 
     end
 
@@ -65,19 +67,23 @@ classdef CustomScreen < matlab.mixin.Copyable
         % Args:
         %   frame: :class:`~+CFSVM.+Element.+Screen.@CheckFrame` object.
         %
-        
+            
+            MEBoundary = MException('Screen:BoundaryError', 'BoundaryError');
+            MESize = MException('Frame:SizeError', 'SizeError');
+            MEEsc = MException('Key:Esc_has_been_pressed', ...
+                'Esc has been pressed, the program has been terminated.');
             % Color to use when adjusting the frames.
             FRAME_COLOR = {'#4A4A4A'};
-            TEXT = ['Arrows for changing position of both screens,\n', ...
-                'w,a,s,d for adjusting height and width,\n'];
+            TEXT = {'Arrows for changing position of both screens,', ...
+                'w,a,s,d for adjusting height and width,'};
             
             % Array of used keyboard keys
             k = {'LeftArrow', 'RightArrow', 'UpArrow', 'DownArrow', 'd', 'a', 's', 'w'};
             if length(obj.fields) > 1
-                TEXT = [TEXT, '=,- for adjusting space between the screens,\n'];
+                TEXT{end+1} = '=,- for adjusting space between the screens,';
                 k = [k, {'=+', '-_'}];
             end
-            TEXT = [TEXT, 'enter to proceed, escape to exit.'];
+            TEXT{end+1} = 'enter to proceed, escape to exit.';
             k = [k, {'Return', 'ESCAPE'}];
             % Assign keyboard keys to corresponding variables.
             temp = num2cell(KbName(k));
@@ -109,7 +115,7 @@ classdef CustomScreen < matlab.mixin.Copyable
             obj.initiate_fields(frame)
             % Draw frames and flip the screen.
             Screen('FillRect', obj.window, frame.colors, frame.rects);
-            obj.draw_text(frame, TEXT)
+            obj.draw_text(TEXT)
             Screen('Flip', obj.window);
         
             % Start queuing keys.
@@ -128,27 +134,51 @@ classdef CustomScreen < matlab.mixin.Copyable
                     key = 0;
                 end
                 
-                
+                if ~isscalar(key)
+                    continue
+                end
                 % Change screen rectangles according to the pressed key.
                 try
                     switch key   
                         case left
+                            if (obj.fields{1}.rect(1) - obj.shift) < 0
+                                throw(MEBoundary)
+                            end
                             obj.correct_fields([1,3], [true, true])
                         case right
+                            if (obj.fields{2}.rect(3) + obj.shift) > obj.size(1)
+                                throw(MEBoundary)
+                            end
                             obj.correct_fields([1,3], [false, false])
                         case up
+                            if (obj.fields{1}.rect(2) - obj.shift) < 0
+                                throw(MEBoundary)
+                            end
                             obj.correct_fields([2,4], [true, true])
                         case down
+                            if (obj.fields{1}.rect(4) + obj.shift) > obj.size(2)
+                                throw(MEBoundary)
+                            end
                             obj.correct_fields([2,4], [false, false])
                         case big_hor
                             obj.correct_fields([3], [false, false])
                         case small_hor
+                            if (obj.fields{1}.rect(3) - obj.fields{1}.rect(1) - obj.shift) < 2*frame.checker_length
+                                throw(MESize)
+                            end
                             obj.correct_fields([3], [true, true])
                         case big_vert
                             obj.correct_fields([4], [false, false])
                         case small_vert
+                            if (obj.fields{1}.rect(4) - obj.fields{1}.rect(2) - obj.shift) < 2*frame.checker_length
+                                throw(MESize)
+                            end
                             obj.correct_fields([4], [true, true])
                         case big_space
+                            if (obj.fields{1}.rect(1) - obj.shift) < 0 || ...
+                                    (obj.fields{2}.rect(3) + obj.shift) > obj.size(1)
+                                throw(MEBoundary)
+                            end
                             obj.correct_fields([1,3], [true, false])
                         case small_space
                             obj.correct_fields([1,3], [false, true])
@@ -158,9 +188,7 @@ classdef CustomScreen < matlab.mixin.Copyable
                         case stop
                             % Throw exception if 'stop' key was pressed in order to 
                             % stop the experiment execution.
-                            ME = MException('Key:Esc_has_been_pressed', ...
-                                'Esc has been pressed, the program has been terminated.');
-                            throw(ME)
+                            throw(MEEsc)
                         case 0
                             % Continue if no key was pressed.
                             continue;
@@ -171,26 +199,30 @@ classdef CustomScreen < matlab.mixin.Copyable
                     obj.initiate_fields(frame)
                     % Draw frames and flip the screen.
                     Screen('FillRect', obj.window, frame.colors, frame.rects);
-                    obj.draw_text(frame, TEXT)
+                    obj.draw_text(TEXT)
                     Screen('Flip', obj.window);
                     WaitSecs(0.1);
                 
                 catch ME
-                
-                    if ME.identifier == "Key:Esc_has_been_pressed"
-                        Screen('CloseAll');
-                        rethrow(ME);
-                    else
-                        % If can't reduce screen no more - show warning.
-                        % If there is another exception it will be catched here as
-                        % well.
-                        DrawFormattedText(obj.window, ...
-                            ['You have probably reached the limit, ' ...
-                            'but maybe not, you can try further or return it as it was.' ...
-                            '\nDo not press enter with this warning on screen.'], 'center', 'center');
-                        Screen('Flip', obj.window);
+                    switch ME.identifier
+                        case "Screen:BoundaryError"
+                            Screen('FillRect', obj.window, frame.colors, frame.rects);
+                            obj.draw_text({'You have exceeded screen limits.'})
+                            Screen('Flip', obj.window);
+                        case "Frame:SizeError"
+                            Screen('FillRect', obj.window, frame.colors, frame.rects);
+                            obj.draw_text({'The frame can not be smaller'})
+                            Screen('Flip', obj.window);
+                        case "Key:Esc_has_been_pressed"
+                            Screen('CloseAll');
+                            rethrow(ME);
+                        otherwise
+                            Screen('FillRect', obj.window, frame.colors, frame.rects);
+                            obj.draw_text({'Unexpected error', ME.identifier})
+                            Screen('Flip', obj.window);
                     end
-            
+
+
                 end
         
             end
@@ -202,7 +234,6 @@ classdef CustomScreen < matlab.mixin.Copyable
             frame.reset();
             obj.initiate_fields(frame)
         
-        
         end
 
     end
@@ -211,7 +242,7 @@ classdef CustomScreen < matlab.mixin.Copyable
 
 
         function correct_fields(obj, coords, is_minus)
-
+            
             for n = 1:length(obj.fields)
                 if is_minus(n)
                     obj.fields{n}.rect(coords) = obj.fields{n}.rect(coords) - obj.shift;
@@ -232,21 +263,25 @@ classdef CustomScreen < matlab.mixin.Copyable
         end
         
 
-        function draw_text(obj, frame, text)
-
-            for n = 1:length(obj.fields)
-                DrawFormattedText( ...
-                    obj.window, ...
-                    text, ...
-                    obj.fields{n}.rect(1)+frame.checker_width, ...
-                    obj.fields{n}.rect(2)+frame.checker_width*2);
+        function draw_text(obj, text)
+            text_size = Screen('TextSize', obj.window);
+            spacing = round(text_size/2);
+            n_rows = length(text);
+            for row = 1:n_rows
+                text_bounds = Screen('TextBounds', obj.window, text{row});
+                text_length = text_bounds(3)-text_bounds(1);
+                for n = 1:length(obj.fields)
+                    Screen('DrawText', ...
+                        obj.window, ...
+                        text{row}, ...
+                        round(obj.fields{n}.x_center-text_length/2), ...
+                        round(obj.fields{n}.y_center-(text_size+spacing)*n_rows/2+(text_size+spacing)*(row-1)));
+                end
             end
 
         end
 
-
     end
-
     
 end
 

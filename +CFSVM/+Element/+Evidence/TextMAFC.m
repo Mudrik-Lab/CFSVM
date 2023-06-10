@@ -36,7 +36,7 @@ classdef TextMAFC < CFSVM.Element.Evidence.ScaleEvidence
                 kwargs.options = {'Option_1', 'Option_2'}
             end
 
-            if len(kwargs.keys) ~= len(kwargs.options)
+            if length(kwargs.keys) ~= length(kwargs.options)
                 error('Number of keys and options should be equal')
             end
             kwargs_names = fieldnames(kwargs);

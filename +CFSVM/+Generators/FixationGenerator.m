@@ -1,4 +1,4 @@
-classdef FixationGenerator
+classdef FixationGenerator < handle
 % Generates fixation targets.
 %
 % Supports 6 different shapes from Thaler et al., 2013.

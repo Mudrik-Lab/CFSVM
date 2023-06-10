@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.autodoc', 
     'sphinxcontrib.matlab',
     'sphinx.ext.napoleon',
+    'sphinxcontrib.images',
     'myst_parser']
 
 

@@ -1,12 +1,13 @@
 function extract_from_raw_vm(path_to_raw_trials, subject_code)
 % Extracts timings and durations from the raw trial VSM/VTM records.
 %
-% Saves timings in !Results folder and durations in !Processed folder.
+% Saves timings and in ``Extracted`` folder and 
+% durations in ``Processed`` folder.
 %
 % Args:
-%   subject_code: str
+%   path_to_raw_trials (str): Path to the ``RawTrials`` folder.
+%   subject_code (str): Subject code for directory to extract the data from.
 %
-
     trials = load_trials(path_to_raw_trials,subject_code);
     variables = get_variables(trials);
     tab = create_table(variables);

@@ -2,12 +2,12 @@ function extract_from_raw_cfs(path_to_raw_trials, subject_code)
 % Extracts timings and durations from the raw trial bCFS/VPCFS records.
 %
 % Saves timings and a histogram of interframe intervals
-% in !Results folder and durations in !Processed folder.
+% in ``Extracted`` folder and durations in ``Processed`` folder.
 %
 % Args:
-%   path_to_raw_trials: str - path to the Raw Trials folder.
-%   subject_code: str
-
+%   path_to_raw_trials (str): path to the ``RawTrials`` folder.
+%   subject_code (str): Subject code for directory to extract the data from.
+%
     trials = load_trials(path_to_raw_trials, subject_code);
     set_times(trials)
     variables = get_variables(trials);

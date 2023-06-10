@@ -1,5 +1,12 @@
 function rgb = hex2rgb(hex)
 % Transforms hexadecimal color code to MATLAB RGB color code.
+%
+% Args:
+%   hex (str): Color described by hexadecimal code, e.g., #123ABC
+%
+% Returns:
+%   array: Color described by [R,G,B] array, where R,G,B from 0 to 1.
+%
     arguments
         hex {mustBeHex}
     end

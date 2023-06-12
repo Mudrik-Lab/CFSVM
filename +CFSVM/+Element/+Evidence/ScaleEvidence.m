@@ -1,10 +1,10 @@
 classdef (Abstract) ScaleEvidence < ...
-CFSVM.Element.ResponseElement & ...
-CFSVM.Element.TemporalElement
-% A base class for description of scale-based evidence classes like
-% :class:`~CFSVM.Element.Evidence.PAS` and
-% :class:`~CFSVM.Element.Evidence.ImgMAFC`.
-%
+  CFSVM.Element.ResponseElement & ...
+  CFSVM.Element.TemporalElement
+    % A base class for description of scale-based evidence classes like
+    % :class:`~CFSVM.Element.Evidence.PAS` and
+    % :class:`~CFSVM.Element.Evidence.ImgMAFC`.
+    %
     properties
 
         % ``Char array`` representing title or question shown on screen.
@@ -24,9 +24,9 @@ CFSVM.Element.TemporalElement
     methods
 
         function record_response(obj)
-        % Waits for a keypress specified in :attr:`~CFSVM.Element.ResponseElement.keys` and
-        % records response properties.
-        %
+            % Waits for a keypress specified in :attr:`~CFSVM.Element.ResponseElement.keys` and
+            % records response properties.
+            %
 
             while 1
 
@@ -35,7 +35,7 @@ CFSVM.Element.TemporalElement
                     response_kbname = KbName(keyCode);
                     break
                 end
-                
+
             end
 
             obj.response_choice = find(strcmpi(obj.keys, response_kbname));

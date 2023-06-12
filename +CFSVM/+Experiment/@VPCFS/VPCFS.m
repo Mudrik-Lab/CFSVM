@@ -1,9 +1,9 @@
 classdef VPCFS < CFSVM.Experiment.CFS
-% Visual priming continuous flash suppression.
-%
-% Derived from :class:`~CFSVM.Experiment.CFS`.
-%
-    
+    % Visual priming continuous flash suppression.
+    %
+    % Derived from :class:`~CFSVM.Experiment.CFS`.
+    %
+
     properties
 
         % :class:`~CFSVM.Element.Screen.CustomScreen` object.
@@ -24,19 +24,19 @@ classdef VPCFS < CFSVM.Experiment.CFS
         target CFSVM.Element.Stimulus.TargetStimulus
         % :class:`~CFSVM.Element.Evidence.PAS` object.
         pas CFSVM.Element.Evidence.PAS
-        % Either :class:`~CFSVM.Element.Evidence.ImgMAFC` or 
+        % Either :class:`~CFSVM.Element.Evidence.ImgMAFC` or
         % :class:`~CFSVM.Element.Evidence.TextMAFC` object.
         mafc {mustBeMAFC} = CFSVM.Element.Evidence.ImgMAFC()
 
     end
-    
+
     methods
 
         run(obj)
 
     end
 
-    methods (Access=protected)
+    methods (Access = protected)
 
         load_parameters(obj)
         flash(obj, vbl)
@@ -44,7 +44,7 @@ classdef VPCFS < CFSVM.Experiment.CFS
 end
 
 function mustBeMAFC(a)
-    if ~(isa(a,'CFSVM.Element.Evidence.ImgMAFC') || isa(a,'CFSVM.Element.Evidence.TextMAFC'))
-        error("mafc object must be instantiated from one of the mAFC classes.")
+    if ~(isa(a, 'CFSVM.Element.Evidence.ImgMAFC') || isa(a, 'CFSVM.Element.Evidence.TextMAFC'))
+        error("mafc object must be instantiated from one of the mAFC classes.");
     end
 end

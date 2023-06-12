@@ -1,12 +1,11 @@
 classdef BCFS < CFSVM.Experiment.CFS
-% Breaking continuous flash suppression.
-%
-% Derived from :class:`~CFSVM.Experiment.CFS`.
-%
+    % Breaking continuous flash suppression.
+    %
+    % Derived from :class:`~CFSVM.Experiment.CFS`.
+    %
 
-    
     properties
-        
+
         % :class:`~CFSVM.Element.Screen.CustomScreen` object.
         screen CFSVM.Element.Screen.CustomScreen
         % :class:`~CFSVM.Element.Data.SubjectData` object.
@@ -23,23 +22,20 @@ classdef BCFS < CFSVM.Experiment.CFS
         masks CFSVM.Element.Stimulus.Mondrians
         % :class:`~CFSVM.Element.Evidence.BreakResponse` object.
         breakthrough CFSVM.Element.Evidence.BreakResponse
-        
-    end
 
+    end
 
     methods
 
         run(obj)
-        
+
     end
-    
 
     methods (Access = protected)
 
         load_parameters(obj)
         [pressed, first_press] = flash(obj, vbl)
-        
+
     end
 
 end
-

@@ -8,16 +8,16 @@ function phase_scramble(obj, parameters)
     end
     l_freq = parameters.l_freq;
     h_freq = parameters.h_freq;
-    if isempty(l_freq)&&isempty(h_freq)
+    if isempty(l_freq) && isempty(h_freq)
         % all frequencies
         PS_low = 0;
         PS_high = ceil(max(max(obj.spatial_map)));
     else
         pix = CFSVM.Utils.pix2deg( ...
-            obj.padded_stimuli_dim(1), ...
-            obj.screen_info.width_cm, ...
-            obj.screen_info.width_pixel, ...
-            obj.screen_info.viewing_distance);
+                                  obj.padded_stimuli_dim(1), ...
+                                  obj.screen_info.width_cm, ...
+                                  obj.screen_info.width_pixel, ...
+                                  obj.screen_info.viewing_distance);
         if ~isempty(h_freq)
             if ~isempty(l_freq)
                 % band-pass
@@ -41,13 +41,13 @@ function phase_scramble(obj, parameters)
 
     mask_stay_frame = obj.refresh_rate / obj.update_rate;
 
-    n_unique_phase = obj.padded_stimuli_dim(4)/mask_stay_frame;
+    n_unique_phase = obj.padded_stimuli_dim(4) / mask_stay_frame;
 
     random_phase = parameters.phase_scramble_index .* freq_range .* angle(fftn(rand(obj.padded_stimuli_dim(1), obj.padded_stimuli_dim(2), 1, n_unique_phase)));
-    random_phase = repmat(random_phase,1,1,1,mask_stay_frame);
+    random_phase = repmat(random_phase, 1, 1, 1, mask_stay_frame);
 
     magnitude = abs(obj.fft_stimuli);
     phase = angle(obj.fft_stimuli);
     phase = phase + random_phase;
-    obj.fft_stimuli = magnitude.*exp(1i*(phase));
+    obj.fft_stimuli = magnitude .* exp(1i * (phase));
 end

@@ -1,20 +1,20 @@
 function extract_from_raw_cfs(path_to_raw_trials, subject_code)
-% Extracts timings and durations from the raw trial bCFS/VPCFS records.
-%
-% Saves timings and a histogram of interframe intervals
-% in ``Extracted`` folder and durations in ``Processed`` folder.
-%
-% Args:
-%   path_to_raw_trials (str): path to the ``RawTrials`` folder.
-%   subject_code (str): Subject code for directory to extract the data from.
-%
+    % Extracts timings and durations from the raw trial bCFS/VPCFS records.
+    %
+    % Saves timings and a histogram of interframe intervals
+    % in ``Extracted`` folder and durations in ``Processed`` folder.
+    %
+    % Args:
+    %   path_to_raw_trials (str): path to the ``RawTrials`` folder.
+    %   subject_code (str): Subject code for directory to extract the data from.
+    %
     trials = load_trials(path_to_raw_trials, subject_code);
-    set_times(trials)
+    set_times(trials);
     variables = get_variables(trials);
     tab = create_table(variables);
     tab = extract_data(trials, tab, variables, path_to_raw_trials, subject_code);
-    process_data(tab, path_to_raw_trials, subject_code, trials)
-    
+    process_data(tab, path_to_raw_trials, subject_code, trials);
+
 end
 
 function trials = load_trials(path_to_raw_trials, code)
@@ -26,52 +26,51 @@ function trials = load_trials(path_to_raw_trials, code)
     trials = cell(1, length(filenames));
     for file_idx = 1:length(filenames)
         trials{file_idx} = load(sprintf( ...
-            "%s/%s/%s", ...
-            path_to_raw_trials, ...
-            code, ...
-            filenames{file_idx}));
+                                        "%s/%s/%s", ...
+                                        path_to_raw_trials, ...
+                                        code, ...
+                                        filenames{file_idx}));
     end
 
 end
 
-
 function set_times(trials)
-    for trial_idx = 1:length(trials) 
-    
+    for trial_idx = 1:length(trials)
+
         exp = trials{trial_idx}.experiment;
-        trials{trial_idx}.experiment.masks.onset = exp.flips(2,1);
-        trials{trial_idx}.experiment.masks.offset = exp.flips(2,end);
-        n_fr = length(exp.onsets);
+        trials{trial_idx}.experiment.masks.onset = exp.flips(2, 1);
+        trials{trial_idx}.experiment.masks.offset = exp.flips(2, end);
+        n_fr = length(exp.flips);
 
         stimuli = regexp(properties(exp), 'stimulus(_\d)*', 'match', 'once');
         stimuli = sort(stimuli(~cellfun('isempty', stimuli)));
 
         for stim_idx = 1:length(stimuli)
-    
-            onset_fr = exp.(stimuli{stim_idx}).appearance_delay*exp.screen.frame_rate+1;
-            
-            full_fr = (exp.(stimuli{stim_idx}).appearance_delay+ ...
-                exp.(stimuli{stim_idx}).fade_in_duration)*exp.screen.frame_rate+1;
-            
-            fade_out_fr = (exp.(stimuli{stim_idx}).appearance_delay+ ...
-                exp.(stimuli{stim_idx}).fade_in_duration+ ...
-                exp.(stimuli{stim_idx}).duration)*exp.screen.frame_rate+1;
-            
-            offset_fr = (exp.(stimuli{stim_idx}).appearance_delay+ ...
-                exp.(stimuli{stim_idx}).fade_in_duration+ ...
-                exp.(stimuli{stim_idx}).duration+ ...
-                exp.(stimuli{stim_idx}).fade_out_duration)*exp.screen.frame_rate+1;
-            
+
+            onset_fr = exp.(stimuli{stim_idx}).appearance_delay * exp.screen.frame_rate + 1;
+
+            full_fr = (exp.(stimuli{stim_idx}).appearance_delay + ...
+                       exp.(stimuli{stim_idx}).fade_in_duration) * exp.screen.frame_rate + 1;
+
+            fade_out_fr = (exp.(stimuli{stim_idx}).appearance_delay + ...
+                           exp.(stimuli{stim_idx}).fade_in_duration + ...
+                           exp.(stimuli{stim_idx}).duration) * exp.screen.frame_rate + 1;
+
+            offset_fr = (exp.(stimuli{stim_idx}).appearance_delay + ...
+                         exp.(stimuli{stim_idx}).fade_in_duration + ...
+                         exp.(stimuli{stim_idx}).duration + ...
+                         exp.(stimuli{stim_idx}).fade_out_duration) * exp.screen.frame_rate + 1;
+
             if class(exp) == "CFSVM.Experiment.BCFS"
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = check_frames(onset_fr, n_fr, exp);
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = check_frames(full_fr, n_fr, exp);
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = check_frames(fade_out_fr, n_fr, exp);
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = check_frames(offset_fr, n_fr, exp);
             else
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = exp.flips(2,onset_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = exp.flips(2,full_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = exp.flips(2,fade_out_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = exp.flips(2,offset_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = exp.flips(2, onset_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = exp.flips(2, full_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = exp.flips(2, fade_out_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = exp.flips(2, offset_fr);
             end
         end
     end
@@ -79,9 +78,9 @@ end
 
 function time = check_frames(frame, n_fr, exp)
     if frame <= n_fr
-        time = exp.flips(2,frame);
+        time = exp.flips(2, frame);
     else
-        time = exp.flips(2,end);
+        time = exp.flips(2, end);
     end
 end
 
@@ -102,19 +101,17 @@ function variables = get_variables(trials)
     end
 end
 
-
 function tab = create_table(variables)
-   object_and_vars = cellfun( ...
-        @(x) strcat(x{1}, '_', x(2:end)), ...
-        variables, ...
-        UniformOutput=false);
+    object_and_vars = cellfun( ...
+                              @(x) strcat(x{1}, '_', x(2:end)), ...
+                              variables, ...
+                              UniformOutput = false);
     vars_to_table = horzcat(object_and_vars{:});
     tab = cell2table( ...
-        cell(0, length(vars_to_table)), ...
-        'VariableNames', ...
-        vars_to_table); 
+                     cell(0, length(vars_to_table)), ...
+                     'VariableNames', ...
+                     vars_to_table);
 end
-
 
 function tab = extract_data(trials, tab, variables, path_to_raw_trials, code)
     for trial_idx = 1:length(trials)
@@ -124,59 +121,56 @@ function tab = extract_data(trials, tab, variables, path_to_raw_trials, code)
             end
         end
         data = orderfields(data, tab.Properties.VariableNames);
-        tab = [tab;struct2table(data, AsArray=true)];
+        tab = [tab; struct2table(data, AsArray = true)];
     end
-    
+
     if ~exist(strcat(path_to_raw_trials, "/../Extracted/", code), 'dir')
-        mkdir(strcat(path_to_raw_trials, "/../Extracted/", code))
+        mkdir(strcat(path_to_raw_trials, "/../Extracted/", code));
     end
-    
+
     writetable(tab, ...
-            fullfile(strcat(path_to_raw_trials, "/../Extracted/", code), ...
-                strcat(code, "_extracted.csv")))
+               fullfile(strcat(path_to_raw_trials, "/../Extracted/", code), ...
+                        strcat(code, "_extracted.csv")));
 
     ifis = get_ifis(trials);
     save_ifis_histogram(ifis, path_to_raw_trials, code);
 
 end
 
-
 function save_ifis_histogram(ifis, path_to_raw_trials, code)
-    f = figure('visible','off');
+    f = figure('visible', 'off');
     ifis = horzcat(ifis{:});
-    histogram(ifis)
+    histogram(ifis);
     title(sprintf( ...
-        'Duration of interframe intervals for flashing\n mean = %f, std = %f', ...
-        [mean(ifis), std(ifis)]))
-    xlabel('Interframe interval duration (sec)')
-    ylabel('Count')
-    saveas(f,strcat( ...
-        path_to_raw_trials, ...
-        "/../Extracted/", ...
-        code, ...
-        '/', ...
-        code, ...
-        '_ifis_histogram.png'))
+                  'Duration of interframe intervals for flashing\n mean = %f, std = %f', ...
+                  [mean(ifis), std(ifis)]));
+    xlabel('Interframe interval duration (sec)');
+    ylabel('Count');
+    saveas(f, strcat( ...
+                     path_to_raw_trials, ...
+                     "/../Extracted/", ...
+                     code, ...
+                     '/', ...
+                     code, ...
+                     '_ifis_histogram.png'));
 end
-
 
 function ifis = get_ifis(trials)
     ifis = cell(1, length(trials));
     for trial_idx = 1:length(trials)
         exp = trials{trial_idx}.experiment;
-        ifi = exp.flips(2,2:end)-exp.flips(2,1:end-1);
+        ifi = exp.flips(2, 2:end) - exp.flips(2, 1:end - 1);
         ifis{trial_idx} = ifi;
     end
 end
 
-
 function process_data(tab, path_to_raw_trials, code, trials)
-    
+
     exp = string(regexp(class(trials{1}.experiment), '\w+CFS', 'match'));
 
     stimuli = regexp(tab.Properties.VariableNames, 'stimulus(_\d)*', 'match', 'once');
     stimuli = sort(unique(stimuli(~cellfun('isempty', stimuli))));
-    
+
     TP = table;
 
     TP.block_index = tab.trials_block_index;
@@ -197,15 +191,15 @@ function process_data(tab, path_to_raw_trials, code, trials)
         TP.(sprintf('%s_fade_out_duration', stimuli{stim_idx})) = tab.(sprintf('%s_offset', stimuli{stim_idx})) - tab.(sprintf('%s_fade_out_onset', stimuli{stim_idx}));
     end
 
-    if exp=="BCFS"
+    if exp == "BCFS"
         break_keys = trials{1}.experiment.breakthrough.keys;
         keys = dictionary([string(1:length(break_keys)), "-1"], [convertCharsToStrings(break_keys), "-1"]);
         TP.break_response_index = tab.breakthrough_response_choice;
         TP.break_response_key = keys(tab.breakthrough_response_choice);
         TP.break_response_time = tab.breakthrough_response_time - tab.masks_onset;
-    elseif exp=="VPCFS"
+    elseif exp == "VPCFS"
         pas_keys = trials{1}.experiment.pas.keys;
-        pas_keys = dictionary(string(0:length(pas_keys)-1), convertCharsToStrings(pas_keys));
+        pas_keys = dictionary(string(0:length(pas_keys) - 1), convertCharsToStrings(pas_keys));
         mafc_keys = trials{1}.experiment.mafc.keys;
         mafc_keys = dictionary(string(1:length(mafc_keys)), convertCharsToStrings(mafc_keys));
         TP.target_duration = tab.target_offset - tab.target_onset;
@@ -221,12 +215,12 @@ function process_data(tab, path_to_raw_trials, code, trials)
             TP.mafc_img_indices = tab.mafc_img_indices;
         end
     end
-    
+
     if ~exist(strcat(path_to_raw_trials, "/../Processed/"), 'dir')
-        mkdir(strcat(path_to_raw_trials, "/../Processed/"))
+        mkdir(strcat(path_to_raw_trials, "/../Processed/"));
     end
-    
+
     writetable(TP, ...
-            fullfile(strcat(path_to_raw_trials, "/../Processed/"), ...
-                strcat(code, "_processed.csv")))
+               fullfile(strcat(path_to_raw_trials, "/../Processed/"), ...
+                        strcat(code, "_processed.csv")));
 end

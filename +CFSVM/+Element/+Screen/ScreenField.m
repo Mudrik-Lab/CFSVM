@@ -1,15 +1,15 @@
 classdef ScreenField < CFSVM.Element.SpatialElement
-% Describes fields of the screen as properties of 
-% :class:`~CFSVM.Element.Screen.CustomScreen`.
-%
-        
+    % Describes fields of the screen as properties of
+    % :class:`~CFSVM.Element.Screen.CustomScreen`.
+    %
+
     methods
 
         function obj = ScreenField(rect)
-        %
-        % Args:
-        %   rect: :attr:`~CFSVM.Element.SpatialElement.rect`
-        %
+            %
+            % Args:
+            %   rect: :attr:`~CFSVM.Element.SpatialElement.rect`
+            %
             arguments
                 rect
             end
@@ -21,4 +21,3 @@ classdef ScreenField < CFSVM.Element.SpatialElement
     end
 
 end
-

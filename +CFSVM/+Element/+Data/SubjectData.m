@@ -1,8 +1,8 @@
 classdef SubjectData < matlab.mixin.Copyable
-% Inquiry about and recording of the subject info.
-%
+    % Inquiry about and recording of the subject info.
+    %
 
-    properties (SetAccess=private)
+    properties (SetAccess = private)
 
         % Char array for path to directory in which to save the data.
         dirpath
@@ -17,29 +17,28 @@ classdef SubjectData < matlab.mixin.Copyable
 
     end
 
-
     methods
 
         function obj = SubjectData(kwargs)
-        % Inquires subject info and puts it into table.
-        %
-        % Args:
-        %   dirpath: Char array for path to directory in which to save the data.
-        %       Defaults to './SubjectInfo'.
-        %   file_extenstion: Char array. Defaults to '.csv'.
-        %
+            % Inquires subject info and puts it into table.
+            %
+            % Args:
+            %   dirpath: Char array for path to directory in which to save the data.
+            %       Defaults to './SubjectInfo'.
+            %   file_extenstion: Char array. Defaults to '.csv'.
+            %
             arguments
                 kwargs.dirpath {mustBeTextScalar} = './SubjectInfo'
                 kwargs.file_extension {mustBeTextScalar} = '.csv'
             end
-            
+
             obj.dirpath = CFSVM.Utils.rel2abs(kwargs.dirpath);
-            
+
             % If the provided folder doesn't exist - create.
             if ~exist(obj.dirpath, 'dir')
-                mkdir(obj.dirpath)
+                mkdir(obj.dirpath);
             end
-            
+
             obj.file_extension = char(kwargs.file_extension);
             if obj.file_extension(1) ~= '.'
                 obj.file_extension = ['.', obj.file_extension];
@@ -49,8 +48,8 @@ classdef SubjectData < matlab.mixin.Copyable
             data.birthdate = input('Date of birth\n> ', 's');
             data.dominant_eye = input('Dominant eye\n> ', 's');
             data.dominant_hand = input('Dominant hand\n> ', 's');
-            
-            obj.code = data.code;  
+
+            obj.code = data.code;
 
             if strcmpi(data.dominant_eye, "Left")
                 obj.is_left_suppression = true;
@@ -62,19 +61,18 @@ classdef SubjectData < matlab.mixin.Copyable
             obj.table.time = GetSecs();
 
         end
-      
 
         function write(obj)
-        % Writes table to the dirpath.
-        %
-        
-            % Write the table to the folder with provided filename and extension. 
+            % Writes table to the dirpath.
+            %
+
+            % Write the table to the folder with provided filename and extension.
             writetable(obj.table, ...
-                fullfile(obj.dirpath, ...
-                    strcat(num2str(obj.code), obj.file_extension)))
-        
+                       fullfile(obj.dirpath, ...
+                                strcat(num2str(obj.code), obj.file_extension)));
+
         end
-        
+
     end
 
 end

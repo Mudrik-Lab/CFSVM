@@ -3,10 +3,11 @@ function initiate_window(obj)
 %
 % Adopted and modified from `Peter Scarfe's Psychtoolbox tutorial <https://peterscarfe.com/ptbtutorials.html>`_.
 %
-    % Whether to skip the tests (Use only for debugging)
-    Screen('Preference', 'SkipSyncTests', 1);
     % Here we call some default settings for setting up Psychtoolbox
     PsychDefaultSetup(2);
+
+    % Whether to skip the tests (Use only for debugging)
+    Screen('Preference', 'SkipSyncTests', 0);
     
     % Get the screen numbers. This gives us a number for each of the screens
     % attached to our computer.

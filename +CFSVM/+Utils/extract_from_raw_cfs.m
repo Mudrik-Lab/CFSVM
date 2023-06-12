@@ -39,9 +39,9 @@ function set_times(trials)
     for trial_idx = 1:length(trials) 
     
         exp = trials{trial_idx}.experiment;
-        trials{trial_idx}.experiment.masks.onset = exp.vbl_recs(1);
-        trials{trial_idx}.experiment.masks.offset = exp.vbl_recs(end);
-        n_fr = length(exp.vbl_recs);
+        trials{trial_idx}.experiment.masks.onset = exp.flips(2,1);
+        trials{trial_idx}.experiment.masks.offset = exp.flips(2,end);
+        n_fr = length(exp.onsets);
 
         stimuli = regexp(properties(exp), 'stimulus(_\d)*', 'match', 'once');
         stimuli = sort(stimuli(~cellfun('isempty', stimuli)));
@@ -68,10 +68,10 @@ function set_times(trials)
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = check_frames(fade_out_fr, n_fr, exp);
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = check_frames(offset_fr, n_fr, exp);
             else
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = exp.vbl_recs(onset_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = exp.vbl_recs(full_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = exp.vbl_recs(fade_out_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = exp.vbl_recs(offset_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = exp.flips(2,onset_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = exp.flips(2,full_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = exp.flips(2,fade_out_fr);
+                trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = exp.flips(2,offset_fr);
             end
         end
     end
@@ -79,9 +79,9 @@ end
 
 function time = check_frames(frame, n_fr, exp)
     if frame <= n_fr
-        time = exp.vbl_recs(frame);
+        time = exp.flips(2,frame);
     else
-        time = exp.vbl_recs(end);
+        time = exp.flips(2,end);
     end
 end
 
@@ -164,7 +164,7 @@ function ifis = get_ifis(trials)
     ifis = cell(1, length(trials));
     for trial_idx = 1:length(trials)
         exp = trials{trial_idx}.experiment;
-        ifi = exp.vbl_recs(2:end)-exp.vbl_recs(1:end-1);
+        ifi = exp.flips(2,2:end)-exp.flips(2,1:end-1);
         ifis{trial_idx} = ifi;
     end
 end

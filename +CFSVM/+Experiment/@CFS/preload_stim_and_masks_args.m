@@ -8,7 +8,7 @@ function preload_stim_and_masks_args(obj, stim_props)
     % Get number of frames 
     n_fr = obj.masks.duration*obj.screen.frame_rate;
     % Initialize vbl_recs
-    obj.vbl_recs = zeros(1, n_fr);
+    obj.flips = zeros(5, n_fr);
     % Initialize args cell array
     obj.masks.args = cell(1, n_fr);
 

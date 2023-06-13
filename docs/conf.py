@@ -10,7 +10,7 @@ import os
 project = 'CFSVM'
 copyright = '2023, Liad Mudrik lab'
 author = 'Gennadiy Belonosov'
-release = 'v0.6.0'
+release = 'v0.7.0'
 
 # -- General configuration ---------------------------------------------------
 

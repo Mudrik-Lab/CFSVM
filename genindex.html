@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; CFSVM v0.6.0 documentation</title>
+    <title>Index &#8212; CFSVM v0.7.0 documentation</title>
   
   
   
@@ -29,6 +29,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images\LightBox2\lightbox2\dist\css\lightbox.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
@@ -40,6 +41,8 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/sphinxcontrib-images\LightBox2\lightbox2\dist\js\lightbox-plus-jquery.min.js"></script>
+    <script src="_static/sphinxcontrib-images\LightBox2\lightbox2-customize\jquery-noconflict.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -375,6 +378,7 @@ document.write(`
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -479,6 +483,8 @@ document.write(`
 </li>
       <li><a href="%2BCFSVM/8_Generators.html#module-+CFSVM.+Generators.@CFSCrafter">CFSVM.Generators.@CFSCrafter (module)</a>
 </li>
+      <li><a href="%2BCFSVM/9_Utils.html#module-+CFSVM.+Utils">CFSVM.Utils (module)</a>
+</li>
       <li><a href="%2BCFSVM/4_Screen.html#CFSVM.Element.Screen.CheckFrame.checker_length">checker_length (CFSVM.Element.Screen.CheckFrame attribute)</a>
 </li>
       <li><a href="%2BCFSVM/4_Screen.html#CFSVM.Element.Screen.CheckFrame.checker_width">checker_width (CFSVM.Element.Screen.CheckFrame attribute)</a>
@@ -519,12 +525,16 @@ document.write(`
 </li>
       <li><a href="%2BCFSVM/4_Screen.html#CFSVM.Element.Screen.CustomScreen.CustomScreen">CustomScreen() (CFSVM.Element.Screen.CustomScreen method)</a>
 </li>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.cycles_per_pixel2cycles_per_deg">cycles_per_pixel2cycles_per_deg() (in module CFSVM.Utils)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.deg2pix">deg2pix() (in module CFSVM.Utils)</a>
+</li>
       <li><a href="%2BCFSVM/5_Data.html#CFSVM.Element.Data.Instructions.dirpath">dirpath (CFSVM.Element.Data.Instructions attribute)</a>
 
       <ul>
@@ -537,6 +547,8 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.display_diag2aspects">display_diag2aspects() (in module CFSVM.Utils)</a>
+</li>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.draw">draw() (in module CFSVM.Experiment)</a>
 </li>
       <li><a href="%2BCFSVM/7_Element.html#CFSVM.Element.TemporalElement.duration">duration (CFSVM.Element.TemporalElement attribute)</a>
@@ -555,9 +567,9 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.Experiment.Experiment">Experiment() (CFSVM.Experiment.Experiment method)</a>
 </li>
-      <li><a href="%2BCFSVM/9_Extract.html#CFSVM.Utils.extract_from_raw_cfs">extract_from_raw_cfs() (in module CFSVM.Utils)</a>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.extract_from_raw_cfs">extract_from_raw_cfs() (in module CFSVM.Utils)</a>
 </li>
-      <li><a href="%2BCFSVM/9_Extract.html#CFSVM.Utils.extract_from_raw_vm">extract_from_raw_vm() (in module CFSVM.Utils)</a>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.extract_from_raw_vm">extract_from_raw_vm() (in module CFSVM.Utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -609,6 +621,8 @@ document.write(`
 </li>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.flash">flash() (in module CFSVM.Experiment)</a>, <a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.flash">[1]</a>, <a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.flash">[2]</a>
 </li>
+      <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.CFS.flips">flips (CFSVM.Experiment.CFS attribute)</a>
+</li>
       <li><a href="%2BCFSVM/5_Data.html#CFSVM.Element.Data.Instructions.forward_key">forward_key (CFSVM.Element.Data.Instructions attribute)</a>
 </li>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.BCFS.frame">frame (CFSVM.Experiment.BCFS attribute)</a>
@@ -652,6 +666,14 @@ document.write(`
       <li><a href="%2BCFSVM/8_Generators.html#CFSVM.Generators.get_spatial_amp">get_spatial_amp() (in module CFSVM.Generators)</a>
 </li>
       <li><a href="%2BCFSVM/8_Generators.html#CFSVM.Generators.get_temporal_amp">get_temporal_amp() (in module CFSVM.Generators)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.hex2rgb">hex2rgb() (in module CFSVM.Utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -831,7 +853,7 @@ document.write(`
 </li>
       <li><a href="%2BCFSVM/3_Evidence.html#CFSVM.Element.Evidence.ScaleEvidence.n_options">n_options (CFSVM.Element.Evidence.ScaleEvidence attribute)</a>
 </li>
-      <li><a href="%2BCFSVM/4_Screen.html#CFSVM.Element.Screen.CheckFrame.nearest_divisor_of_N_to_n">nearest_divisor_of_N_to_n() (CFSVM.Element.Screen.CheckFrame static method)</a>
+      <li><a href="%2BCFSVM/4_Screen.html#CFSVM.Element.Screen.CheckFrame.nearest_divisor_of_n_to_m">nearest_divisor_of_n_to_m() (CFSVM.Element.Screen.CheckFrame static method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -876,6 +898,8 @@ document.write(`
       <li><a href="%2BCFSVM/8_Generators.html#CFSVM.Generators.patch_creation">patch_creation() (in module CFSVM.Generators)</a>
 </li>
       <li><a href="%2BCFSVM/8_Generators.html#CFSVM.Generators.phase_scramble">phase_scramble() (in module CFSVM.Generators)</a>
+</li>
+      <li><a href="%2BCFSVM/9_Utils.html#CFSVM.Utils.pix2deg">pix2deg() (in module CFSVM.Utils)</a>
 </li>
       <li><a href="%2BCFSVM/8_Generators.html#CFSVM.Generators.CFSCrafter.play">play() (CFSVM.Generators.CFSCrafter method)</a>
 </li>
@@ -1145,16 +1169,14 @@ document.write(`
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.CFS.vbl_recs">vbl_recs (CFSVM.Experiment.CFS attribute)</a>
-</li>
       <li><a href="%2BCFSVM/2_Stimulus.html#CFSVM.Element.Stimulus.Mondrians.vbls">vbls (CFSVM.Element.Stimulus.Mondrians attribute)</a>
 </li>
       <li><a href="%2BCFSVM/8_Generators.html#CFSVM.Generators.MondrianGenerator.view_dist">view_dist (CFSVM.Generators.MondrianGenerator attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.VM">VM (class in CFSVM.Experiment)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.VPCFS">VPCFS (class in CFSVM.Experiment)</a>
 </li>
       <li><a href="%2BCFSVM/1_Experiment.html#CFSVM.Experiment.VSM">VSM (class in CFSVM.Experiment)</a>

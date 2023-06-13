@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>API reference &#8212; CFSVM v0.6.0 documentation</title>
+    <title>API reference &#8212; CFSVM v0.7.0 documentation</title>
   
   
   
@@ -30,6 +30,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images\LightBox2\lightbox2\dist\css\lightbox.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
@@ -41,6 +42,8 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/sphinxcontrib-images\LightBox2\lightbox2\dist\js\lightbox-plus-jquery.min.js"></script>
+    <script src="_static/sphinxcontrib-images\LightBox2\lightbox2-customize\jquery-noconflict.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -360,7 +363,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/5_Data.html">Data package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/7_Element.html">Element package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/8_Generators.html">Generators package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/9_Extract.html">Data processing functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/9_Utils.html">Utils package</a></li>
 </ul>
 </div>
 </nav></div>
@@ -473,14 +476,41 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="%2BCFSVM/8_Generators.html#module-+CFSVM.+Generators.&#64;CFSCrafter">CFSCrafter class</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/9_Extract.html">Data processing functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="%2BCFSVM/9_Extract.html#extract-from-cfs">Extract from CFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%2BCFSVM/9_Extract.html#extract-from-vm">Extract from VM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%2BCFSVM/9_Utils.html">Utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="%2BCFSVM/9_Utils.html#module-+CFSVM.+Utils">Utils functions</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div></blockquote>
+<section id="experiments-class-diagram">
+<h3>Experiments Class Diagram<a class="headerlink" href="#experiments-class-diagram" title="Permalink to this heading">#</a></h3>
+<a class=""
+               data-lightbox="group-0907cffe-04fa-4aa8-be46-f09e6cb1c8b6"
+               href="_images/experiment.svg"
+               title=""
+               data-title=""
+               
+               ><img src="_images/experiment.svg"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></section>
+<section id="elements-class-diagram">
+<h3>Elements Class Diagram<a class="headerlink" href="#elements-class-diagram" title="Permalink to this heading">#</a></h3>
+<a class=""
+               data-lightbox="group-bf8e8c68-8cc7-44ed-9f88-4a69784dd7c0"
+               href="_images/element.svg"
+               title=""
+               data-title=""
+               
+               ><img src="_images/element.svg"
+                     class=""
+                     width="100%"
+                     height="auto"
+                     alt=""/>
+                </a></section>
 </section>
 </section>
 
@@ -531,7 +561,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cfsvm-package">CFSVM package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cfsvm-package">CFSVM package</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiments-class-diagram">Experiments Class Diagram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elements-class-diagram">Elements Class Diagram</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

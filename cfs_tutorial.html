@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>CFS tutorial &#8212; CFSVM v0.6.0 documentation</title>
+    <title>CFS tutorial &#8212; CFSVM v0.7.0 documentation</title>
   
   
   
@@ -30,6 +30,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxcontrib-images\LightBox2\lightbox2\dist\css\lightbox.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
@@ -41,6 +42,8 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/sphinxcontrib-images\LightBox2\lightbox2\dist\js\lightbox-plus-jquery.min.js"></script>
+    <script src="_static/sphinxcontrib-images\LightBox2\lightbox2-customize\jquery-noconflict.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cfs_tutorial';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -459,7 +462,7 @@ document.write(`
 <h3>Create the experiment folder<a class="headerlink" href="#create-the-experiment-folder" title="Permalink to this heading">#</a></h3>
 <p>We will organize the experiment according to the <a class="reference external" href="https://osf.io/5kfrc/wiki/Chapter%203:%20Data%20Organization/">HLC lab handbook</a>.
 The initial folder structure will look like this (only relevant for this tutorial folders are shown):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TnK_experiment_2/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TnK_experiment_2/
 ├── Experiment/
 │   └── RUN_ME/
 |       ├── Code/
@@ -474,7 +477,7 @@ The initial folder structure will look like this (only relevant for this tutoria
 <p>Create a new folder called <code class="docutils literal notranslate"><span class="pre">Suppressed/</span></code> inside the <code class="docutils literal notranslate"><span class="pre">Stimuli/</span></code> and put in it two Gabor images with transparent backgrounds and opposite phases, like these:</p>
 <p><img alt="Gabor1" src="_images/gabor1.png" /> <img alt="Gabor2" src="_images/gabor2.png" /></p>
 <p>Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> folder structure should now look somewhat like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RUN_ME/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RUN_ME/
 ├── Code/
 └── Stimuli/
     └── Suppressed/
@@ -495,7 +498,7 @@ The initial folder structure will look like this (only relevant for this tutoria
 </ul>
 </li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RUN_ME/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RUN_ME/
 ├── Code/
 |   └── generate_trials.m
 └── Stimuli/
@@ -521,7 +524,7 @@ The initial folder structure will look like this (only relevant for this tutoria
 The two types have many common properties, as they are both Continuous Flash Suppression, yet they are different from each other in the following ways:</p>
 <ul class="simple">
 <li><p>The <strong>BCFS</strong> code includes a breakthrough property, which records the participant’s response during the time, indicating that she detected the stimulus. The trial then stops when this response is recorded.</p></li>
-<li><p>The <strong>VPCFS</strong> code includes the mafc and pas properties which define the objective ( multiple-alternative forced choice) and subjective (perceptual awareness scale) measures of consciousness, respectively.</p></li>
+<li><p>The <strong>VPCFS</strong> code includes the mafc and pas properties which define the objective (multiple-alternative forced choice) and subjective (perceptual awareness scale) measures of consciousness, respectively.</p></li>
 </ul>
 <p>As in this experiment neither of mAFC or PAS is used, we will build the experiment with the <strong>BCFS</strong> template.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">BCFS</span><span class="p">();</span>
@@ -544,19 +547,22 @@ The two types have many common properties, as they are both Continuous Flash Sup
 <tr class="row-odd"><td><p>subject_info</p></td>
 <td><p>SubjectData</p></td>
 </tr>
-<tr class="row-even"><td><p>trials</p></td>
+<tr class="row-even"><td><p>instructions</p></td>
+<td><p>Instructions</p></td>
+</tr>
+<tr class="row-odd"><td><p>trials</p></td>
 <td><p>TrialsData</p></td>
 </tr>
-<tr class="row-odd"><td><p>fixation</p></td>
+<tr class="row-even"><td><p>fixation</p></td>
 <td><p>Fixation</p></td>
 </tr>
-<tr class="row-even"><td><p>frame</p></td>
+<tr class="row-odd"><td><p>frame</p></td>
 <td><p>CheckFrame</p></td>
 </tr>
-<tr class="row-odd"><td><p>masks</p></td>
+<tr class="row-even"><td><p>masks</p></td>
 <td><p>Mondrians</p></td>
 </tr>
-<tr class="row-even"><td><p>breakthrough</p></td>
+<tr class="row-odd"><td><p>breakthrough</p></td>
 <td><p>BreakResponse</p></td>
 </tr>
 </tbody>
@@ -736,7 +742,7 @@ The last line will initialize a cell array for the trial matrix.</p>
 </div>
 <p>Don’t forget to execute the code before running the experiment! After executing it you will find the file with the trial matrix in the <code class="docutils literal notranslate"><span class="pre">RUN_ME/TrialMatrix/</span></code> directory and generated Mondrians in the <code class="docutils literal notranslate"><span class="pre">RUN_ME/Stimuli/Masks/</span></code>.
 Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> folder structure now should look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RUN_ME/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RUN_ME/
 ├── Code/
 |   ├── generate_trials.m
 |   └── main.m
@@ -770,7 +776,7 @@ Your <code class="docutils literal notranslate"><span class="pre">RUN_ME</span><
 </ul>
 <p>We will create an <code class="docutils literal notranslate"><span class="pre">Instructions</span></code> folder in the <code class="docutils literal notranslate"><span class="pre">RUN_ME</span></code> directory. Next, each type of the instruction will have its own subfolder. In each subfolder we will put corresponding images. When the experiment is running, the code will present the images by their <a class="reference external" href="https://en.wikipedia.org/wiki/Natural_sort_order">natural order</a>. You can set the background of the images as transparent in an image editor and save them as .png files if you want the background color the same as in the experiment.
 The <strong>exact</strong> names of the subfolders should be: introduction, introduction, block_introduction_1, …, block_introduction_n (where n is the number of blocks), rest, farewell. For the experiment we are building here the folder structure will look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>RUN_ME/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>RUN_ME/
 └── Instructions/
     ├── introduction/
     |   ├── 1.png
@@ -847,15 +853,15 @@ We will put it in <code class="docutils literal notranslate"><span class="pre">T
 <section id="running-the-experiment">
 <h2>Running the experiment<a class="headerlink" href="#running-the-experiment" title="Permalink to this heading">#</a></h2>
 <p>Right after executing the script you’ll see the dialogue for collecting the subject data:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">main</span>
-<span class="n">Subject</span> <span class="n">code</span>
-<span class="o">&gt;</span> <span class="n">HZ4</span>
-<span class="n">Date</span> <span class="n">of</span> <span class="n">birth</span>
-<span class="o">&gt;</span> <span class="mi">01011900</span>
-<span class="n">Dominant</span> <span class="n">eye</span>
-<span class="o">&gt;</span> <span class="n">Right</span>
-<span class="n">Dominant</span> <span class="n">hand</span>
-<span class="o">&gt;</span> <span class="n">Both</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt;&gt; main
+Subject code
+&gt; HZ4
+Date of birth
+&gt; 01011900
+Dominant eye
+&gt; Right
+Dominant hand
+&gt; Both
 </pre></div>
 </div>
 <p>Now you will proceed to the experiment itself.</p>
@@ -867,7 +873,7 @@ We will put it in <code class="docutils literal notranslate"><span class="pre">T
 You can run <code class="docutils literal notranslate"><span class="pre">CFSVM.Utils.extract_from_raw_cfs(path_to_raw_trials,</span> <span class="pre">subject_code)</span></code>
 (<em>‘../../../Raw Data/Behavioral/RawTrials’</em> and <em>‘HZ4’</em> in this example) script to extract the data from the raw files. It will create two csv tables in <code class="docutils literal notranslate"><span class="pre">Behavioral/Extracted/&lt;subject</span> <span class="pre">code&gt;/</span></code> and <code class="docutils literal notranslate"><span class="pre">Behavioral/Processed/</span></code> folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
 The final folder structure will look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>TnK_experiment_2/
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TnK_experiment_2/
 ├── Experiment/
 │   └── RUN_ME/
 |       ├── Code/

@@ -43,7 +43,7 @@ We extracted the following parameters from the [Methods section](https://www.nat
 ### Create the experiment folder
 We will organize the experiment according to the [HLC lab handbook](https://osf.io/5kfrc/wiki/Chapter%203:%20Data%20Organization/).
 The initial folder structure will look like this (only relevant for this tutorial folders are shown):
-```
+```text
 TnK_experiment_2/
 ├── Experiment/
 │   └── RUN_ME/
@@ -60,7 +60,7 @@ Create a new folder called `Suppressed/` inside the `Stimuli/` and put in it two
 ![Gabor1](tutorial/gabor1.png) ![Gabor2](tutorial/gabor2.png)
 
 Your `RUN_ME` folder structure should now look somewhat like this:
-```
+```text
 RUN_ME/
 ├── Code/
 └── Stimuli/
@@ -75,7 +75,7 @@ We will start by generating a list of trials specifying the experimental conditi
 2. To generate trials:
     - You can either use the example script *TnK_generate_trials* (simply run it in the MATLAB command window, it will generate the trial matrix for this specific experiment) and navigate to [the last step (or two) before the run](#the-last-step-or-two-before-the-run) section in this tutorial. 
     - Or you can create your own *generate_trials.m* file based on your needs. If you follow this way, your `RUN_ME` folder structure will now look like this:
-```
+```text
 RUN_ME/
 ├── Code/
 |   └── generate_trials.m
@@ -99,7 +99,7 @@ import CFSVM.Experiment.* ...
 There are two types of CFS experiment in the package: BCFS (breaking CFS) and VPCFS (visual priming CFS).
 The two types have many common properties, as they are both Continuous Flash Suppression, yet they are different from each other in the following ways:
 - The **BCFS** code includes a breakthrough property, which records the participant’s response during the time, indicating that she detected the stimulus. The trial then stops when this response is recorded.
-- The **VPCFS** code includes the mafc and pas properties which define the objective ( multiple-alternative forced choice) and subjective (perceptual awareness scale) measures of consciousness, respectively.
+- The **VPCFS** code includes the mafc and pas properties which define the objective (multiple-alternative forced choice) and subjective (perceptual awareness scale) measures of consciousness, respectively.
 
 As in this experiment neither of mAFC or PAS is used, we will build the experiment with the **BCFS** template.
 
@@ -116,6 +116,7 @@ The **BCFS** template has multiple required properties:
 | --- | --- |
 | screen | CustomScreen |
 | subject_info | SubjectData |
+| instructions | Instructions |
 | trials  | TrialsData |
 | fixation | Fixation |
 | frame  | CheckFrame |
@@ -305,7 +306,7 @@ save('../TrialMatrix/experiment.mat', 'trial_matrix')
 
 Don’t forget to execute the code before running the experiment! After executing it you will find the file with the trial matrix in the `RUN_ME/TrialMatrix/` directory and generated Mondrians in the `RUN_ME/Stimuli/Masks/`.
 Your `RUN_ME` folder structure now should look like this:
-```
+```text
 RUN_ME/
 ├── Code/
 |   ├── generate_trials.m
@@ -335,7 +336,7 @@ There are multiple types of instructions:
 
 We will create an `Instructions` folder in the `RUN_ME` directory. Next, each type of the instruction will have its own subfolder. In each subfolder we will put corresponding images. When the experiment is running, the code will present the images by their [natural order](https://en.wikipedia.org/wiki/Natural_sort_order). You can set the background of the images as transparent in an image editor and save them as .png files if you want the background color the same as in the experiment.
 The **exact** names of the subfolders should be: introduction, introduction, block_introduction_1, …, block_introduction_n (where n is the number of blocks), rest, farewell. For the experiment we are building here the folder structure will look like this:
-```
+```text
 RUN_ME/
 └── Instructions/
     ├── introduction/
@@ -425,7 +426,7 @@ That’s it! You can run the `main.m` script now!
 
 Right after executing the script you’ll see the dialogue for collecting the subject data:
 
-```
+```text
 >> main
 Subject code
 > HZ4
@@ -448,7 +449,7 @@ The raw trial data will appear in the `Tnk_experiment_2/Raw Data/Behavioral/RawT
 You can run `CFSVM.Utils.extract_from_raw_cfs(path_to_raw_trials, subject_code)`
 (*'../../../Raw Data/Behavioral/RawTrials'* and *'HZ4'* in this example) script to extract the data from the raw files. It will create two csv tables in `Behavioral/Extracted/<subject code>/` and `Behavioral/Processed/` folders, the first one containing raw timings and the second one processed ones (e.g., durations instead of onsets and offsets).
 The final folder structure will look like this:
-```
+```text
 TnK_experiment_2/
 ├── Experiment/
 │   └── RUN_ME/

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Experiment package &#8212; CFSVM v0.6.0 documentation</title>
+    <title>Experiment package &#8212; CFSVM v0.7.0 documentation</title>
   
   
   
@@ -30,6 +30,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxcontrib-images\LightBox2\lightbox2\dist\css\lightbox.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
@@ -41,6 +42,8 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/sphinxcontrib-images\LightBox2\lightbox2\dist\js\lightbox-plus-jquery.min.js"></script>
+    <script src="../_static/sphinxcontrib-images\LightBox2\lightbox2-customize\jquery-noconflict.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/1_Experiment';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -360,7 +363,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="5_Data.html">Data package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_Element.html">Element package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_Generators.html">Generators package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_Extract.html">Data processing functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Utils.html">Utils package</a></li>
 </ul>
 </div>
 </nav></div>
@@ -462,6 +465,7 @@ comments containing screens shown to the subject.</p>
 <span class="sig-prename descclassname"><span class="pre">CFSVM.Experiment.</span></span><span class="sig-name descname"><span class="pre">initiate_window</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Experiment.initiate_window" title="Permalink to this definition">#</a></dt>
 <dd><p>Calls basic Psychtoolbox settings.</p>
 <p>Adopted and modified from <a class="reference external" href="https://peterscarfe.com/ptbtutorials.html">Peter Scarfe’s Psychtoolbox tutorial</a>.</p>
+<p>Here we call some default settings for setting up Psychtoolbox</p>
 </dd></dl>
 
 <dl class="mat function">
@@ -483,9 +487,9 @@ properties.</p>
 <div class="members docutils container">
 <dl>
 <dt>Property Summary</dt><dd><dl class="mat attribute">
-<dt class="sig sig-object mat" id="CFSVM.Experiment.CFS.vbl_recs">
-<span class="sig-name descname"><span class="pre">vbl_recs</span></span><a class="headerlink" href="#CFSVM.Experiment.CFS.vbl_recs" title="Permalink to this definition">#</a></dt>
-<dd><p>An array for recording flip timestamps while flashing.</p>
+<dt class="sig sig-object mat" id="CFSVM.Experiment.CFS.flips">
+<span class="sig-name descname"><span class="pre">flips</span></span><a class="headerlink" href="#CFSVM.Experiment.CFS.flips" title="Permalink to this definition">#</a></dt>
+<dd><p>An array for Screen(‘Flip’) outputs from flash method.</p>
 </dd></dl>
 
 </dd>

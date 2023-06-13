@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Evidence package &#8212; CFSVM v0.6.0 documentation</title>
+    <title>Evidence package &#8212; CFSVM v0.7.0 documentation</title>
   
   
   
@@ -30,6 +30,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxcontrib-images\LightBox2\lightbox2\dist\css\lightbox.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
@@ -41,6 +42,8 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/sphinxcontrib-images\LightBox2\lightbox2\dist\js\lightbox-plus-jquery.min.js"></script>
+    <script src="../_static/sphinxcontrib-images\LightBox2\lightbox2-customize\jquery-noconflict.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '+CFSVM/3_Evidence';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -360,7 +363,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="5_Data.html">Data package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_Element.html">Element package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_Generators.html">Generators package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_Extract.html">Data processing functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_Utils.html">Utils package</a></li>
 </ul>
 </div>
 </nav></div>
@@ -532,13 +535,13 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">1</span
 </dd>
 <dt>Method Summary</dt><dd><dl class="mat method">
 <dt class="sig sig-object mat" id="CFSVM.Element.Evidence.ImgMAFC.load_parameters">
-<span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">screen</span></em>, <em class="sig-param"><span class="pre">PTB_textures_indices</span></em>, <em class="sig-param"><span class="pre">shown_texture_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC.load_parameters" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">load_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">screen</span></em>, <em class="sig-param"><span class="pre">ptb_textures_indices</span></em>, <em class="sig-param"><span class="pre">shown_texture_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#CFSVM.Element.Evidence.ImgMAFC.load_parameters" title="Permalink to this definition">#</a></dt>
 <dd><p>Loads parameters for mAFC screen for the trial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>screen</strong> – <a class="reference internal" href="4_Screen.html#CFSVM.Element.Screen.CustomScreen" title="CFSVM.Element.Screen.CustomScreen"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">CustomScreen</span></code></a> object.</p></li>
-<li><p><strong>PTB_textures_indices</strong> – <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">array</span></code> of ints representing loaded PTB textures.</p></li>
+<li><p><strong>ptb_textures_indices</strong> – <code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">array</span></code> of ints representing loaded PTB textures.</p></li>
 <li><p><strong>shown_texture_index</strong> – <code class="docutils literal notranslate"><span class="pre">Int</span></code> representing PTB texture shown as a stimulus.</p></li>
 </ul>
 </dd>

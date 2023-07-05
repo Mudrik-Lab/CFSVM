@@ -105,6 +105,7 @@ classdef Mondrians < CFSVM.Element.Stimulus.Stimulus
 
             random_order = randperm(length(obj.textures.PTB_indices));
             obj.textures.PTB_indices = obj.textures.PTB_indices(random_order);
+            obj.textures.images_names = obj.textures.images_names(random_order);
 
         end
 

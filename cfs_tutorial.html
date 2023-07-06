@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>CFS tutorial &#8212; CFSVM v0.7.0 documentation</title>
+    <title>CFS tutorial &#8212; CFSVM v0.8.0 documentation</title>
   
   
   
@@ -678,11 +678,11 @@ Finally, we will set <strong>blank</strong> to 5 seconds, to present a blank scr
 </pre></div>
 </div>
 <p>Then we will initialize them. As a first parameter we will provide a path to the folder with two Gabors that we presented here earlier.</p>
-<p>We will set <strong>show_duration</strong> for both of the parameters to 5 seconds. We will set a different <strong>position</strong> for them: “Left” for the first and “Right” for the second.
+<p>We will set <strong>duration</strong> for both of the parameters to 5 seconds. We will set a different <strong>position</strong> for them: “Left” for the first and “Right” for the second.
 We will set <strong>contrast</strong> to 0.3 (30%), <strong>size</strong> to 0.5, <strong>padding</strong> to 0.5 and <strong>xy_ratio</strong> to 1.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SuppressedStimulus</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="s">&#39;../Stimuli/Suppressed/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">show_duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Left&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="nb">contrast</span><span class="p">=</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
@@ -690,7 +690,7 @@ We will set <strong>contrast</strong> to 0.3 (30%), <strong>size</strong> to 0.5
 <span class="w">    </span><span class="n">xy_ratio</span><span class="p">=</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">experiment</span><span class="p">.</span><span class="n">stimulus_2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SuppressedStimulus</span><span class="p">(</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="s">&#39;../Stimuli/Suppressed/&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
-<span class="w">    </span><span class="n">show_duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">duration</span><span class="p">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="n">position</span><span class="p">=</span><span class="s">&quot;Right&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="nb">contrast</span><span class="p">=</span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">    </span><span class="nb">size</span><span class="p">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>

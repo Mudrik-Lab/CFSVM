@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Stimulus package &#8212; CFSVM v0.7.0 documentation</title>
+    <title>Stimulus package &#8212; CFSVM v0.8.0 documentation</title>
   
   
   
@@ -635,6 +635,8 @@ Defaults to 1.</p></li>
 Defaults to 0.</p></li>
 <li><p><strong>crafter_masks</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Mondrians.crafter_masks" title="CFSVM.Element.Stimulus.Mondrians.crafter_masks"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">crafter_masks</span></code></a>.
 Defaults to ‘’.</p></li>
+<li><p><strong>is_control</strong> – Whether to flash mondrians on both screen
+fields. Defaults to false.</p></li>
 <li><p><strong>manual_rect</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.manual_rect" title="CFSVM.Element.Stimulus.Stimulus.manual_rect"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.manual_rect</span></code></a>.</p></li>
 </ul>
 </dd>
@@ -665,6 +667,12 @@ masks, stimuli, fixation and checkframe.</p>
 <dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.Mondrians.indices">
 <span class="sig-name descname"><span class="pre">indices</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.Mondrians.indices" title="Permalink to this definition">#</a></dt>
 <dd><p>1D array representing masks index for every frame.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.Mondrians.is_control">
+<span class="sig-name descname"><span class="pre">is_control</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.Mondrians.is_control" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether flash mondrians on both screens.</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -900,14 +908,8 @@ Defaults to 0.5.</p></li>
 Defaults to 0.</p></li>
 <li><p><strong>contrast</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.SpatialElement.contrast" title="CFSVM.Element.SpatialElement.contrast"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.SpatialElement.contrast</span></code></a>.
 Defaults to 1.</p></li>
-<li><p><strong>appearance_delay</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.SuppressedStimulus.appearance_delay" title="CFSVM.Element.Stimulus.SuppressedStimulus.appearance_delay"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">appearance_delay</span></code></a>.
-Defaults to 0.</p></li>
-<li><p><strong>fade_in_duration</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.SuppressedStimulus.fade_in_duration" title="CFSVM.Element.Stimulus.SuppressedStimulus.fade_in_duration"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">fade_in_duration</span></code></a>.
-Defaults to 0.</p></li>
 <li><p><strong>duration</strong> – <a class="reference internal" href="7_Element.html#CFSVM.Element.TemporalElement.duration" title="CFSVM.Element.TemporalElement.duration"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.TemporalElement.duration</span></code></a>.
 Defaults to 1.</p></li>
-<li><p><strong>fade_out_duration</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration" title="CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">fade_out_duration</span></code></a>.
-Defaults to 0.</p></li>
 <li><p><strong>blank</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.blank" title="CFSVM.Element.Stimulus.Stimulus.blank"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">CFSVM.Element.Stimulus.Stimulus.blank</span></code></a>.
 Defaults to 0.</p></li>
 <li><p><strong>manual_rect</strong> – <a class="reference internal" href="#CFSVM.Element.Stimulus.Stimulus.manual_rect" title="CFSVM.Element.Stimulus.Stimulus.manual_rect"><code class="xref mat mat-attr docutils literal notranslate"><span class="pre">manual_rect</span></code></a>.</p></li>
@@ -919,44 +921,14 @@ Defaults to 0.</p></li>
 </dd>
 <dt>Property Summary</dt><dd><dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.RESULTS">
-<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'onset','offset','full_contrast_onset','fade_out_onset','position','index','image_name'}</span></em><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.RESULTS" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">RESULTS</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'onset','offset','position','index','image_name'}</span></em><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.RESULTS" title="Permalink to this definition">#</a></dt>
 <dd><p>Parameters to parse into the processed results table.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.appearance_delay">
-<span class="sig-name descname"><span class="pre">appearance_delay</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.appearance_delay" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - seconds of Mondrians flashing before stimulus appearance</p>
 </dd></dl>
 
 <dl class="mat attribute">
 <dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.contrasts">
 <span class="sig-name descname"><span class="pre">contrasts</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.contrasts" title="Permalink to this definition">#</a></dt>
 <dd><p>1D array representing contrast for every frame of flashing.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.fade_in_duration">
-<span class="sig-name descname"><span class="pre">fade_in_duration</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.fade_in_duration" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - duration in seconds of stimulus fade in.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration">
-<span class="sig-name descname"><span class="pre">fade_out_duration</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration" title="Permalink to this definition">#</a></dt>
-<dd><p>Float - duration in seconds of stimulus fade out.</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_onset">
-<span class="sig-name descname"><span class="pre">fade_out_onset</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_onset" title="Permalink to this definition">#</a></dt>
-<dd><p>Onset time of stimulus dissapearance</p>
-</dd></dl>
-
-<dl class="mat attribute">
-<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.full_contrast_onset">
-<span class="sig-name descname"><span class="pre">full_contrast_onset</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.full_contrast_onset" title="Permalink to this definition">#</a></dt>
-<dd><p>Onset time of stable contrast stimulus</p>
 </dd></dl>
 
 <dl class="mat attribute">
@@ -975,6 +947,12 @@ Defaults to 0.</p></li>
 <dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.right_rect">
 <span class="sig-name descname"><span class="pre">right_rect</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.right_rect" title="Permalink to this definition">#</a></dt>
 <dd><p>[x0, y0, x1, y1] array - stimulus rect on the right screen.</p>
+</dd></dl>
+
+<dl class="mat attribute">
+<dt class="sig sig-object mat" id="CFSVM.Element.Stimulus.SuppressedStimulus.rotations">
+<span class="sig-name descname"><span class="pre">rotations</span></span><a class="headerlink" href="#CFSVM.Element.Stimulus.SuppressedStimulus.rotations" title="Permalink to this definition">#</a></dt>
+<dd><p>1D array representing rotation for every frame of flashing.</p>
 </dd></dl>
 
 </dd>

@@ -9,17 +9,24 @@ classdef BreakResponse < CFSVM.Element.ResponseElement
 
     end
 
+    properties
+        is_break_trial logical
+    end
+
     methods
 
         function obj = BreakResponse(kwargs)
             %
             % Args:
             %   keys: :attr:`~CFSVM.Element.ResponseElement.keys`.
-            %       Defaults to ``{'LeftArrow', 'RightArrow'}``
+            %       Defaults to ``{'LeftArrow', 'RightArrow'}``.
+            %   is_break_trial: Whether to break a trial when the key is pressed. 
+            %       Defaults to true.
             %
 
             arguments
                 kwargs.keys = {'LeftArrow', 'RightArrow'}
+                kwargs.is_break_trial = true
             end
 
             kwargs_names = fieldnames(kwargs);

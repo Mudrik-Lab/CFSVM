@@ -47,29 +47,14 @@ function set_times(trials)
 
         for stim_idx = 1:length(stimuli)
 
-            onset_fr = exp.(stimuli{stim_idx}).appearance_delay * exp.screen.frame_rate + 1;
-
-            full_fr = (exp.(stimuli{stim_idx}).appearance_delay + ...
-                       exp.(stimuli{stim_idx}).fade_in_duration) * exp.screen.frame_rate + 1;
-
-            fade_out_fr = (exp.(stimuli{stim_idx}).appearance_delay + ...
-                           exp.(stimuli{stim_idx}).fade_in_duration + ...
-                           exp.(stimuli{stim_idx}).duration) * exp.screen.frame_rate + 1;
-
-            offset_fr = (exp.(stimuli{stim_idx}).appearance_delay + ...
-                         exp.(stimuli{stim_idx}).fade_in_duration + ...
-                         exp.(stimuli{stim_idx}).duration + ...
-                         exp.(stimuli{stim_idx}).fade_out_duration) * exp.screen.frame_rate + 1;
+            onset_fr = find(exp.(stimuli{stim_idx}).indices, 1, 'first');
+            offset_fr = find(exp.(stimuli{stim_idx}).indices, 1, 'last');
 
             if class(exp) == "CFSVM.Experiment.BCFS"
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = check_frames(onset_fr, n_fr, exp);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = check_frames(full_fr, n_fr, exp);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = check_frames(fade_out_fr, n_fr, exp);
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = check_frames(offset_fr, n_fr, exp);
             else
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).onset = exp.flips(2, onset_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).full_contrast_onset = exp.flips(2, full_fr);
-                trials{trial_idx}.experiment.(stimuli{stim_idx}).fade_out_onset = exp.flips(2, fade_out_fr);
                 trials{trial_idx}.experiment.(stimuli{stim_idx}).offset = exp.flips(2, offset_fr);
             end
         end
@@ -186,9 +171,6 @@ function process_data(tab, path_to_raw_trials, code, trials)
         TP.(sprintf('%s_position', stimuli{stim_idx})) = tab.(sprintf('%s_position', stimuli{stim_idx}));
         TP.(sprintf('%s_delay_duration', stimuli{stim_idx})) = tab.(sprintf('%s_onset', stimuli{stim_idx})) - tab.masks_onset;
         TP.(sprintf('%s_duration', stimuli{stim_idx})) = tab.(sprintf('%s_offset', stimuli{stim_idx})) - tab.(sprintf('%s_onset', stimuli{stim_idx}));
-        TP.(sprintf('%s_full_contrast_duration', stimuli{stim_idx})) = tab.(sprintf('%s_fade_out_onset', stimuli{stim_idx})) - tab.(sprintf('%s_full_contrast_onset', stimuli{stim_idx}));
-        TP.(sprintf('%s_fade_in_duration', stimuli{stim_idx})) = tab.(sprintf('%s_full_contrast_onset', stimuli{stim_idx})) - tab.(sprintf('%s_onset', stimuli{stim_idx}));
-        TP.(sprintf('%s_fade_out_duration', stimuli{stim_idx})) = tab.(sprintf('%s_offset', stimuli{stim_idx})) - tab.(sprintf('%s_fade_out_onset', stimuli{stim_idx}));
     end
 
     if exp == "BCFS"

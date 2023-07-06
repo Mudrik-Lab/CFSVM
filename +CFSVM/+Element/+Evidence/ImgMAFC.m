@@ -90,7 +90,7 @@ classdef ImgMAFC < CFSVM.Element.Evidence.ScaleEvidence & CFSVM.Element.Stimulus
             % Shuffle used prime image with not used ones.
             obj.options = obj.options(randperm(length(obj.options)));
 
-            obj.img_indices = num2str(cellfun(@(x) find([PTB_textures_indices{:}] == x), obj.options));
+            obj.img_indices = num2str(cellfun(@(x) find([ptb_textures_indices{:}] == x), obj.options));
             obj.rects = {zeros(obj.n_options, 4); zeros(obj.n_options, 4)};
 
             for i = 1:obj.n_options

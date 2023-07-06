@@ -11,6 +11,8 @@ function [pressed, first_press] = flash(obj, vbl)
     %   - pressed: a boolean indicating whether a key has been pressed
     %   - first_press: an array indicating the time that each key was first pressed.
     %
+    pressed = false;
+    first_press = false;
 
     % First flashing frame is being delayed to present an initial fixation
     % for its exact duration.
@@ -30,9 +32,14 @@ function [pressed, first_press] = flash(obj, vbl)
                                                          'Flip', ...
                                                          obj.screen.window, ...
                                                          obj.flips(1, fr - 1) - 0.5 * obj.screen.inter_frame_interval);
-        [pressed, first_press, ~, ~, ~] = KbQueueCheck();
-        if pressed
-            return
+        [p, fp, ~, ~, ~] = KbQueueCheck();
+        if p && ~pressed
+            pressed = p;
+            first_press = fp;
+            if obj.breakthrough.is_break_trial
+                return
+            end
+            
         end
     end
 

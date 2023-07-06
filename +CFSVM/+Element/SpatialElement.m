@@ -6,10 +6,10 @@ classdef (Abstract) SpatialElement < matlab.mixin.Copyable
 
         % ``[x0, y0, x1, y1] array`` with pixel positions for the
         % element's rectangle.
-        rect (1, 4) {mustBeNonnegative}
+        rect {mustBeNonnegative}
 
-        % ``Float`` from 0 to 1, where 1 is full contrast.
-        contrast (1, 1) {mustBeInRange(contrast, 0, 1)}
+        % ``Float`` array or single number from 0 to 1, where 1 is full contrast.
+        contrast {mustBeInRange(contrast, 0, 1)}
 
         % ``[R, G, B] array`` for Red, Green, Blue ranging from 0 to 1.
         color (1, 3) {mustBeInRange(color, 0, 1)}

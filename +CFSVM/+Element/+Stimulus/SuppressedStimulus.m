@@ -7,22 +7,18 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
     properties (Constant)
 
         % Parameters to parse into the processed results table.
-        RESULTS = {'onset', 'offset', 'full_contrast_onset', 'fade_out_onset', 'position', 'index', 'image_name'}
+        RESULTS = {'onset', 'offset', 'position', 'index', 'image_name'}
 
     end
 
     properties
 
-        % Float - seconds of Mondrians flashing before stimulus appearance
-        appearance_delay {mustBeNonnegative}
-        % Float - duration in seconds of stimulus fade in.
-        fade_in_duration {mustBeNonnegative}
-        % Float - duration in seconds of stimulus fade out.
-        fade_out_duration {mustBeNonnegative}
         % [x0, y0, x1, y1] array - stimulus rect on the left screen.
         left_rect (1, 4) {mustBeInteger}
         % [x0, y0, x1, y1] array - stimulus rect on the right screen.
         right_rect (1, 4) {mustBeInteger}
+        % 1D array representing rotation for every frame of flashing.
+        rotations {mustBeNumeric}
         % 1D array representing contrast for every frame of flashing.
         contrasts {mustBeInRange(contrasts, 0, 1)}
         % 1D array representing shown for current frame stimulus when set to 1.
@@ -52,17 +48,8 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
             %       Defaults to 0.
             %   contrast: :attr:`CFSVM.Element.SpatialElement.contrast`.
             %       Defaults to 1.
-            %   appearance_delay:
-            %       :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.appearance_delay`.
-            %       Defaults to 0.
-            %   fade_in_duration:
-            %       :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.fade_in_duration`.
-            %       Defaults to 0.
             %   duration: :attr:`CFSVM.Element.TemporalElement.duration`.
             %       Defaults to 1.
-            %   fade_out_duration:
-            %       :attr:`~CFSVM.Element.Stimulus.SuppressedStimulus.fade_out_duration`.
-            %       Defaults to 0.
             %   blank: :attr:`CFSVM.Element.Stimulus.Stimulus.blank`.
             %       Defaults to 0.
             %   manual_rect:
@@ -76,10 +63,7 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
                 kwargs.padding = 0.5
                 kwargs.rotation = 0
                 kwargs.contrast = 1
-                kwargs.appearance_delay = 0
-                kwargs.fade_in_duration = 0
                 kwargs.duration = 1
-                kwargs.fade_out_duration = 0
                 kwargs.blank = 0
                 kwargs.manual_rect
             end
@@ -102,34 +86,32 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
             %
 
             obj.image_name = obj.textures.images_names(obj.index);
+            n_fr = obj.duration * screen.frame_rate;
 
-            % Calculate indiced for appearance
-            cumul = [ ...
-                     false(1, obj.appearance_delay * screen.frame_rate), ...
-                     true(1, obj.fade_in_duration * screen.frame_rate), ...
-                     true(1, obj.duration * screen.frame_rate), ...
-                     true(1, obj.fade_out_duration * screen.frame_rate)];
-            obj.indices = [cumul, false(1, masks.duration * screen.frame_rate - length(cumul))];
-
-            % Calculate indices for contrasts
-            if obj.contrast ~= 0
-                cumul = [ ...
-                         zeros(1, obj.appearance_delay * screen.frame_rate), ...
-                         obj.contrast / (obj.fade_in_duration * screen.frame_rate): ...
-                         obj.contrast / (obj.fade_in_duration * screen.frame_rate): ...
-                         obj.contrast, ...
-                         obj.contrast + zeros(1, obj.duration * screen.frame_rate), ...
-                         obj.contrast: ...
-                         -obj.contrast / (obj.fade_out_duration * screen.frame_rate + 1): ...
-                         obj.contrast / (obj.fade_out_duration * screen.frame_rate + 1)];
-            else
-                cumul = [ ...
-                         zeros(1, obj.appearance_delay * screen.frame_rate), ...
-                         zeros(1, obj.fade_in_duration * screen.frame_rate), ...
-                         zeros(1, obj.duration * screen.frame_rate), ...
-                         zeros(1, obj.fade_out_duration * screen.frame_rate + 1)];
+            try
+                obj.contrasts = CFSVM.Utils.expand_n2m(obj.contrast, n_fr);
+            catch ME
+                if ME.identifier == "MATLAB:repelem:invalidReplications"
+                    error("Number of contrasts provided for the stimulus object is invalid.")
+                else
+                    rethrow(ME)
+                end
             end
-            obj.contrasts = [cumul, zeros(1, masks.duration * screen.frame_rate - length(cumul))];
+
+            try
+                obj.rotations = CFSVM.Utils.expand_n2m(obj.rotation, n_fr);
+            catch ME
+                if ME.identifier == "MATLAB:repelem:invalidReplications"
+                    error("Number of rotations provided for the stimulus object is invalid.")
+                else
+                    rethrow(ME)
+                end
+            end
+            
+            % Calculate indiced for appearance
+            obj.indices = [obj.contrasts ~= 0, false(1, masks.duration * screen.frame_rate - n_fr)];
+
+            
 
         end
 

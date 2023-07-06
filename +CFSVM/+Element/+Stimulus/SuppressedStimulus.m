@@ -23,10 +23,6 @@ classdef SuppressedStimulus < CFSVM.Element.Stimulus.Stimulus
         contrasts {mustBeInRange(contrasts, 0, 1)}
         % 1D array representing shown for current frame stimulus when set to 1.
         indices {mustBeInteger, mustBeInRange(indices, 0, 1)}
-        % Onset time of stable contrast stimulus
-        full_contrast_onset {mustBeNonnegative}
-        % Onset time of stimulus dissapearance
-        fade_out_onset {mustBeNonnegative}
 
     end
 
